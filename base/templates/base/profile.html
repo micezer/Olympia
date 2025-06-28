@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      {% include 'base/addiction_list_component.html'%}
+
+
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{% static 'images/avatar.svg' %}" alt="Default avatar" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{ profile_user.username }}</h3>
+            <p>@{{ profile_user.username }}</p>
+            {% if request.user == profile_user  %}
+            <a href="{% url 'update-user'%}" class="btn btn--main btn--pill">Edit Profile</a>
+            {% endif %}
+          </div>
+
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            </h2>
+          </div>
+        </div>
+
+        {% include 'base/messages_component.html' %}
+
+
+
+      </div>
+      {% include 'base/activity_component.html'%}
+
+    </div>
+  </main>
+  {% endblock content%}

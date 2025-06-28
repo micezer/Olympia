@@ -1,0 +1,232 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .about-us {
+
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: #333;
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .about-title {
+        font-size: 3rem;
+        color: #e67e22;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .about-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-section {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .about-section h2 {
+        color: #e67e22;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+    }
+
+    .about-section p {
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    .founders-section {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .founders-title {
+        font-size: 2rem;
+        color: #e67e22;
+        margin-bottom: 30px;
+    }
+
+    .founders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .founder-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .founder-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 15px;
+        border: 3px solid #e67e22;
+    }
+
+    .founder-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .founder-role {
+        color: #666;
+        font-style: italic;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin-top: 60px;
+        padding: 40px;
+        background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+        border-radius: 10px;
+    }
+
+    .cta-title {
+        font-size: 2rem;
+        color: #e67e22;
+        margin-bottom: 20px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: #e67e22;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        background: #d35400;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .about-title {
+            font-size: 2.2rem;
+        }
+
+        .about-section {
+            padding: 20px;
+        }
+
+        .founders-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="about-us">
+    <div class="about-header">
+        <h1 class="about-title">SOMOS GOLDNESS</h1>
+        <p class="about-subtitle">Transformando vidas a través del entrenamiento personalizado y la fisioterapia</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-section">
+            <h2>Nuestra Historia</h2>
+            <p>Somos GOLDNESS, un centro de entrenamiento personal que fue creado en 2023 por un grupo de 4 mujeres
+                emprendedoras y deportistas, dispuestas a darle un plus a nuestros clientes. Sabemos que cada deportista
+                de élite necesita entrenamientos específicos, pero también entendemos la importancia de incluir
+                ejercicios que beneficien tu vida diaria y tu salud en general.</p>
+            <p>Por eso, en GOLDNESS ofrecemos una variedad de programas de entrenamiento diseñados para satisfacer todas
+                tus necesidades. Nuestro enfoque integral combina lo mejor del entrenamiento deportivo con técnicas que
+                mejoran tu calidad de vida.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Nuestro Enfoque</h2>
+            <p>Además de ofrecer entrenamientos personalizados, también nos preocupamos por tu bienestar a largo plazo.
+                Sabemos que tanto el deporte, como el trabajo, como nuestra vida diaria puede ser exigente para el
+                cuerpo, por lo que hemos incluido la fisioterapia como parte de nuestros servicios.</p>
+            <p>Nuestros fisioterapeutas te ayudarán a mantener tu bienestar al máximo nivel, previniendo lesiones y
+                tratando cualquier molestia que puedas tener. Creemos en un enfoque holístico donde el entrenamiento y
+                la recuperación van de la mano.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Nuestra Filosofía</h2>
+            <p>Creemos firmemente en los beneficios del deporte para la salud. Nuestro objetivo es ayudarte a alcanzar
+                tus metas y superar tus límites, pero siempre de manera segura y saludable. Nuestros entrenadores están
+                altamente cualificados y tienen una amplia experiencia en el ámbito deportivo, por lo que puedes confiar
+                en que estás en buenas manos.</p>
+            <p>En definitiva, en GOLDNESS somos tu mejor opción si buscas un entrenamiento de calidad, adaptado a tus
+                necesidades y guiado por expertos en el campo. No importa cuál sea tu nivel o tus metas, estamos aquí
+                para ayudarte a alcanzarlas.</p>
+        </div>
+    </div>
+
+    <div class="founders-section">
+        <h2 class="founders-title">Nuestro Equipo Fundador</h2>
+        <p>Cuatro mujeres apasionadas por el deporte y el bienestar, unidas para crear GOLDNESS</p>
+
+        <div class="founders-grid">
+            <div class="founder-card">
+                <img src="{% static 'imgs/founders/founder1.jpg' %}" alt="Fundadora 1" class="founder-img">
+                <h3 class="founder-name">María García</h3>
+                <p class="founder-role">Especialista en Entrenamiento Funcional</p>
+            </div>
+
+            <div class="founder-card">
+                <img src="{% static 'imgs/founders/founder2.jpg' %}" alt="Fundadora 2" class="founder-img">
+                <h3 class="founder-name">Ana Rodríguez</h3>
+                <p class="founder-role">Fisioterapeuta Deportiva</p>
+            </div>
+
+            <div class="founder-card">
+                <img src="{% static 'imgs/founders/founder3.jpg' %}" alt="Fundadora 3" class="founder-img">
+                <h3 class="founder-name">Lucía Fernández</h3>
+                <p class="founder-role">Especialista en Nutrición Deportiva</p>
+            </div>
+
+            <div class="founder-card">
+                <img src="{% static 'imgs/founders/founder4.jpg' %}" alt="Fundadora 4" class="founder-img">
+                <h3 class="founder-name">Sofía Martínez</h3>
+                <p class="founder-role">Entrenadora Personal Certificada</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2 class="cta-title">¡Únete a nuestra comunidad!</h2>
+        <p>Descubre todo lo que GOLDNESS puede hacer por ti. Recuerda, la salud es tu mayor riqueza, ¡y en GOLDNESS la
+            vamos a potenciar al máximo!</p>
+        <a href="" class="cta-button">CONTÁCTANOS</a>
+    </div>
+</div>
+
+{% endblock %}

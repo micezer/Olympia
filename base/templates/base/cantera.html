@@ -1,0 +1,806 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .team-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-top: 70px;
+        overflow: hidden;
+    }
+
+    .team-title {
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 20px 0; /* Increased margin for the lines */
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .team-title::before,
+    .team-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: rgb(239, 179, 106); /* Using your accent color */
+    }
+
+    .team-title::before {
+        top: 0;
+    }
+
+    .team-title::after {
+        bottom: 0;
+    }
+
+    /* Optional: Add some spacing between text and lines */
+    .team-title {
+        padding: 12px 0;
+    }
+
+
+
+
+    .players-carousel-container {
+        width: 100%;
+        position: relative;
+    }
+
+    .players-carousel {
+        display: flex;
+        gap: 20px;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    .player-card {
+    flex: 0 0 230px;
+    height: 300px;
+    background: rgb(145,198,191);
+    border: 2px solid rgb(239, 179, 106);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+
+    .player-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .player__img {
+        width: 80%;
+        /* Wider than container */
+        height: 100%;
+        object-fit: cover;
+        object-position: top left;
+        margin-left: 0%;
+        /* Shift image to the left */
+    }
+
+    .player__number {
+        position: absolute;
+        top: 40px;
+        right: 25px;
+        color: rgb(239, 179, 106);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 70px;
+        z-index: 2;
+    }
+
+    .player__name {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .player__position {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: white;
+        font-size: 20px;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        padding: 3px 6px;
+        border-radius: 4px;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-180px * 6 - 20px * 5));
+        }
+    }
+    .auto-scroll {
+        animation: scroll 45s linear infinite;
+        width: calc(180px * 12 + 20px * 11);
+    }
+
+    .players-carousel-container {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .teams-section {
+    max-width: 900px;
+    margin: -30px auto 0; /* reduce de 30px a 10px */
+    padding: 0 20px;
+}
+
+    
+    .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .team-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgb(239, 179, 106);
+        border-radius: 8px;
+        padding: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-box:hover {
+        transform: translateY(-5px);
+        border-color: rgb(239, 179, 106);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-box::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 107, 107, 0) 0%,
+            rgba(255, 107, 107, 0.1) 50%,
+            rgba(255, 107, 107, 0) 100%
+        );
+        transform: rotate(30deg);
+        transition: all 0.5s ease;
+    }
+
+    .team-box:hover::before {
+        animation: shine 1.5s infinite;
+    }
+
+    @keyframes shine {
+        0% {
+            left: -50%;
+        }
+        100% {
+            left: 150%;
+        }
+    }
+    
+
+    
+    .team-name {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        position: relative; /* Ensures text stays above overlay */
+        z-index: 1;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+    }
+    
+    .team-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .team-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    
+    .team-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .team-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .team-modal-content {
+        background: #1a3e72;
+        padding: 30px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+        position: relative;
+        text-align: center;
+        border: 2px solid rgb(239, 179, 106);
+    }
+
+    .team-modal-name {
+        color: white;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .team-modal-icons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 30px 0;
+    }
+
+    .team-modal-icon {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.3s ease;
+    }
+
+    .team-modal-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgb(239, 179, 106);
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .close-modal:hover {
+        background: #ff8b8b;
+    }
+    
+    @media (max-width: 600px) {
+        .teams-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        
+        .team-name {
+            font-size: 11px;
+        }
+        
+        .team-icons {
+            gap: 10px;
+        }
+        
+        .team-icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+
+</style>
+
+<div class="team-container">
+    <div class="team-title">PRIMER EQUIPO
+    </div>
+    <div class="players-carousel-container">
+        <div class="players-carousel auto-scroll" id="carousel">
+            <!-- Players -->
+            <div class="player-card">
+                <span class="player__number">1</span>
+                <img src="{% static 'images/equipos/senior_a/andrea_rodriguez.png' %}" alt="Andrea Rodríguez" class="player__img">
+                <span class="player__name">Andrea Rodríguez</span>
+                <span class="player__position">Portera</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">5</span>
+                <img src="{% static 'images/equipos/senior_a/belen_peralta.png' %}" alt="Belén Peralta" class="player__img">
+                <span class="player__name">Belén Peralta</span>
+                <span class="player__position">Extremo</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">6</span>
+                <img src="{% static 'images/equipos/senior_a/gema_prieto.png' %}" alt="Gema Prieto" class="player__img">
+                <span class="player__name">Gema Prieto</span>
+                <span class="player__position">Extremo</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">7</span>
+                <img src="{% static 'images/equipos/senior_a/patri_camacho.png' %}" alt="Patri Camacho" class="player__img">
+                <span class="player__name">Patri Camacho</span>
+                <span class="player__position">Mediocentro</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">8</span>
+                <img src="{% static 'images/equipos/senior_a/marta_moreno.png' %}" alt="Marta Moreno" class="player__img">
+                <span class="player__name">Marta Moreno</span>
+                <span class="player__position">Mediocentro</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">9</span>
+                <img src="{% static 'images/equipos/senior_a/rocio_zafra.png' %}" alt="Rocío Zafra" class="player__img">
+                <span class="player__name">Rocío Zafra</span>
+                <span class="player__position">Delantera</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">11</span>
+                <img src="{% static 'images/equipos/senior_a/lucia_sanchez.png' %}" alt="Lucía Sánchez" class="player__img">
+                <span class="player__name">Lucía Sánchez</span>
+                <span class="player__position">Extremo</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">12</span>
+                <img src="{% static 'images/equipos/senior_a/gabi_de_la_villa.png' %}" alt="Gabi de la Villa" class="player__img">
+                <span class="player__name">Gabi de la Villa</span>
+                <span class="player__position">Def Lateral</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">14</span>
+                <img src="{% static 'images/equipos/senior_a/arantxa_de_la_chica.png' %}" alt="Arantxa de la Chica"
+                    class="player__img">
+                <span class="player__name">Arantxa de la Chica</span>
+                <span class="player__position">Delantera</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">16</span>
+                <img src="{% static 'images/equipos/senior_a/maria_herrero.png' %}" alt="María Herrero" class="player__img">
+                <span class="player__name">María Herrero</span>
+                <span class="player__position">Mediocentro</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">17</span>
+                <img src="{% static 'images/equipos/senior_a/sara_sanchez.png' %}" alt="Sara Sánchez" class="player__img">
+                <span class="player__name">Sara Sánchez</span>
+                <span class="player__position">Extremo</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">18</span>
+                <img src="{% static 'images/equipos/senior_a/andrea_totana.png' %}" alt="Andrea Totana" class="player__img">
+                <span class="player__name">Andrea Totana</span>
+                <span class="player__position">Def Lateral</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">19</span>
+                <img src="{% static 'images/equipos/senior_a/elisa_puerta.png' %}" alt="Elisa Puerta" class="player__img">
+                <span class="player__name">Elisa Puerta</span>
+                <span class="player__position">Def Lateral</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">20</span>
+                <img src="{% static 'images/equipos/senior_a/yoli_albalat.png' %}" alt="Yoli Albalat" class="player__img">
+                <span class="player__name">Yoli Albalat</span>
+                <span class="player__position">Mediocentro</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">22</span>
+                <img src="{% static 'images/equipos/senior_a/alba_masa.png' %}" alt="Alba Masa" class="player__img">
+                <span class="player__name">Alba Masa</span>
+                <span class="player__position">Def Central</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">23</span>
+                <img src="{% static 'images/equipos/senior_a/maria_bravo.png' %}" alt="María Bravo" class="player__img">
+                <span class="player__name">María Bravo</span>
+                <span class="player__position">Def Central</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">26</span>
+                <img src="{% static 'images/equipos/senior_a/laura_gonzalez.png' %}" alt="Laura González" class="player__img">
+                <span class="player__name">Laura González</span>
+                <span class="player__position">Def Central</span>
+            </div>
+            
+            <div class="player-card">
+                <span class="player__number">30</span>
+                <img src="{% static 'images/equipos/senior_a/manuela_alfayate.png' %}" alt="Manuela Alfayate" class="player__img">
+                <span class="player__name">Manuela Alfayate</span>
+                <span class="player__position">Def Central</span>
+            </div>
+            
+            <!-- Staff -->
+            <div class="player-card">
+                <span class="player__name">Sergio García</span>
+                <span class="player__position">Primer entrenador</span>
+                <img src="{% static 'images/equipos/senior_a/sergio_garcia.png' %}" alt="Sergio García" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Fernando Zuazua</span>
+                <span class="player__position">Segundo Entrenador</span>
+                <img src="{% static 'images/equipos/senior_a/fernando_zuazua.png' %}" alt="Fernando Zuazua" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Ángel Orosa</span>
+                <span class="player__position">Asistente Técnico</span>
+                <img src="{% static 'images/equipos/senior_a/angel_orosa.png' %}" alt="Ángel Orosa" loading="lazy" class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Andrea Cacho</span>
+                <span class="player__position">Delegada</span>
+                <img src="{% static 'images/equipos/senior_a/andrea_cacho.png' %}" alt="Andrea Cacho" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Borja Carrera</span>
+                <span class="player__position">Preparador Físico</span>
+                <img src="{% static 'images/equipos/senior_a/borja_carrera.png' %}" alt="Borja Carrera" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Sergio de Lucas</span>
+                <span class="player__position">Analista</span>
+                <img src="{% static 'images/equipos/senior_a/sergio_de_lucas.png' %}" alt="Sergio de Lucas" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Adrián Sánchez</span>
+                <span class="player__position">Entrenador de Porteras</span>
+                <img src="{% static 'images/equipos/senior_a/adrian_sanchez.png' %}" alt="Adrián Sánchez" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Emanuel Inga</span>
+                <span class="player__position">Ayudante de Porteras</span>
+                <img src="{% static 'images/equipos/senior_a/emanuel_inga.png' %}" alt="Emanuel Inga" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Blanca Pedauyé</span>
+                <span class="player__position">Nutricionista</span>
+                <img src="{% static 'images/equipos/senior_a/blanca_pedauye.png' %}" alt="Blanca Pedauyé" loading="lazy"
+                    class="player__img">
+            </div>
+            
+            <div class="player-card">
+                <span class="player__name">Belén de Gracia</span>
+                <span class="player__position">Nutricionista</span>
+                <img src="{% static 'images/equipos/senior_a/belen_de_gracia.png' %}" alt="Belén de Gracia" loading="lazy"
+                    class="player__img">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="teams-section">
+    <div class="team-title">CANTERA
+        </div>
+
+    <div class="teams-grid">
+        <!-- Team 1 -->
+        <div class="team-box">
+            <div class="team-name">Senior B</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_SENIOR_B" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_SENIOR_B" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon"> </a>
+            </div>
+        </div>
+
+        <!-- Team 2 -->
+        <div class="team-box">
+            <div class="team-name">Senior C</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_SENIOR_B" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_SENIOR_B" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon">                </a>
+            </div>
+        </div>
+
+        <!-- Team 3 -->
+        <div class="team-box">
+            <div class="team-name">Juvenil A</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_JUVENIL" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_JUVENIL" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon">                </a>
+            </div>
+        </div>
+
+        <!-- Team 4 -->
+        <div class="team-box">
+            <div class="team-name">Juvenil B</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_CADETE" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_CADETE" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon">                </a>
+            </div>
+        </div>
+
+        <!-- Team 5 -->
+        <div class="team-box">
+            <div class="team-name">Cadete A</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_INFANTIL" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_INFANTIL" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon">                </a>
+            </div>
+        </div>
+
+        <!-- Team 6 -->
+        <div class="team-box">
+            <div class="team-name">Cadete B</div>
+            <div class="team-icons">
+                <a href="YOUR_CALENDAR_LINK_ALEVIN" class="team-icon-link">
+                    <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-icon">
+                </a>
+                <a href="YOUR_TABLE_LINK_ALEVIN" class="team-icon-link">
+                    <img src="{% static 'images/table.png' %}" alt="Classification" class="team-icon">                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal HTML -->
+<div class="team-modal" id="teamModal">
+    <div class="team-modal-content">
+        <button class="close-modal" id="closeModal">X</button>
+        <div class="team-modal-name" id="modalTeamName"></div>
+        <div class="team-modal-icons">
+            <a href="#" id="modalCalendarLink">
+                <img src="{% static 'images/calendar.png' %}" alt="Calendar" class="team-modal-icon">
+            </a>
+            <a href="#" id="modalTableLink">
+                <img src="{% static 'images/table.png' %}" alt="Classification" class="team-modal-icon">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.querySelector('.players-carousel-container');
+        const carousel = document.getElementById('carousel');
+        const items = document.querySelectorAll('.player-card');
+
+        // Clone all items and append to carousel for seamless looping
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            carousel.appendChild(clone);
+        });
+
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        let animationId;
+        let scrollSpeed = 0;
+        let lastScrollTime = 0;
+
+        function handleScroll() {
+            const now = Date.now();
+            const timeDiff = now - lastScrollTime;
+            lastScrollTime = now;
+
+            if (Math.abs(scrollSpeed) > 0.1) {
+                container.scrollLeft += scrollSpeed;
+                scrollSpeed *= 0.95; // Friction
+
+                // Check if we need to loop
+                checkLoop();
+
+                animationId = requestAnimationFrame(handleScroll);
+            } else {
+                scrollSpeed = 0;
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function checkLoop() {
+            const scrollWidth = carousel.scrollWidth / 2; // Since we duplicated items
+            const scrollLeft = container.scrollLeft;
+            const containerWidth = container.offsetWidth;
+
+            if (scrollLeft >= scrollWidth) {
+                container.scrollLeft = scrollLeft - scrollWidth;
+            } else if (scrollLeft <= 0) {
+                container.scrollLeft = scrollWidth - containerWidth;
+            }
+        }
+
+        // Mouse/touch events
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+            container.style.cursor = 'grabbing';
+            cancelAnimationFrame(animationId);
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+            lastScrollTime = Date.now();
+            animationId = requestAnimationFrame(handleScroll);
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            const prevScrollLeft = container.scrollLeft;
+            container.scrollLeft = scrollLeft - walk;
+            scrollSpeed = container.scrollLeft - prevScrollLeft;
+        });
+
+        // Touch events
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+            cancelAnimationFrame(animationId);
+        }, { passive: true });
+
+        container.addEventListener('touchend', () => {
+            isDragging = false;
+            lastScrollTime = Date.now();
+            animationId = requestAnimationFrame(handleScroll);
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            const prevScrollLeft = container.scrollLeft;
+            container.scrollLeft = scrollLeft - walk;
+            scrollSpeed = container.scrollLeft - prevScrollLeft;
+        }, { passive: true });
+
+        // Initialize scroll position to the middle of the duplicated content
+        setTimeout(() => {
+            container.scrollLeft = carousel.scrollWidth / 4;
+        }, 100);
+    });
+
+     // Team modal functionality
+        const teamModal = document.getElementById('teamModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTeamName = document.getElementById('modalTeamName');
+        const modalCalendarLink = document.getElementById('modalCalendarLink');
+        const modalTableLink = document.getElementById('modalTableLink');
+
+        // Store team data (replace with your actual links)
+        const teamData = {
+            'Senior B': {
+                calendar: 'YOUR_CALENDAR_LINK_SENIOR_A',
+                table: 'YOUR_TABLE_LINK_SENIOR_A'
+            },
+            'Senior C': {
+                calendar: 'YOUR_CALENDAR_LINK_SENIOR_B',
+                table: 'YOUR_TABLE_LINK_SENIOR_B'
+            },
+            'Juvenil A': {
+                calendar: 'YOUR_CALENDAR_LINK_JUVENIL',
+                table: 'YOUR_TABLE_LINK_JUVENIL'
+            },
+            'Juvenil B': {
+                calendar: 'YOUR_CALENDAR_LINK_CADETE',
+                table: 'YOUR_TABLE_LINK_CADETE'
+            },
+            'Cadete A': {
+                calendar: 'YOUR_CALENDAR_LINK_INFANTIL',
+                table: 'YOUR_TABLE_LINK_INFANTIL'
+            },
+            'Cadete B': {
+                calendar: 'YOUR_CALENDAR_LINK_ALEVIN',
+                table: 'YOUR_TABLE_LINK_ALEVIN'
+            }
+        };
+
+        // Add click handlers to team boxes
+        document.querySelectorAll('.team-box').forEach(box => {
+            box.addEventListener('click', function () {
+                const teamName = this.querySelector('.team-name').textContent;
+                const teamInfo = teamData[teamName];
+
+                modalTeamName.textContent = teamName;
+                modalCalendarLink.href = teamInfo.calendar;
+                modalTableLink.href = teamInfo.table;
+
+                teamModal.style.display = 'flex';
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function () {
+            teamModal.style.display = 'none';
+        });
+
+        // Close when clicking outside content
+        teamModal.addEventListener('click', function (e) {
+            if (e.target === teamModal) {
+                teamModal.style.display = 'none';
+            }
+        });
+
+    
+</script>
+
+
+{% endblock %}

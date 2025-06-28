@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="delete-item layout">
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__boxHeader">
+                <div class="layout__boxTitle">
+                    <a href="{{request.META.HTTP_REFERER}}">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                            viewBox="0 0 32 32">
+                            <title>arrow-left</title>
+                            <path
+                                d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+                            </path>
+                        </svg>
+                    </a>
+                    <h3>Back</h3>
+                </div>
+            </div>
+            <div class="layout__body" style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 0vh; /* Adjust height as needed */
+                text-align: center;
+            ">
+                <form class="form" method="POST" action="" style="
+                    padding: 1rem;
+                    border-radius: 1rem;
+                    width: 100%;
+                    max-width: 400px; /* Adjust width as needed */
+                ">
+                    {% csrf_token %}
+                    <div class="" style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
+                        <a class="header__logo" style="text-decoration: none;">
+                            <h1 style="margin: 0;">Are you sure you want to delete it?</h1>
+                        </a>
+                        </div>
+            
+                    <div style="display: flex; justify-content: center; gap: 1rem;">
+                        <button class="btn btn3" type="submit" value="Confirm">Confirm</button>
+                        <a href="javascript:history.back()" class="btn btn3">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
