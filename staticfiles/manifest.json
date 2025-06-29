@@ -1,0 +1,20 @@
+{
+  "name": "CFF Olympia",
+  "short_name": "olympia",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "icons": [
+    {
+      "src": "/static/images/icons/olympia-icon-192x192.png?v=2",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/images/icons/olympia-icon-512x512.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
