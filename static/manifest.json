@@ -1,7 +1,7 @@
 {
-  "name": "olympia",
+  "name": "CFF Olympia",
   "short_name": "olympia",
-  "start_url": "/",
+  "start_url": "/home",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#FFD700",
