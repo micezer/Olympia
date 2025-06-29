@@ -1,7 +1,11 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 <style>
+    body{
+        padding-top: 80px;
+    }
     .pwa-install-container {
         max-width: 800px;
         margin: 0 auto;
@@ -11,10 +15,10 @@
     }
 
     .pwa-steps {
+
         display: flex;
         flex-direction: column;
         gap: 30px;
-        margin-top: 40px;
     }
 
     .step {
@@ -28,7 +32,7 @@
         display: inline-block;
         width: 30px;
         height: 30px;
-        background: #e63946;
+        background: rgb(239,179,106);
         color: white;
         border-radius: 50%;
         text-align: center;
@@ -38,16 +42,17 @@
     }
 
     .step-title {
-        font-size: 1.3rem;
+        font-size: 17px;
         margin-bottom: 15px;
-        color: #ff6b6b;
+        font-weight: 900;
+        color: white;
         display: flex;
         align-items: center;
     }
 
     .step-image {
         width: 100%;
-        max-width: 300px;
+        max-width: 100px;
         border-radius: 8px;
         margin: 15px auto;
         display: block;
@@ -77,8 +82,23 @@
     }
 
     .device-tab.active {
-        background: #1a3e72;
+        background: rgb(239,179,106);
         font-weight: bold;
+    }
+
+    .device-content {
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .fade-out {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    
+    .fade-in {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     @media (max-width: 600px) {
@@ -91,116 +111,120 @@
         }
     }
 </style>
-
+<body>
 <div class="pwa-install-container">
     <h1>Instalar la App del CFF Olympia</h1>
-    <p>Disfruta de acceso rápido desde tu pantalla de inicio como una aplicación nativa</p>
+    <p>Siga las instrucciónes en función del tipo de dispositivo</p>
 
     <div class="device-tabs">
         <button class="device-tab active" onclick="showDevice('ios')">iPhone</button>
         <button class="device-tab" onclick="showDevice('android')">Android</button>
-        <button class="device-tab" onclick="showDevice('desktop')">Ordenador</button>
     </div>
 
     <!-- iOS Instructions -->
     <div id="ios-steps" class="pwa-steps device-content">
-        <div class="step">
-            <div class="step-title"><span class="step-number">1</span> Abre en Safari</div>
-            <p class="step-description">Asegúrate de estar navegando nuestro sitio web a través del navegador Safari.
-            </p>
-        </div>
 
         <div class="step">
-            <div class="step-title"><span class="step-number">2</span> Toca el botón Compartir</div>
-            <img src="/static/images/ios-share.jpg" alt="Botón compartir en iOS" class="step-image">
-            <p class="step-description">Localiza y presiona el botón de compartir (cuadrado con flecha hacia arriba) en
-                la barra de herramientas.</p>
+            <div class="step-title" style="display: flex; align-items: center; gap: 8px; color: white;">
+                <!-- White text context -->
+                <span class="step-number">1</span>
+                <span>Toca el botón Compartir</span>
+                <img src="{% static 'images/ios-share.png' %}" alt="Botón compartir iOS" style="height: 1em; width: auto; vertical-align: middle; 
+                                   filter: brightness(0) invert(1);"> <!-- Converts to white -->
+            </div>
+            <p class="step-description">En tu dispositivo iOS, busca la barra del navegador. Allí verás un ícono de un cuadrado con una flecha apuntando hacia arriba: ese es el botón de compartir. Toca ese botón para abrir un menú con opciones de acción.</p>
         </div>
-
         <div class="step">
-            <div class="step-title"><span class="step-number">3</span> Selecciona "Añadir a inicio"</div>
-            <img src="/static/images/ios-add-to-home.jpg" alt="Añadir a inicio en iOS" class="step-image">
-            <p class="step-description">Desplázate hacia abajo en el menú y selecciona "Añadir a pantalla de inicio".
-            </p>
-        </div>
+            <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
+                <span class="step-number">2</span>
+                <span>Selecciona "Añadir a inicio"</span>
+                <img src="{% static 'images/add-square.png' %}" alt="Icono añadir a inicio"
+                    style="height: 1em; width: auto; filter: brightness(0) invert(1);">
+            </div>
+            <p class="step-description" style="margin-top: 8px; opacity: 0.9;">
+                Desplázate hacia abajo en el menú y selecciona "Añadir a pantalla de inicio".
+            </p>  </div>
 
-        <div class="step">
-            <div class="step-title"><span class="step-number">4</span> Confirma la instalación</div>
-            <p class="step-description">Pulsa "Añadir" en la esquina superior derecha y la app se instalará en tu
-                pantalla de inicio.</p>
-        </div>
+            <div class="step">
+                <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
+                    <span class="step-number">3</span>
+                    <span>Confirma la instalación</span>
+                    <img src="{% static 'images/logo.jpg' %}" alt="Club Logo"
+                        style="height: 1em; width: auto; vertical-align: middle;">
+                </div>
+                <p class="step-description">Pulsa "Añadir" en la esquina superior derecha y la app se instalará en tu pantalla de
+                    inicio.</p>      </div>
     </div>
 
     <!-- Android Instructions -->
     <div id="android-steps" class="pwa-steps device-content" style="display:none">
-        <div class="step">
-            <div class="step-title"><span class="step-number">1</span> Abre en Chrome</div>
-            <p class="step-description">Asegúrate de estar navegando nuestro sitio web a través del navegador Chrome.
-            </p>
-        </div>
 
         <div class="step">
-            <div class="step-title"><span class="step-number">2</span> Toca el menú (3 puntos)</div>
-            <img src="/static/images/android-menu.jpg" alt="Menú en Android" class="step-image">
-            <p class="step-description">Presiona el botón de menú (tres puntos verticales) en la esquina superior
-                derecha.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title"><span class="step-number">3</span> Selecciona "Instalar app"</div>
-            <img src="/static/images/android-install.jpg" alt="Instalar app en Android" class="step-image">
-            <p class="step-description">Busca y selecciona la opción "Instalar app" o "Añadir a pantalla de inicio".</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title"><span class="step-number">4</span> Confirma la instalación</div>
-            <p class="step-description">Pulsa "Instalar" en el diálogo de confirmación y la app se añadirá a tu pantalla
-                de inicio.</p>
-        </div>
+            <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
+                <span class="step-number">1</span>
+                <span>Toca el menú (3 puntos)</span>
+                <img src="{% static 'images/three-dots.png' %}" alt="Menú en Android"
+                    style="height: 1em; width: auto; filter: brightness(0) invert(1);">
+            </div>
+            <p class="step-description">Presiona el botón de menú (tres puntos verticales) en la esquina superior derecha.</p>  </div>
+            
+            <div class="step">
+                <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
+                    <span class="step-number">2</span>
+                    <span>Selecciona "Añadir a inicio"</span>
+                    <img src="{% static 'images/add-to-home-screen.png' %}" alt="Instalar app en Android"
+                        style="height: 1em; width: auto; filter: brightness(0) invert(1); vertical-align: middle;">
+                </div>
+                <p class="step-description">Busca y selecciona la opción "Añadir a pantalla de inicio" o "Instalar app".</p>      </div>
+                <div class="step">
+                    <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
+                        <span class="step-number">4</span>
+                        <span>Confirma la instalación</span>
+                        <img src="{% static 'images/logo.jpg' %}" alt="Logo del Club"
+                            style="height: 1em; width: auto; vertical-align: middle;">
+                    </div>
+                    <p class="step-description">Pulsa "Instalar" en el diálogo de confirmación y la app se añadirá a tu pantalla de
+                        inicio.</p>          </div>
     </div>
 
-    <!-- Desktop Instructions -->
-    <div id="desktop-steps" class="pwa-steps device-content" style="display:none">
-        <div class="step">
-            <div class="step-title"><span class="step-number">1</span> Usa Chrome o Edge</div>
-            <p class="step-description">Asegúrate de estar navegando nuestro sitio web a través de Chrome o Microsoft
-                Edge.</p>
-        </div>
 
-        <div class="step">
-            <div class="step-title"><span class="step-number">2</span> Busca el botón de instalación</div>
-            <img src="/static/images/desktop-pwa-prompt.jpg" alt="Prompt de instalación en desktop" class="step-image">
-            <p class="step-description">En la barra de direcciones, aparecerá un icono de instalación (generalmente un
-                "+" o un cuadro con flecha hacia abajo).</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title"><span class="step-number">3</span> Instala la aplicación</div>
-            <p class="step-description">Haz clic en el botón y selecciona "Instalar" cuando aparezca el diálogo de
-                confirmación.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title"><span class="step-number">4</span> Accede desde tu escritorio</div>
-            <p class="step-description">La app se instalará y podrás abrirla como una aplicación independiente desde tu
-                escritorio o menú de aplicaciones.</p>
-        </div>
-    </div>
 </div>
+</body>
 
 <script>
-    function showDevice(device) {
+    async function showDevice(device) {
         // Update tabs
         document.querySelectorAll('.device-tab').forEach(tab => {
             tab.classList.remove('active');
         });
         event.target.classList.add('active');
 
-        // Show corresponding content
-        document.querySelectorAll('.device-content').forEach(content => {
-            content.style.display = 'none';
-        });
-        document.getElementById(device + '-steps').style.display = 'block';
+        // Get current and new content
+        const currentContent = document.querySelector('.device-content:not([style*="display: none"])');
+        const newContent = document.getElementById(device + '-steps');
+
+        if (currentContent && currentContent !== newContent) {
+            // Fade out current content
+            currentContent.classList.add('fade-out');
+
+            // Wait for animation to complete
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Hide current content
+            currentContent.style.display = 'none';
+            currentContent.classList.remove('fade-out');
+        }
+
+        // Show new content with animation
+        newContent.style.display = 'flex';
+        newContent.style.flexDirection = 'column';
+        newContent.style.gap = '30px';
+        newContent.classList.add('fade-in');
+
+        // Remove animation class after completion
+        setTimeout(() => {
+            newContent.classList.remove('fade-in');
+        }, 300);
     }
 </script>
 {% endblock %}

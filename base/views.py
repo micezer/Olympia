@@ -62,8 +62,8 @@ def inscripciones_view(request):
 def cantera_view(request):
     return render(request, 'base/cantera.html')
 
-def servicios_view(request):
-    return render(request, 'base/servicios.html')
+def download_view(request):
+    return render(request, 'base/download.html')
 def about_view(request):
     return render(request, 'base/about.html')
 
