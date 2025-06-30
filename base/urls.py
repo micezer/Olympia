@@ -11,14 +11,17 @@ urlpatterns = [
     # Páginas principales
     path('home/', views.home, name="home"),
     path('offline/', views.offline, name="offline"),
-    path('inscripciones/', views.inscripciones_view, name='inscripciones'),
+    path('inscripcion/', views.inscripcion_view, name='inscripcion'),
     path('cantera/', views.cantera_view, name='cantera'),
     path('download/', views.download_view, name='download'),
     path('about/', views.about_view, name='about'),
+    path('test_form/', views.test_form, name='test_form'),
+
     
     # URLs PWA (sin duplicados)
     path('manifest.json', views.manifest, name='manifest'),
-    path('sw.js', views.service_worker, name='service_worker'),
+        path('serviceworker.js', views.serviceworker, name='serviceworker'),
+
 ]
 
 # Configuración de archivos estáticos SOLO en desarrollo
