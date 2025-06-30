@@ -5,47 +5,19 @@ from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.db.models import Q
 from django.contrib import messages
-
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.conf import settings
+import os
 # Autenticación
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-
-# Modelos y formularios propios
-from .models import UserProfile, Service
-from .forms import (
-    UserForm,
-    MyUserCreationForm,
-    UserProfileForm
-)
+from django.views.decorators.cache import never_cache
 
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        logger.debug(f"User {request.user.username} attempted to access login page while already authenticated")
-        return redirect('home')
 
-    form = AuthenticationForm(request, data=request.POST or None)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            logger.info(f"Successful login for user: {user.username} (IP: {request.META.get('REMOTE_ADDR')})")
-            return redirect('home')
-        else:
-            messages.error(request, 'Invalid username or password')
-            logger.warning(
-                f"Failed login attempt for username: {request.POST.get('username', '').strip()} "
-                f"(IP: {request.META.get('REMOTE_ADDR')})"
-            )
-
-    context = {
-        'page': 'login',
-        'form': form
-    }
-    return render(request, 'base/login_register.html', context)
 
 
 import logging
@@ -67,26 +39,42 @@ def download_view(request):
 def about_view(request):
     return render(request, 'base/about.html')
 
-from .forms import CustomUserCreationForm
+def service_worker(request):
+    response = HttpResponse(
+        open(os.path.join(settings.STATIC_ROOT, 'js/sw.js')).read(), 
+        content_type='application/javascript'
+    )
+    response['Service-Worker-Allowed'] = '/'
+    return response
 
-def registerPage(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')  # Replace 'home' with your desired redirect page
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'base/login_register.html', {'form': form})
+from django.http import HttpResponse
+from django.views.decorators.cache import never_cache
+from django.conf import settings
+import json
 
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('home')
-
-from django.http import JsonResponse
+@never_cache
+def manifest(request):
+    manifest_data = {
+        "name": "CFF Olympia",
+        "short_name": "CFF Olympia",
+        "start_url": "/home/?v=2",
+        "display": "standalone",
+        "background_color": "#000000",
+        "theme_color": "#FFD700",
+        "icons": [
+            {
+                "src": f"{settings.STATIC_URL}images/icons/olympia-icon-192x192.png?v=2",
+                "sizes": "192x192",
+                "type": "image/png"
+            },
+            {
+                "src": f"{settings.STATIC_URL}images/icons/olympia-icon-512x512.png?v=2",
+                "sizes": "512x512",
+                "type": "image/png"
+            }
+        ]
+    }
+    return HttpResponse(json.dumps(manifest_data), content_type='application/json')
 
 def home(request):
     if request.user.is_authenticated:
@@ -97,27 +85,5 @@ def home(request):
 
 
 
-def userProfile(request, user):
-    profile_user = get_object_or_404(User, username=user)
-    
-    
-    recent_messages = messages[:3]
-    
-    context = {
-        'profile_user': profile_user,
-    }
-    return render(request, 'base/profile.html', context)
 
-@login_required(login_url='login')
-def updateUser(request):
-    user = request.user
-    form = UserForm(instance=user)
-
-    if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('user-profile', user=user.username)
-
-    return render(request, 'base/update-user.html', {'form': form})
 
