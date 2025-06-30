@@ -180,7 +180,6 @@
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-top: 20px;
     position: relative;
     padding: 10px 0;
     background: rgb(23, 56, 105); /* Match form background */
@@ -224,30 +223,30 @@
         background: rgba(255, 255, 255, 0.2);
     }
 
-    /* Add these styles to your CSS */
+/* Contenedor más ancho */
 .confirmation-container {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 16px;
+    padding: 30px;
     margin: 0 auto;
-    max-width: 100%;
     box-sizing: border-box;
+    width: 95%; /* Más ancho que antes (90%) */
+    max-width: 1200px; /* Mucho más ancho (antes 800px) */
 }
 
 .confirmation-header {
     color: white;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 18px;
-    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 24px; /* Título más grande */
+    padding-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .confirmation-content {
     color: white;
-    max-height: 60vh;
+    max-height: 70vh;
     overflow-y: auto;
-    padding: 10px;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.3) transparent;
 }
@@ -258,25 +257,27 @@
     margin: 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 20px; /* Más espacio entre elementos */
 }
 
 .confirmation-content li {
-    padding: 12px 15px;
+    padding: 20px 25px; /* Más espacio interno */
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    border-radius: 10px; /* Bordes más redondeados */
     word-break: break-word;
 }
 
 .confirmation-content strong {
     color: rgb(239, 179, 106);
     display: inline-block;
-    min-width: 200px;
+    min-width: 250px; /* Más ancho para las etiquetas */
+    font-size: 1.1em;
+    margin-right: 20px; /* Separación añadida */
 }
 
-/* Custom scrollbar for confirmation box */
+/* Scrollbar más visible */
 .confirmation-content::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
 }
 
 .confirmation-content::-webkit-scrollbar-track {
@@ -284,8 +285,15 @@
 }
 
 .confirmation-content::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 3px;
+    background-color: rgba(255,255,255,0.4); /* Más visible */
+    border-radius: 5px;
+}
+
+/* Para pantallas muy grandes (opcional) */
+@media (min-width: 1600px) {
+    .confirmation-container {
+        max-width: 1400px;
+    }
 }
 
 /* Responsive adjustments */
@@ -364,25 +372,17 @@
                         <div class="progress-step" data-step="3">Autorización Menor</div>
                         <div class="progress-step" data-step="4">Protección Datos</div>
                         <div class="progress-step" data-step="5">Compromiso</div>
+                        <div class="progress-step" data-step="5">Confirmación</div>
                     </div>
-
-
-
-                    <form id="multiForm">
-                        <!-- Your existing form fields -->
-                        <input type="text" name="Nombre" placeholder="Nombre completo" required>
-                        <input type="email" name="Email" placeholder="Email" required>
-                        <!-- Add all other fields -->
-                    
-                        <button type="submit">Enviar formulario</button>
-                    </form>
 
                     <!-- Form Container -->
                     <form id="multiForm" enctype="multipart/form-data">
-                        <!-- Remove action/method - we'll handle it via JavaScript -->
-                        <input type="hidden" name="_subject" value="TEST: Inscripción Olympia">
-                        <input type="hidden" name="_cc" value="tesoreria@cffolympia.es,ana.delachica@cffolympia.es">
-                        <!-- Keep all your existing fields -->
+
+                        <input type="hidden" name="_subject" value="Nueva Inscripción CFF Olympia">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+
+
                         <!-- Page 1: Main Information -->
                         <div class="form-page active" id="page1">
 
@@ -877,18 +877,18 @@
                         <!-- Add this right before the closing </form> tag -->
                         <!-- Page 6: Confirmation -->
                         <div class="form-page" id="page6">
-                            <h2 class="form__title">CONFIRMACIÓN DE INSCRIPCIÓN</h2>
                         
-                            <fieldset class="form__field">
-                                <div class="confirmation-container">
-                                    <h3 class="confirmation-header">Revise su información antes de enviar:</h3>
-                                    <div id="confirmationData" class="confirmation-content"></div>
-                                </div>
-                                <div class="form-navigation">
-                                    <button type="button" class="prev-btn">Anterior</button>
-                                    <button type="submit" class="form__submit">Confirmar y Enviar</button>
-                                    </div> 
-                            </fieldset>
+                                    <div class="form-navigation">
+                                        <button type="button" class="prev-btn">Anterior</button>
+                                        <button type="submit" class="form__submit">Confirmar y Enviar</button>
+
+                                    </div>
+                                    <div id="confirmationData" class="confirmation-content">
+                    
+                                      
+                                    </div>
+  
+                     
                         
                                         
                         </div>
@@ -896,245 +896,220 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+            // Testing mode flag - set to true when testing
+            const TESTING_MODE = true;
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Form navigation
+                const form = document.getElementById('multiForm');
+                const pages = document.querySelectorAll('.form-page');
+                const progressSteps = document.querySelectorAll('.progress-step');
+                let currentPage = 0;
+
+                // Show first page
+                showPage(currentPage);
+
+                // Next button click
+                document.querySelectorAll('.next-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        if (validatePage(currentPage)) {
+                            // If going to last page (confirmation), gather all data first
+                            if (currentPage === pages.length - 2) {
+                                gatherConfirmationData();
+                            }
+                            currentPage++;
+                            showPage(currentPage);
+                        }
+                    });
+                });
+
+                // Previous button click
+                document.querySelectorAll('.prev-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        currentPage--;
+                        showPage(currentPage);
+                    });
+                });
+
+                // Show specific page
+                function showPage(index) {
+                    pages.forEach((page, i) => {
+                        page.classList.toggle('active', i === index);
+                    });
+
+                    progressSteps.forEach((step, i) => {
+                        step.classList.toggle('active', i <= index);
+                    });
+
+                    // Update displayed player name
+                    const playerName = document.getElementById('Nombre').value;
+                    document.querySelectorAll('#nombreJugadoraDisplay, #nombreJugadoraDisplay2').forEach(el => {
+                        el.textContent = playerName || '[Nombre de la jugadora]';
+                    });
+
+                    // Scroll to top of form content
+                    document.querySelector('.form-scroll-wrapper').scrollTop = 0;
+                }
+
+                // Validate page before proceeding
+                function validatePage(index) {
+                    if (TESTING_MODE) return true; // Skip validation in testing mode
+
+                    const currentPage = pages[index];
+                    const requiredInputs = currentPage.querySelectorAll('[required]');
+                    let isValid = true;
+
+                    requiredInputs.forEach(input => {
+                        if (!input.value && (input.type !== 'checkbox' && input.type !== 'radio')) {
+                            input.style.borderColor = 'red';
+                            isValid = false;
+                        } else if ((input.type === 'checkbox' || input.type === 'radio') && !input.checked) {
+                            input.style.outline = '1px solid red';
+                            isValid = false;
+                        } else {
+                            input.style.borderColor = '';
+                            input.style.outline = '';
+                        }
+                    });
+
+                    if (!isValid) {
+                        alert('Por favor, complete todos los campos requeridos antes de continuar.');
+                    }
+
+                    return isValid;
+                }
+
+                // Gather all form data for confirmation page
+                function gatherConfirmationData() {
+                    const formData = new FormData(form);
+                    let confirmationHTML = '<ul style="list-style-type: none; padding: 0;">';
+
+                    formData.forEach((value, key) => {
+                        if (value && typeof value === 'string' && value.trim() !== '') {
+                            confirmationHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+                        }
+                    });
+
+                    confirmationHTML += '</ul>';
+                    document.getElementById('confirmationData').innerHTML = confirmationHTML;
+                }
+
+                // Update player name displays when name changes
+                document.getElementById('Nombre').addEventListener('input', function () {
+                    document.querySelectorAll('#nombreJugadoraDisplay, #nombreJugadoraDisplay2').forEach(el => {
+                        el.textContent = this.value || '[Nombre de la jugadora]';
+                    });
+                });
+
+                // Auto-fill form in testing mode
+                if (TESTING_MODE) {
+                    autoFillForm();
+                }
+
+                // Function to auto-fill form for testing
+                function autoFillForm() {
+                    // Basic information
+                    document.getElementById('Nombre').value = 'Test Jugadora';
+                    document.getElementById('Nacimiento').value = '2010-01-01';
+                    document.getElementById('Categoria').value = 'Alevín (2014-2015)';
+                    document.getElementById('Municipio').value = 'Test Municipio';
+                    document.getElementById('Empadronada').value = 'Test Empadronamiento';
+                    document.getElementById('Domicilio').value = 'Test Domicilio';
+                    document.getElementById('Poblacion').value = 'Test Población';
+                    document.getElementById('CodPostal').value = '28001';
+
+                    // Experience
+                    document.querySelector('input[name="experiencia_futbol"][value="Sí"]').checked = true;
+                    document.getElementById('Experiencia').value = 'Test experiencia';
+
+                    // Parent information
+                    document.getElementById('NombreMadreOTutor').value = 'Test Madre';
+                    document.getElementById('DNIMadreOTutor').value = '12345678A';
+                    document.getElementById('EmailMadreOTutor').value = 'test@example.com';
+                    document.getElementById('TelefonoMadreOTutor').value = '600000000';
+                    document.getElementById('LugarNacimientoMadreOTutor').value = 'Test Lugar';
+
+                    // Checkboxes
+                    document.getElementById('Normas').checked = true;
+                    document.getElementById('Politicas').checked = true;
+                    document.getElementById('ConsentimientoSalud').checked = true;
+                    document.getElementById('ConsentimientoRedes').checked = true;
+                    document.getElementById('ConsentimientoInternet').checked = true;
+                    document.getElementById('ConsentimientoPublicidad').checked = true;
+
+                    // Page 2 - Domiciliation
+                    document.getElementById('bancoNombre').value = 'Test Banco';
+                    document.getElementById('ibanCuenta').value = 'ES00 0000 0000 0000 0000 0000';
+                    document.getElementById('titularCuenta').value = 'Test Titular';
+                    document.getElementById('dniTitular').value = '12345678A';
+                    document.getElementById('aceptoDomiciliacion').checked = true;
+
+                    // Page 3 - Minor Authorization
+                    document.querySelector('input[name="Nombre tutor autorización"]').value = 'Test Tutor';
+                    document.querySelector('input[name="DNI tutor autorización"]').value = '12345678A';
+                    document.getElementById('autorizoInscripcion').checked = true;
+                    document.getElementById('autorizoTratamiento').checked = true;
+                    document.getElementById('fechaAutorizacion').value = '2025-01-01';
+                    document.getElementById('firmaDigital').value = 'Test Firma';
+
+                    // Page 4 - Data Protection
+                    document.querySelector('input[name="Acepta política privacidad"]').checked = true;
+                    document.getElementById('consentimientoDatosSalud').checked = true;
+                    document.getElementById('consentimientoImagen').checked = true;
+                    document.getElementById('fechaProteccionDatos').value = '2025-01-01';
+
+                    // Page 5 - Commitment Letter
+                    document.getElementById('compromisoNormas').checked = true;
+                    document.getElementById('compromisoAsistencia').checked = true;
+                    document.getElementById('compromisoPagos').checked = true;
+                    document.getElementById('compromisoConducta').checked = true;
+                    document.getElementById('fechaCompromiso').value = '2025-01-01';
+                    document.getElementById('firmaCompromiso').value = 'Test Firma';
+                }
+            });
+
+            document.getElementById("multiForm").addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const submitBtn = form.querySelector('button[type="submit"]');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch("https://formsubmit.co/ajax/moezehero@gmail.com", {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        alert("✅ Formulario enviado correctamente!");
+                        form.reset();
+                    }
+                } catch (error) {
+                    alert("❌ Error al enviar. Por favor intente nuevamente.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Enviar formulario";
+                }
+            });
+
+
+        </script>
+
     </body>
 </main>
 
 </html>
 
 
-<script>
-    
-    // Testing mode flag - set to true when testing
-    const TESTING_MODE = true;
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Form navigation
-        const form = document.getElementById('multiForm');
-        const pages = document.querySelectorAll('.form-page');
-        const progressSteps = document.querySelectorAll('.progress-step');
-        let currentPage = 0;
-
-        // Show first page
-        showPage(currentPage);
-
-        // Next button click
-        document.querySelectorAll('.next-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                if (validatePage(currentPage)) {
-                    // If going to last page (confirmation), gather all data first
-                    if (currentPage === pages.length - 2) {
-                        gatherConfirmationData();
-                    }
-                    currentPage++;
-                    showPage(currentPage);
-                }
-            });
-        });
-
-        // Previous button click
-        document.querySelectorAll('.prev-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                currentPage--;
-                showPage(currentPage);
-            });
-        });
-
-        // Show specific page
-        function showPage(index) {
-            pages.forEach((page, i) => {
-                page.classList.toggle('active', i === index);
-            });
-
-            progressSteps.forEach((step, i) => {
-                step.classList.toggle('active', i <= index);
-            });
-
-            // Update displayed player name
-            const playerName = document.getElementById('Nombre').value;
-            document.querySelectorAll('#nombreJugadoraDisplay, #nombreJugadoraDisplay2').forEach(el => {
-                el.textContent = playerName || '[Nombre de la jugadora]';
-            });
-
-            // Scroll to top of form content
-            document.querySelector('.form-scroll-wrapper').scrollTop = 0;
-        }
-
-        // Validate page before proceeding
-        function validatePage(index) {
-            if (TESTING_MODE) return true; // Skip validation in testing mode
-
-            const currentPage = pages[index];
-            const requiredInputs = currentPage.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredInputs.forEach(input => {
-                if (!input.value && (input.type !== 'checkbox' && input.type !== 'radio')) {
-                    input.style.borderColor = 'red';
-                    isValid = false;
-                } else if ((input.type === 'checkbox' || input.type === 'radio') && !input.checked) {
-                    input.style.outline = '1px solid red';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = '';
-                    input.style.outline = '';
-                }
-            });
-
-            if (!isValid) {
-                alert('Por favor, complete todos los campos requeridos antes de continuar.');
-            }
-
-            return isValid;
-        }
-
-        // Gather all form data for confirmation page
-        function gatherConfirmationData() {
-            const formData = new FormData(form);
-            let confirmationHTML = '<ul style="list-style-type: none; padding: 0;">';
-
-            formData.forEach((value, key) => {
-                if (value && typeof value === 'string' && value.trim() !== '') {
-                    confirmationHTML += `<li><strong>${key}:</strong> ${value}</li>`;
-                }
-            });
-
-            confirmationHTML += '</ul>';
-            document.getElementById('confirmationData').innerHTML = confirmationHTML;
-        }
-
-        // Update player name displays when name changes
-        document.getElementById('Nombre').addEventListener('input', function () {
-            document.querySelectorAll('#nombreJugadoraDisplay, #nombreJugadoraDisplay2').forEach(el => {
-                el.textContent = this.value || '[Nombre de la jugadora]';
-            });
-        });
-
-        // Auto-fill form in testing mode
-        if (TESTING_MODE) {
-            autoFillForm();
-        }
-
-        // Function to auto-fill form for testing
-        function autoFillForm() {
-            // Basic information
-            document.getElementById('Nombre').value = 'Test Jugadora';
-            document.getElementById('Nacimiento').value = '2010-01-01';
-            document.getElementById('Categoria').value = 'Alevín (2014-2015)';
-            document.getElementById('Municipio').value = 'Test Municipio';
-            document.getElementById('Empadronada').value = 'Test Empadronamiento';
-            document.getElementById('Domicilio').value = 'Test Domicilio';
-            document.getElementById('Poblacion').value = 'Test Población';
-            document.getElementById('CodPostal').value = '28001';
-
-            // Experience
-            document.querySelector('input[name="experiencia_futbol"][value="Sí"]').checked = true;
-            document.getElementById('Experiencia').value = 'Test experiencia';
-
-            // Parent information
-            document.getElementById('NombreMadreOTutor').value = 'Test Madre';
-            document.getElementById('DNIMadreOTutor').value = '12345678A';
-            document.getElementById('EmailMadreOTutor').value = 'test@example.com';
-            document.getElementById('TelefonoMadreOTutor').value = '600000000';
-            document.getElementById('LugarNacimientoMadreOTutor').value = 'Test Lugar';
-
-            // Checkboxes
-            document.getElementById('Normas').checked = true;
-            document.getElementById('Politicas').checked = true;
-            document.getElementById('ConsentimientoSalud').checked = true;
-            document.getElementById('ConsentimientoRedes').checked = true;
-            document.getElementById('ConsentimientoInternet').checked = true;
-            document.getElementById('ConsentimientoPublicidad').checked = true;
-
-            // Page 2 - Domiciliation
-            document.getElementById('bancoNombre').value = 'Test Banco';
-            document.getElementById('ibanCuenta').value = 'ES00 0000 0000 0000 0000 0000';
-            document.getElementById('titularCuenta').value = 'Test Titular';
-            document.getElementById('dniTitular').value = '12345678A';
-            document.getElementById('aceptoDomiciliacion').checked = true;
-
-            // Page 3 - Minor Authorization
-            document.querySelector('input[name="Nombre tutor autorización"]').value = 'Test Tutor';
-            document.querySelector('input[name="DNI tutor autorización"]').value = '12345678A';
-            document.getElementById('autorizoInscripcion').checked = true;
-            document.getElementById('autorizoTratamiento').checked = true;
-            document.getElementById('fechaAutorizacion').value = '2025-01-01';
-            document.getElementById('firmaDigital').value = 'Test Firma';
-
-            // Page 4 - Data Protection
-            document.querySelector('input[name="Acepta política privacidad"]').checked = true;
-            document.getElementById('consentimientoDatosSalud').checked = true;
-            document.getElementById('consentimientoImagen').checked = true;
-            document.getElementById('fechaProteccionDatos').value = '2025-01-01';
-
-            // Page 5 - Commitment Letter
-            document.getElementById('compromisoNormas').checked = true;
-            document.getElementById('compromisoAsistencia').checked = true;
-            document.getElementById('compromisoPagos').checked = true;
-            document.getElementById('compromisoConducta').checked = true;
-            document.getElementById('fechaCompromiso').value = '2025-01-01';
-            document.getElementById('firmaCompromiso').value = 'Test Firma';
-        }
-    });
-
-    document.getElementById("multiForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Enviando...";
-
-            try {
-                // 1. Convert form data to object
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-
-                // 2. Generate PDF
-                const pdfDoc = await PDFLib.PDFDocument.create();
-                const page = pdfDoc.addPage([600, 800]);
-                // ... (add your PDF content here)
-                const pdfBytes = await pdfDoc.save();
-
-                // 3. Generate Excel
-                const ws = XLSX.utils.json_to_sheet([data]);
-                const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, "Inscripción");
-                const excelFile = XLSX.write(wb, { type: "array", bookType: "xlsx" });
-
-                // 4. Prepare final submission
-                const finalFormData = new FormData();
-                for (const [key, value] of Object.entries(data)) {
-                    finalFormData.append(key, value);
-                }
-                finalFormData.append("pdf_attachment", new Blob([pdfBytes], { type: "application/pdf" }), "inscripcion.pdf");
-                finalFormData.append("excel_attachment", new Blob([excelFile], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }), "datos.xlsx");
-
-                // 5. Submit to FormSubmit
-                const response = await fetch("https://formsubmit.co/ajax/obiezeh999@gmail.com", {
-                    method: "POST",
-                    body: finalFormData,
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                });
-
-                const result = await response.json();
-                if (result.success) {
-                    alert("✅ Formulario enviado! Revise su email.");
-                    form.reset();
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("❌ Error al enviar. Por favor intente nuevamente.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Enviar formulario";
-            }
-        });
-
-
-
-
-</script>
 {% endblock content %}

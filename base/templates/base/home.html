@@ -16,7 +16,6 @@
       box-sizing: border-box;
       font-family: 'Segoe UI', Roboto, sans-serif;
       overflow-x: hidden;
-
     }
 
     body {
@@ -66,7 +65,7 @@
     }
 
     .match-subtitle {
-      font-size: 1rem;
+      font-size: 12px;
       opacity: 0.9;
       margin-bottom: 30px;
       position: relative;
@@ -131,6 +130,7 @@
       position: relative;
       z-index: 2;
       justify-content: center;
+      color: white;
     }
 
     .match-date,
@@ -160,13 +160,12 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: 900;
-      font-size: 0.95rem;
+      font-size: 12px;
       transition: all 0.2s ease;
-      border: 1px solid #0d2b52;
     }
 
     .compact-calendar-btn:hover {
-      background: #f0f0f0;
+      background:rgb(239, 179, 106);
       transform: translateY(-2px);
     }
 
@@ -181,12 +180,12 @@
   background-color: rgb(31,45,82);
   border-radius: 12px;
   padding: 1.2rem;
-  margin: -100px 1.5rem 1.5rem; /* Even more negative margin */
+  margin: -120px 1.5rem 1.5rem; /* Even more negative margin */
   box-shadow: 0 3px 10px rgb(31,45,82);
   position: relative;
   z-index: 3;
   width: calc(100% - 3rem); /* Adjust width to account for margins */
-  max-width: 1200px; /* Match hero content width if needed */
+  max-width: 380px; /* Slightly narrower container */
   margin-left: auto;
   margin-right: auto;
 }
@@ -223,16 +222,16 @@
     .match-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+
     }
 
     .match-item {
       display: flex;
       align-items: center;
-      padding: 10px;
       border-radius: 8px;
       background: rgb(31,45,82);
       transition: all 0.2s;
+  
     }
 
     .match-item:hover {
@@ -259,9 +258,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
       font-size: 10px;
       color: white;
+
     }
 
     .match-date {
@@ -312,6 +311,7 @@
     }
 
     .hero-content {
+      align-items: center;
       position: relative;
       z-index: 2;
       width: 100%;
@@ -349,14 +349,6 @@
   padding: 15px 0;
 }
 
-.sponsors-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
 
 .sponsor {
   height: 50px;
@@ -366,16 +358,10 @@
   filter: brightness(0) invert(1);
   opacity: 0.8;
   transition: all 0.3s ease;
+  padding-left: 20px;
 }
 
-/* Hover Effects */
-.sponsors-link:hover {
-  transform: scale(1.15);
-}
-.sponsors-link:hover .sponsor {
-  opacity: 1;
-  filter: brightness(1) invert(0);
-}
+
 
 /* Animation */
 @keyframes scroll {
@@ -425,6 +411,59 @@
         font-size: 2rem;
       }
     }
+
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Reduced gap between matches */
+}
+
+.match-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem; /* Reduced padding */
+  border-radius: 6px;
+  height: auto; /* Let content determine height */
+}
+
+.match-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* Reduced gap between teams */
+  margin-bottom: 0.3rem; /* Reduced margin */
+  width: 100%;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem; /* Reduced gap between logo and name */
+  flex: 1;
+}
+
+.team-logo {
+  width: 30px; /* Fixed size for all logos */
+  height: 30px;
+  object-fit: contain;
+}
+
+.team-name {
+  font-size: 0.9rem; /* Slightly smaller text */
+  text-align: center;
+}
+
+.vs {
+  font-weight: bold;
+  font-size: 1rem; /* Slightly smaller */
+  min-width: 28px;
+  text-align: center;
+}
+
+
   </style>
 </head>
 
@@ -433,7 +472,7 @@
     <hero-gallery class="next-match-hero">
       <div class="hero-content">
         <h1 class="match-title">Próximo Partido</h1>
-        <p class="match-subtitle">Liga Femenina · Jornada 12</p>
+        <p class="match-subtitle">Jornada 12</p>
 
         <div class="teams-container">
           <div class="team">
@@ -444,7 +483,7 @@
           <div class="vs-circle">VS</div>
 
           <div class="team">
-            <img src="{% static 'images/rival.png' %}" alt="Rival FC" class="team-logo">
+            <img src="{% static 'images/olympia_logo.png' %}" alt="Rival FC" class="team-logo">
             <div class="team-name">Rival FC</div>
           </div>
         </div>
@@ -480,20 +519,10 @@
           </a>
         </div>
 
-        <!-- Directo Button -->
-        <div class="calendar-btn-container">
-          <a href="#" class="compact-calendar-btn">
-            <svg viewBox="0 0 24 24" width="16" height="16">
-              <path
-                d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" />
-            </svg>
-            Directo
-          </a>
-        </div>
 
         <!-- Ubicación Button -->
         <div class="calendar-btn-container">
-          <a href="#" class="compact-calendar-btn">
+          <a href="https://www.google.es/maps/place/Recinto+Ferial/@40.5096523,-3.8916099,1009m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd418338f1ae0d99:0x84ae9b6eb02d6356!8m2!3d40.5096523!4d-3.8916099!16s%2Fg%2F11bc7cx3hz?hl=es&entry=ttu&g_ep=EgoyMDI1MDYyNi4wIKXMDSoASAFQAw%3D%3D" class="compact-calendar-btn">
             <svg viewBox="0 0 24 24" width="16" height="16">
               <path
                 d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
@@ -511,119 +540,115 @@
         </svg>
         Próximos Encuentros
       </h3>
-
+    
       <div class="match-list">
         <!-- Partido 1 -->
         <div class="match-item">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo olympia">
           <div class="match-details">
-            <span>CFF Olympia</span>
-            <span class="vs">vs</span>
-            <img
-              src="{% static 'images/atleti.png' %}"
-              alt="Atlético Madrid" class="team-logo">
-            <span>Atlético</span>
-          </div>
-          <div class="match-date">
-            15 MAY • 18:30
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
+            <div class="match-date-time">15 MAY • 18:30</div>
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
           </div>
         </div>
-
+    
         <!-- Partido 2 -->
         <div class="match-item">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo olympia">
           <div class="match-details">
-            <span>CFF Olympia</span>
-            <span class="vs">vs</span>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png"
-              alt="Real Madrid" class="team-logo">
-            <span>R. Madrid</span>
-          </div>
-          <div class="match-date">
-            22 MAY • 19:00
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
+            <div class="match-date-time">22 MAY • 19:00</div>
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
           </div>
         </div>
-
+    
         <!-- Partido 3 -->
         <div class="match-item">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo olympia">
           <div class="match-details">
-            <span>CFF Olympia</span>
-            <span class="vs">vs</span>
-            <img
-              src="{% static 'images/levante.png' %}"
-              alt="Barcelona" class="team-logo">
-            <span>Levante</span>
-          </div>
-          <div class="match-date">
-            29 MAY • 12:30
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
+            <div class="match-date-time">29 MAY • 12:30</div>
+            <div class="team">
+              <img src="{% static 'images/olympia_logo.png' %}" alt="Barcelona" class="team-logo">
+              <span class="team-name">CFF Olympia</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
     <!-- Sponsors Section -->
     <section class="sponsors-section">
-    
       <div class="sponsors-container">
         <div class="sponsors-track">
           <!-- Original Sponsors -->
-          <a href="https://www.ruesma.com/" class="sponsors-link">
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_ruesma.png' %}" class="sponsor" alt="Ruesma">
-          </a>
-          <a href="https://www.standup-international.com/es/es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_standup.png' %}" class="sponsor" alt="Stand UP">
-          </a>
-          <a href="https://www.mahou.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_mahou.png' %}" class="sponsor" alt="Mahou">
-          </a>
-          <a href="https://www.hyundai.es/concesionarios/motorgamboa" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_hyundaigamboa.png' %}" class="sponsor" alt="Hyundai">
-          </a>
-          <a href="https://lraingenieria.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_lra.png' %}" class="sponsor" alt="LRA">
-          </a>
-          <a href="https://appletreecommunications.com/es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_appletree.png' %}" class="sponsor" alt="Appletree">
-          </a>
-          <a href="https://www.sek.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_sek.png' %}" class="sponsor" alt="SEK">
-          </a>
-          <a href="http://vercocinas.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_vercocinas.png' %}" class="sponsor" alt="Vercocinas">
-          </a>
-          <a href="http://aliberico.com/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_aliberico.png' %}" class="sponsor" alt="Aliberico">
-          </a>
+          </div>
     
           <!-- Mirrored Sponsors for seamless loop -->
-          <a href="https://www.ruesma.com/" class="sponsors-link">
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_ruesma.png' %}" class="sponsor" alt="Ruesma">
-          </a>
-          <a href="https://www.standup-international.com/es/es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_standup.png' %}" class="sponsor" alt="Stand UP">
-          </a>
-          <a href="https://www.mahou.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_mahou.png' %}" class="sponsor" alt="Mahou">
-          </a>
-          <a href="https://www.hyundai.es/concesionarios/motorgamboa" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_hyundaigamboa.png' %}" class="sponsor" alt="Hyundai">
-          </a>
-          <a href="https://lraingenieria.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_lra.png' %}" class="sponsor" alt="LRA">
-          </a>
-          <a href="https://appletreecommunications.com/es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_appletree.png' %}" class="sponsor" alt="Appletree">
-          </a>
-          <a href="https://www.sek.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_sek.png' %}" class="sponsor" alt="SEK">
-          </a>
-          <a href="http://vercocinas.es/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_vercocinas.png' %}" class="sponsor" alt="Vercocinas">
-          </a>
-          <a href="http://aliberico.com/" class="sponsors-link">
+          </div>
+          <div class="sponsor-item">
             <img src="{% static 'images/sponsors/logo_aliberico.png' %}" class="sponsor" alt="Aliberico">
-          </a>
+          </div>
         </div>
       </div>
     </section>
