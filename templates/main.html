@@ -2,6 +2,21 @@
 {% load static%}
 {% load pwa %}
 
+<style>
+/* Ocultar elementos cuando está en modo PWA */
+.pwa-mode body {
+    overflow: hidden; /* Evita scroll no deseado */
+    height: 100vh;   /* Ocupa toda la pantalla */
+}
+
+/* Ocultar la barra de direcciones en iOS */
+@supports (-webkit-touch-callout: none) {
+    .pwa-mode {
+        -webkit-touch-callout: none;
+    }
+}
+
+</style>
 
 <html lang="en">
 
@@ -11,6 +26,12 @@
     {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Para Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Para iOS/Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <link rel="shortcut icon" href="{% static 'images/olympia_logo.png' %}" type="image/x-icon" />
@@ -78,6 +99,20 @@
                 });
             });
         });
+    }
+</script>
+
+<script>
+    // Detecta si la PWA está instalada
+    if (window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true) {
+        document.documentElement.classList.add('pwa-mode');
+    }
+
+    // Opcional: Redirigir si se abre en el navegador normal
+    if (!window.matchMedia('(display-mode: standalone)').matches &&
+        !window.navigator.standalone) {
+        window.location.href = "/instrucciones-pwa"; // Página para guiar al usuario a instalarla
     }
 </script>
 </body>
