@@ -1,6 +1,7 @@
 // Base Service Worker implementation.  To use your own Service Worker, set the PWA_SERVICE_WORKER_PATH variable in settings.py
 
-var staticCacheName = "my-app-cache-v2"; // Versión explícita
+var staticCacheName = 'olympia-cache-v3'; // Versión explícita
+
 var filesToCache = [
     '/offline/',
     '/static/css/django-pwa-app.css',

@@ -57,7 +57,7 @@ def manifest(request):
     manifest_data = {
         "name": "CFF Olympia",
         "short_name": "CFF Olympia",
-        "start_url": "/home/?v=2",
+        "start_url": "/home",
         "display": "standalone",
         "background_color": "#000000",
         "theme_color": "#FFD700",
