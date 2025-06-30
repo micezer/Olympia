@@ -77,11 +77,7 @@ def manifest(request):
     return HttpResponse(json.dumps(manifest_data), content_type='application/json')
 
 def home(request):
-    if request.user.is_authenticated:
-        user_services = request.user.userprofile.services.all()
-    else:
-        user_services = None
-    return render(request, 'base/home.html', {'user_services': user_services})
+    return render(request, 'base/home.html')
 
 
 
