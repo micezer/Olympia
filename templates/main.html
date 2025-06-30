@@ -3,20 +3,35 @@
 {% load pwa %}
 
 <style>
-/* Ocultar elementos cuando está en modo PWA */
-.pwa-mode body {
-    overflow: hidden; /* Evita scroll no deseado */
-    height: 100vh;   /* Ocupa toda la pantalla */
-}
-
-/* Ocultar la barra de direcciones en iOS */
-@supports (-webkit-touch-callout: none) {
+    /* Modo PWA - Oculta UI del navegador */
     .pwa-mode {
-        -webkit-touch-callout: none;
+        overflow: hidden !important;
+        height: 100vh !important;
+        position: fixed;
+        width: 100%;
     }
-}
 
-</style>
+    /* iOS específico */
+    @supports (-webkit-touch-callout: none) {
+        .pwa-mode {
+            -webkit-touch-callout: none;
+            height: -webkit-fill-available;
+            padding-top: env(safe-area-inset-top);
+        }
+
+        /* Ajuste para notch de iPhone */
+        .pwa-mode body {
+            padding-top: constant(safe-area-inset-top);
+            padding-top: env(safe-area-inset-top);
+        }
+    }
+
+    /* Opcional: Oculta elementos específicos en modo PWA */
+    .pwa-mode .browser-ui-element {
+        display: none !important;
+    }
+
+    </style>
 
 <html lang="en">
 
@@ -25,6 +40,8 @@
 
     {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Para Android/Chrome -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -51,78 +68,55 @@
 
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                // Ruta correcta usando la etiqueta static de Django
-                navigator.serviceWorker.register('{% static "js/sw.js" %}')
-                    .then(function (registration) {
-                        console.log('ServiceWorker registrado con éxito:', registration.scope);
+        // Script unificado para manejo PWA
+        document.addEventListener('DOMContentLoaded', function () {
+            // Detección del modo PWA
+            const isPwaInstalled = (
+                window.matchMedia('(display-mode: standalone)').matches ||
+                window.navigator.standalone === true
+            );
 
-                        // Verificar actualizaciones periódicamente
-                        setInterval(() => {
+            // Aplicar clase pwa-mode si está instalada
+            if (isPwaInstalled) {
+                document.documentElement.classList.add('pwa-mode');
+
+                // Forzar actualización del service worker
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        registrations.forEach(registration => {
                             registration.update();
-                        }, 60 * 60 * 1000); // Cada hora
-                    })
-                    .catch(function (error) {
-                        console.log('Error al registrar el ServiceWorker:', error);
+                        });
                     });
-            });
-
-            // Forzar actualización al cargar la página
-            navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                registrations.forEach(function (registration) {
-                    registration.update();
-                });
-            });
-        }
-    </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const burger = document.querySelector('.header__burger');
-        const menu = document.querySelector('.header__menu');
-
-        burger.addEventListener('click', function () {
-            menu.classList.toggle('header__menu--open');
-        });
-    });
-</script>
-
-<script>
-    // Unregister existing service workers
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            registrations.forEach(registration => {
-                registration.unregister();
-                caches.keys().then(cacheNames => {
-                    cacheNames.forEach(cacheName => caches.delete(cacheName));
-                });
-            });
-        });
-    }
-</script>
-
-<script>
-    // Versión optimizada del detector PWA + redirección
-    document.addEventListener('DOMContentLoaded', function () {
-        const isPwaInstalled = (
-            window.matchMedia('(display-mode: standalone)').matches ||
-            window.navigator.standalone === true
-        );
-
-        if (isPwaInstalled) {
-            document.documentElement.classList.add('pwa-mode');
-        } else {
-            // Evita bucles de redirección en la página /download
-            if (window.location.pathname !== '/download/') {
-                // Redirige con retraso para mejor UX
-                setTimeout(() => {
-                    window.location.href = "/download/";
-                }, 500);
+                }
             }
-        }
-    });
-</script>
+            // Redirección para navegador normal
+            else if (window.location.pathname !== '/download/') {
+                setTimeout(() => {
+                    window.location.href = "/download/?source=" + encodeURIComponent(window.location.pathname);
+                }, 300);
+            }
+
+            // Registrar Service Worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('{% static "js/sw.js" %}?v=2')
+                    .then(registration => {
+                        console.log('ServiceWorker registrado con éxito:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error al registrar ServiceWorker:', error);
+                    });
+            }
+
+            // Burger menu (mantén este código)
+            const burger = document.querySelector('.header__burger');
+            const menu = document.querySelector('.header__menu');
+            if (burger && menu) {
+                burger.addEventListener('click', function () {
+                    menu.classList.toggle('header__menu--open');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
