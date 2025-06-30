@@ -6,6 +6,8 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="{% url 'manifest' %}" crossorigin="use-credentials">
+
     {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +15,7 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <link rel="shortcut icon" href="{% static 'images/olympia_logo.png' %}" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
-    <title>Olympia</title>
+    <title>CFF Olympia</title>
 </head>
 
 <body>
@@ -27,11 +29,32 @@
 
 
     <script src="{% static 'js/script.js' %}"></script>
-</body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                // Ruta correcta usando la etiqueta static de Django
+                navigator.serviceWorker.register('{% static "js/sw.js" %}')
+                    .then(function (registration) {
+                        console.log('ServiceWorker registrado con éxito:', registration.scope);
 
-</html>
+                        // Verificar actualizaciones periódicamente
+                        setInterval(() => {
+                            registration.update();
+                        }, 60 * 60 * 1000); // Cada hora
+                    })
+                    .catch(function (error) {
+                        console.log('Error al registrar el ServiceWorker:', error);
+                    });
+            });
 
-
+            // Forzar actualización al cargar la página
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                registrations.forEach(function (registration) {
+                    registration.update();
+                });
+            });
+        }
+    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -43,6 +66,27 @@
         });
     });
 </script>
+
+<script>
+    // Unregister existing service workers
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(registration => {
+                registration.unregister();
+                caches.keys().then(cacheNames => {
+                    cacheNames.forEach(cacheName => caches.delete(cacheName));
+                });
+            });
+        });
+    }
+</script>
+</body>
+
+</html>
+
+
+
+
 
 
 
