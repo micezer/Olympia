@@ -238,8 +238,8 @@
             <ul class="menu-items">
                 <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> INICIO</a></li>
                 <li><a href="{% url 'cantera' %}"><i class="fas fa-user-plus"></i> EQUIPOS</a></li>
-                <li><a href="{% url 'inscripciones' %}"><i class="fas fa-user-plus"></i> INSCRÍBETE</a></li>
-                <li><a href="{}"><i class="fas fa-user-plus"></i> ENTRADAS</a></li>
+                <li><a href="{% url 'inscripcion' %}"><i class="fas fa-user-plus"></i> INSCRÍBETE</a></li>
+                <li><a href="{% url 'test_form' %}"><i class="fas fa-user-plus"></i> ENTRADAS</a></li>
                 <li><a href="{}"><i class="fas fa-store"></i> TIENDA</a></li>
                 <li><a href="{}"><i class="fas fa-envelope"></i> CONTACTO</a></li>
     
@@ -255,6 +255,7 @@
                         <i class="fab fa-tiktok"></i>
                     </a>
                     <a href="https://www.facebook.com/cffolympialasrozas" target="_blank" class="social-circle">
+                        <a href="https://www.facebook.com/cffolympialasrozas" target="_blank" class="social-circle">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
@@ -268,22 +269,6 @@
         {% block content %}{% endblock %}
     </main>
 
-
-
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('userDropdown');
-            dropdown.classList.toggle('active');
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.getElementById('userDropdown');
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 
 </html>

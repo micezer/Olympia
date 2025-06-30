@@ -16,7 +16,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.cache import never_cache
 
-
+from django.http import FileResponse
+from django.conf import settings
 
 
 
@@ -28,8 +29,8 @@ from django.shortcuts import render
 def offline(request):
     return render(request, 'offline.html')
 
-def inscripciones_view(request):
-    return render(request, 'base/inscripciones.html')
+def inscripcion_view(request):
+    return render(request, 'base/inscripcion.html')
 
 def cantera_view(request):
     return render(request, 'base/cantera.html')
@@ -38,14 +39,12 @@ def download_view(request):
     return render(request, 'base/download.html')
 def about_view(request):
     return render(request, 'base/about.html')
+def test_form(request):
+    return render(request, 'base/test_form.html')
 
-def service_worker(request):
-    response = HttpResponse(
-        open(os.path.join(settings.STATIC_ROOT, 'js/sw.js')).read(), 
-        content_type='application/javascript'
-    )
-    response['Service-Worker-Allowed'] = '/'
-    return response
+def serviceworker(request):
+    path = os.path.join(settings.BASE_DIR, 'static', 'serviceworker.js')
+    return FileResponse(open(path, 'rb'), content_type='application/javascript')
 
 from django.http import HttpResponse
 from django.views.decorators.cache import never_cache
