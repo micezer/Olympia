@@ -31,6 +31,24 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
+# settings.py
+
+
+# Configuración de Email (para Gmail)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'moezehero'  # Tu email de Gmail
+EMAIL_HOST_PASSWORD = 'hexp xebp nops mzpc'
+DEFAULT_FROM_EMAIL = 'no-reply@cffolympia.es'
+
+
+# En settings.py
+DEFAULT_FROM_EMAIL = 'moezehero@gmail.com'  # Debe coincidir con EMAIL_HOST_USER
+SERVER_EMAIL = 'tu@gmail.com'  # Para errores del servidor
+
+# Opcional: Configuración adicional
 # Application definition
 
 INSTALLED_APPS = [

@@ -16,6 +16,8 @@ urlpatterns = [
     path('download/', views.download_view, name='download'),
     path('about/', views.about_view, name='about'),
     path('test_form/', views.test_form, name='test_form'),
+    path('enviar-email/', views.formulario_inscripcion, name='enviar_email'),
+
 
     
     # URLs PWA (sin duplicados)

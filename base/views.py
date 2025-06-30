@@ -18,7 +18,19 @@ from django.views.decorators.cache import never_cache
 
 from django.http import FileResponse
 from django.conf import settings
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import logging
 
+from django.http import JsonResponse
+from django.conf import settings
+from django.core.mail import EmailMessage
+from .utils.pdf import generar_pdf_inscripcion
+from django.http import JsonResponse
+
+from datetime import datetime
+logger = logging.getLogger(__name__)
 
 
 import logging
@@ -39,8 +51,7 @@ def download_view(request):
     return render(request, 'base/download.html')
 def about_view(request):
     return render(request, 'base/about.html')
-def test_form(request):
-    return render(request, 'base/test_form.html')
+
 
 def serviceworker(request):
     path = os.path.join(settings.BASE_DIR, 'static', 'serviceworker.js')
@@ -81,4 +92,66 @@ def home(request):
 
 
 
+logger = logging.getLogger(__name__)
 
+def test_form(request):
+    # Renderiza el formulario
+    return render(request, 'base/test_form.html')
+
+logger = logging.getLogger(__name__)
+
+def formulario_inscripcion(request):
+    if request.method == 'GET':
+        return render(request, 'base/test_form.html')
+    
+    if request.method == 'POST':
+        try:
+            # Recoger datos del formulario
+            datos = {
+                'nombre_completo': request.POST.get('nombre_completo'),
+                'fecha_nacimiento': request.POST.get('fecha_nacimiento'),
+                'dni': request.POST.get('dni'),
+                'posicion': request.POST.get('posicion'),
+                'club_anterior': request.POST.get('club_anterior', 'Ninguno'),
+                'email': request.POST.get('email'),
+                'contacto_emergencia': request.POST.get('contacto_emergencia')
+            }
+
+            # Generar PDF
+            pdf = generar_pdf_inscripcion(datos)
+
+            # Configurar y enviar email
+            email = EmailMessage(
+                subject=f"Nueva Inscripción: {datos['nombre_completo']}",
+                body=f"""
+                Nueva jugadora registrada:
+                Nombre: {datos['nombre_completo']}
+                Edad: {datos['fecha_nacimiento']}
+                Posición: {datos['posicion']}
+                
+                PDF adjunto con detalles completos.
+                """,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=['obiezeh999@gmail.com'],
+                reply_to=[datos['email']],
+            )
+            
+            email.attach(
+                f"inscripcion_{datos['dni']}.pdf",
+                pdf.getvalue(),
+                "application/pdf"
+            )
+            
+            email.send(fail_silently=False)
+            
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Inscripción enviada correctamente'
+            })
+            
+        except Exception as e:
+            logger.error(f"Error en inscripción: {str(e)}")
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Error al procesar la inscripción'
+            }, status=500)
