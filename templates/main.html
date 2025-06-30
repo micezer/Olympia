@@ -103,17 +103,25 @@
 </script>
 
 <script>
-    // Detecta si la PWA está instalada
-    if (window.matchMedia('(display-mode: standalone)').matches ||
-        window.navigator.standalone === true) {
-        document.documentElement.classList.add('pwa-mode');
-    }
+    // Versión optimizada del detector PWA + redirección
+    document.addEventListener('DOMContentLoaded', function () {
+        const isPwaInstalled = (
+            window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone === true
+        );
 
-    // Opcional: Redirigir si se abre en el navegador normal
-    if (!window.matchMedia('(display-mode: standalone)').matches &&
-        !window.navigator.standalone) {
-        window.location.href = "/instrucciones-pwa"; // Página para guiar al usuario a instalarla
-    }
+        if (isPwaInstalled) {
+            document.documentElement.classList.add('pwa-mode');
+        } else {
+            // Evita bucles de redirección en la página /download
+            if (window.location.pathname !== '/download/') {
+                // Redirige con retraso para mejor UX
+                setTimeout(() => {
+                    window.location.href = "/download/";
+                }, 500);
+            }
+        }
+    });
 </script>
 </body>
 
