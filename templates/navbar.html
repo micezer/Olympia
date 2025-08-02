@@ -13,15 +13,14 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-
-
         .navbar {
             width: 100%;
             box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
             position: fixed;
             top: 0;
             left: 0;
-            background-color: rgb(31,45,82);
+            background-color: #2a374c;
+            /* Principal Azul */
             z-index: 1000;
         }
 
@@ -44,7 +43,8 @@
 
         .navbar .nav-container a {
             text-decoration: none;
-            color: rgb(31,45,82);
+            color: #b8ac84;
+            /* Principal Dorado */
             font-weight: 500;
             font-size: 1.2rem;
             padding: 0.7rem;
@@ -52,6 +52,8 @@
 
         .navbar .nav-container a:hover {
             font-weight: bolder;
+            color: #7f765a;
+            /* Secundario Dorado */
         }
 
         .nav-container .checkbox {
@@ -84,7 +86,8 @@
             height: 4px;
             width: 100%;
             border-radius: 10px;
-            background: rgb(239, 179, 106);
+            background: #b8ac84;
+            /* Principal Dorado */
         }
 
         .nav-container .hamburger-lines .line1 {
@@ -107,11 +110,11 @@
             left: 0;
             height: 100vh;
             width: 100vw;
-            background-color: rgb(31,45,82);
+            background-color: #1f2531;
+            /* Secundario Azul */
             transform: translateX(-150%);
             transition: transform 0.5s ease-in-out;
             z-index: 999;
-            /* asegúrate de que esté por encima */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -120,12 +123,10 @@
             text-align: center;
         }
 
-
         .navbar .menu-items li {
             margin-bottom: 1.2rem;
             font-size: 1.5rem;
             font-weight: 500;
-
         }
 
         .header__logo {
@@ -140,9 +141,6 @@
             height: 100%;
             max-width: 120px;
         }
-
-        
-
 
         .nav-container input[type="checkbox"]:checked~.menu-items {
             transform: translateX(0);
@@ -161,62 +159,70 @@
         }
 
         .nav-container input[type="checkbox"]:checked~.hamburger-lines .line {
-            background: rgb(239, 179, 106);
+            background: #b8ac84;
+            /* Principal Dorado */
         }
 
         .navbar .menu-items a {
-            color: rgb(239,179,106);
+            color: #b8ac84;
+            /* Principal Dorado */
             font-size: 20px;
-
         }
 
         .navbar .menu-items a:hover {
-            color: rgb(239,179,106);
+            color: #7f765a;
+            /* Secundario Dorado */
         }
 
         /* Social Media Icons Styles */
-.social-icons {
-    display: flex;
-    gap: 10px;
-    margin-left: auto; /* Pushes icons to the right */
-    padding: 10px 0;
-}
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+            padding: 10px 0;
+        }
 
-.social-circle {
-    border: solid 1px  rgb(239,179,106);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    transition: all 0.3s ease;
-}
+        .social-circle {
+            border: solid 1px #b8ac84;
+            /* Principal Dorado */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #b8ac84;
+            /* Principal Dorado */
+            transition: all 0.3s ease;
+        }
 
-.social-circle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
+        .social-circle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            color: #7f765a;
+            /* Secundario Dorado */
+            border-color: #7f765a;
+            /* Secundario Dorado */
+        }
 
-.social-circle i {
-    font-size: 16px;
-}
+        .social-circle i {
+            font-size: 16px;
+        }
 
-/* Adjust for mobile view */
-@media (max-width: 768px) {
-    .social-icons {
-        margin-left: 0;
-        justify-content: center;
-        width: 100%;
-        padding: 15px 0;
-    }
-    
-    .menu-items {
-        flex-direction: column;
-    }
-}
+        /* Adjust for mobile view */
+        @media (max-width: 768px) {
+            .social-icons {
+                margin-left: 0;
+                justify-content: center;
+                width: 100%;
+                padding: 15px 0;
+            }
+
+            .menu-items {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -224,25 +230,25 @@
     <nav class="navbar">
         <div class="nav-container">
             <input type="checkbox" class="checkbox" id="menu-toggle">
-    
+
             <div class="hamburger-lines">
                 <span class="line line1"></span>
                 <span class="line line2"></span>
                 <span class="line line3"></span>
             </div>
-    
+
             <a href="{% url 'home' %}" class="header__logo">
                 <img src="{% static 'images/olympia_logo.png' %}" alt="Logo" />
             </a>
-    
+
             <ul class="menu-items">
                 <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> INICIO</a></li>
                 <li><a href="{% url 'cantera' %}"><i class="fas fa-user-plus"></i> EQUIPOS</a></li>
                 <li><a href="{% url 'test_form' %}"><i class="fas fa-user-plus"></i> INSCRÍBETE</a></li>
                 <li><a href=""><i class="fas fa-user-plus"></i> ENTRADAS</a></li>
-                <li><a href=""><i class="fas fa-store"></i> TIENDA</a></li>
+                <li><a href="{% url 'tienda' %}"><i class="fas fa-store"></i> TIENDA</a></li>
                 <li><a href=""><i class="fas fa-envelope"></i> CONTACTO</a></li>
-    
+
                 <!-- Social Media Icons -->
                 <li class="social-icons">
                     <a href="https://www.instagram.com/cff_olympia/" target="_blank" class="social-circle">
@@ -260,9 +266,7 @@
                 </li>
             </ul>
         </div>
-        </nav>
-
-    
+    </nav>
 
     <main class="container">
         {% block content %}{% endblock %}

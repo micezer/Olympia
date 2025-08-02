@@ -47,6 +47,9 @@ def inscripcion_view(request):
 def cantera_view(request):
     return render(request, 'base/cantera.html')
 
+def tienda_view(request):
+    return render(request, 'base/tienda.html')
+
 def download_view(request):
     return render(request, 'base/download.html')
 def about_view(request):
