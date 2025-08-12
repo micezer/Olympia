@@ -1,230 +1,399 @@
-{% extends 'main.html' %}
+
+{% extends 'main_download.html' %}
+
 {% load static %}
 
 {% block content %}
-<style>
-    body{
-        padding-top: 80px;
-    }
-    .pwa-install-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        color: white;
-        text-align: center;
-    }
+<!DOCTYPE html>
+<html lang="es">
 
-    .pwa-steps {
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Para Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Para iOS/Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Instalar App CFF Olympia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        html, body {
+    overflow-x: hidden;   /* No horizontal scroll ever */
+    overflow-y: auto;     /* Show vertical scroll only if needed */
+    margin: 0;
+    padding: 10px 0 0 0;
+    background-color: #1f2531;
+    color: #b8ac84;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100%;
+    box-sizing: border-box;
+}
 
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* No overflow properties here to avoid conflicts */
+}
 
-    .step {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 25px;
-        text-align: left;
-    }
 
-    .step-number {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background: rgb(239,179,106);
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 30px;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    .step-title {
-        font-size: 17px;
-        margin-bottom: 15px;
-        font-weight: 900;
-        color: white;
-        display: flex;
-        align-items: center;
-    }
-
-    .step-image {
-        width: 100%;
-        max-width: 100px;
-        border-radius: 8px;
-        margin: 15px auto;
-        display: block;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .step-description {
-        line-height: 1.6;
-        margin-bottom: 10px;
-    }
-
-    .device-tabs {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    .device-tab {
-        padding: 10px 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        color: white;
-        cursor: pointer;
-        border-radius: 6px 6px 0 0;
-        margin: 0 5px;
-    }
-
-    .device-tab.active {
-        background: rgb(239,179,106);
-        font-weight: bold;
-    }
-
-    .device-content {
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-    }
-    
-    .fade-out {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    
-    .fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    @media (max-width: 600px) {
         .pwa-install-container {
-            padding: 15px;
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+            margin-top: 5vh;
+            /* Added to control position */
+            text-align: center;
+            background-color: #2a374c;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #b8ac84;
+            margin: 0 0 15px 0;
+            font-size: 1.6rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0 0 20px 0;
+            font-size: 15px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .pwa-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .step {
-            padding: 20px 15px;
+            background: rgba(31, 37, 49, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border-top: 2px solid #b8ac84;
+            height: 100%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: stepAppear 0.6s ease-out forwards;
         }
-    }
-</style>
+
+        @keyframes stepAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .step:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        .step:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
+            min-height: 40px;
+        }
+
+        .step-number {
+            width: 26px;
+            height: 26px;
+            background: #b8ac84;
+            color: #1f2531;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #b8ac84;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .step-title:hover {
+            color: #fff;
+        }
+
+        .step-icon {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+        .step-icon-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .step-description {
+            line-height: 1.5;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step-description {
+            color: #fff;
+        }
+
+        .device-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 20px 0;
+            gap: 10px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .device-tab {
+            padding: 8px 16px;
+            background: rgba(31, 37, 49, 0.7);
+            border: none;
+            color: #b8ac84;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .device-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .device-tab.active {
+            background: #b8ac84;
+            color: #1f2531;
+            box-shadow: 0 4px 8px rgba(184, 172, 132, 0.3);
+        }
+
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #b8ac84;
+            color: #1f2531;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out 1s both;
+        }
+
+        .download-btn:hover {
+            background: #7f765a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .pwa-steps {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .pwa-install-container {
+                width: 85%;
+                padding: 15px;
+                margin-top: 3vh;
+                /* Adjusted for mobile */
+            }
+
+            .step {
+                padding: 12px;
+                animation-delay: 0.4s !important;
+            }
+
+            .step:nth-child(2) {
+                animation-delay: 0.5s !important;
+            }
+
+            .step:nth-child(3) {
+                animation-delay: 0.6s !important;
+            }
+        }
+    </style>
+</head>
+
 <body>
-<div class="pwa-install-container">
-    <h1>Instalar la App del CFF Olympia</h1>
-    <p>Siga las instrucciónes en función del tipo de dispositivo</p>
+    <div class="pwa-install-container">
+        <h1>Instalar App CFF Olympia</h1>
+        <p class="subtitle">Sigue las instrucciones según tu dispositivo</p>
 
-    <div class="device-tabs">
-        <button class="device-tab active" onclick="showDevice('ios')">iPhone</button>
-        <button class="device-tab" onclick="showDevice('android')">Android</button>
-    </div>
-
-    <!-- iOS Instructions -->
-    <div id="ios-steps" class="pwa-steps device-content">
-
-        <div class="step">
-            <div class="step-title" style="display: flex; align-items: center; gap: 8px; color: white;">
-                <!-- White text context -->
-                <span class="step-number">1</span>
-                <span>Toca el botón Compartir</span>
-                <img src="{% static 'images/ios-share.png' %}" alt="Botón compartir iOS" style="height: 1em; width: auto; vertical-align: middle; 
-                                   filter: brightness(0) invert(1);"> <!-- Converts to white -->
-            </div>
-            <p class="step-description">En tu dispositivo iOS, busca la barra del navegador. Allí verás un ícono de un cuadrado con una flecha apuntando hacia arriba: ese es el botón de compartir. Toca ese botón para abrir un menú con opciones de acción.</p>
+        <div class="device-tabs">
+            <button class="device-tab active" onclick="showDevice('ios')">
+                <i class="fab fa-apple"></i> iPhone
+            </button>
+            <button class="device-tab" onclick="showDevice('android')">
+                <i class="fas fa-robot"></i> Android
+            </button>
         </div>
-        <div class="step">
-            <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
-                <span class="step-number">2</span>
-                <span>Selecciona "Añadir a inicio"</span>
-                <img src="{% static 'images/add-square.png' %}" alt="Icono añadir a inicio"
-                    style="height: 1em; width: auto; filter: brightness(0) invert(1);">
-            </div>
-            <p class="step-description" style="margin-top: 8px; opacity: 0.9;">
-                Desplázate hacia abajo en el menú y selecciona "Añadir a pantalla de inicio".
-            </p>  </div>
 
+        <!-- iOS Instructions -->
+        <div id="ios-steps" class="pwa-steps">
             <div class="step">
-                <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
-                    <span class="step-number">3</span>
-                    <span>Confirma la instalación</span>
-                    <img src="{% static 'images/olympia_logo.png' %}" alt="Club Logo"
-                        style="height: 1em; width: auto; vertical-align: middle;">
-                </div>
-                <p class="step-description">Pulsa "Añadir" en la esquina superior derecha y la app se instalará en tu pantalla de
-                    inicio.</p>      </div>
-    </div>
-
-    <!-- Android Instructions -->
-    <div id="android-steps" class="pwa-steps device-content" style="display:none">
-
-        <div class="step">
-            <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
-                <span class="step-number">1</span>
-                <span>Toca el menú (3 puntos)</span>
-                <img src="{% static 'images/three-dots.png' %}" alt="Menú en Android"
-                    style="height: 1em; width: auto; filter: brightness(0) invert(1);">
-            </div>
-            <p class="step-description">Presiona el botón de menú (tres puntos verticales) en la esquina superior derecha.</p>  </div>
-            
-            <div class="step">
-                <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
-                    <span class="step-number">2</span>
-                    <span>Selecciona "Añadir a inicio"</span>
-                    <img src="{% static 'images/add-to-home-screen.png' %}" alt="Instalar app en Android"
-                        style="height: 1em; width: auto; filter: brightness(0) invert(1); vertical-align: middle;">
-                </div>
-                <p class="step-description">Busca y selecciona la opción "Añadir a pantalla de inicio" o "Instalar app".</p>      </div>
-                <div class="step">
-                    <div class="step-title" style="display: flex; align-items: center; gap: 8px;">
-                        <span class="step-number">4</span>
-                        <span>Confirma la instalación</span>
-                        <img src="{% static 'images/olympia_logo.png' %}" alt="Logo del Club"
-                            style="height: 1em; width: auto; vertical-align: middle;">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">
+                        Toca Compartir
+                        <img src="{% static 'images/ios-share.png' %}"s class="step-icon" alt="Compartir">
                     </div>
-                    <p class="step-description">Pulsa "Instalar" en el diálogo de confirmación y la app se añadirá a tu pantalla de
-                        inicio.</p>          </div>
+                </div>
+                <p class="step-description">Busca el ícono de compartir en Safari y tócalo para abrir el menú.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">
+                        Añadir a inicio
+                        <img src="{% static 'images/add-square.png' %}" class="step-icon" alt="Añadir">
+                    </div>
+                </div>
+                <p class="step-description">Selecciona "Añadir a pantalla de inicio" en el menú.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">
+                        Confirma
+                        <img src="{% static 'images/olympia_logo.png' %}" class="step-icon-logo" alt="Logo">
+                    </div>
+                </div>
+                <p class="step-description">Pulsa "Añadir" para instalar la app en tu pantalla.</p>
+            </div>
+        </div>
+
+        <!-- Android Instructions -->
+        <div id="android-steps" class="pwa-steps" style="display:none">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">
+                        Menú (3 puntos)
+                        <img src="{% static 'images/three-dots.png' %}" class="step-icon" alt="Menú">
+                    </div>
+                </div>
+                <p class="step-description">Abre Chrome y busca el ícono de menú en la esquina.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">
+                        Instalar app
+                        <img src="{% static 'images/add-to-home-screen.png' %}" class="step-icon" alt="Instalar">
+                    </div>
+                </div>
+                <p class="step-description">Selecciona "Instalar app" en las opciones.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">
+                        Confirma
+                        <img src="{% static 'images/olympia_logo.png' %}" class="step-icon-logo" alt="Logo">
+                    </div>
+                </div>
+                <p class="step-description">Pulsa "Instalar" para completar el proceso.</p>
+            </div>
+        </div>
     </div>
 
+    <script>
+        function showDevice(device) {
+            // Update tabs
+            document.querySelectorAll('.device-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
 
-</div>
+            // Show selected content
+            document.getElementById('ios-steps').style.display = device === 'ios' ? 'grid' : 'none';
+            document.getElementById('android-steps').style.display = device === 'android' ? 'grid' : 'none';
+
+            // Animate steps
+            const steps = document.querySelectorAll(`#${device}-steps .step`);
+            steps.forEach((step, index) => {
+                step.style.animation = 'none';
+                setTimeout(() => {
+                    step.style.animation = `stepAppear 0.6s ease-out ${index * 0.2}s forwards`;
+                }, 10);
+            });
+        }
+    </script>
 </body>
 
+</html>
+
 <script>
-    async function showDevice(device) {
-        // Update tabs
-        document.querySelectorAll('.device-tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        event.target.classList.add('active');
-
-        // Get current and new content
-        const currentContent = document.querySelector('.device-content:not([style*="display: none"])');
-        const newContent = document.getElementById(device + '-steps');
-
-        if (currentContent && currentContent !== newContent) {
-            // Fade out current content
-            currentContent.classList.add('fade-out');
-
-            // Wait for animation to complete
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // Hide current content
-            currentContent.style.display = 'none';
-            currentContent.classList.remove('fade-out');
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();  // Previene el doble toque zoom
         }
-
-        // Show new content with animation
-        newContent.style.display = 'flex';
-        newContent.style.flexDirection = 'column';
-        newContent.style.gap = '30px';
-        newContent.classList.add('fade-in');
-
-        // Remove animation class after completion
-        setTimeout(() => {
-            newContent.classList.remove('fade-in');
-        }, 300);
-    }
+        lastTouchEnd = now;
+    }, false);
 </script>
+
+
 {% endblock %}
