@@ -2,7 +2,10 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+from django.urls import path
 from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     # Redirección principal
@@ -18,6 +21,10 @@ urlpatterns = [
     path('about/', views.about_view, name='about'),
     path('test_form/', views.test_form, name='test_form'),
     path('enviar-email/', views.formulario_inscripcion, name='enviar_email'),
+    path('create-order/', views.create_order, name='create_order'),
+    path('admin/', admin.site.urls),  # ✅ This line is required
+
+
 
 
     
