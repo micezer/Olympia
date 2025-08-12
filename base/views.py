@@ -29,6 +29,10 @@ from django.core.mail import EmailMessage
 from .utils.pdf import generar_pdf_inscripcion
 from django.http import JsonResponse
 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+
 from datetime import datetime
 logger = logging.getLogger(__name__)
 
@@ -93,6 +97,138 @@ def home(request):
     return render(request, 'base/home.html')
 
 
+# views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from .models import Order
+import json
+
+@csrf_exempt
+def create_order(request):
+    if request.method == 'POST':
+        try:
+            # Ensure we have JSON content
+            if request.content_type != 'application/json':
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Content-Type must be application/json'
+                }, status=400)
+                
+            data = json.loads(request.body)
+            
+            # Validate required fields
+            required_fields = ['full_name', 'email', 'phone', 'total', 'items']
+            for field in required_fields:
+                if field not in data:
+                    return JsonResponse({
+                        'status': 'error',
+                        'message': f'Missing required field: {field}'
+                    }, status=400)
+            
+            # Create the order
+            order = Order(
+                full_name=data['full_name'],
+                email=data['email'],
+                phone=data['phone'],
+                category=data.get('category', ''),
+                total=float(data['total']),
+                items_json=json.dumps(data['items']),
+                paid=True
+            )
+            order.save()
+            
+            # Send emails
+            send_order_emails(order)
+            
+            return JsonResponse({
+                'status': 'success',
+                'order_number': order.order_number
+            })
+            
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Invalid JSON format'
+            }, status=400)
+            
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': str(e)
+            }, status=400)
+    
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Only POST requests are allowed'
+    }, status=405)
+
+def send_order_emails(order):
+    items = order.get_items()
+    
+    # Email to customer
+    customer_subject = f'Confirmación de pedido #{order.order_number}'
+    customer_message = f'''Gracias por tu pedido en Tienda Olympia!
+
+Detalles del pedido:
+Número de pedido: {order.order_number}
+Fecha: {order.created_at.strftime("%d/%m/%Y %H:%M")}
+Total: €{order.total:.2f}
+
+Productos:
+'''
+    for item in items:
+        customer_message += f"- {item['name']} (€{item['price']} x {item['quantity']})\n"
+        if item.get('size'):
+            customer_message += f"  Talla: {item['size']}\n"
+        if item.get('color'):
+            customer_message += f"  Color: {item['color']}\n"
+        if item.get('customization'):
+            customer_message += f"  Personalización: {item['customization']}\n"
+    
+    customer_message += '\nNos pondremos en contacto contigo pronto. ¡Gracias!'
+    
+    send_mail(
+        customer_subject,
+        customer_message,
+        settings.DEFAULT_FROM_EMAIL,
+        [order.email],
+        fail_silently=False,
+    )
+    
+    # Email to owner
+    owner_subject = f'Nuevo pedido #{order.order_number}'
+    owner_message = f'''Nuevo pedido recibido!
+
+Detalles del cliente:
+Nombre: {order.full_name}
+Email: {order.email}
+Teléfono: {order.phone}
+Categoría: {order.category or 'No especificada'}
+
+Detalles del pedido:
+Número de pedido: {order.order_number}
+Fecha: {order.created_at.strftime("%d/%m/%Y %H:%M")}
+Total: €{order.total:.2f}
+
+Productos:
+'''
+    for item in items:
+        owner_message += f"- {item['name']} (€{item['price']} x {item['quantity']})\n"
+        if item.get('size'):
+            owner_message += f"  Talla: {item['size']}\n"
+        if item.get('color'):
+            owner_message += f"  Color: {item['color']}\n"
+        if item.get('customization'):
+            owner_message += f"  Personalización: {item['customization']}\n"
+    
+    send_mail(
+        owner_subject,
+        owner_message,
+        settings.DEFAULT_FROM_EMAIL,
+        [settings.OWNER_EMAIL],
+        fail_silently=False,
+    )
 
 
 logger = logging.getLogger(__name__)

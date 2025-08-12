@@ -3,25 +3,28 @@
 
 {% block content %}
 
+{% csrf_token %} <!-- This ensures the CSRF token is available -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, 
       maximum-scale=1.0, minimum-scale=1.0,
       user-scalable=no, shrink-to-fit=no">
 
-<style>
 
-    /* Prevent zooming on input focus */
-  input, 
-  textarea, 
-  select, 
+<style>
+  /* Prevent zooming on input focus */
+  input,
+  textarea,
+  select,
   button {
     font-size: 16px !important;
   }
 
   /* iOS specific fix */
   @supports (-webkit-touch-callout: none) {
-    input, 
-    textarea, 
-    select, 
+
+    input,
+    textarea,
+    select,
     button {
       font-size: 16px !important;
     }
@@ -195,48 +198,6 @@
   .product__price {
     color: var(--white);
     font-weight: 600;
-  }
-
-  /* Selectores de talla y personalización */
-  .size-selector {
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-  }
-
-  .size-option {
-    padding: 5px 10px;
-    border: 1px solid var(--primary-gold);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .size-option.selected {
-    background-color: var(--primary-gold);
-    color: var(--primary-blue);
-    font-weight: bold;
-  }
-
-  .customization-form {
-    margin-top: 10px;
-    display: none;
-  }
-
-  .customization-form.active {
-    display: block;
-  }
-
-  .customization-input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 4px;
-    border: 1px solid var(--primary-gold);
-    background-color: var(--secondary-blue);
-    color: var(--white);
   }
 
   /* Carrito */
@@ -440,52 +401,8 @@
     box-shadow: none;
   }
 
-  /* Modal de personalización */
-  .customization-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1001;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .customization-modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background-color: var(--primary-blue);
-    padding: 2rem;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    border: 2px solid var(--primary-gold);
-  }
-
-  .modal-title {
-    color: var(--primary-gold);
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: var(--primary-gold);
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-    /* Estilos para el modal de personalización mejorado */
-  .customization-modal {
+  /* Modal de selección de talla */
+  .size-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -494,6 +411,117 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1001;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .size-modal.active {
+    display: flex;
+  }
+
+  .size-modal-content {
+    background-color: var(--primary-blue);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    border: 2px solid var(--primary-gold);
+    position: relative;
+  }
+
+  .size-modal-title {
+    color: var(--primary-gold);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .size-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--primary-gold);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .size-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .size-option-modal {
+    padding: 10px 15px;
+    border: 1px solid var(--primary-gold);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .size-option-modal.selected {
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    font-weight: bold;
+  }
+
+  /* Color options */
+  .color-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .color-option.selected {
+    border-color: var(--primary-gold);
+    transform: scale(1.1);
+  }
+
+  .confirm-size {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+
+  .confirm-size:hover {
+    background-color: var(--secondary-gold);
+  }
+
+  /* Modal de personalización mejorado */
+  .customization-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1002;
     align-items: center;
     justify-content: center;
   }
@@ -598,6 +626,83 @@
     background-color: var(--secondary-gold);
   }
 
+  .payment-form {
+      background-color: var(--secondary-blue);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      border: 1px solid var(--primary-gold);
+    }
+
+    .form-row {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--primary-gold);
+      font-weight: 600;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid var(--primary-gold);
+      background-color: var(--primary-blue);
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--secondary-gold);
+    }
+
+    .payment-message {
+      display: none;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .payment-message.success {
+      background-color: #2e7d32;
+      color: white;
+      display: block;
+    }
+
+    .payment-message.error {
+      background-color: #c62828;
+      color: white;
+      display: block;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      background-color: var(--primary-gold);
+      color: var(--primary-blue);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .checkout-btn:hover {
+      background-color: var(--secondary-gold);
+    }
+
+    .checkout-btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
   /* Responsive */
   @media (max-width: 768px) {
     .shop {
@@ -638,17 +743,9 @@
         <span class="product__name">(NUEVO) SUDADERA PASEO</span>
         <span class="product__price">28,00 EUR - Diseño delante y detrás</span>
 
-        <div class="size-selector" data-product="1">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="1" data-name="Sudadera Paseo" data-price="28.00"
-          data-image="{% static 'images/tienda/sudadera_paseo_back.png' %}" data-type="clothing">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/sudadera_paseo_back.png' %}" data-type="clothing" data-colors="true">
+          Seleccionar talla y color
         </button>
       </div>
     </div>
@@ -665,17 +762,9 @@
         <span class="product__name">(NUEVO) SUDADERA OLYMPIA 2015</span>
         <span class="product__price">15,00 EUR - Sólo diseño delante</span>
 
-        <div class="size-selector" data-product="2">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="2" data-name="Sudadera Olympia 2015" data-price="15.00"
-          data-image="{% static 'images/tienda/sudadera_2015_front.png' %}" data-type="clothing">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/sudadera_2015_front.png' %}" data-type="clothing" data-colors="true">
+          Seleccionar talla y color
         </button>
       </div>
     </div>
@@ -690,17 +779,9 @@
         <span class="product__name">(NUEVO) CAMISETA OLYMPIA 2015</span>
         <span class="product__price">8,00 EUR - Sólo diseño delante</span>
 
-        <div class="size-selector" data-product="3">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="3" data-name="Camiseta Olympia 2015" data-price="8.00"
-          data-image="{% static 'images/tienda/camiseta.png' %}" data-type="clothing">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/camiseta.png' %}" data-type="clothing" data-colors="true">
+          Seleccionar talla y color
         </button>
       </div>
     </div>
@@ -717,17 +798,9 @@
         <span class="product__name">PACK PRIMERA EQUIPACIÓN</span>
         <span class="product__price">150,00 EUR</span>
 
-        <div class="size-selector" data-product="6">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="6" data-name="Pack Primera Equipación" data-price="150.00"
           data-image="{% static 'images/tienda/camiseta_azul_front.png' %}" data-type="clothing">
-          Añadir al carrito
+          Seleccionar talla
         </button>
       </div>
     </div>
@@ -742,14 +815,6 @@
       <div class="product__outer">
         <span class="product__name">SEGUNDA EQUIPACIÓN</span>
         <span class="product__price">PERSONALIZABLE</span>
-
-        <div class="size-selector" data-product="7">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
 
         <button class="btn btn-primary customize-product" data-id="7" data-name="Segunda Equipación" data-price="0.00"
           data-image="{% static 'images/tienda/camiseta_mint_front.png' %}" data-type="customizable">
@@ -770,18 +835,10 @@
         <span class="product__name">PACK EQUIPACIONES PORTERA</span>
         <span class="product__price">185,00 EUR</span>
 
-        <div class="size-selector" data-product="8">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="8" data-name="Pack Equipaciones Portera"
           data-price="185.00" data-image="{% static 'images/tienda/camiseta_amarilla_front.png' %}"
           data-type="clothing">
-          Añadir al carrito
+          Seleccionar talla
         </button>
       </div>
     </div>
@@ -798,18 +855,10 @@
         <span class="product__name">EQUIPACIÓN DE ENTRENAMIENTO</span>
         <span class="product__price">ESCUDO BLANCO - LRA</span>
 
-        <div class="size-selector" data-product="9">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="9" data-name="Equipación de Entrenamiento"
           data-price="185.00" data-image="{% static 'images/tienda/camiseta_entrenamiento_front.png' %}"
           data-type="clothing">
-          Añadir al carrito
+          Seleccionar talla
         </button>
       </div>
     </div>
@@ -825,17 +874,9 @@
         <span class="product__name">SUDADERA BLANCA OLYMPIA</span>
         <span class="product__price">21,50 EUR</span>
 
-        <div class="size-selector" data-product="14">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="14" data-name="Sudadera Blanca Olympia" data-price="21.50"
-          data-image="{% static 'images/tienda/hoodie_front.png' %}" data-type="clothing">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/hoodie_front.png' %}" data-type="clothing" data-colors="true">
+          Seleccionar talla y color
         </button>
       </div>
     </div>
@@ -852,23 +893,15 @@
         <span class="product__name">CAMISETA BÁSICA OLYMPIA</span>
         <span class="product__price">12,00 EUR</span>
 
-        <div class="size-selector" data-product="16">
-          <div class="size-option" data-size="XS">XS</div>
-          <div class="size-option" data-size="S">S</div>
-          <div class="size-option selected" data-size="M">M</div>
-          <div class="size-option" data-size="L">L</div>
-          <div class="size-option" data-size="XL">XL</div>
-        </div>
-
         <button class="btn btn-primary add-to-cart" data-id="16" data-name="Camiseta Básica Olympia" data-price="12.00"
-          data-image="{% static 'images/tienda/camiseta_basica_front.png' %}" data-type="clothing">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/camiseta_basica_front.png' %}" data-type="clothing" data-colors="true">
+          Seleccionar talla y color
         </button>
       </div>
     </div>
 
     <!-- Productos no de ropa (sin selector de tallas) -->
-    <!-- Producto 4 -->
+    <!-- Producto 4 - Chanclas -->
     <div class="shop__product">
       <a class="product__inner">
         <img class="product__image" src="{% static 'images/tienda/chanclas.png' %}" alt="Chanclas Olympia">
@@ -878,8 +911,8 @@
         <span class="product__name">(NUEVO) CHANCLAS OLYMPIA</span>
         <span class="product__price">15,00 EUR</span>
         <button class="btn btn-primary add-to-cart" data-id="4" data-name="Chanclas Olympia" data-price="15.00"
-          data-image="{% static 'images/tienda/chanclas.png' %}" data-type="other">
-          Añadir al carrito
+          data-image="{% static 'images/tienda/chanclas.png' %}" data-type="footwear">
+          Seleccionar talla
         </button>
       </div>
     </div>
@@ -935,6 +968,35 @@
     </div>
   </section>
 
+  <!-- Modal de selección de talla -->
+  <div class="size-modal" id="size-modal">
+    <div class="size-modal-content">
+      <button class="size-modal-close" id="size-modal-close">&times;</button>
+      <h3 class="size-modal-title" id="size-modal-title">SELECCIONA TU TALLA</h3>
+
+      <!-- Sección de colores (solo para productos con data-colors="true") -->
+      <div class="color-section" id="color-section" style="display: none;">
+        <h4>Color:</h4>
+        <div class="color-options">
+          <div class="color-option selected" data-color="Blanco" style="background-color: white;"></div>
+          <div class="color-option" data-color="Negro" style="background-color: black;"></div>
+          <div class="color-option" data-color="Azul" style="background-color: #2a374c;"></div>
+          <div class="color-option" data-color="Rojo" style="background-color: #cc0000;"></div>
+        </div>
+      </div>
+
+      <!-- Sección de tallas -->
+      <div class="size-section">
+        <h4>Talla:</h4>
+        <div class="size-options" id="size-options">
+          <!-- Las opciones de talla se generarán dinámicamente -->
+        </div>
+      </div>
+
+      <button class="confirm-size" id="confirm-size">CONFIRMAR Y AÑADIR AL CARRITO</button>
+    </div>
+  </div>
+
   <!-- Modal de personalización mejorado -->
   <div class="customization-modal" id="customization-modal">
     <div class="modal-content">
@@ -969,24 +1031,51 @@
     <span class="cart-count" id="cart-count">0</span>
   </div>
 
-  <div class="cart-sidebar" id="cart-sidebar">
-    <div class="cart-header">
-      <h3 class="cart-title">Tu Carrito</h3>
-      <button class="close-cart" id="close-cart">&times;</button>
-    </div>
-    <div class="cart-items" id="cart-items">
-      <!-- Los productos añadidos aparecerán aquí -->
-    </div>
-    <div class="cart-summary">
-      <div class="cart-total">
-        <span>Total:</span>
-        <span id="cart-total">€0.00</span>
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h3 class="cart-title">Tu Carrito</h3>
+        <button class="close-cart" id="close-cart">&times;</button>
       </div>
-      <button class="cart-checkout">Proceder al pago</button>
+      <div class="cart-items" id="cart-items">
+        <!-- Los productos añadidos aparecerán aquí -->
+      </div>
+      <div class="cart-summary">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total">€0.00</span>
+        </div>
+    
+        <!-- Payment form -->
+        <div class="payment-form" id="payment-form">
+          <h4 style="color: var(--primary-gold); margin-bottom: 1rem;">Información de pago</h4>
+    
+          <div class="form-row">
+            <label class="form-label" for="full-name">Nombre completo</label>
+            <input class="form-input" type="text" id="full-name" required>
+          </div>
+    
+          <div class="form-row">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" required>
+          </div>
+    
+          <div class="form-row">
+            <label class="form-label" for="phone">Teléfono</label>
+            <input class="form-input" type="tel" id="phone" required>
+          </div>
+    
+          <div class="form-row">
+            <label class="form-label" for="category">Categoría (Ej: Senior Femenino)</label>
+            <input class="form-input" type="text" id="category">
+          </div>
+    
+          <div id="payment-message" class="payment-message"></div>
+    
+          <button class="checkout-btn" id="checkout-button" disabled>Proceder al pago</button>
+        </div>
+      </div>
     </div>
-  </div>
-</main>
-
+    </main>
 <script>
   // Carrito de compras
   let cart = [];
@@ -997,6 +1086,15 @@
   const cartCount = document.getElementById('cart-count');
   const cartTotal = document.getElementById('cart-total');
 
+  // Elementos del modal de selección de talla
+  const sizeModal = document.getElementById('size-modal');
+  const sizeModalClose = document.getElementById('size-modal-close');
+  const confirmSize = document.getElementById('confirm-size');
+  const sizeOptionsContainer = document.getElementById('size-options');
+  const colorSection = document.getElementById('color-section');
+  const colorOptions = document.querySelectorAll('.color-option');
+  const sizeModalTitle = document.getElementById('size-modal-title');
+
   // Elementos del modal de personalización
   const customizationModal = document.getElementById('customization-modal');
   const modalClose = document.getElementById('modal-close');
@@ -1004,8 +1102,10 @@
   const playerNameInput = document.getElementById('player-name');
   const playerNumberInput = document.getElementById('player-number');
 
-  // Variables para el producto que se está personalizando
-  let currentCustomizingProduct = null;
+  // Variables para el producto que se está seleccionando
+  let currentSelectingProduct = null;
+  let currentSelectedSize = 'M'; // Talla por defecto
+  let currentSelectedColor = 'Blanco'; // Color por defecto
 
   // Abrir/cerrar carrito
   cartIcon.addEventListener('click', () => {
@@ -1016,83 +1116,136 @@
     cartSidebar.classList.remove('active');
   });
 
+  // Abrir/cerrar modal de selección de talla
+  sizeModalClose.addEventListener('click', () => {
+    sizeModal.classList.remove('active');
+  });
+
   // Abrir/cerrar modal de personalización
   modalClose.addEventListener('click', () => {
     customizationModal.classList.remove('active');
   });
 
-  // Selección de tallas
-  document.querySelectorAll('.size-option').forEach(option => {
+  // Selección de colores
+  colorOptions.forEach(option => {
     option.addEventListener('click', function () {
-      const selector = this.parentElement;
-      selector.querySelectorAll('.size-option').forEach(opt => {
-        opt.classList.remove('selected');
-      });
+      colorOptions.forEach(opt => opt.classList.remove('selected'));
       this.classList.add('selected');
+      currentSelectedColor = this.getAttribute('data-color');
     });
   });
 
-  // Añadir productos normales al carrito
+  // Añadir productos al carrito (mostrar modal de selección)
   document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function () {
-      if (this.disabled) return;
-
       const id = this.getAttribute('data-id');
       const name = this.getAttribute('data-name');
       const price = parseFloat(this.getAttribute('data-price'));
       const image = this.getAttribute('data-image');
       const type = this.getAttribute('data-type');
+      const hasColors = this.getAttribute('data-colors') === 'true';
 
-      // Obtener talla si es ropa
-      let size = null;
-      if (type === 'clothing') {
-        const productId = this.getAttribute('data-id');
-        const sizeSelector = document.querySelector(`.size-selector[data-product="${productId}"]`);
-        if (sizeSelector) {
-          const selectedSize = sizeSelector.querySelector('.size-option.selected');
-          if (selectedSize) {
-            size = selectedSize.getAttribute('data-size');
-          }
+      // Guardar el producto actual que se está seleccionando
+      currentSelectingProduct = {
+        id,
+        name,
+        price,
+        image,
+        type,
+        hasColors
+      };
+
+      // Configurar el modal según el tipo de producto
+      if (type === 'footwear') {
+        // Chanclas - tallas de 37 a 43
+        sizeModalTitle.textContent = 'SELECCIONA TU TALLA (CHANCLAS)';
+        colorSection.style.display = 'none';
+
+        // Generar opciones de talla de calzado
+        sizeOptionsContainer.innerHTML = '';
+        for (let i = 37; i <= 43; i++) {
+          const sizeOption = document.createElement('div');
+          sizeOption.className = i === 40 ? 'size-option-modal selected' : 'size-option-modal';
+          sizeOption.setAttribute('data-size', i);
+          sizeOption.textContent = i;
+          sizeOption.addEventListener('click', function () {
+            document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            currentSelectedSize = this.getAttribute('data-size');
+          });
+          sizeOptionsContainer.appendChild(sizeOption);
         }
-      }
-
-      // Verificar si el producto ya está en el carrito (mismo ID y misma talla)
-      const existingItemIndex = cart.findIndex(item =>
-        item.id === id &&
-        item.size === size &&
-        !item.customization
-      );
-
-      if (existingItemIndex >= 0) {
-        // Si ya existe, aumentar cantidad
-        cart[existingItemIndex].quantity += 1;
       } else {
-        // Crear objeto producto
-        const product = {
-          id,
-          name,
-          price,
-          image,
-          type,
-          size,
-          customization: null,
-          quantity: 1
-        };
+        // Ropa normal
+        sizeModalTitle.textContent = hasColors ? 'SELECCIONA TALLA Y COLOR' : 'SELECCIONA TU TALLA';
+        colorSection.style.display = hasColors ? 'block' : 'none';
 
-        // Añadir al carrito
-        cart.push(product);
+        // Generar opciones de talla estándar
+        sizeOptionsContainer.innerHTML = '';
+        const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+        sizes.forEach(size => {
+          const sizeOption = document.createElement('div');
+          sizeOption.className = size === 'M' ? 'size-option-modal selected' : 'size-option-modal';
+          sizeOption.setAttribute('data-size', size);
+          sizeOption.textContent = size;
+          sizeOption.addEventListener('click', function () {
+            document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            currentSelectedSize = this.getAttribute('data-size');
+          });
+          sizeOptionsContainer.appendChild(sizeOption);
+        });
       }
 
-      updateCart();
+      // Resetear selecciones
+      currentSelectedSize = type === 'footwear' ? '40' : 'M';
+      currentSelectedColor = 'Blanco';
+      colorOptions.forEach(opt => opt.classList.remove('selected'));
+      document.querySelector('.color-option[data-color="Blanco"]').classList.add('selected');
 
-      // Feedback visual
-      this.textContent = '✓ Añadido';
-      this.disabled = true;
-      setTimeout(() => {
-        this.textContent = 'Añadir al carrito';
-        this.disabled = false;
-      }, 1500);
+      // Mostrar modal
+      sizeModal.classList.add('active');
     });
+  });
+
+  // Confirmar selección y añadir al carrito
+  confirmSize.addEventListener('click', function () {
+    if (!currentSelectingProduct) return;
+
+    // Verificar si el producto ya está en el carrito (mismo ID, talla y color)
+    const existingItemIndex = cart.findIndex(item =>
+      item.id === currentSelectingProduct.id &&
+      item.size === currentSelectedSize &&
+      (!currentSelectingProduct.hasColors || item.color === currentSelectedColor) &&
+      !item.customization
+    );
+
+    if (existingItemIndex >= 0) {
+      // Si ya existe, aumentar cantidad
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      // Crear objeto producto
+      const product = {
+        ...currentSelectingProduct,
+        size: currentSelectedSize,
+        color: currentSelectingProduct.hasColors ? currentSelectedColor : null,
+        customization: null,
+        quantity: 1
+      };
+
+      // Añadir al carrito
+      cart.push(product);
+    }
+
+    updateCart();
+    sizeModal.classList.remove('active');
+
+    // Feedback visual
+    const originalText = this.textContent;
+    this.textContent = '✓ AÑADIDO';
+    setTimeout(() => {
+      this.textContent = originalText;
+    }, 2000);
   });
 
   // Mostrar modal de personalización solo para Producto 7
@@ -1103,17 +1256,12 @@
       const price = parseFloat(this.getAttribute('data-price'));
       const image = this.getAttribute('data-image');
 
-      // Obtener talla seleccionada
-      const sizeSelector = document.querySelector(`.size-selector[data-product="${id}"]`);
-      const selectedSize = sizeSelector ? sizeSelector.querySelector('.size-option.selected').getAttribute('data-size') : null;
-
       // Guardar el producto actual que se está personalizando
-      currentCustomizingProduct = {
+      currentSelectingProduct = {
         id,
         name,
         price,
         image,
-        size: selectedSize,
         type: 'customizable'
       };
 
@@ -1142,7 +1290,7 @@
 
   // Confirmar personalización y añadir al carrito
   confirmCustomization.addEventListener('click', function () {
-    if (!currentCustomizingProduct) return;
+    if (!currentSelectingProduct) return;
 
     const playerName = playerNameInput.value.trim();
     const playerNumber = playerNumberInput.value.trim();
@@ -1159,11 +1307,11 @@
     }
 
     // Crear nombre personalizado para mostrar en el carrito
-    const customizedName = `${currentCustomizingProduct.name} (${playerName.toUpperCase()} #${playerNumber})`;
+    const customizedName = `${currentSelectingProduct.name} (${playerName.toUpperCase()} #${playerNumber})`;
 
     // Verificar si el producto ya está en el carrito
     const existingItemIndex = cart.findIndex(item =>
-      item.id === currentCustomizingProduct.id &&
+      item.id === currentSelectingProduct.id &&
       item.customization &&
       item.customization.name === playerName &&
       item.customization.number === playerNumber
@@ -1175,13 +1323,13 @@
     } else {
       // Si no existe, añadir nuevo item
       cart.push({
-        ...currentCustomizingProduct,
+        ...currentSelectingProduct,
         name: customizedName,
         quantity: 1,
         customization: {
           name: playerName,
           number: playerNumber,
-          originalName: currentCustomizingProduct.name
+          originalName: currentSelectingProduct.name
         }
       });
     }
@@ -1207,6 +1355,12 @@
     cartItemsContainer.innerHTML = '';
     let totalPrice = 0;
 
+    if (cart.length === 0) {
+      document.getElementById('checkout-button').disabled = true;
+    } else {
+      document.getElementById('checkout-button').disabled = false;
+    }
+
     cart.forEach((item, index) => {
       const itemQuantity = item.quantity || 1;
       const itemTotal = item.price * itemQuantity;
@@ -1224,10 +1378,13 @@
         `;
       }
 
-      // Mostrar talla si es ropa
-      let sizeInfo = '';
+      // Mostrar talla y color si existen
+      let sizeColorInfo = '';
       if (item.size) {
-        sizeInfo = `<div class="cart-item-customization">Talla: ${item.size}</div>`;
+        sizeColorInfo = `<div class="cart-item-customization">Talla: ${item.size}</div>`;
+        if (item.color) {
+          sizeColorInfo += `<div class="cart-item-customization">Color: ${item.color}</div>`;
+        }
       }
 
       cartItemElement.innerHTML = `
@@ -1237,7 +1394,7 @@
         <div class="cart-item-details">
           <div class="cart-item-name">${item.customization ? item.customization.originalName : item.name}</div>
           ${customizationInfo}
-          ${sizeInfo}
+          ${sizeColorInfo}
           <div class="cart-item-price">€${item.price.toFixed(2)} x ${itemQuantity}</div>
           <button class="cart-item-remove" data-index="${index}">
             Eliminar
@@ -1261,18 +1418,151 @@
     });
   }
 
-  // Additional prevention for older browsers
-  document.addEventListener('DOMContentLoaded', function () {
-    // Prevent double-tap zoom
-    document.addEventListener('dblclick', function (e) {
-      e.preventDefault();
-    }, { passive: false });
+  /// Payment handling
+    document.getElementById('checkout-button').addEventListener('click', async function () {
+      const fullName = document.getElementById('full-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const category = document.getElementById('category').value.trim();
 
-    // Prevent pinch zoom
-    document.addEventListener('touchmove', function (e) {
-      if (e.scale !== 1) { e.preventDefault(); }
-    }, { passive: false });
-  });
+      // Validate required fields
+      if (!fullName || !email || !phone) {
+        showMessage('Por favor completa todos los campos requeridos', 'error');
+        return;
+      }
+
+      // Validate email format
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showMessage('Por favor ingresa un email válido', 'error');
+        return;
+      }
+
+      // Prepare order data
+      const orderItems = cart.map(item => ({
+        name: item.customization ? item.customization.originalName : item.name,
+        price: parseFloat(item.price.toFixed(2)),
+        size: item.size || null,
+        color: item.color || null,
+        customization: item.customization ?
+          `Nombre: ${item.customization.name}, Dorsal: ${item.customization.number}` : null,
+        quantity: item.quantity
+      }));
+
+      const orderData = {
+        full_name: fullName,
+        email: email,
+        phone: phone,
+        category: category || 'No especificada',
+        total: parseFloat(cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0).toFixed(2)),
+        items: orderItems
+      };
+
+      // Disable button during processing
+      const checkoutButton = this;
+      checkoutButton.disabled = true;
+      checkoutButton.textContent = 'Procesando...';
+      
+
+      try {
+        // Get CSRF token
+        console.log('Document cookies:', document.cookie);
+        const csrftoken = getCookie('csrf_token') || getCookie('csrftoken');  // Try both common names
+        console.log('CSRF Token:', csrftoken);
+        if (!csrftoken) {
+          showMessage('Error de seguridad. Por favor recarga la página.', 'error');
+          return;
+        }
+
+        // Send order to server
+        const response = await fetch('/create-order/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(orderData)
+        });
+
+        // Check if response is OK
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || `Error del servidor: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Check if order was successfully created
+        if (data.status !== 'success') {
+          throw new Error(data.message || 'Error desconocido al crear el pedido');
+        }
+
+        // Send to FormSubmit (optional)
+        try {
+          await fetch('https://formsubmit.co/ajax/tienda@olympia.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: fullName,
+              email: email,
+              phone: phone,
+              category: category,
+              order_number: data.order_number,
+              total: orderData.total,
+              items: JSON.stringify(orderItems)
+            })
+          });
+        } catch (formSubmitError) {
+          console.warn('Error al enviar a FormSubmit:', formSubmitError);
+          // Continue despite FormSubmit error
+        }
+
+        // Show success message
+        showMessage(`Pedido #${data.order_number} creado con éxito. ¡Gracias!`, 'success');
+
+        // Clear cart and reset form
+        cart = [];
+        updateCart();
+        document.getElementById('full-name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('category').value = '';
+
+      } catch (error) {
+        console.error('Error en el pago:', error);
+        showMessage(`Error al procesar el pedido: ${error.message}`, 'error');
+      } finally {
+        checkoutButton.disabled = false;
+        checkoutButton.textContent = 'Proceder al pago';
+      }
+    });
+
+  function getCookie(name) {
+    const cookieString = document.cookie;
+    if (!cookieString) return null;
+
+    const cookies = cookieString.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.startsWith('csrftoken=')) {  // Only look for csrftoken
+        return decodeURIComponent(cookie.substring('csrftoken='.length));
+      }
+    }
+    return null;
+  }
+
+  // Helper function to show messages
+  function showMessage(message, type) {
+    const messageElement = document.getElementById('payment-message');
+    messageElement.textContent = message;
+    messageElement.className = `payment-message ${type}`;
+    setTimeout(() => {
+      messageElement.textContent = '';
+      messageElement.className = 'payment-message';
+    }, 5000);
+  }
 </script>
 
 <!-- Font Awesome para iconos -->

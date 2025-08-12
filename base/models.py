@@ -54,3 +54,33 @@ def save_user_profile(sender, instance, **kwargs):
 # Aplica tu validador personalizado al campo username del modelo User
 UserProfile._meta.get_field('user').remote_field.model.username_validators = [validate_unique_case_insensitive_username]
 
+# models.py
+from django.db import models
+from django.core.mail import send_mail
+from django.conf import settings
+import random
+import string
+import json
+
+class Order(models.Model):
+    order_number = models.CharField(max_length=12, unique=True, editable=False)
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    category = models.CharField(max_length=100, blank=True, null=True)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    items_json = models.TextField()  # Will store all items as JSON
+    created_at = models.DateTimeField(auto_now_add=True)
+    paid = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            # Generate random order number (8 alphanumeric characters)
+            self.order_number = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+        super().save(*args, **kwargs)
+
+    def get_items(self):
+        return json.loads(self.items_json)
+
+    def __str__(self):
+        return f"Order {self.order_number}"

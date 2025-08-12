@@ -42,6 +42,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'moezehero'  # Tu email de Gmail
 EMAIL_HOST_PASSWORD = 'hexp xebp nops mzpc'
 DEFAULT_FROM_EMAIL = 'no-reply@cffolympia.es'
+OWNER_EMAIL = 'obiezeh999@gmail.com'  # Add this line
+
 
 
 # En settings.py
@@ -216,3 +218,8 @@ PWA_APP_SCREENSHOTS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Add these to your settings
+STRIPE_PUBLIC_KEY = 'your_publishable_key'
+STRIPE_SECRET_KEY = 'your_secret_key'
+STRIPE_WEBHOOK_SECRET = 'your_webhook_secret'
