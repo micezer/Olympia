@@ -51,7 +51,17 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', function(event) {
-  if (event.request.method !== 'GET') return; // ✅ Ignore POST, PUT, etc.
+  const url = new URL(event.request.url);
+
+  // ✅ Ignore all admin and non-GET requests
+  if (
+    event.request.method !== 'GET' ||
+    url.pathname.startsWith('/admin') ||
+    url.pathname.startsWith('/admin/login') ||
+    url.pathname.startsWith('/admin/logout')
+  ) {
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then(function(response) {
