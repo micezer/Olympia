@@ -218,6 +218,8 @@ PWA_APP_SCREENSHOTS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 
 # Add these to your settings
 STRIPE_PUBLIC_KEY = 'your_publishable_key'
