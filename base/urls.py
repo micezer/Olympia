@@ -23,6 +23,11 @@ urlpatterns = [
     path('enviar-email/', views.formulario_inscripcion, name='enviar_email'),
     path('create-order/', views.create_order, name='create_order'),
     path('admin/', admin.site.urls),  # ✅ This line is required
+    path('ticket/', views.ticket_purchase, name='ticket_purchase'),
+    path('purchase/', views.purchase_ticket, name='purchase_ticket'),
+    path('tickets/', views.get_tickets, name='get_tickets'),
+
+
 
 
 
