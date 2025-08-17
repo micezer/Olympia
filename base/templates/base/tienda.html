@@ -494,6 +494,15 @@
     transform: scale(1.1);
   }
 
+  /* Specific color styles */
+.color-option[data-color="Azul"] {
+  background-color: #2a374c; /* Primary blue from your palette */
+}
+
+.color-option[data-color="Mint"] {
+  background-color: #98ff98; /* Mint green */
+}
+
   .confirm-size {
     margin-top: 1.5rem;
     width: 100%;
@@ -702,6 +711,15 @@
       background-color: #cccccc;
       cursor: not-allowed;
     }
+    .size-selection-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--primary-gold);
+}
+
+.size-selection-section .form-group {
+  margin-bottom: 1rem;
+}
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -727,8 +745,7 @@
   </header>
 
   <div class="shop__marquee-track">
-    <div class="shop__marquee shop__marquee--right">⚽ ¿Tienes alguna duda? Escríbenos a tienda@olympia.com ⚽ Entrega en
-      3-5 días hábiles ⚽</div>
+    <div class="shop__marquee shop__marquee--right">⚽ ¿Tienes alguna duda? Escríbenos a tienda@olympia.com ⚽</div>
   </div>
 
   <section class="shop">
@@ -974,14 +991,12 @@
       <button class="size-modal-close" id="size-modal-close">&times;</button>
       <h3 class="size-modal-title" id="size-modal-title">SELECCIONA TU TALLA</h3>
 
-      <!-- Sección de colores (solo para productos con data-colors="true") -->
+      <!-- Color selection section -->
       <div class="color-section" id="color-section" style="display: none;">
         <h4>Color:</h4>
         <div class="color-options">
-          <div class="color-option selected" data-color="Blanco" style="background-color: white;"></div>
-          <div class="color-option" data-color="Negro" style="background-color: black;"></div>
-          <div class="color-option" data-color="Azul" style="background-color: #2a374c;"></div>
-          <div class="color-option" data-color="Rojo" style="background-color: #cc0000;"></div>
+          <div class="color-option selected" data-color="Azul" style="background-color:blue;"></div>
+          <div class="color-option" data-color="Mint" style="background-color: #98ff98;"></div>
         </div>
       </div>
 
@@ -997,33 +1012,69 @@
     </div>
   </div>
 
-  <!-- Modal de personalización mejorado -->
-  <div class="customization-modal" id="customization-modal">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close">&times;</button>
-      <h3 class="modal-title">PERSONALIZAR CAMISETA</h3>
+<!-- Modal de personalización mejorado -->
+<div class="customization-modal" id="customization-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <h3 class="modal-title">PERSONALIZAR SEGUNDA EQUIPACIÓN</h3>
 
-      <div class="customization-form">
+    <div class="customization-form">
+      <!-- Tallas de componentes -->
+      <div class="size-selection-section">
         <div class="form-group">
-          <label for="player-name" class="form-label">Nombre para la camiseta:</label>
-          <input type="text" class="form-input" id="player-name" placeholder="Ej: MESSI" maxlength="15">
+          <label class="form-label">Escoge talla camiseta (15 €)</label>
+          <select class="form-input" id="shirt-size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
         </div>
 
         <div class="form-group">
-          <label for="player-number" class="form-label">Número de dorsal:</label>
-          <input type="number" class="form-input" id="player-number" placeholder="Ej: 10" min="1" max="99">
+          <label class="form-label">Escoge talla pantalón (12 €)</label>
+          <select class="form-input" id="pants-size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
         </div>
 
-        <div class="customization-preview">
-          <div class="preview-title">Tu personalización:</div>
-          <div class="preview-text" id="name-preview">Nombre: -</div>
-          <div class="preview-text" id="number-preview">Dorsal: -</div>
+        <div class="form-group">
+          <label class="form-label">Escoge talla medias (8 €)</label>
+          <select class="form-input" id="socks-size">
+            <option value="36-38">36-38</option>
+            <option value="39-41" selected>39-41</option>
+            <option value="42-44">42-44</option>
+          </select>
         </div>
-
-        <button class="btn btn-primary" id="confirm-customization">CONFIRMAR Y AÑADIR AL CARRITO</button>
       </div>
+
+      <!-- Personalización de nombre y número -->
+      <div class="form-group">
+        <label for="player-name" class="form-label">Nombre para la camiseta:</label>
+        <input type="text" class="form-input" id="player-name" placeholder="Ej: MESSI" maxlength="15">
+      </div>
+
+      <div class="form-group">
+        <label for="player-number" class="form-label">Número de dorsal:</label>
+        <input type="number" class="form-input" id="player-number" placeholder="Ej: 10" min="1" max="99">
+      </div>
+
+      <div class="customization-preview">
+        <div class="preview-title">Tu personalización:</div>
+        <div class="preview-text" id="name-preview">Nombre: -</div>
+        <div class="preview-text" id="number-preview">Dorsal: -</div>
+        <div class="preview-text" id="sizes-preview">Tallas: -</div>
+      </div>
+
+      <button class="btn btn-primary" id="confirm-customization">CONFIRMAR Y AÑADIR AL CARRITO (35 €)</button>
     </div>
   </div>
+</div>
 
   <!-- Carrito de compras -->
   <div class="cart-icon" id="cart-icon">
@@ -1135,78 +1186,77 @@
     });
   });
 
-  // Añadir productos al carrito (mostrar modal de selección)
   document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function () {
-      const id = this.getAttribute('data-id');
-      const name = this.getAttribute('data-name');
-      const price = parseFloat(this.getAttribute('data-price'));
-      const image = this.getAttribute('data-image');
-      const type = this.getAttribute('data-type');
-      const hasColors = this.getAttribute('data-colors') === 'true';
+      button.addEventListener('click', function () {
+        const id = this.getAttribute('data-id');
+        const name = this.getAttribute('data-name');
+        const price = parseFloat(this.getAttribute('data-price'));
+        const image = this.getAttribute('data-image');
+        const type = this.getAttribute('data-type');
+        const hasColors = this.getAttribute('data-colors') === 'true';
 
-      // Guardar el producto actual que se está seleccionando
-      currentSelectingProduct = {
-        id,
-        name,
-        price,
-        image,
-        type,
-        hasColors
-      };
+        // Save the current product being selected
+        currentSelectingProduct = {
+          id,
+          name,
+          price,
+          image,
+          type,
+          hasColors
+        };
 
-      // Configurar el modal según el tipo de producto
-      if (type === 'footwear') {
-        // Chanclas - tallas de 37 a 43
-        sizeModalTitle.textContent = 'SELECCIONA TU TALLA (CHANCLAS)';
-        colorSection.style.display = 'none';
+        // Configure modal based on product type
+        if (type === 'footwear') {
+          // Flip-flops - sizes 37 to 43
+          sizeModalTitle.textContent = 'SELECT YOUR SIZE (FLIP-FLOPS)';
+          colorSection.style.display = 'none';
 
-        // Generar opciones de talla de calzado
-        sizeOptionsContainer.innerHTML = '';
-        for (let i = 37; i <= 43; i++) {
-          const sizeOption = document.createElement('div');
-          sizeOption.className = i === 40 ? 'size-option-modal selected' : 'size-option-modal';
-          sizeOption.setAttribute('data-size', i);
-          sizeOption.textContent = i;
-          sizeOption.addEventListener('click', function () {
-            document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            currentSelectedSize = this.getAttribute('data-size');
+          // Generate footwear size options
+          sizeOptionsContainer.innerHTML = '';
+          for (let i = 37; i <= 43; i++) {
+            const sizeOption = document.createElement('div');
+            sizeOption.className = i === 40 ? 'size-option-modal selected' : 'size-option-modal';
+            sizeOption.setAttribute('data-size', i);
+            sizeOption.textContent = i;
+            sizeOption.addEventListener('click', function () {
+              document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+              this.classList.add('selected');
+              currentSelectedSize = this.getAttribute('data-size');
+            });
+            sizeOptionsContainer.appendChild(sizeOption);
+          }
+        } else {
+          // Regular clothing
+          sizeModalTitle.textContent = hasColors ? 'SELECT SIZE AND COLOR' : 'SELECT YOUR SIZE';
+          colorSection.style.display = hasColors ? 'block' : 'none';
+
+          // Generate standard size options
+          sizeOptionsContainer.innerHTML = '';
+          const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+          sizes.forEach(size => {
+            const sizeOption = document.createElement('div');
+            sizeOption.className = size === 'M' ? 'size-option-modal selected' : 'size-option-modal';
+            sizeOption.setAttribute('data-size', size);
+            sizeOption.textContent = size;
+            sizeOption.addEventListener('click', function () {
+              document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+              this.classList.add('selected');
+              currentSelectedSize = this.getAttribute('data-size');
+            });
+            sizeOptionsContainer.appendChild(sizeOption);
           });
-          sizeOptionsContainer.appendChild(sizeOption);
         }
-      } else {
-        // Ropa normal
-        sizeModalTitle.textContent = hasColors ? 'SELECCIONA TALLA Y COLOR' : 'SELECCIONA TU TALLA';
-        colorSection.style.display = hasColors ? 'block' : 'none';
 
-        // Generar opciones de talla estándar
-        sizeOptionsContainer.innerHTML = '';
-        const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-        sizes.forEach(size => {
-          const sizeOption = document.createElement('div');
-          sizeOption.className = size === 'M' ? 'size-option-modal selected' : 'size-option-modal';
-          sizeOption.setAttribute('data-size', size);
-          sizeOption.textContent = size;
-          sizeOption.addEventListener('click', function () {
-            document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            currentSelectedSize = this.getAttribute('data-size');
-          });
-          sizeOptionsContainer.appendChild(sizeOption);
-        });
-      }
+        // Reset selections
+        currentSelectedSize = type === 'footwear' ? '40' : 'M';
+        currentSelectedColor = 'Azul'; // Changed to 'Azul'
+        colorOptions.forEach(opt => opt.classList.remove('selected'));
+        document.querySelector('.color-option[data-color="Azul"]').classList.add('selected');
 
-      // Resetear selecciones
-      currentSelectedSize = type === 'footwear' ? '40' : 'M';
-      currentSelectedColor = 'Blanco';
-      colorOptions.forEach(opt => opt.classList.remove('selected'));
-      document.querySelector('.color-option[data-color="Blanco"]').classList.add('selected');
-
-      // Mostrar modal
-      sizeModal.classList.add('active');
+        // Show modal
+        sizeModal.classList.add('active');
+      });
     });
-  });
 
   // Confirmar selección y añadir al carrito
   confirmSize.addEventListener('click', function () {
@@ -1280,62 +1330,79 @@
   playerNameInput.addEventListener('input', updatePreview);
   playerNumberInput.addEventListener('input', updatePreview);
 
-  function updatePreview() {
-    const name = playerNameInput.value.trim();
-    const number = playerNumberInput.value.trim();
+  // Update the preview function
+    function updatePreview() {
+      const name = playerNameInput.value.trim();
+      const number = playerNumberInput.value.trim();
+      const shirtSize = document.getElementById('shirt-size').value;
+      const pantsSize = document.getElementById('pants-size').value;
+      const socksSize = document.getElementById('socks-size').value;
 
-    document.getElementById('name-preview').textContent = name ? `Nombre: ${name.toUpperCase()}` : 'Nombre: -';
-    document.getElementById('number-preview').textContent = number ? `Dorsal: ${number}` : 'Dorsal: -';
-  }
-
-  // Confirmar personalización y añadir al carrito
-  confirmCustomization.addEventListener('click', function () {
-    if (!currentSelectingProduct) return;
-
-    const playerName = playerNameInput.value.trim();
-    const playerNumber = playerNumberInput.value.trim();
-
-    // Validación básica
-    if (!playerName || !playerNumber) {
-      alert('Por favor, completa ambos campos de personalización');
-      return;
+      document.getElementById('name-preview').textContent = name ? `Nombre: ${name.toUpperCase()}` : 'Nombre: -';
+      document.getElementById('number-preview').textContent = number ? `Dorsal: ${number}` : 'Dorsal: -';
+      document.getElementById('sizes-preview').textContent = `Tallas: Camiseta (${shirtSize}), Pantalón (${pantsSize}), Medias (${socksSize})`;
     }
 
-    if (playerNumber < 1 || playerNumber > 99) {
-      alert('El número de dorsal debe estar entre 1 y 99');
-      return;
-    }
+    // Update event listeners
+    playerNameInput.addEventListener('input', updatePreview);
+    playerNumberInput.addEventListener('input', updatePreview);
+    document.getElementById('shirt-size').addEventListener('change', updatePreview);
+    document.getElementById('pants-size').addEventListener('change', updatePreview);
+    document.getElementById('socks-size').addEventListener('change', updatePreview);
 
-    // Crear nombre personalizado para mostrar en el carrito
-    const customizedName = `${currentSelectingProduct.name} (${playerName.toUpperCase()} #${playerNumber})`;
+    // Update the confirmation handler
+    confirmCustomization.addEventListener('click', function () {
+      if (!currentSelectingProduct) return;
 
-    // Verificar si el producto ya está en el carrito
-    const existingItemIndex = cart.findIndex(item =>
-      item.id === currentSelectingProduct.id &&
-      item.customization &&
-      item.customization.name === playerName &&
-      item.customization.number === playerNumber
-    );
+      const playerName = playerNameInput.value.trim();
+      const playerNumber = playerNumberInput.value.trim();
+      const shirtSize = document.getElementById('shirt-size').value;
+      const pantsSize = document.getElementById('pants-size').value;
+      const socksSize = document.getElementById('socks-size').value;
 
-    if (existingItemIndex >= 0) {
-      // Si ya existe, aumentar cantidad
-      cart[existingItemIndex].quantity += 1;
-    } else {
-      // Si no existe, añadir nuevo item
-      cart.push({
-        ...currentSelectingProduct,
-        name: customizedName,
-        quantity: 1,
-        customization: {
-          name: playerName,
-          number: playerNumber,
-          originalName: currentSelectingProduct.name
-        }
-      });
-    }
+      // Validation
+      if (!playerName || !playerNumber) {
+        alert('Por favor, completa ambos campos de personalización');
+        return;
+      }
 
-    updateCart();
-    customizationModal.classList.remove('active');
+      if (playerNumber < 1 || playerNumber > 99) {
+        alert('El número de dorsal debe estar entre 1 y 99');
+        return;
+      }
+
+      // Create customized name for cart display
+      const customizedName = `${currentSelectingProduct.name} (${playerName.toUpperCase()} #${playerNumber})`;
+
+      // Check if product already exists in cart
+      const existingItemIndex = cart.findIndex(item =>
+        item.id === currentSelectingProduct.id &&
+        item.customization &&
+        item.customization.name === playerName &&
+        item.customization.number === playerNumber
+      );
+
+      if (existingItemIndex >= 0) {
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        cart.push({
+          ...currentSelectingProduct,
+          name: customizedName,
+          price: 35.00, // Total price for the set
+          quantity: 1,
+          customization: {
+            name: playerName,
+            number: playerNumber,
+            shirtSize: shirtSize,
+            pantsSize: pantsSize,
+            socksSize: socksSize,
+            originalName: currentSelectingProduct.name
+          }
+        });
+      }
+
+      updateCart();
+      customizationModal.classList.remove('active');
 
     // Mostrar feedback
     const originalText = this.textContent;
@@ -1373,9 +1440,12 @@
       let customizationInfo = '';
       if (item.customization) {
         customizationInfo = `
-          <div class="cart-item-customization">Nombre: ${item.customization.name.toUpperCase()}</div>
-          <div class="cart-item-customization">Dorsal: ${item.customization.number}</div>
-        `;
+        <div class="cart-item-customization">Nombre: ${item.customization.name.toUpperCase()}</div>
+        <div class="cart-item-customization">Dorsal: ${item.customization.number}</div>
+        <div class="cart-item-customization">Camiseta: Talla ${item.customization.shirtSize}</div>
+        <div class="cart-item-customization">Pantalón: Talla ${item.customization.pantsSize}</div>
+        <div class="cart-item-customization">Medias: Talla ${item.customization.socksSize}</div>
+      `;
       }
 
       // Mostrar talla y color si existen
