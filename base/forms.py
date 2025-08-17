@@ -59,3 +59,20 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user_profile.save()
         return user
+
+from django import forms
+from .models import Ticket
+
+class TicketPurchaseForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['dni', 'full_name', 'email', 'match', 'section', 'seat']
+        widgets = {
+            'dni': forms.TextInput(attrs={'required': True}),
+            'full_name': forms.TextInput(attrs={'required': True}),
+            'email': forms.EmailInput(attrs={'required': True}),
+        }
+
+class TicketCheckForm(forms.Form):
+    dni = forms.CharField(max_length=20, required=True, 
+                         widget=forms.TextInput(attrs={'placeholder': 'Enter your DNI'}))

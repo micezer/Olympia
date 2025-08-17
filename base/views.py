@@ -54,6 +54,10 @@ def cantera_view(request):
 def tienda_view(request):
     return render(request, 'base/tienda.html')
 
+def ticket_purchase(request):
+    return render(request, 'base/ticket_purchase.html')
+
+
 def download_view(request):
     return render(request, 'base/download.html')
 def about_view(request):
@@ -294,3 +298,82 @@ def formulario_inscripcion(request):
                 'status': 'error',
                 'message': 'Error al procesar la inscripción'
             }, status=500)
+        
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
+from .models import Ticket
+import json
+from datetime import datetime
+
+@csrf_exempt
+def purchase_ticket(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            # Create ticket
+            ticket = Ticket.objects.create(
+                dni=data['dni'],
+                full_name=data['fullName'],
+                email=data['email'],
+                match=data['match'],
+                section=data['section'],
+                seat=data['seat'],
+                qr_code=data['qrCode'],
+                ticket_type='single' if data['ticketType'] == 'Entrada Individual' else 'season',
+                price=float(data['price'].replace('€', ''))
+            )
+            
+            # Send confirmation email
+            send_mail(
+                f"Confirmación de entrada - {ticket.match}",
+                f"""Hola {ticket.full_name},
+                
+Gracias por comprar tu entrada para {ticket.match}.
+                
+Detalles:
+- Tipo: {ticket.get_ticket_type_display()}
+- Tribuna: {ticket.section}
+- Asiento: {ticket.seat}
+- Precio: €{ticket.price}
+- Código QR: {ticket.qr_code}
+                
+Presenta este código QR en la entrada del estadio.""",
+                'no-reply@yourclub.com',
+                [ticket.email],
+                fail_silently=False,
+            )
+            
+            return JsonResponse({'status': 'success', 'ticket_id': ticket.id})
+            
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+@csrf_exempt
+def get_tickets(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            dni = data.get('dni', '')
+            
+            tickets = Ticket.objects.filter(dni=dni).values(
+                'id', 'dni', 'full_name', 'match', 'section', 
+                'seat', 'purchase_date', 'is_used', 'qr_code',
+                'ticket_type', 'price'
+            )
+            
+            # Format dates
+            tickets_list = list(tickets)
+            for ticket in tickets_list:
+                ticket['purchase_date'] = ticket['purchase_date'].strftime('%Y-%m-%d %H:%M')
+                
+            return JsonResponse({'status': 'success', 'tickets': tickets_list})
+            
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)

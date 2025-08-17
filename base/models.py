@@ -84,3 +84,27 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.order_number}"
+
+from django.db import models
+from django.core.validators import MinLengthValidator
+
+class Ticket(models.Model):
+    TICKET_TYPES = [
+        ('single', 'Entrada Individual'),
+        ('season', 'Abono Temporada'),
+    ]
+    
+    dni = models.CharField(max_length=20, validators=[MinLengthValidator(5)])
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    match = models.CharField(max_length=100)
+    section = models.CharField(max_length=50)
+    seat = models.CharField(max_length=10)
+    purchase_date = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+    qr_code = models.CharField(max_length=100, unique=True)
+    ticket_type = models.CharField(max_length=10, choices=TICKET_TYPES)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    
+    def __str__(self):
+        return f"{self.full_name} - {self.match}"

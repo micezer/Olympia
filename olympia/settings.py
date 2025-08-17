@@ -225,3 +225,17 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STRIPE_PUBLIC_KEY = 'your_publishable_key'
 STRIPE_SECRET_KEY = 'your_secret_key'
 STRIPE_WEBHOOK_SECRET = 'your_webhook_secret'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # Django
+    "http://127.0.0.1:5500",  # Your frontend (adjust as needed)
+]
+
+# For development only - allows session cookies to work cross-origin
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+
+# If you're using django-cors-headers
+CORS_ALLOW_CREDENTIALS = True
