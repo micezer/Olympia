@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import Order, Ticket, UserProfile, Service
+from .models import Order, Ticket
 
 # Register your models here.
 
-admin.site.register(UserProfile)
-admin.site.register(Service)
 admin.site.register(Order)
 
 class TicketAdmin(admin.ModelAdmin):
@@ -14,3 +12,47 @@ class TicketAdmin(admin.ModelAdmin):
     readonly_fields = ('purchase_date', 'qr_code')
 
 admin.site.register(Ticket, TicketAdmin)
+
+
+# admin.py
+from django.contrib import admin
+from .models import Match
+
+@admin.register(Match)
+class MatchAdmin(admin.ModelAdmin):
+    list_display = (
+        'short_date', 
+        'home_team', 
+        'away_team', 
+        'home_score', 
+        'away_score',
+        'location_name',
+        'is_olympia_home'
+    )
+    list_filter = ('date', 'is_olympia_home', 'competition')
+    search_fields = ('home_team', 'away_team', 'location_name')
+    date_hierarchy = 'date'
+    fieldsets = (
+        ('Match Details', {
+            'fields': (
+                'date', 
+                'home_team', 
+                'away_team', 
+                'home_team_logo', 
+                'away_team_logo',
+                'is_olympia_home',
+                'competition'
+            )
+        }),
+        ('Scores', {
+            'fields': ('home_score', 'away_score'),
+            'classes': ('collapse',)
+        }),
+        ('Location', {
+            'fields': ('location_name', 'location_address', 'maps_url')
+        }),
+        ('Additional Info', {
+            'fields': ('match_notes',),
+            'classes': ('collapse',)
+        }),
+    )

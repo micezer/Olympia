@@ -1,0 +1,214 @@
+<!-- Two-column section for News and Copa de la Reina Logo -->
+<div class="news-copa-container">
+    <!-- News Section (2/3 width) -->
+    <div class="news-section">
+        <h3 class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8ac84">
+                <path
+                    d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,10L12,15L17,10H7Z" />
+            </svg>
+            Últimas Noticias
+        </h3>
+
+        <div class="carousel-container">
+            <!-- News 1 -->
+            <div class="carousel-slide" onclick="openNewsModal(0)">
+                <img src="{% static 'images/noticias/noticia_49.jpg' %}" class="news-image">
+                <div class="news-overlay">
+                    <div class="news-title">OLYMPIA EN LA GALA DE LA MUJER</div>
+                    <div class="news-date">8 MAR 2024</div>
+                </div>
+            </div>
+
+            <!-- News 2 -->
+            <div class="carousel-slide" onclick="openNewsModal(1)">
+                <img src="{% static 'images/noticias/noticia_48.jpg' %}" class="news-image">
+                <div class="news-overlay">
+                    <div class="news-title">DÍA DE LA MUJER</div>
+                    <div class="news-date">8 MAR 2024</div>
+                </div>
+            </div>
+
+            <!-- News 3 -->
+            <div class="carousel-slide" onclick="openNewsModal(2)">
+                <img src="{% static 'images/noticias/noticia_47.jpg' %}" class="news-image">
+                <div class="news-overlay">
+                    <div class="news-title">HYUNDAI MOTOR GAMBOA APOYA AL OLYMPIA</div>
+                    <div class="news-date">3 AGO 2024</div>
+                </div>
+            </div>
+
+            <!-- News 4 -->
+            <div class="carousel-slide" onclick="openNewsModal(3)">
+                <img src="{% static 'images/noticias/noticia_46.jpg' %}" class="news-image">
+                <div class="news-overlay">
+                    <div class="news-title">CAMPEONAS DONOSTI CUP G19</div>
+                    <div class="news-date">7 JUL 2024</div>
+                </div>
+            </div>
+
+            <!-- News 5 -->
+            <div class="carousel-slide" onclick="openNewsModal(4)">
+                <img src="{% static 'images/noticias/noticia_45.jpg' %}" class="news-image">
+                <div class="news-overlay">
+                    <div class="news-title">TRIPLE ASCENSO</div>
+                    <div class="news-date">20 JUN 2024</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+            <div class="indicator" onclick="goToSlide(3)"></div>
+            <div class="indicator" onclick="goToSlide(4)"></div>
+        </div>
+    </div>
+
+    <!-- Copa de la Reina Logo Section (1/3 width) -->
+    <div class="copa-logo-section">
+        <a href="/copa-de-la-reina" class="copa-logo-link">
+            <img src="{% static 'images/copa_de_la_reina_logo.png' %}" alt="Copa de la Reina" class="copa-logo">
+            <span class="copa-button">Ver Información</span>
+        </a>
+    </div>
+</div>
+
+<!-- News Modal -->
+<div class="news-modal" id="newsModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <img src="" class="modal-image" id="modalImage">
+        <div class="modal-text">
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-date" id="modalDate"></div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+</div>
+
+<!-- News Modal -->
+<div class="news-modal" id="newsModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <img src="" class="modal-image" id="modalImage">
+        <div class="modal-text">
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-date" id="modalDate"></div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // News data - each item corresponds to a slide
+    const newsData = [
+        {
+            title: "OLYMPIA EN LA GALA DE LA MUJER",
+            date: "8 MAR 2024",
+            image: "{% static 'images/noticias/noticia_49.jpg' %}",
+            content: `
+        <p>El Club Olympia tuvo el honor de participar en la Gala de la Mujer organizada por la Real Federación de Fútbol de Madrid (RFFM), en el marco del Día Internacional de la Mujer. Durante el evento, se reconoció el papel fundamental que desempeñan las mujeres en el deporte, y especialmente en el fútbol.</p>
+        <p>Nuestra presencia en esta celebración refuerza el compromiso del club con la igualdad de género y el desarrollo del fútbol femenino. Agradecemos a la RFFM por la invitación y por seguir impulsando espacios de reconocimiento y visibilidad para todas las mujeres que forman parte del fútbol madrileño.</p>
+      `
+        },
+        {
+            title: "DÍA DE LA MUJER",
+            date: "8 MAR 2024",
+            image: "{% static 'images/noticias/noticia_48.jpg' %}",
+            content: `
+        <p>El Olympia se unió a la conmemoración del Día Internacional de la Mujer, una fecha para visibilizar la lucha por la igualdad y reconocer el papel clave que desempeñan las mujeres dentro y fuera del terreno de juego.</p>
+        <p>Desde el club, seguimos trabajando para fomentar un entorno inclusivo, donde las niñas y mujeres tengan las mismas oportunidades de crecer, competir y brillar en el fútbol. Hoy y todos los días, celebramos su fuerza, dedicación y pasión.</p>
+      `
+        },
+        {
+            title: "HYUNDAI MOTOR GAMBOA APOYA AL OLYMPIA",
+            date: "3 AGO 2024",
+            image: "{% static 'images/noticias/noticia_47.jpg' %}",
+            content: `
+        <p>Nos complace anunciar que Hyundai Motor Gamboa se une al Olympia como colaborador oficial, sumándose a nuestro compromiso de fomentar el fútbol femenino y acompañar el crecimiento del club.</p>
+      `
+        },
+        {
+            title: "CAMPEONAS DONOSTI CUP G19",
+            date: "7 JUL 2024",
+            image: "{% static 'images/noticias/noticia_46.jpg' %}",
+            content: `
+        <p>Algunos equipos de nuestra cantera, han viajado. San Sebastián para disputar el torneo internacional. Tras un gran papel de nuestras categorías G12 y G17, fue nuestro G19 quien en el mítico estadio de Anoeta (Reale Arena), se hicieron con el trofeo de campeonas frente a top tec (Selección de jugadoras catalana). Gadea torres además de hacer el gol que nos hizo levantar el título, se llevó el MVP.</p>
+        <p>Enhorabuena chicas, pero sobre tod, enhorabuena afición por viajar con el Olympia y hacer de cualquier lugar, nuestra casa.</p>
+      `
+        },
+        {
+            title: "TRIPLE ASCENSO",
+            date: "20 JUN 2024",
+            image: "{% static 'images/noticias/noticia_45.jpg' %}",
+            content: `
+        <p>Esta temporada, tres de nuestros equipos han logrado el ascenso, consolidando el gran trabajo realizado a lo largo del año por jugadoras, cuerpo técnico y todo el club.</p>
+        <p>¡Felicitaciones a todas las protagonistas de este logro! El Olympia sigue haciendo historia.</p>
+
+      `
+        }
+    ];
+
+    // Open modal with specific news
+    function openNewsModal(index) {
+        const news = newsData[index];
+        document.getElementById('modalImage').src = news.image;
+        document.getElementById('modalTitle').textContent = news.title;
+        document.getElementById('modalDate').textContent = news.date;
+        document.getElementById('modalBody').innerHTML = news.content;
+        document.getElementById('newsModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('newsModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+        const container = document.querySelector('.carousel-container');
+        const slideWidth = container.offsetWidth;
+        container.scrollTo({
+            left: index * slideWidth,
+            behavior: 'smooth'
+        });
+        updateIndicators(index);
+    }
+
+    // Update active indicator
+    function updateIndicators(activeIndex) {
+        const indicators = document.querySelectorAll('.indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === activeIndex);
+        });
+    }
+
+    // Auto-scroll functionality
+    let currentSlide = 0;
+    function autoScroll() {
+        currentSlide = (currentSlide + 1) % newsData.length;
+        goToSlide(currentSlide);
+    }
+
+    let scrollInterval = setInterval(autoScroll, 5000);
+
+    // Pause auto-scroll on hover
+    const carousel = document.querySelector('.carousel-container');
+    carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+    carousel.addEventListener('mouseleave', () => {
+        scrollInterval = setInterval(autoScroll, 5000);
+    });
+
+    // Update indicators on scroll
+    carousel.addEventListener('scroll', () => {
+        const slideWidth = carousel.offsetWidth;
+        currentSlide = Math.round(carousel.scrollLeft / slideWidth);
+        updateIndicators(currentSlide);
+    });
+</script>

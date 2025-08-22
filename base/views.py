@@ -35,7 +35,10 @@ import json
 
 from datetime import datetime
 logger = logging.getLogger(__name__)
-
+# views.py
+from django.utils import timezone
+from django.shortcuts import render
+from .models import Match
 
 import logging
 logger = logging.getLogger(__name__)
@@ -97,8 +100,55 @@ def manifest(request):
     }
     return HttpResponse(json.dumps(manifest_data), content_type='application/json')
 
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+# views.py
+from django.utils import timezone
+from django.shortcuts import render
+from django.views.decorators.cache import never_cache
+from .models import Match
+
+# views.py
+from django.utils import timezone
+from django.shortcuts import render
+from django.views.decorators.cache import never_cache
+from .models import Match
+
+@never_cache
 def home(request):
-    return render(request, 'base/home.html')
+    # Get current time in the correct time zone
+    now = timezone.now()
+    
+    # Get next match (first future match where scores aren't set)
+    next_match = Match.objects.filter(
+        date__gte=now,
+        home_score__isnull=True,
+        away_score__isnull=True
+    ).order_by('date').first()
+    
+    # Get last three completed matches
+    last_matches = Match.objects.filter(
+        date__lte=now,
+        home_score__isnull=False,
+        away_score__isnull=False
+    ).order_by('-date')[:3]
+    
+    context = {
+        'next_match': next_match,
+        'last_matches': last_matches,
+        'current_time': now,
+    }
+    
+    response = render(request, 'base/home.html', context)
+    # Add headers to prevent caching
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
+    return response
+
+
 
 
 # views.py
