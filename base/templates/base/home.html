@@ -9,21 +9,21 @@
   <title>CFF Olympia - App</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-
+  
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
-
+  
     :root {
       --primary-blue: #2a374c;
       --secondary-blue: #1f2531;
       --primary-gold: #b8ac84;
       --secondary-gold: #7f765a;
     }
-
+  
     body {
       background-color: var(--primary-blue);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,7 +34,7 @@
       overflow-x: hidden;
       margin-top: 70px;
     }
-
+  
     body::before {
       content: "";
       position: fixed;
@@ -45,7 +45,7 @@
       background-color: rgba(42, 55, 76, 0.85);
       z-index: -1;
     }
-
+  
     main {
       max-width: 100%;
       padding: 1rem;
@@ -54,7 +54,7 @@
       align-items: center;
       gap: 1.5rem;
     }
-
+  
     /* Next Match Section - More modern */
     .next-match-container {
       background: rgba(31, 37, 49, 0.7);
@@ -66,14 +66,14 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(5px);
     }
-
+  
     .match-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
     }
-
+  
     .match-title {
       color: #b8ac84;
       font-size: 1.3rem;
@@ -81,7 +81,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
+  
     .match-date {
       color: white;
       font-size: 0.9rem;
@@ -89,32 +89,32 @@
       align-items: center;
       gap: 5px;
     }
-
+  
     .teams-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 1rem 0;
     }
-
+  
     .team {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 40%;
     }
-
+  
     .team-logo {
       width: 70px;
       height: 70px;
       object-fit: contain;
       transition: transform 0.3s ease;
     }
-
+  
     .team-logo:hover {
       transform: scale(1.1);
     }
-
+  
     .team-name {
       color: white;
       font-size: 1rem;
@@ -122,7 +122,7 @@
       text-align: center;
       font-weight: 600;
     }
-
+  
     .vs-circle {
       background: #b8ac84;
       width: 50px;
@@ -136,7 +136,7 @@
       font-size: 1.2rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
+  
     /* Last Matches Section - Horizontal layout */
     .last-matches {
       background: rgba(31, 37, 49, 0.7);
@@ -147,7 +147,7 @@
       margin: 0 auto;
       backdrop-filter: blur(5px);
     }
-
+  
     .section-title {
       color: #b8ac84;
       font-size: 1.2rem;
@@ -158,32 +158,32 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
+  
     .matches-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
-
+  
     .compact-match {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
     }
-
+  
     .compact-logos {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
+  
     .compact-logo {
       width: 30px;
       height: 30px;
       object-fit: contain;
     }
-
+  
     .compact-result {
       font-weight: bold;
       color: white;
@@ -192,125 +192,127 @@
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
     }
-
- /* Updated Carousel Styles */
-  .carousel-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    height: 250px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-  }
-
-  .carousel-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
-  }
-
-  .carousel-slide {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    position: relative;
-    min-width: 100%;
-    height: 100%;
-  }
-
-  .news-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .news-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(31, 37, 49, 0.9), transparent);
-    padding: 1.5rem;
-    color: white;
-    font-weight: 900;
-  }
-
-  /* Modal Styles */
-  .news-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(31, 37, 49, 0.95);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    overflow-y: auto;
-  }
-
-  .modal-content {
-    background: #1f2531;
-    border-radius: 16px;
-    max-width: 800px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 1px solid #7f765a;
-  }
-
-  .modal-image {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-  }
-
-  .modal-text {
-    padding: 2rem;
-    color: white;
-  }
-
-  .modal-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #b8ac84;
-  }
-
-  .modal-date {
-    color: #7f765a;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  .modal-body {
-    line-height: 1.6;
-  }
-
-  .close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #b8ac84;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    color: #1f2531;
-    font-weight: bold;
-    font-size: 1.2rem;
-    z-index: 10;
-  }
-
+  
+    /* Updated Carousel Styles */
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      scrollbar-width: none;
+      /* Hide scrollbar for Firefox */
+    }
+  
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+      /* Hide scrollbar for Chrome/Safari */
+    }
+  
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+    }
+  
+    .news-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  
+    .news-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(31, 37, 49, 0.9), transparent);
+      padding: 1.5rem;
+      color: white;
+      font-weight: 900;
+    }
+  
+    /* Modal Styles */
+    .news-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(31, 37, 49, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+  
+    .modal-content {
+      background: #1f2531;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid #7f765a;
+    }
+  
+    .modal-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+  
+    .modal-text {
+      padding: 2rem;
+      color: white;
+    }
+  
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #b8ac84;
+    }
+  
+    .modal-date {
+      color: #7f765a;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .modal-body {
+      line-height: 1.6;
+    }
+  
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #b8ac84;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      color: #1f2531;
+      font-weight: bold;
+      font-size: 1.2rem;
+      z-index: 10;
+    }
+  
     /* Sponsors Section - Improved Infinite Loop */
     .sponsors-section {
       background: rgba(31, 37, 49, 0.7);
@@ -322,7 +324,7 @@
       backdrop-filter: blur(5px);
       overflow: hidden;
     }
-
+  
     .sponsors-title {
       color: #b8ac84;
       font-size: 1.2rem;
@@ -331,20 +333,20 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
+  
     .sponsors-container {
       width: 100%;
       position: relative;
       overflow: hidden;
     }
-
+  
     .sponsors-track {
       display: flex;
       width: max-content;
       animation: scroll 25s linear infinite;
       will-change: transform;
     }
-
+  
     .sponsor-item {
       flex: 0 0 auto;
       padding: 0 20px;
@@ -352,7 +354,7 @@
       align-items: center;
       justify-content: center;
     }
-
+  
     .sponsor {
       height: 40px;
       width: auto;
@@ -362,43 +364,178 @@
       opacity: 0.8;
       transition: opacity 0.3s ease;
     }
-
+  
     .sponsor:hover {
       opacity: 1;
       filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(184, 172, 132, 0.7));
     }
-
+  
+    /* Location styling */
+    .match-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: #b8ac84;
+      font-size: 14px;
+    }
+  
+    .location-link {
+      color: #b8ac84;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+  
+    .location-link:hover {
+      color: #d4c9a1;
+      text-decoration: underline;
+    }
+  
+    /* Compact match date */
+    .compact-date {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+      text-align: center;
+    }
+  
+    /* Copa de la Reina Logo Section - Updated */
+    .copa-logo-section {
+      background-color: var(--primary-gold);
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+      max-height: 100px;
+      margin-bottom: 50px;
+      border: solid;
+      border-color: var(--primary-blue);
+      overflow: hidden;
+      /* Ensure logo stays inside */
+    }
+  
+    .copa-logo-link {
+      display: flex;
+      flex-direction: row;
+      /* Changed to row to keep logo and button side by side */
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      width: 100%;
+      justify-content: center;
+      gap: 15px;
+      /* Space between logo and button */
+    }
+  
+    .copa-logo-link:hover {
+      transform: translateY(-5px);
+    }
+  
+    .copa-logo {
+      width: auto;
+      height: 60px;
+      /* Fixed height to ensure it fits */
+      max-width: 100px;
+      object-fit: contain;
+      /* Ensure logo maintains aspect ratio */
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+  
+    .copa-button {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: var(--primary-gold);
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: solid 2px var(--primary-gold);
+      white-space: nowrap;
+      /* Prevent text wrapping */
+    }
+  
+    .copa-logo-link:hover .copa-button {
+      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .copa-logo-section {
+        max-height: 90px;
+        margin-bottom: 30px;
+      }
+  
+      .copa-logo {
+        height: 50px;
+        max-width: 80px;
+      }
+  
+      .copa-button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .copa-logo-link {
+        flex-direction: column;
+        gap: 8px;
+      }
+  
+      .copa-logo-section {
+        max-height: none;
+        height: auto;
+        padding: 15px 10px;
+      }
+  
+      .copa-logo {
+        height: 45px;
+      }
+  
+      .copa-button {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+    }
+  
     @keyframes scroll {
       0% {
         transform: translateX(0);
       }
-
+  
       100% {
         transform: translateX(-50%);
       }
     }
-
+  
     @media (min-width: 768px) {
       .team-logo {
         width: 80px;
         height: 80px;
       }
-
+  
       .vs-circle {
         width: 60px;
         height: 60px;
         font-size: 1.4rem;
       }
-
+  
       .carousel-container {
         height: 250px;
       }
-
+  
       .compact-logo {
         width: 35px;
         height: 35px;
       }
-
+  
       .sponsor {
         height: 50px;
       }
@@ -407,36 +544,92 @@
 </head>
 
 <body>
+
   <main>
     <!-- Next Match Section -->
     <div class="next-match-container">
       <div class="match-header">
-        <h2 class="match-title">Próximo Partido</h2>
-        <div class="match-date">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
-            <path
-              d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20V6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
-          </svg>
-          <span>15 MAY 2024 - 18:30h</span>
+        <div class="match-left-info">
+          <h2 class="match-title">Próximo Partido</h2>
+          {% if next_match and next_match.competition %}
+          <div class="match-competition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,极 12,20A8,8 0 0,1 4,12A8,8 0 0,1 极,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6Z" />
+            </svg>
+            <span>{{ next_match.competition }}</span>
+          </div>
+          {% endif %}
         </div>
+    
+        {% if next_match %}
+        <div class="match-right-info">
+          <div class="match-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20极6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
+            </svg>
+            <span>{{ next_match.formatted_date }}</span>
+          </div>
+    
+          <!-- Location with maps link -->
+          {% if next_match.location_name %}
+          <div class="match-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+            </svg>
+            {% if next_match.maps_url %}
+            <a href="{{ next_match.maps_url }}" target="_blank" class="location-link">
+              {{ next_match.location_name }}
+            </a>
+            {% else %}
+            <span>{{ next_match.location_name }}</span>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
       </div>
-
+    
+      {% if next_match %}
       <div class="teams-container">
+        <!-- If Olympia is home, show them on left -->
+        {% if next_match.is_olympia_home %}
         <div class="team">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="CFF Olympia" class="team-logo">
-          <div class="team-name">CFF Olympia</div>
+          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.home_team }}</div>
         </div>
-
+    
         <div class="vs-circle">VS</div>
-
+    
         <div class="team">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="Rival FC" class="team-logo">
-          <div class="team-name">Rival FC</div>
+          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.away_team }}</div>
         </div>
+        {% else %}
+        <!-- If Olympia is away, show opponent on left -->
+        <div class="team">
+          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.home_team }}</div>
+        </div>
+    
+        <div class="vs-circle">VS</div>
+    
+        <div class="team">
+          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.away_team }}</div>
+        </div>
+        {% endif %}
       </div>
+      {% else %}
+      <div class="no-matches">
+        <p>No hay próximos partidos programados</p>
+      </div>
+      {% endif %}
     </div>
-
-    <!-- Last Matches Section - Horizontal Layout -->
+    
+    <!-- Last Matches Section -->
     <div class="last-matches">
       <h3 class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8ac84">
@@ -444,115 +637,41 @@
         </svg>
         Últimos Partidos
       </h3>
-
+    
       <div class="matches-grid">
-        <!-- Match 1 -->
+        {% for match in last_matches %}
         <div class="compact-match">
           <div class="compact-logos">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
+            <!-- Always show Olympia on the left in the results -->
+            {% if match.is_olympia_home %}
+            <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}">
+            <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}">
+            {% else %}
+            <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}">
+            <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}">
+            {% endif %}
           </div>
-          <div class="compact-result">2 - 1</div>
+          <div class="compact-result">{{ match.display_result }}</div>
+          <div class="compact-date">{{ match.short_date }}</div>
         </div>
-
-        <!-- Match 2 -->
-        <div class="compact-match">
-          <div class="compact-logos">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
-          </div>
-          <div class="compact-result">3 - 0</div>
+        {% empty %}
+        <div class="no-matches">
+          <p>No hay partidos recientes</p>
         </div>
-
-        <!-- Match 3 -->
-        <div class="compact-match">
-          <div class="compact-logos">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
-            <img src="{% static 'images/olympia_logo.png' %}" class="compact-logo">
-          </div>
-          <div class="compact-result">1 - 1</div>
-        </div>
+        {% endfor %}
       </div>
     </div>
 
-    <!-- In your HTML section -->
-    <div class="news-carousel">
-      <h3 class="section-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8ac84">
-          <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,10L12,15L17,10H7Z" />
-        </svg>
-        Últimas Noticias
-      </h3>
-    
-      <div class="carousel-container">
-        <!-- News 1 -->
-        <div class="carousel-slide" onclick="openNewsModal(0)">
-          <img src="{% static 'images/noticias/noticia_49.jpg' %}" class="news-image">
-          <div class="news-overlay">
-            <div class="news-title">OLYMPIA EN LA GALA DE LA MUJER</div>
-            <div class="news-date">8 MAR 2024</div>
-          </div>
-        </div>
-    
-        <!-- News 2 -->
-        <div class="carousel-slide" onclick="openNewsModal(1)">
-          <img src="{% static 'images/noticias/noticia_48.jpg' %}" class="news-image">
-          <div class="news-overlay">
-            <div class="news-title">DÍA DE LA MUJER</div>
-            <div class="news-date">8 MAR 2024</div>
-          </div>
-        </div>
-    
-        <!-- News 3 -->
-        <div class="carousel-slide" onclick="openNewsModal(2)">
-          <img src="{% static 'images/noticias/noticia_47.jpg' %}" class="news-image">
-          <div class="news-overlay">
-            <div class="news-title">HYUNDAI MOTOR GAMBOA APOYA AL OLYMPIA</div>
-            <div class="news-date">3 AGO 2024</div>
-          </div>
-        </div>
 
-        <!-- News 4 -->
-        <div class="carousel-slide" onclick="openNewsModal(3)">
-          <img src="{% static 'images/noticias/noticia_46.jpg' %}" class="news-image">
-          <div class="news-overlay">
-            <div class="news-title">CAMPEONAS DONOSTI CUP G19</div>
-            <div class="news-date">7 JUL 2024</div>
-          </div>
-        </div>
-
-          <!-- News 4 -->
-          <div class="carousel-slide" onclick="openNewsModal(4)">
-            <img src="{% static 'images/noticias/noticia_45.jpg' %}" class="news-image">
-            <div class="news-overlay">
-              <div class="news-title">TRIPLE ASCENSO</div>
-              <div class="news-date">20 JUN 2024</div>
-            </div>
-          </div>
-      </div>
-    
-      <div class="carousel-indicators">
-        <div class="indicator active" onclick="goToSlide(0)"></div>
-        <div class="indicator" onclick="goToSlide(1)"></div>
-        <div class="indicator" onclick="goToSlide(2)"></div>
-        <div class="indicator" onclick="goToSlide(3)"></div>
-        <div class="indicator" onclick="goToSlide(4)"></div>
-
-      </div>
+    <!-- Copa de la Reina Logo Section -->
+    <div class="copa-logo-section">
+      <a href="/copa-de-la-reina" class="copa-logo-link">
+        <img src="{% static 'images/Copa_de_la_Reina_2021.png' %}" alt="Copa de la Reina" class="copa-logo">
+        <span class="copa-button">Ver Información</span>
+      </a>
     </div>
-    
-    <!-- News Modal -->
-    <div class="news-modal" id="newsModal">
-      <div class="modal-content">
-        <button class="close-modal" onclick="closeModal()">&times;</button>
-        <img src="" class="modal-image" id="modalImage">
-        <div class="modal-text">
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <div class="modal-date" id="modalDate"></div>
-          <div class="modal-body" id="modalBody"></div>
-        </div>
-      </div>
-    </div>
+
+
 
     <!-- Sponsors Section - Improved Infinite Loop -->
     <section class="sponsors-section">
@@ -622,114 +741,6 @@
   </main>
 </body>
 
-<script>
-  // News data - each item corresponds to a slide
-  const newsData = [
-    {
-      title: "OLYMPIA EN LA GALA DE LA MUJER",
-      date: "8 MAR 2024",
-      image: "{% static 'images/noticias/noticia_49.jpg' %}",
-      content: `
-        <p>El Club Olympia tuvo el honor de participar en la Gala de la Mujer organizada por la Real Federación de Fútbol de Madrid (RFFM), en el marco del Día Internacional de la Mujer. Durante el evento, se reconoció el papel fundamental que desempeñan las mujeres en el deporte, y especialmente en el fútbol.</p>
-        <p>Nuestra presencia en esta celebración refuerza el compromiso del club con la igualdad de género y el desarrollo del fútbol femenino. Agradecemos a la RFFM por la invitación y por seguir impulsando espacios de reconocimiento y visibilidad para todas las mujeres que forman parte del fútbol madrileño.</p>
-      `
-    },
-    {
-      title: "DÍA DE LA MUJER",
-      date: "8 MAR 2024",
-      image: "{% static 'images/noticias/noticia_48.jpg' %}",
-      content: `
-        <p>El Olympia se unió a la conmemoración del Día Internacional de la Mujer, una fecha para visibilizar la lucha por la igualdad y reconocer el papel clave que desempeñan las mujeres dentro y fuera del terreno de juego.</p>
-        <p>Desde el club, seguimos trabajando para fomentar un entorno inclusivo, donde las niñas y mujeres tengan las mismas oportunidades de crecer, competir y brillar en el fútbol. Hoy y todos los días, celebramos su fuerza, dedicación y pasión.</p>
-      `
-    },
-    {
-      title: "HYUNDAI MOTOR GAMBOA APOYA AL OLYMPIA",
-      date: "3 AGO 2024",
-      image: "{% static 'images/noticias/noticia_47.jpg' %}",
-      content: `
-        <p>Nos complace anunciar que Hyundai Motor Gamboa se une al Olympia como colaborador oficial, sumándose a nuestro compromiso de fomentar el fútbol femenino y acompañar el crecimiento del club.</p>
-      `
-    },
-    {
-      title: "CAMPEONAS DONOSTI CUP G19",
-      date: "7 JUL 2024",
-      image: "{% static 'images/noticias/noticia_46.jpg' %}",
-      content: `
-        <p>Algunos equipos de nuestra cantera, han viajado. San Sebastián para disputar el torneo internacional. Tras un gran papel de nuestras categorías G12 y G17, fue nuestro G19 quien en el mítico estadio de Anoeta (Reale Arena), se hicieron con el trofeo de campeonas frente a top tec (Selección de jugadoras catalana). Gadea torres además de hacer el gol que nos hizo levantar el título, se llevó el MVP.</p>
-        <p>Enhorabuena chicas, pero sobre tod, enhorabuena afición por viajar con el Olympia y hacer de cualquier lugar, nuestra casa.</p>
-      `
-    },
-    {
-      title: "TRIPLE ASCENSO",
-      date: "20 JUN 2024",
-      image: "{% static 'images/noticias/noticia_45.jpg' %}",
-      content: `
-        <p>Esta temporada, tres de nuestros equipos han logrado el ascenso, consolidando el gran trabajo realizado a lo largo del año por jugadoras, cuerpo técnico y todo el club.</p>
-        <p>¡Felicitaciones a todas las protagonistas de este logro! El Olympia sigue haciendo historia.</p>
 
-      `
-    }
-  ];
-
-  // Open modal with specific news
-  function openNewsModal(index) {
-    const news = newsData[index];
-    document.getElementById('modalImage').src = news.image;
-    document.getElementById('modalTitle').textContent = news.title;
-    document.getElementById('modalDate').textContent = news.date;
-    document.getElementById('modalBody').innerHTML = news.content;
-    document.getElementById('newsModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Close modal
-  function closeModal() {
-    document.getElementById('newsModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-
-  // Go to specific slide
-  function goToSlide(index) {
-    const container = document.querySelector('.carousel-container');
-    const slideWidth = container.offsetWidth;
-    container.scrollTo({
-      left: index * slideWidth,
-      behavior: 'smooth'
-    });
-    updateIndicators(index);
-  }
-
-  // Update active indicator
-  function updateIndicators(activeIndex) {
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((indicator, index) => {
-      indicator.classList.toggle('active', index === activeIndex);
-    });
-  }
-
-  // Auto-scroll functionality
-  let currentSlide = 0;
-  function autoScroll() {
-    currentSlide = (currentSlide + 1) % newsData.length;
-    goToSlide(currentSlide);
-  }
-
-  let scrollInterval = setInterval(autoScroll, 5000);
-
-  // Pause auto-scroll on hover
-  const carousel = document.querySelector('.carousel-container');
-  carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
-  carousel.addEventListener('mouseleave', () => {
-    scrollInterval = setInterval(autoScroll, 5000);
-  });
-
-  // Update indicators on scroll
-  carousel.addEventListener('scroll', () => {
-    const slideWidth = carousel.offsetWidth;
-    currentSlide = Math.round(carousel.scrollLeft / slideWidth);
-    updateIndicators(currentSlide);
-  });
-</script>
 
 {% endblock %}
