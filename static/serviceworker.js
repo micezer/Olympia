@@ -53,7 +53,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', function(event) {
   const url = new URL(event.request.url);
 
-  // ✅ Ignore all admin and non-GET requests
+  // Ignora admin y no-GET
   if (
     event.request.method !== 'GET' ||
     url.pathname.startsWith('/admin') ||
@@ -64,15 +64,18 @@ self.addEventListener('fetch', function(event) {
   }
 
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request).then(function(response) {
-        return caches.open('static-cache-v1').then(function(cache) {
-          cache.put(event.request, response.clone());
-          return response;
-        });
+    fetch(event.request).then(function(response) {
+      // Guarda copia en caché
+      return caches.open(staticCacheName).then(function(cache) {
+        cache.put(event.request, response.clone());
+        return response;
       });
     }).catch(() => {
-      return caches.match('/offline/');
+      // Si falla red, intenta caché
+      return caches.match(event.request).then(function(response) {
+        return response || caches.match('/offline/');
+      });
     })
   );
 });
+

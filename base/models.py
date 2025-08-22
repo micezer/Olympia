@@ -6,54 +6,6 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 
-def validate_unique_case_insensitive_username(value):
-    if User.objects.filter(username__iexact=value).exists():
-        raise ValidationError('Ya existe un usuario con ese nombre (sin distinguir mayúsculas/minúsculas).')
-
-class Service(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    is_pack = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-    
-
-class UserService(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    quit_datetime = models.DateTimeField(default=timezone.now)  
-    
-
-    class Meta:
-        unique_together = ('user', 'service')
-    
-    def __str__(self):
-        return f"{self.user.username}'s {self.service.name}"
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    phone = models.CharField(max_length=20, blank=True, null=True)
-    birth_date = models.DateField(blank=True, null=True)
-    services = models.ManyToManyField(Service, blank=True)
-
-    def __str__(self):
-        return f"Perfil de {self.user.username}"
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
-
-# Aplica tu validador personalizado al campo username del modelo User
-UserProfile._meta.get_field('user').remote_field.model.username_validators = [validate_unique_case_insensitive_username]
-
 # models.py
 from django.db import models
 from django.core.mail import send_mail
@@ -108,3 +60,106 @@ class Ticket(models.Model):
     
     def __str__(self):
         return f"{self.full_name} - {self.match}"
+    
+
+
+# models.py
+from django.db import models
+from django.utils import timezone
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+class Match(models.Model):
+    # Match details
+    date = models.DateTimeField()
+    home_team = models.CharField(max_length=100)
+    away_team = models.CharField(max_length=100)
+    
+    # Team logos
+    home_team_logo = models.ImageField(
+        upload_to='teams/', 
+        default='teams/default.png'
+    )
+    away_team_logo = models.ImageField(
+        upload_to='teams/', 
+        default='teams/default.png'
+    )
+    
+    # Scores
+    home_score = models.IntegerField(
+        null=True, 
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(50)]
+    )
+    away_score = models.IntegerField(
+        null=True, 
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(50)]
+    )
+    
+    # Home/away flag
+    is_olympia_home = models.BooleanField(default=True)
+    
+    # Location information
+    location_name = models.CharField(max_length=200, blank=True)
+    location_address = models.CharField(max_length=300, blank=True)
+    maps_url = models.URLField(blank=True, verbose_name="Google Maps URL")
+    
+    # Additional info
+    competition = models.CharField(max_length=100, blank=True)
+    match_notes = models.TextField(blank=True)
+    
+    class Meta:
+        ordering = ['-date']
+        verbose_name_plural = "Matches"
+    
+    def __str__(self):
+        return f"{self.home_team} vs {self.away_team} - {self.date.strftime('%Y-%m-%d')}"
+    
+    @property
+    def has_played(self):
+        return (self.date < timezone.now() and 
+                self.home_score is not None and 
+                self.away_score is not None)
+    
+    @property
+    def result(self):
+        if self.has_played:
+            return f"{self.home_score} - {self.away_score}"
+        return "TBD"
+    
+    @property
+    def display_result(self):
+        if self.has_played:
+            if self.is_olympia_home:
+                return f"{self.home_score} - {self.away_score}"
+            else:
+                return f"{self.away_score} - {self.home_score}"
+        return "VS"
+    
+    @property
+    def olympia_team(self):
+        return self.home_team if self.is_olympia_home else self.away_team
+    
+    @property
+    def olympia_logo(self):
+        return self.home_team_logo if self.is_olympia_home else self.away_team_logo
+    
+    @property
+    def opponent_team(self):
+        return self.away_team if self.is_olympia_home else self.home_team
+    
+    @property
+    def opponent_logo(self):
+        return self.away_team_logo if self.is_olympia_home else self.home_team_logo
+    
+    @property
+    def formatted_date(self):
+        return self.date.strftime("%d %b %Y - %H:%Mh")
+    
+    @property
+    def short_date(self):
+        return self.date.strftime("%d/%m/%y")
+    
+    @property
+    def is_future_match(self):
+        return self.date > timezone.now() and self.home_score is None
