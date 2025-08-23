@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['cff-olympia.onrender.com']
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
@@ -239,6 +240,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = False
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://cff-olympia.onrender.com',
     "http://127.0.0.1:8000",
     "http://192.168.1.139:8000",   # tu IP local
 ]
