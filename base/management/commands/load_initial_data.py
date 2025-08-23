@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Load initial fixture data into the database'
 
     def handle(self, *args, **options):
-        fixture_path = os.path.join('myapp', 'fixtures', 'db_dump.json')
+        fixture_path = os.path.join('base', 'fixtures', 'db_dump.json')
         self.stdout.write(f'Loading fixture: {fixture_path}')
         call_command('loaddata', fixture_path)
         self.stdout.write(self.style.SUCCESS('Fixture loaded successfully'))
