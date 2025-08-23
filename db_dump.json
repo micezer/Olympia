@@ -1,0 +1,721 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-08-22T14:17:48.200Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "CFF Olympia vs Barcelona FC - 2025-08-29",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Is olympia home\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-08-22T14:18:37.198Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "CFF Olympia vs Barcelona FC - 2025-08-29",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-08-22T14:33:39.522Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home team\", \"Away team\", \"Away team logo\", \"Is olympia home\", \"Location name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-08-22T14:34:07.093Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-08-22T14:34:37.127Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "CFF Olympia vs Barcelona FC - 2025-08-29",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-08-22T14:34:57.234Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Atlético Madrid vs CFF Olympia - 2025-09-05",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-08-22T14:34:57.234Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "CFF Olympia vs Real Madrid - 2025-08-15",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-08-22T14:34:57.234Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "Valencia CF vs CFF Olympia - 2025-08-08",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-08-22T14:34:57.234Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "CFF Olympia vs Athletic Club - 2025-08-01",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-08-22T14:34:57.234Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Levante UD vs CFF Olympia - 2025-07-25",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-08-22T14:35:42.326Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-08-22T14:36:25.585Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\", \"Location name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-08-22T15:40:48.322Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-08-22T15:41:16.949Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Location name\", \"Location address\", \"Google Maps URL\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-08-22T15:41:32.767Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add match",
+        "content_type": 7,
+        "codename": "add_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change match",
+        "content_type": 7,
+        "codename": "change_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete match",
+        "content_type": 7,
+        "codename": "delete_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view match",
+        "content_type": 7,
+        "codename": "view_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add order",
+        "content_type": 8,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change order",
+        "content_type": 8,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete order",
+        "content_type": 8,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view order",
+        "content_type": 8,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add ticket",
+        "content_type": 9,
+        "codename": "add_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change ticket",
+        "content_type": 9,
+        "codename": "change_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete ticket",
+        "content_type": 9,
+        "codename": "delete_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view ticket",
+        "content_type": 9,
+        "codename": "view_ticket"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$E7pEssNp1HXfOT7guvcuOk$K0OlT1MQpvBoiAMadOgMbpJf7ybV82y5Ik9Y6QhllG4=",
+        "last_login": "2025-08-23T11:52:48.384Z",
+        "is_superuser": true,
+        "username": "olympia",
+        "first_name": "",
+        "last_name": "",
+        "email": "olympia@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-08-22T13:54:18.995Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "base",
+        "model": "match"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "base",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "base",
+        "model": "ticket"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "1lekb3r6dssv4q9oob9hu0v1f0axcyar",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmnK:FViGmDQrnm6tqwbx-lgEp95ucz2j4YnzulZWv0VKPGI",
+        "expire_date": "2025-09-06T11:52:26.964Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "cazskhd9ys8vcu7kf7qkuyqxu0yjkinx",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmg6:GyhqxGibtnSxwNNn7_LMCas67wvMb7UULFGP0rKzfTc",
+        "expire_date": "2025-09-06T11:44:58.521Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dg9ugocyakk1t1rnce81v2awad7uaihr",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmgv:F9EaDamNw5yQjwDneA5kC8Y3luRuVhNbR86j8ag_9ks",
+        "expire_date": "2025-09-06T11:45:49.834Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mapbrph70rj7izvw79g3lbmvr76ymiko",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmPo:EvJI8KM4YercFtDWtb1tBUfkuyb2hKbXdeEp2QC8sB8",
+        "expire_date": "2025-09-06T11:28:08.455Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "qhgesqkdnvtqjgnu4nu7kt7i7k9hwb3t",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmiP:8egNd0-df5b1kNJd9r3eY2DQcxbfwJTWJK2ZajQ9npg",
+        "expire_date": "2025-09-06T11:47:21.633Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "s7qm3drx5nhble6a2tmd7tcxdt0ykp0i",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmmw:ctE3aMl8sQr7cjUG4bbj2-VkpgVzQ8qGoyMZLGL3oGM",
+        "expire_date": "2025-09-06T11:52:02.278Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "u1k3jlr0txxqdif2gtx3jsp44szkqeol",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmng:-dAmX7DTVtU8QOwkxx9sEQZ84u9xS3PeQrp7h4KPI8M",
+        "expire_date": "2025-09-06T11:52:48.392Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "yob1i5b89v94v2bb7ju4jp0uhjwbdg1b",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmPK:D9c06276uoKQHgrpuhk7PF3Rh2s4HSgt-oExMxm_iCA",
+        "expire_date": "2025-09-06T11:27:38.396Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "zu9d0a5k5x2bderyplnp4oiyj5m82idw",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQKKUevfcbyMLuStVAUtqT8d9tkx50jvPezFsE2NYctkZLmFFchRaX3y5CelI5AD6g3KtMtazLHOWhyJM2OVWk1-10_w4ytLyvrdOI4PrBOwvcI3lljEIfyZnY7TGjjYqYRlbWDFoTuI4dA3FKZEF8vtvCOFs:1upmkF:CarCmgOrA74X9_2zcqNAL8sp4aJORLeZON0IqShz3r8",
+        "expire_date": "2025-09-06T11:49:15.909Z"
+    }
+},
+{
+    "model": "base.match",
+    "pk": 3,
+    "fields": {
+        "date": "2025-09-12T14:03:35.300Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Sevilla FC",
+        "home_team_logo": "teams/olympia.png",
+        "away_team_logo": "teams/sevilla.png",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "Estadio Olympia",
+        "location_address": "Calle del Fútbol 123, Madrid",
+        "maps_url": "https://goo.gl/maps/XYZ123",
+        "competition": "Copa de la Reina",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 8,
+    "fields": {
+        "date": "2025-09-07T11:00:00Z",
+        "home_team": "Córdoba CF",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "teams/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_GZh0ih0.png",
+        "away_team_logo": "teams/olympia-icon-512x512_6FeGv7M.png",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "Estadio Olympia",
+        "location_address": "Calle del Fútbol 123, Madrid",
+        "maps_url": "https://goo.gl/maps/XYZ123",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+}
+]
