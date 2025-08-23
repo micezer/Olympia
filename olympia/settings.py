@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['cff-olympia.onrender.com']
+ALLOWED_HOSTS = ["cff-olympia.onrender.com"]
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -232,18 +233,17 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # For development only - allows session cookies to work cross-origin
-SESSION_COOKIE_DOMAIN = "192.168.1.139"
-CSRF_COOKIE_DOMAIN = "192.168.1.139"
-SESSION_COOKIE_SAMESITE = 'None'
+# Replace these settings:
+SESSION_COOKIE_DOMAIN = None  # Remove or comment out
+CSRF_COOKIE_DOMAIN = None     # Remove or comment out
+SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = False  # Should be True for security
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://cff-olympia.onrender.com",  # producción
-    "http://127.0.0.1:8000",
-    "http://192.168.1.139:8000",   # tu IP local
-]
+    "https://cff-olympia.onrender.com"]
 
 # If you're using django-cors-headers
 CORS_ALLOW_CREDENTIALS = True
@@ -253,3 +253,5 @@ WHITENOISE_MAX_AGE = 0
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+APPEND_SLASH = True
