@@ -240,7 +240,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = False
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://cff-olympia.onrender.com',
+    "https://cff-olympia.onrender.com",  # producción
     "http://127.0.0.1:8000",
     "http://192.168.1.139:8000",   # tu IP local
 ]
