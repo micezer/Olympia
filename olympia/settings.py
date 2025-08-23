@@ -227,16 +227,25 @@ STRIPE_WEBHOOK_SECRET = 'your_webhook_secret'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",  # Django
-    "http://127.0.0.1:5500",  # Your frontend (adjust as needed)
+    "http://192.168.1.139:8000",  # Your frontend (adjust as needed)
 ]
 
 # For development only - allows session cookies to work cross-origin
+SESSION_COOKIE_DOMAIN = "192.168.1.139"
+CSRF_COOKIE_DOMAIN = "192.168.1.139"
 SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://192.168.1.139:8000",   # tu IP local
+]
 
 # If you're using django-cors-headers
 CORS_ALLOW_CREDENTIALS = True
 
 WHITENOISE_MAX_AGE = 0
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
