@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['cff-olympia.onrender.com']
 
@@ -251,3 +251,5 @@ CORS_ALLOW_CREDENTIALS = True
 WHITENOISE_MAX_AGE = 0
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
