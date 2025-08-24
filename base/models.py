@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 # models.py
@@ -75,14 +76,8 @@ class Match(models.Model):
     away_team = models.CharField(max_length=100)
     
     # Team logos
-    home_team_logo = models.ImageField(
-        upload_to='teams/', 
-        default='teams/default.png'
-    )
-    away_team_logo = models.ImageField(
-        upload_to='teams/', 
-        default='teams/default.png'
-    )
+    home_team_logo = CloudinaryField('image', folder='olympia/logos')
+    away_team_logo = CloudinaryField('image', folder='olympia/logos')
     
     # Scores
     home_score = models.IntegerField(
