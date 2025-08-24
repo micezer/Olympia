@@ -13,6 +13,29 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
+# At the VERY TOP of settings.py, add:
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config( 
+    cloud_name="do0mj4z8k",
+    api_key="865887562882688", 
+    api_secret="92ncQYit_lQnuEZG1AvSPcS4Arw",
+    secure=True
+
+)
+
+# Then keep your existing CLOUDINARY_STORAGE settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'do0mj4z8k',
+    'API_KEY': '865887562882688',
+    'API_SECRET': '92ncQYit_lQnuEZG1AvSPcS4Arw',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +50,7 @@ SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["cff-olympia.onrender.com"]
+ALLOWED_HOSTS = ["https://cff-olympia.onrender.com"]
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -257,10 +280,3 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 APPEND_SLASH = True
-
-# Cloudinary
-CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-MEDIA_URL = '/media/'
