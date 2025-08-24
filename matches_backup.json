@@ -1,0 +1,56 @@
+[
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Juan Grande",
+    "date": "2025-10-05T20:17:58+00:00",
+    "competition": "",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Sporting de Huelva",
+    "away_team": "CFF Olympia",
+    "date": "2025-09-28T20:15:50+00:00",
+    "competition": "Segunda Federación Fem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Unión Viera",
+    "date": "2025-09-21T11:15:00+00:00",
+    "competition": "Segunda Federación Fem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Málaga",
+    "date": "2025-09-14T17:00:00+00:00",
+    "competition": "Segunda Federación Fem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Getafe",
+    "date": "2025-09-10T19:58:50+00:00",
+    "competition": "Copa de la Reina",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Córdoba CF",
+    "away_team": "CFF Olympia",
+    "date": "2025-09-07T11:00:00+00:00",
+    "competition": "Segunda Federación Fem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  }
+]
