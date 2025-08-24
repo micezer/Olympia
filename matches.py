@@ -12,14 +12,15 @@ public_ids_correctos = {
     "Sporting de Huelva": "sportingclubdehuelva-color-chico-2_a0r4co", 
     "Juan Grande": "juan_ytmlbm",
     "Getafe": "getafe-cf-sad-seeklogo_rlois3",
-    "Real Betis B": "betis-seeklogo_zzgxqk",  # Added
-    "Granada B": "granada-cf-seeklogo_zzgxqk",  # Added
-    "Cacereño II": "cacereno-seeklogo_zzgxqk",  # Added
-    "Pozuelo Alarcón": "pozuelo-seeklogo_zzgxqk",  # Added
-    "Guiniguada": "guiniguada-seeklogo_zzgxqk",  # Added
-    "Femarguín": "femarguin-seeklogo_zzgxqk",  # Added
-    "Sport Extremadura": "sport-extremadura-seeklogo_zzgxqk",  # Added
+    "Real Betis B": "beetiss_npkhm7",  # Added
+    "Granada B": "granada_nb0vaf",  # Added
+    "Cacereño II": "cpc-pantalla-presentacion-128x128_scyrtt",  # Added
+    "Pozuelo Alarcón": "Escudo-CF-Pozuelo_jjyhty",  # Added
+    "Guiniguada": "guiniguada_glymuh",  # Added
+    "Femarguín": "CD-Fermaguin-128x128_mci1f9",  # Added
+    "Sport Extremadura": "escudo-12698_hkpzrc",  # Added
 }
+
 
 # Datos de todos los partidos
 partidos = [
