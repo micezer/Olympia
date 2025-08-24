@@ -1,9 +1,198 @@
 [
   {
+    "home_team": "Guiniguada",
+    "away_team": "CFF Olympia",
+    "date": "2026-04-26T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Femarguín",
+    "date": "2026-04-19T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Cacereño II",
+    "away_team": "CFF Olympia",
+    "date": "2026-04-12T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Pozuelo Alarcón",
+    "date": "2026-03-29T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Sport Extremadura",
+    "away_team": "CFF Olympia",
+    "date": "2026-03-22T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Sporting de Huelva",
+    "date": "2026-03-15T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Málaga",
+    "away_team": "CFF Olympia",
+    "date": "2026-03-08T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "Getafe",
+    "away_team": "CFF Olympia",
+    "date": "2026-02-22T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Granada B",
+    "date": "2026-02-15T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Unión Viera",
+    "away_team": "CFF Olympia",
+    "date": "2026-02-08T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Real Betis B",
+    "date": "2026-02-01T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Córdoba CF",
+    "date": "2026-01-18T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Juan Grande",
+    "away_team": "CFF Olympia",
+    "date": "2026-01-11T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Sport Extremadura",
+    "date": "2025-12-14T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Femarguín",
+    "away_team": "CFF Olympia",
+    "date": "2025-12-07T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Guiniguada",
+    "date": "2025-11-23T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Pozuelo Alarcón",
+    "away_team": "CFF Olympia",
+    "date": "2025-11-16T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Cacereño II",
+    "date": "2025-11-09T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Granada B",
+    "away_team": "CFF Olympia",
+    "date": "2025-11-02T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
+    "home_team": "CFF Olympia",
+    "away_team": "Getafe",
+    "date": "2025-10-19T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": true
+  },
+  {
+    "home_team": "Real Betis B",
+    "away_team": "CFF Olympia",
+    "date": "2025-10-12T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
+    "location_name": "",
+    "maps_url": "",
+    "is_olympia_home": false
+  },
+  {
     "home_team": "CFF Olympia",
     "away_team": "Juan Grande",
-    "date": "2025-10-05T20:17:58+00:00",
-    "competition": "",
+    "date": "2025-10-05T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
     "location_name": "",
     "maps_url": "",
     "is_olympia_home": true
@@ -11,8 +200,8 @@
   {
     "home_team": "Sporting de Huelva",
     "away_team": "CFF Olympia",
-    "date": "2025-09-28T20:15:50+00:00",
-    "competition": "Segunda Federación Fem",
+    "date": "2025-09-28T00:00:00+00:00",
+    "competition": "Segunda Federación FutFem",
     "location_name": "",
     "maps_url": "",
     "is_olympia_home": false
@@ -21,7 +210,7 @@
     "home_team": "CFF Olympia",
     "away_team": "Unión Viera",
     "date": "2025-09-21T11:15:00+00:00",
-    "competition": "Segunda Federación Fem",
+    "competition": "Segunda Federación FutFem",
     "location_name": "",
     "maps_url": "",
     "is_olympia_home": true
@@ -30,7 +219,7 @@
     "home_team": "CFF Olympia",
     "away_team": "Málaga",
     "date": "2025-09-14T17:00:00+00:00",
-    "competition": "Segunda Federación Fem",
+    "competition": "Segunda Federación FutFem",
     "location_name": "",
     "maps_url": "",
     "is_olympia_home": true
@@ -38,7 +227,7 @@
   {
     "home_team": "CFF Olympia",
     "away_team": "Getafe",
-    "date": "2025-09-10T19:58:50+00:00",
+    "date": "2025-09-10T00:00:00+00:00",
     "competition": "Copa de la Reina",
     "location_name": "",
     "maps_url": "",
@@ -48,9 +237,9 @@
     "home_team": "Córdoba CF",
     "away_team": "CFF Olympia",
     "date": "2025-09-07T11:00:00+00:00",
-    "competition": "Segunda Federación Fem",
+    "competition": "Segunda Federación FutFem",
     "location_name": "",
     "maps_url": "",
-    "is_olympia_home": true
+    "is_olympia_home": false
   }
 ]
