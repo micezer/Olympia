@@ -4,7 +4,7 @@ logos = {
     "CFF Olympia": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040406/olympia-icon-512x512_rroiua.png",
     "Sporting de Huelva": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040406/sportingclubdehuelva-color-chico-2_a0r4co.png",
     "Málaga": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040405/malaga-football-seeklogo_qtv7ac.png",
-    "Córdoba CF": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040399/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr.png",
+    "Córdoba CF": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040405/malaga-football-seeklogo_qtv7ac.png",
     "Unión Viera": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040399/CF_Uni%C3%BAn_Viera_uhlaue.png",
     "Juan Grande": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040404/juan_ytmlbm.png",
     "Getafe": "https://res.cloudinary.com/do0mj4z8k/image/upload/v1756040402/getafe-cf-sad-seeklogo_rlois3.png",
