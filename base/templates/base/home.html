@@ -558,6 +558,68 @@
 
 <body>
 
+  <div class="image-test-container">
+    <h2>Testing Cloudinary Images</h2>
+  
+    <!-- Test for Córdoba CF -->
+    <div class="team-test">
+      <h3>Córdoba CF</h3>
+      <img src="{{ match.home_team_logo.url }}" alt="Córdoba CF Logo" class="test-logo">
+      <p>URL: {{ match.home_team_logo.url }}</p>
+      <div class="status" id="cordoba-status">Checking...</div>
+    </div>
+  
+    <!-- Test for Olympia -->
+    <div class="team-test">
+      <h3>CFF Olympia</h3>
+      <img src="{{ match.away_team_logo.url }}" alt="Olympia Logo" class="test-logo">
+      <p>URL: {{ match.away_team_logo.url }}</p>
+      <div class="status" id="olympia-status">Checking...</div>
+    </div>
+  
+    <!-- Test for other teams -->
+    <div class="team-test">
+      <h3>Other Teams</h3>
+      {% for other_match in other_matches %}
+      <div class="other-team">
+        <img src="{{ other_match.home_team_logo.url }}" alt="{{ other_match.home_team }} Logo" class="test-logo-small">
+        <span>{{ other_match.home_team }}</span>
+      </div>
+      <div class="other-team">
+        <img src="{{ other_match.away_team_logo.url }}" alt="{{ other_match.away_team }} Logo" class="test-logo-small">
+        <span>{{ other_match.away_team }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Check if images loaded successfully
+      const images = document.querySelectorAll('.test-logo, .test-logo-small');
+
+      images.forEach(img => {
+        img.onload = function () {
+          const statusElement = img.closest('.team-test').querySelector('.status') ||
+            img.closest('.other-team').nextElementSibling;
+          if (statusElement) {
+            statusElement.textContent = '✅ Loaded successfully';
+            statusElement.style.color = 'green';
+          }
+        };
+
+        img.onerror = function () {
+          const statusElement = img.closest('.team-test').querySelector('.status') ||
+            img.closest('.other-team').nextElementSibling;
+          if (statusElement) {
+            statusElement.textContent = '❌ Failed to load';
+            statusElement.style.color = 'red';
+          }
+        };
+      });
+    });
+  </script>
+
   <main>
     <!-- Next Match Section -->
     <div class="next-match-container">
