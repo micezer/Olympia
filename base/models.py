@@ -76,8 +76,8 @@ class Match(models.Model):
     away_team = models.CharField(max_length=100)
     
     # Team logos
-    home_team_logo = CloudinaryField('image', folder='olympia/logos')
-    away_team_logo = CloudinaryField('image', folder='olympia/logos')
+    home_team_logo = CloudinaryField('image', folder='escudos')
+    away_team_logo = CloudinaryField('image', folder='escudos')
     
     # Scores
     home_score = models.IntegerField(
