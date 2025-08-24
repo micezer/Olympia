@@ -416,6 +416,32 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2025-08-24T00:22:05.978Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2025-08-24T00:23:51.855Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -744,7 +770,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
-        "last_login": "2025-08-23T18:57:53.780Z",
+        "last_login": "2025-08-24T00:21:47.121Z",
         "is_superuser": true,
         "username": "mexes",
         "first_name": "",
@@ -830,14 +856,22 @@
     }
 },
 {
+    "model": "sessions.session",
+    "pk": "ytz340lm6lrjvbyofaqhpvbj4xrzhu27",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1upyUV:ll9QMfdDWzREtI81OknO91Rf4ReWOYTFdgCHWqUuMUg",
+        "expire_date": "2025-09-07T00:21:47.129Z"
+    }
+},
+{
     "model": "base.match",
     "pk": 2,
     "fields": {
         "date": "2025-09-07T11:00:00Z",
         "home_team": "Córdoba CF",
         "away_team": "CFF Olympia",
-        "home_team_logo": "teams/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_dZvww5a.png",
-        "away_team_logo": "teams/olympia-icon-512x512_CFKaupk.png",
+        "home_team_logo": "teams/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_3188bQt.png",
+        "away_team_logo": "teams/olympia-icon-512x512_QByngFn.png",
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
@@ -855,8 +889,8 @@
         "date": "2025-09-10T19:58:50Z",
         "home_team": "CFF Olympia",
         "away_team": "Getafe",
-        "home_team_logo": "teams/olympia-icon-512x512_QwkXAm5.png",
-        "away_team_logo": "teams/getafe-cf-sad-seeklogo_zfpq5GX.png",
+        "home_team_logo": "teams/olympia-icon-512x512_mkxMrlm.png",
+        "away_team_logo": "teams/getafe-cf-sad-seeklogo_ivQlNTx.png",
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
