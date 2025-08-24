@@ -1,112 +1,759 @@
-<!DOCTYPE html>
-<html>
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
 
 <head>
-  <title>Team Logos Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFF Olympia - App</title>
   <style>
-    .team-test {
-      margin: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      display: inline-block;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+  
+    :root {
+      --primary-blue: #2a374c;
+      --secondary-blue: #1f2531;
+      --primary-gold: #b8ac84;
+      --secondary-gold: #7f765a;
+    }
+  
+    body {
+      background-color: var(--primary-blue);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--white);
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin-top: 70px;
+    }
+  
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(42, 55, 76, 0.85);
+      z-index: -1;
+    }
+  
+    main {
+      max-width: 100%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  
+    /* Next Match Section - More modern */
+    .next-match-container {
+      background: rgba(31, 37, 49, 0.7);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+  
+    .match-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  
+    .match-title {
+      color: #b8ac84;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  
+    .match-date {
+      color: var(--primary-gold);
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+
+    }
+  
+    .teams-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0;
+    }
+  
+    .team {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+    }
+  
+    .team-logo {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+  
+    .team-logo:hover {
+      transform: scale(1.1);
+    }
+  
+    .team-name {
+      color: white;
+      font-size: 15px;
+      margin-top: 10px;
       text-align: center;
+      font-weight: 600;
     }
 
-    .team-logo {
-      width: 100px;
-      height: 100px;
+    .match-competition{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: var(--primary-gold);
+      font-size: 15px;
+      font-weight: 700;
+    }
+  
+    .vs-circle {
+      background: #b8ac84;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #1f2531;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Last Matches Section - Horizontal layout */
+    .last-matches {
+      background: rgba(31, 37, 49, 0.7);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      backdrop-filter: blur(5px);
+    }
+  
+    .section-title {
+      color: #b8ac84;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  
+    .compact-match {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  
+    .compact-logos {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  
+    .compact-logo {
+      width: 30px;
+      height: 30px;
       object-fit: contain;
     }
-
-    .success {
-      color: green;
+  
+    .compact-result {
+      font-weight: bold;
+      color: white;
+      font-size: 1rem;
+      background: rgba(184, 172, 132, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
     }
-
-    .error {
-      color: red;
+  
+    /* Updated Carousel Styles */
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      scrollbar-width: none;
+      /* Hide scrollbar for Firefox */
+    }
+  
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+      /* Hide scrollbar for Chrome/Safari */
+    }
+  
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+    }
+  
+    .news-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  
+    .news-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(31, 37, 49, 0.9), transparent);
+      padding: 1.5rem;
+      color: white;
+      font-weight: 900;
+    }
+  
+    /* Modal Styles */
+    .news-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(31, 37, 49, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+  
+    .modal-content {
+      background: #1f2531;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid #7f765a;
+    }
+  
+    .modal-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+  
+    .modal-text {
+      padding: 2rem;
+      color: white;
+    }
+  
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #b8ac84;
+    }
+  
+    .modal-date {
+      color: #7f765a;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .modal-body {
+      line-height: 1.6;
+    }
+  
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #b8ac84;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      color: #1f2531;
+      font-weight: bold;
+      font-size: 1.2rem;
+      z-index: 10;
+    }
+  
+    /* Sponsors Section - Improved Infinite Loop */
+    .sponsors-section {
+      background: rgba(31, 37, 49, 0.7);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+  
+    .sponsors-title {
+      color: #b8ac84;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  
+    .sponsors-container {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .sponsors-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 25s linear infinite;
+      will-change: transform;
+    }
+  
+    .sponsor-item {
+      flex: 0 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .sponsor {
+      height: 40px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+  
+    .sponsor:hover {
+      opacity: 1;
+      filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(184, 172, 132, 0.7));
+    }
+  
+    /* Location styling */
+    .match-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 900;
+    }
+  
+    .location-link {
+      color: #b8ac84;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+  
+    .location-link:hover {
+      color: #d4c9a1;
+      text-decoration: underline;
+    }
+  
+    /* Compact match date */
+    .compact-date {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+      text-align: center;
+      
+    }
+  
+    /* Copa de la Reina Logo Section - Updated */
+    .copa-logo-section {
+      background-color: var(--primary-gold);
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+      max-height: 100px;
+      margin-bottom: 50px;
+      border: solid;
+      border-color: var(--primary-blue);
+      overflow: hidden;
+      /* Ensure logo stays inside */
+    }
+  
+    .copa-logo-link {
+      display: flex;
+      flex-direction: row;
+      /* Changed to row to keep logo and button side by side */
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      width: 100%;
+      justify-content: center;
+      gap: 15px;
+      /* Space between logo and button */
+    }
+  
+    .copa-logo-link:hover {
+      transform: translateY(-5px);
+    }
+  
+    .copa-logo {
+      width: auto;
+      height: 60px;
+      /* Fixed height to ensure it fits */
+      max-width: 100px;
+      object-fit: contain;
+      /* Ensure logo maintains aspect ratio */
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+  
+    .copa-button {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: var(--primary-gold);
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: solid 2px var(--primary-gold);
+      white-space: nowrap;
+      /* Prevent text wrapping */
+    }
+  
+    .copa-logo-link:hover .copa-button {
+      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .copa-logo-section {
+        max-height: 90px;
+        margin-bottom: 30px;
+      }
+  
+      .copa-logo {
+        height: 50px;
+        max-width: 80px;
+      }
+  
+      .copa-button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .copa-logo-link {
+        flex-direction: column;
+        gap: 8px;
+      }
+  
+      .copa-logo-section {
+        max-height: none;
+        height: auto;
+        padding: 15px 10px;
+      }
+  
+      .copa-logo {
+        height: 45px;
+      }
+  
+      .copa-button {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+    }
+  
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+  
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  
+    @media (min-width: 768px) {
+      .team-logo {
+        width: 80px;
+        height: 80px;
+      }
+  
+      .vs-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+      }
+  
+      .carousel-container {
+        height: 250px;
+      }
+  
+      .compact-logo {
+        width: 35px;
+        height: 35px;
+      }
+  
+      .sponsor {
+        height: 50px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Team Logos Test</h1>
 
-  <div id="test-results">
-    <!-- Results will be displayed here -->
-  </div>
+  <main>
+    <!-- Next Match Section -->
+    <div class="next-match-container">
+      <div class="match-header">
+        <div class="match-left-info">
+          <h2 class="match-title">Próximo Partido</h2>
+          {% if next_match and next_match.competition %}
+          <div class="match-competition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,极 12,20A8,8 0 0,1 4,12A8,8 0 0,1 极,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6Z" />
+            </svg>
+            <span>{{ next_match.competition }}</span>
+          </div>
+          {% endif %}
+        </div>
+    
+        {% if next_match %}
+        <div class="match-right-info">
+          <div class="match-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20极6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
+            </svg>
+            <span>{{ next_match.formatted_date }}</span>
+          </div>
+    
+          <!-- Location with maps link -->
+          {% if next_match.location_name %}
+          <div class="match-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
+              <path
+                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+            </svg>
+            {% if next_match.maps_url %}
+            <a href="{{ next_match.maps_url }}" target="_blank" class="location-link">
+              {{ next_match.location_name }}
+            </a>
+            {% else %}
+            <span>{{ next_match.location_name }}</span>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    
+      {% if next_match %}
+      <div class="teams-container">
+        <!-- If Olympia is home, show them on left -->
+        {% if next_match.is_olympia_home %}
+        <div class="team">
+          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.home_team }}</div>
+        </div>
+    
+        <div class="vs-circle">VS</div>
+    
+        <div class="team">
+          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.away_team }}</div>
+        </div>
+        {% else %}
+        <!-- If Olympia is away, show opponent on left -->
+        <div class="team">
+          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.home_team }}</div>
+        </div>
+    
+        <div class="vs-circle">VS</div>
+    
+        <div class="team">
+          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+          <div class="team-name">{{ next_match.away_team }}</div>
+        </div>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="no-matches">
+        <p>No hay próximos partidos programados</p>
+      </div>
+      {% endif %}
+    </div>
+    
+    <!-- Last Matches Section -->
+    <div class="last-matches">
+      <h3 class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8ac84">
+          <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,10L12,15L17,10H7Z" />
+        </svg>
+        Últimos Partidos
+      </h3>
+    
+      <div class="matches-grid">
+        {% for match in last_matches %}
+        <div class="compact-match">
+          <div class="compact-logos">
+            <!-- Always show Olympia on the left in the results -->
+            {% if match.is_olympia_home %}
+            <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}">
+            <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}">
+            {% else %}
+            <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}">
+            <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}">
+            {% endif %}
+          </div>
+          <div class="compact-result">{{ match.display_result }}</div>
+          <div class="compact-date">{{ match.short_date }}</div>
+        </div>
+        {% empty %}
+        <div class="no-matches">
+          <p>No hay partidos recientes</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
-  <script>
-    // Team data with Cloudinary public_ids
-    const teams = {
-      "Córdoba CF": "cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr",
-      "Unión Viera": "CF_Unión_Viera_uhlaue",
-      "Málaga": "malaga-football-seeklogo_qtv7ac",
-      "CFF Olympia": "olympia-icon-512x512_rroiua",
-      "Sporting de Huelva": "sportingclubdehuelva-color-chico-2_a0r4co",
-      "Juan Grande": "juan_ytmlbm",
-      "Getafe": "getafe-cf-sad-seeklogo_rlois3",
-      "Real Betis B": "beetiss_npkhm7",
-      "Granada B": "granada_nb0vaf",
-      "Cacereño II": "cpc-pantalla-presentacion-128x128_scyrtt",
-      "Pozuelo Alarcón": "Escudo-CF-Pozuelo_jjyhty",
-      "Guiniguada": "guiniguada_glymuh",
-      "Femarguín": "CD-Fermaguin-128x128_mci1f9",
-      "Sport Extremadura": "escudo-12698_hkpzrc"
-    };
 
-    const cloudinaryBase = "https://res.cloudinary.com/do0mj4z8k/image/upload/";
-    const resultsContainer = document.getElementById('test-results');
-    let loadedCount = 0;
-    let errorCount = 0;
+    <!-- Copa de la Reina Logo Section -->
+    <div class="copa-logo-section">
+      <a href="/copa-de-la-reina" class="copa-logo-link">
+        <img src="{% static 'images/icons/Copa_de_la_Reina_2021.png' %}" alt="Copa de la Reina" class="copa-logo">
+        <span class="copa-button">Ver Información</span>
+      </a>
+    </div>
 
-    // Test each team logo
-    for (const [teamName, publicId] of Object.entries(teams)) {
-      const imgUrl = cloudinaryBase + publicId;
-      const teamDiv = document.createElement('div');
-      teamDiv.className = 'team-test';
-      teamDiv.innerHTML = `
-                <h3>${teamName}</h3>
-                <img class="team-logo" src="${imgUrl}" alt="${teamName}" onload="imageLoaded(this)" onerror="imageError(this)">
-                <p>Public ID: ${publicId}</p>
-                <p class="status">Loading...</p>
-                <p class="url">${imgUrl}</p>
-            `;
-      resultsContainer.appendChild(teamDiv);
-    }
 
-    // Image loaded successfully
-    function imageLoaded(img) {
-      const status = img.parentNode.querySelector('.status');
-      status.textContent = '✅ Loaded successfully';
-      status.className = 'status success';
-      loadedCount++;
-      updateSummary();
-    }
 
-    // Image failed to load
-    function imageError(img) {
-      const status = img.parentNode.querySelector('.status');
-      status.textContent = '❌ Failed to load';
-      status.className = 'status error';
-      errorCount++;
-      updateSummary();
-    }
+    <!-- Sponsors Section - Improved Infinite Loop -->
+    <section class="sponsors-section">
+      <h3 class="sponsors-title">Nuestros Patrocinadores</h3>
+      <div class="sponsors-container">
+        <div class="sponsors-track">
+          <!-- Original Sponsors -->
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_ruesma.png' %}" class="sponsor" alt="Ruesma">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_standup.png' %}" class="sponsor" alt="Stand UP">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_mahou.png' %}" class="sponsor" alt="Mahou">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_hyundaigamboa.png' %}" class="sponsor" alt="Hyundai">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_lra.png' %}" class="sponsor" alt="LRA">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_appletree.png' %}" class="sponsor" alt="Appletree">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_sek.png' %}" class="sponsor" alt="SEK">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_vercocinas.png' %}" class="sponsor" alt="Vercocinas">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_aliberico.png' %}" class="sponsor" alt="Aliberico">
+          </div>
 
-    // Update summary
-    function updateSummary() {
-      const total = Object.keys(teams).length;
-      const summary = document.getElementById('summary') || document.createElement('div');
-
-      if (!document.getElementById('summary')) {
-        summary.id = 'summary';
-        resultsContainer.insertBefore(summary, resultsContainer.firstChild);
-      }
-
-      summary.innerHTML = `
-                <h2>Test Results: ${loadedCount} successful, ${errorCount} failed, ${total - (loadedCount + errorCount)} pending</h2>
-            `;
-    }
-  </script>
+          <!-- Mirrored Sponsors for seamless loop -->
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_ruesma.png' %}" class="sponsor" alt="Ruesma">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_standup.png' %}" class="sponsor" alt="Stand UP">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_mahou.png' %}" class="sponsor" alt="Mahou">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_hyundaigamboa.png' %}" class="sponsor" alt="Hyundai">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_lra.png' %}" class="sponsor" alt="LRA">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_appletree.png' %}" class="sponsor" alt="Appletree">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_sek.png' %}" class="sponsor" alt="SEK">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_vercocinas.png' %}" class="sponsor" alt="Vercocinas">
+          </div>
+          <div class="sponsor-item">
+            <img src="{% static 'images/sponsors/logo_aliberico.png' %}" class="sponsor" alt="Aliberico">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 
-</html>
+
+
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Team Logos Test</title>
+  <style>
+    .team-test {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .team-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Team Logos Test</h1>
+
+  <div id="test-results">
+    <!-- Results will be displayed here -->
+  </div>
+
+  <script>
+    // Team data with Cloudinary public_ids
+    const teams = {
+      "Córdoba CF": "cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr",
+      "Unión Viera": "CF_Unión_Viera_uhlaue",
+      "Málaga": "malaga-football-seeklogo_qtv7ac",
+      "CFF Olympia": "olympia-icon-512x512_rroiua",
+      "Sporting de Huelva": "sportingclubdehuelva-color-chico-2_a0r4co",
+      "Juan Grande": "juan_ytmlbm",
+      "Getafe": "getafe-cf-sad-seeklogo_rlois3",
+      "Real Betis B": "beetiss_npkhm7",
+      "Granada B": "granada_nb0vaf",
+      "Cacereño II": "cpc-pantalla-presentacion-128x128_scyrtt",
+      "Pozuelo Alarcón": "Escudo-CF-Pozuelo_jjyhty",
+      "Guiniguada": "guiniguada_glymuh",
+      "Femarguín": "CD-Fermaguin-128x128_mci1f9",
+      "Sport Extremadura": "escudo-12698_hkpzrc"
+    };
+
+    const cloudinaryBase = "https://res.cloudinary.com/do0mj4z8k/image/upload/";
+    const resultsContainer = document.getElementById('test-results');
+    let loadedCount = 0;
+    let errorCount = 0;
+
+    // Test each team logo
+    for (const [teamName, publicId] of Object.entries(teams)) {
+      const imgUrl = cloudinaryBase + publicId;
+      const teamDiv = document.createElement('div');
+      teamDiv.className = 'team-test';
+      teamDiv.innerHTML = `
+                <h3>${teamName}</h3>
+                <img class="team-logo" src="${imgUrl}" alt="${teamName}" onload="imageLoaded(this)" onerror="imageError(this)">
+                <p>Public ID: ${publicId}</p>
+                <p class="status">Loading...</p>
+                <p class="url">${imgUrl}</p>
+            `;
+      resultsContainer.appendChild(teamDiv);
+    }
+
+    // Image loaded successfully
+    function imageLoaded(img) {
+      const status = img.parentNode.querySelector('.status');
+      status.textContent = '✅ Loaded successfully';
+      status.className = 'status success';
+      loadedCount++;
+      updateSummary();
+    }
+
+    // Image failed to load
+    function imageError(img) {
+      const status = img.parentNode.querySelector('.status');
+      status.textContent = '❌ Failed to load';
+      status.className = 'status error';
+      errorCount++;
+      updateSummary();
+    }
+
+    // Update summary
+    function updateSummary() {
+      const total = Object.keys(teams).length;
+      const summary = document.getElementById('summary') || document.createElement('div');
+
+      if (!document.getElementById('summary')) {
+        summary.id = 'summary';
+        resultsContainer.insertBefore(summary, resultsContainer.firstChild);
+      }
+
+      summary.innerHTML = `
+                <h2>Test Results: ${loadedCount} successful, ${errorCount} failed, ${total - (loadedCount + errorCount)} pending</h2>
+            `;
+    }
+  </script>
+</body>
+
+</html>
