@@ -3,557 +3,440 @@
 
 {% block content %}
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>CFF Olympia - App</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-  
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-  
-    :root {
-      --primary-blue: #2a374c;
-      --secondary-blue: #1f2531;
-      --primary-gold: #b8ac84;
-      --secondary-gold: #7f765a;
-    }
-  
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  :root {
+    --primary-blue: #2a374c;
+    --secondary-blue: #1f2531;
+    --primary-gold: #b8ac84;
+    --secondary-gold: #7f765a;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    background-color: var(--primary-blue);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    touch-action: manipulation;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 70px;
+    /* Match navbar height */
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(42, 55, 76, 0.85);
+    z-index: -1;
+  }
+
+  /* Main content starts right below navbar */
+  main {
+    max-width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    margin-top: 0;
+    min-height: calc(100px - 30px);
+    /* Full height minus navbar */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  main::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Next Match Section - More modern */
+  .next-match-container {
+    background: rgba(31, 37, 49, 0.7);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  .match-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .match-title {
+    color: #b8ac84;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .match-date {
+    color: var(--primary-gold);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+  }
+
+  .teams-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+  }
+
+  .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+  }
+
+  .team-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .team-logo:hover {
+    transform: scale(1.1);
+  }
+
+  .team-name {
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .match-competition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    color: var(--primary-gold);
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .vs-circle {
+    background: #b8ac84;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #1f2531;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Last Matches Section - Horizontal layout */
+  .last-matches {
+    background: rgba(31, 37, 49, 0.7);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+  }
+
+  .section-title {
+    color: #b8ac84;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .matches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .compact-match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .compact-logos {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .compact-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .compact-result {
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+    background: rgba(184, 172, 132, 0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* Sponsors Section - Improved Infinite Loop */
+  .sponsors-section {
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+
+  .sponsors-title {
+    color: #b8ac84;
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+
+  .sponsors-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: rgba(31, 37, 49, 0.7);
+    border-radius: 16px;
+    padding: 15px 0;
+  }
+
+  .sponsors-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 25s linear infinite;
+    will-change: transform;
+  }
+
+  .sponsor-item {
+    flex: 0 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sponsor {
+    height: 40px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .sponsor:hover {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(184, 172, 132, 0.7));
+  }
+
+  /* Location styling */
+  .match-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  .location-link {
+    color: #b8ac84;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .location-link:hover {
+    color: #d4c9a1;
+    text-decoration: underline;
+  }
+
+  /* Compact match date */
+  .compact-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .copa-logo-section {
+    background-color: var(--primary-gold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 500px;
+    margin: 20px 0;
+    border: solid;
+    border-color: var(--primary-blue);
+    padding: 20px;
+    overflow: hidden;
+    min-height: 120px;
+  }
+
+  .copa-logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .copa-logo-link:hover {
+    transform: scale(1.02);
+  }
+
+  .copa-logo {
+    height: 30%;
+    width: 30%;
+    object-fit: contain;
+  }
+}
+
+  /* Responsive design */
+  @media (max-width: 768px) {
     body {
-      background-color: var(--primary-blue);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: var(--white);
-      background-size: cover;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
-      margin-top: 70px;
-    }
-  
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(42, 55, 76, 0.85);
-      z-index: -1;
-    }
-  
-    main {
-      max-width: 100%;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-  
-    /* Next Match Section - More modern */
-    .next-match-container {
-      background: rgba(31, 37, 49, 0.7);
-      border-radius: 16px;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-    }
-  
-    .match-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-  
-    .match-title {
-      color: #b8ac84;
-      font-size: 1.3rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  
-    .match-date {
-      color: var(--primary-gold);
-      font-size: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-
-    }
-  
-    .teams-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem 0;
-    }
-  
-    .team {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 40%;
-    }
-  
-    .team-logo {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-  
-    .team-logo:hover {
-      transform: scale(1.1);
-    }
-  
-    .team-name {
-      color: white;
-      font-size: 15px;
-      margin-top: 10px;
-      text-align: center;
-      font-weight: 600;
+      padding-top: 70px;
+      /* Maintain navbar height on mobile */
     }
 
-    .match-competition{
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      color: var(--primary-gold);
-      font-size: 15px;
-      font-weight: 700;
-    }
-  
-    .vs-circle {
-      background: #b8ac84;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      color: #1f2531;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-  
-    /* Last Matches Section - Horizontal layout */
-    .last-matches {
-      background: rgba(31, 37, 49, 0.7);
-      border-radius: 16px;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      backdrop-filter: blur(5px);
-    }
-  
-    .section-title {
-      color: #b8ac84;
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  
-    .matches-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-  
-    .compact-match {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  
-    .compact-logos {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  
-    .compact-logo {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-    }
-  
-    .compact-result {
-      font-weight: bold;
-      color: white;
-      font-size: 1rem;
-      background: rgba(184, 172, 132, 0.2);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-    }
-  
-    /* Updated Carousel Styles */
-    .carousel-container {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      scrollbar-width: none;
-      /* Hide scrollbar for Firefox */
-    }
-  
-    .carousel-container::-webkit-scrollbar {
-      display: none;
-      /* Hide scrollbar for Chrome/Safari */
-    }
-  
-    .carousel-slide {
-      flex: 0 0 100%;
-      scroll-snap-align: start;
-      position: relative;
-      min-width: 100%;
-      height: 100%;
-    }
-  
-    .news-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-  
-    .news-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(31, 37, 49, 0.9), transparent);
-      padding: 1.5rem;
-      color: white;
-      font-weight: 900;
-    }
-  
-    /* Modal Styles */
-    .news-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(31, 37, 49, 0.95);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-  
-    .modal-content {
-      background: #1f2531;
-      border-radius: 16px;
-      max-width: 800px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid #7f765a;
-    }
-  
-    .modal-image {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-    }
-  
-    .modal-text {
-      padding: 2rem;
-      color: white;
-    }
-  
-    .modal-title {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #b8ac84;
-    }
-  
-    .modal-date {
-      color: #7f765a;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
-  
-    .modal-body {
-      line-height: 1.6;
-    }
-  
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #b8ac84;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: none;
-      color: #1f2531;
-      font-weight: bold;
-      font-size: 1.2rem;
-      z-index: 10;
-    }
-  
-    /* Sponsors Section - Improved Infinite Loop */
-    .sponsors-section {
-      background: rgba(31, 37, 49, 0.7);
-      border-radius: 16px;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      backdrop-filter: blur(5px);
-      overflow: hidden;
-    }
-  
-    .sponsors-title {
-      color: #b8ac84;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  
-    .sponsors-container {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-  
-    .sponsors-track {
-      display: flex;
-      width: max-content;
-      animation: scroll 25s linear infinite;
-      will-change: transform;
-    }
-  
-    .sponsor-item {
-      flex: 0 0 auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .sponsor {
-      height: 40px;
-      width: auto;
-      max-width: 120px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-  
-    .sponsor:hover {
-      opacity: 1;
-      filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(184, 172, 132, 0.7));
-    }
-  
-    /* Location styling */
-    .match-location {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 15px;
-      font-weight: 900;
-    }
-  
-    .location-link {
-      color: #b8ac84;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-  
-    .location-link:hover {
-      color: #d4c9a1;
-      text-decoration: underline;
-    }
-  
-    /* Compact match date */
-    .compact-date {
-      font-size: 12px;
-      color: #888;
-      margin-top: 4px;
-      text-align: center;
-      
-    }
-  
-    /* Copa de la Reina Logo Section - Updated */
     .copa-logo-section {
-      background-color: var(--primary-gold);
-      display: flex;
-      padding: 10px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      width: 100%;
-      max-width: 500px;
-      max-height: 100px;
-      margin-bottom: 50px;
-      border: solid;
-      border-color: var(--primary-blue);
-      overflow: hidden;
-      /* Ensure logo stays inside */
+      max-height: 90px;
+      margin-bottom: 30px;
     }
-  
-    .copa-logo-link {
-      display: flex;
-      flex-direction: row;
-      /* Changed to row to keep logo and button side by side */
-      align-items: center;
-      text-decoration: none;
-      transition: transform 0.3s ease;
-      width: 100%;
-      justify-content: center;
-      gap: 15px;
-      /* Space between logo and button */
-    }
-  
-    .copa-logo-link:hover {
-      transform: translateY(-5px);
-    }
-  
+
     .copa-logo {
-      width: auto;
+      height: 50px;
+      max-width: 80px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .copa-logo-link {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .copa-logo-section {
+      max-height: none;
+      height: auto;
+      padding: 15px 10px;
+    }
+
+    .copa-logo {
+      height: 45px;
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .team-logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .vs-circle {
+      width: 60px;
       height: 60px;
-      /* Fixed height to ensure it fits */
-      max-width: 100px;
-      object-fit: contain;
-      /* Ensure logo maintains aspect ratio */
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      font-size: 1.4rem;
     }
-  
-    .copa-button {
-      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-      color: var(--primary-gold);
-      padding: 8px 16px;
-      border-radius: 25px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border: solid 2px var(--primary-gold);
-      white-space: nowrap;
-      /* Prevent text wrapping */
+
+    .compact-logo {
+      width: 35px;
+      height: 35px;
     }
-  
-    .copa-logo-link:hover .copa-button {
-      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+    .sponsor {
+      height: 50px;
     }
-  
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .copa-logo-section {
-        max-height: 90px;
-        margin-bottom: 30px;
-      }
-  
-      .copa-logo {
-        height: 50px;
-        max-width: 80px;
-      }
-  
-      .copa-button {
-        padding: 6px 12px;
-        font-size: 12px;
-      }
-    }
-  
-    @media (max-width: 480px) {
-      .copa-logo-link {
-        flex-direction: column;
-        gap: 8px;
-      }
-  
-      .copa-logo-section {
-        max-height: none;
-        height: auto;
-        padding: 15px 10px;
-      }
-  
-      .copa-logo {
-        height: 45px;
-      }
-  
-      .copa-button {
-        padding: 5px 10px;
-        font-size: 11px;
-      }
-    }
-  
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-  
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-  
-    @media (min-width: 768px) {
-      .team-logo {
-        width: 80px;
-        height: 80px;
-      }
-  
-      .vs-circle {
-        width: 60px;
-        height: 60px;
-        font-size: 1.4rem;
-      }
-  
-      .carousel-container {
-        height: 250px;
-      }
-  
-      .compact-logo {
-        width: 35px;
-        height: 35px;
-      }
-  
-      .sponsor {
-        height: 50px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
@@ -679,8 +562,7 @@
     <!-- Copa de la Reina Logo Section -->
     <div class="copa-logo-section">
       <a href="/copa-de-la-reina" class="copa-logo-link">
-        <img src="{% static 'images/icons/Copa_de_la_Reina_2021.png' %}" alt="Copa de la Reina" class="copa-logo">
-        <span class="copa-button">Ver Información</span>
+        <img src="{% static 'images/icons/copa_de_la_reina.png' %}" alt="Copa de la Reina" class="copa-logo">
       </a>
     </div>
 
@@ -753,6 +635,7 @@
     </section>
   </main>
 </body>
+</html>
 
 
 
