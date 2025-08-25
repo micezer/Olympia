@@ -51,8 +51,46 @@ def offline(request):
 def inscripcion_view(request):
     return render(request, 'base/inscripcion.html')
 
+# views.py
+from django.http import JsonResponse
+from .models import Player
+
+def get_players_by_team(request):
+    team = request.GET.get('team')
+    if team:
+        players = Player.objects.filter(team=team).order_by('number')
+        players_data = []
+        for player in players:
+            players_data.append({
+                'id': player.id,
+                'name': player.name,
+                'full_name': player.full_name,
+                'number': player.number,
+                'position': player.position,
+                'team': player.team,
+                'birth_date': player.birth_date.strftime('%Y-%m-%d') if player.birth_date else None,
+                'nationality': player.nationality,
+                'image': player.image.url if player.image else None,
+                'is_staff': player.is_staff,
+                'role': player.role,
+            })
+        return JsonResponse(players_data, safe=False)
+    return JsonResponse([], safe=False)
+
 def cantera_view(request):
-    return render(request, 'base/cantera.html')
+    # Get all players grouped by team
+    senior_a_players = Player.objects.filter(team='senior_a')
+    senior_b_players = Player.objects.filter(team='senior_b')
+    
+    # Get staff members (is_staff=True)
+    staff_members = Player.objects.filter(is_staff=True)
+    
+    context = {
+        'senior_a_players': senior_a_players,
+        'senior_b_players': senior_b_players,
+        'staff_members': staff_members,
+    }
+    return render(request, 'base/cantera.html', context)
 
 def tienda_view(request):
     return render(request, 'base/tienda.html')
