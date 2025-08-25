@@ -17,6 +17,7 @@ admin.site.register(Ticket, TicketAdmin)
 # admin.py
 from django.contrib import admin
 from .models import Match
+from .models import Player
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
@@ -56,3 +57,13 @@ class MatchAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+
+# admin.py
+from django.contrib import admin
+from .models import Player
+
+@admin.register(Player)
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = ("name", "team", "position", "number", "is_staff")
+    list_filter = ("team", "position", "is_staff")
+    search_fields = ("name", "full_name", "role")
