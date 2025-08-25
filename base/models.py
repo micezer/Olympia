@@ -158,3 +158,35 @@ class Match(models.Model):
     @property
     def is_future_match(self):
         return self.date > timezone.now() and self.home_score is None
+    
+    # models.py
+from django.db import models
+
+class Player(models.Model):
+    TEAM_CHOICES = [
+        ('senior_a', 'Senior A - Primer Equipo'),
+        ('senior_b', 'Senior B'),
+        ('cantera', 'Cantera'),
+    ]
+    
+    POSITION_CHOICES = [
+        ('portero', 'Portera'),
+        ('defensa', 'Defensa'),
+        ('centrocampista', 'Centrocampista'),
+        ('delantero', 'Delantera'),
+        ('tecnico', 'Cuerpo Técnico'),
+    ]
+    
+    name = models.CharField(max_length=100)
+    full_name = models.CharField(max_length=200, blank=True)
+    number = models.IntegerField()
+    position = models.CharField(max_length=20, choices=POSITION_CHOICES)
+    team = models.CharField(max_length=20, choices=TEAM_CHOICES)
+    birth_date = models.DateField(null=True, blank=True)
+    nationality = models.CharField(max_length=50, default="Española")
+    image = models.ImageField(upload_to='players/', blank=True, null=True)
+    is_staff = models.BooleanField(default=False)  # For technical staff
+    role = models.CharField(max_length=100, blank=True)  # For specific roles in technical staff
+    
+    def __str__(self):
+        return f"{self.name} - {self.get_team_display()}"

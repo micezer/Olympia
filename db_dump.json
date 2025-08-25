@@ -1,0 +1,2137 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-08-23T19:43:13.826Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-08-23T19:45:31.142Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-08-23T19:45:46.181Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-08-23T19:46:04.364Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-08-23T19:46:28.656Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-08-23T19:46:49.694Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-08-23T19:47:04.348Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-08-23T19:47:22.671Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-08-23T19:47:33.010Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-08-23T19:50:51.358Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-08-23T19:51:11.579Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "CF Olympia vs CFF Olympia - 2025-09-07",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-08-23T19:51:31.052Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-08-23T19:52:15.252Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-08-23T19:52:30.014Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-08-23",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-08-23T19:54:51.607Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-08-23",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2025-08-23T19:55:05.643Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2025-08-23T19:56:41.125Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2025-08-23T19:58:52.983Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2025-08-23T19:59:04.977Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2025-08-23T19:59:28.167Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2025-08-23T20:08:12.238Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2025-08-23T20:08:24.690Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2025-08-23T20:15:05.103Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2025-08-23T20:15:14.267Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2025-08-23T20:16:23.236Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2025-08-23T20:16:33.145Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2025-08-23T20:16:46.088Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2025-08-23T20:16:56.444Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2025-08-23T20:17:02.483Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2025-08-23T20:17:10.942Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2025-08-23T20:18:17.952Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "7",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2025-08-23T20:18:26.796Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Is olympia home\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2025-08-24T00:22:05.978Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2025-08-24T00:23:51.855Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\", \"Away team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2025-08-24T00:44:55.742Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home team logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2025-08-24T16:10:51.649Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2025-08-24T16:12:29.637Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2025-08-24T16:12:56.354Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-08-03",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2025-08-24T16:13:23.782Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-08-03",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2025-08-24T16:13:47.477Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-08-23",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2025-08-24T16:14:19.108Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-08-24",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2025-08-24T16:14:55.235Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-08-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2025-08-24T16:15:34.343Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-07-24",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2025-08-24T16:15:53.231Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-08-24",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2025-08-24T16:16:50.682Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-08-25",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2025-08-25T13:03:51.561Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-08-03",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Location name\", \"Location address\", \"Google Maps URL\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2025-08-25T13:04:36.233Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2025-08-25T13:04:54.184Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2025-08-25T13:05:04.278Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2025-08-25T13:05:24.419Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2025-08-25T13:06:17.923Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2025-08-25T13:09:03.566Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Location name\", \"Location address\", \"Google Maps URL\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add order",
+        "content_type": 7,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change order",
+        "content_type": 7,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete order",
+        "content_type": 7,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view order",
+        "content_type": 7,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add ticket",
+        "content_type": 8,
+        "codename": "add_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change ticket",
+        "content_type": 8,
+        "codename": "change_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete ticket",
+        "content_type": 8,
+        "codename": "delete_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view ticket",
+        "content_type": 8,
+        "codename": "view_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add match",
+        "content_type": 9,
+        "codename": "add_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change match",
+        "content_type": 9,
+        "codename": "change_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete match",
+        "content_type": 9,
+        "codename": "delete_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view match",
+        "content_type": 9,
+        "codename": "view_match"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add player",
+        "content_type": 10,
+        "codename": "add_player"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change player",
+        "content_type": 10,
+        "codename": "change_player"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete player",
+        "content_type": 10,
+        "codename": "delete_player"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view player",
+        "content_type": 10,
+        "codename": "view_player"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
+        "last_login": "2025-08-25T12:56:11.260Z",
+        "is_superuser": true,
+        "username": "mexes",
+        "first_name": "",
+        "last_name": "",
+        "email": "mexes@g.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-08-23T18:56:42.946Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "base",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "base",
+        "model": "ticket"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "base",
+        "model": "match"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "base",
+        "model": "player"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6ulw2ytg1jjlkxqbep61dx64g50xhxro",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqDKK:MeFWp4ulvRDgT89mv6F-nueb9cehtavUXf-UWSHAdN0",
+        "expire_date": "2025-09-07T16:12:16.051Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "qqtpqbimwbk3frf8jqox02niycer1sey",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqWk7:uL96_KVCOsRt624f9Oy0AIP1LFHjQvJZUjozjsX3s-4",
+        "expire_date": "2025-09-08T12:56:11.268Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ytz340lm6lrjvbyofaqhpvbj4xrzhu27",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1upyUV:ll9QMfdDWzREtI81OknO91Rf4ReWOYTFdgCHWqUuMUg",
+        "expire_date": "2025-09-07T00:21:47.129Z"
+    }
+},
+{
+    "model": "base.match",
+    "pk": 35,
+    "fields": {
+        "date": "2025-09-07T11:00:00Z",
+        "home_team": "Córdoba CF",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "Ciudad deportiva Rafael Gómez",
+        "location_address": "14010 Córdoba",
+        "maps_url": "https://maps.app.goo.gl/KSiqf8YMJ4Jkdp878",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 36,
+    "fields": {
+        "date": "2025-09-10T14:14:07Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Getafe",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Copa de la Reina",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 37,
+    "fields": {
+        "date": "2025-09-14T17:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Málaga",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/malaga-football-seeklogo_qtv7ac",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "Ciudad deportiva Rafael Gómez",
+        "location_address": "14010 Córdoba",
+        "maps_url": "https://maps.app.goo.gl/KSiqf8YMJ4Jkdp878",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 38,
+    "fields": {
+        "date": "2025-09-21T11:15:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Unión Viera",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/CF_Unión_Viera_uhlaue",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 39,
+    "fields": {
+        "date": "2025-09-28T12:00:00Z",
+        "home_team": "Sporting de Huelva",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/sportingclubdehuelva-color-chico-2_a0r4co",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 40,
+    "fields": {
+        "date": "2025-10-05T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Juan Grande",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/juan_ytmlbm",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 41,
+    "fields": {
+        "date": "2025-10-12T00:00:00Z",
+        "home_team": "Real Betis B",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/beetiss_npkhm7",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 42,
+    "fields": {
+        "date": "2025-10-19T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Getafe",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 43,
+    "fields": {
+        "date": "2025-11-02T00:00:00Z",
+        "home_team": "Granada B",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/granada_nb0vaf",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 44,
+    "fields": {
+        "date": "2025-11-09T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Cacereño II",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/cpc-pantalla-presentacion-128x128_scyrtt",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 45,
+    "fields": {
+        "date": "2025-11-16T00:00:00Z",
+        "home_team": "Pozuelo Alarcón",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/Escudo-CF-Pozuelo_jjyhty",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 46,
+    "fields": {
+        "date": "2025-11-23T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Guiniguada",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/guiniguada_glymuh",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 47,
+    "fields": {
+        "date": "2025-12-07T00:00:00Z",
+        "home_team": "Femarguín",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/CD-Fermaguin-128x128_mci1f9",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 48,
+    "fields": {
+        "date": "2025-12-14T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Sport Extremadura",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/escudo-12698_hkpzrc",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 49,
+    "fields": {
+        "date": "2026-01-11T00:00:00Z",
+        "home_team": "Juan Grande",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/juan_ytmlbm",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 50,
+    "fields": {
+        "date": "2026-01-18T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Córdoba CF",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 51,
+    "fields": {
+        "date": "2026-02-01T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Real Betis B",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/beetiss_npkhm7",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 52,
+    "fields": {
+        "date": "2026-02-08T00:00:00Z",
+        "home_team": "Unión Viera",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/CF_Unión_Viera_uhlaue",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 53,
+    "fields": {
+        "date": "2026-02-15T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Granada B",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/granada_nb0vaf",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 54,
+    "fields": {
+        "date": "2026-02-22T00:00:00Z",
+        "home_team": "Getafe",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 55,
+    "fields": {
+        "date": "2026-03-08T00:00:00Z",
+        "home_team": "Málaga",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/malaga-football-seeklogo_qtv7ac",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 56,
+    "fields": {
+        "date": "2026-03-15T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Sporting de Huelva",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/sportingclubdehuelva-color-chico-2_a0r4co",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 57,
+    "fields": {
+        "date": "2026-03-22T00:00:00Z",
+        "home_team": "Sport Extremadura",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/escudo-12698_hkpzrc",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 58,
+    "fields": {
+        "date": "2026-03-29T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Pozuelo Alarcón",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/Escudo-CF-Pozuelo_jjyhty",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 59,
+    "fields": {
+        "date": "2026-04-12T00:00:00Z",
+        "home_team": "Cacereño II",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/cpc-pantalla-presentacion-128x128_scyrtt",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 60,
+    "fields": {
+        "date": "2026-04-19T00:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Femarguín",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/CD-Fermaguin-128x128_mci1f9",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.match",
+    "pk": 61,
+    "fields": {
+        "date": "2026-04-26T00:00:00Z",
+        "home_team": "Guiniguada",
+        "away_team": "CFF Olympia",
+        "home_team_logo": "image/upload/guiniguada_glymuh",
+        "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": false,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "Segunda Federación FutFem",
+        "match_notes": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 1,
+    "fields": {
+        "name": "Andrea",
+        "full_name": "Andrea Rodriguez Castellano",
+        "number": 1,
+        "position": "portero",
+        "team": "senior_a",
+        "birth_date": "2003-09-02",
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 2,
+    "fields": {
+        "name": "A. Totana",
+        "full_name": "A. Totana",
+        "number": 18,
+        "position": "defensa",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 3,
+    "fields": {
+        "name": "Elisa",
+        "full_name": "Elisa",
+        "number": 19,
+        "position": "defensa",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 4,
+    "fields": {
+        "name": "Gabi",
+        "full_name": "Gabi",
+        "number": 12,
+        "position": "defensa",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 5,
+    "fields": {
+        "name": "Laura",
+        "full_name": "Laura",
+        "number": 24,
+        "position": "defensa",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 6,
+    "fields": {
+        "name": "Gema Prieto",
+        "full_name": "Gema Prieto",
+        "number": 6,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 7,
+    "fields": {
+        "name": "Marta Moreno",
+        "full_name": "Marta Moreno",
+        "number": 8,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 8,
+    "fields": {
+        "name": "Patri",
+        "full_name": "Patri",
+        "number": 7,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 9,
+    "fields": {
+        "name": "Yoli",
+        "full_name": "Yoli",
+        "number": 20,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 10,
+    "fields": {
+        "name": "Ana",
+        "full_name": "Ana",
+        "number": 0,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 11,
+    "fields": {
+        "name": "Rosita",
+        "full_name": "Rosita",
+        "number": 10,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 12,
+    "fields": {
+        "name": "Alfayate",
+        "full_name": "Alfayate",
+        "number": 30,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 13,
+    "fields": {
+        "name": "S. SÃ¡nchez",
+        "full_name": "S. SÃ¡nchez",
+        "number": 17,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 14,
+    "fields": {
+        "name": "MarÃ­a",
+        "full_name": "MarÃ­a",
+        "number": 16,
+        "position": "centrocampista",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 15,
+    "fields": {
+        "name": "Rocio Zafra",
+        "full_name": "Rocio Zafra",
+        "number": 9,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 16,
+    "fields": {
+        "name": "MarÃ­a",
+        "full_name": "MarÃ­a",
+        "number": 23,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 17,
+    "fields": {
+        "name": "RincÃ³n",
+        "full_name": "RincÃ³n",
+        "number": 0,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 18,
+    "fields": {
+        "name": "BelÃ©n",
+        "full_name": "BelÃ©n",
+        "number": 5,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 19,
+    "fields": {
+        "name": "Albita",
+        "full_name": "Albita",
+        "number": 22,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 20,
+    "fields": {
+        "name": "L. ViÃ±as",
+        "full_name": "L. ViÃ±as",
+        "number": 0,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 21,
+    "fields": {
+        "name": "LucÃ­a.S",
+        "full_name": "LucÃ­a.S",
+        "number": 24,
+        "position": "delantero",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 22,
+    "fields": {
+        "name": "Fernando Zuazua Escalada",
+        "full_name": "Fernando Zuazua Escalada",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Entrenador"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 23,
+    "fields": {
+        "name": "Borja Carrera GonzÃ¡lez",
+        "full_name": "Borja Carrera GonzÃ¡lez",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Segundo Entrenador"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 24,
+    "fields": {
+        "name": "Rodrigo Colado",
+        "full_name": "Rodrigo Colado",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Preparador FÃ­sico"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 25,
+    "fields": {
+        "name": "Maru Monte",
+        "full_name": "Maru Monte",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Fisioterapeuta"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 26,
+    "fields": {
+        "name": "Alejandro FernÃ¡ndez",
+        "full_name": "Alejandro FernÃ¡ndez",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "PsicÃ³logo"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 27,
+    "fields": {
+        "name": "Sergio De Lucas Fernandez",
+        "full_name": "Sergio De Lucas Fernandez",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Encargado de Material"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 28,
+    "fields": {
+        "name": "Adrian Sanchez Lopez",
+        "full_name": "Adrian Sanchez Lopez",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Analista"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 29,
+    "fields": {
+        "name": "DELEGADO",
+        "full_name": "DELEGADO",
+        "number": 0,
+        "position": "tecnico",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "EspaÃ±ola",
+        "image": "",
+        "is_staff": true,
+        "role": "Delegado"
+    }
+}
+]

@@ -26,6 +26,7 @@ urlpatterns = [
     path('ticket/', views.ticket_purchase, name='ticket_purchase'),
     path('purchase/', views.purchase_ticket, name='purchase_ticket'),
     path('tickets/', views.get_tickets, name='get_tickets'),
+    path('api/players/', views.get_players_by_team, name='get_players_by_team'),
 
 
 
