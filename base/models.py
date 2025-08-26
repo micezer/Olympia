@@ -127,7 +127,7 @@ class Match(models.Model):
     @property
     def result(self):
         if self.has_played:
-            return f"{极home_score} - {self.away_score}"
+            return f"{self.home_score} - {self.away_score}"
         return "TBD"
     
     @property
@@ -200,7 +200,7 @@ class Player(models.Model):
     team = models.CharField(max_length=20, choices=TEAM_CHOICES)
     birth_date = models.DateField(null=True, blank=True)
     nationality = models.CharField(max_length=50, default="Española")
-    image = models.ImageField(upload_to='players/', blank=True, null=True)
+    image = CloudinaryField('image', folder='escudos')
     is_staff = models.BooleanField(default=False)  # For technical staff
     role = models.CharField(max_length=100, blank=True)  # For specific roles in technical staff
     
