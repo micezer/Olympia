@@ -87,11 +87,13 @@ class Command(BaseCommand):
     # CUERPO TÉCNICO SENIOR B
     "Ana Belén De La Chica Cardenas": "ana_belen_tecnico_senior_b",
     "Jose Pulido García": "jose_pulido_tecnico_senior_b",
+        
 }
         
         # Función para construir URL
         def build_cloudinary_url(public_id):
-            return f"https://res.cloudinary.com/tu_cloud_name/image/upload/{public_id}.png"
+               return f"https://res.cloudinary.com/do0mj4z8k/image/upload/{public_id}.png"
+
         
         # Resto del código de actualización...
         # Primero, actualizar jugadoras del Senior A
