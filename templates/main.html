@@ -1,59 +1,59 @@
 <!DOCTYPE html>
-{% load static%}
+{% load static %}
 {% load pwa %}
-
-<style>
-    /* Modo PWA - Oculta UI del navegador */
-    .pwa-mode {
-        overflow: hidden !important;
-        height: 100vh !important;
-        position: fixed;
-        width: 100%;
-    }
-
-    /* iOS específico */
-    @supports (-webkit-touch-callout: none) {
-        .pwa-mode {
-            -webkit-touch-callout: none;
-            height: -webkit-fill-available;
-            padding-top: env(safe-area-inset-top);
-        }
-
-        /* Ajuste para notch de iPhone */
-        .pwa-mode body {
-            padding-top: constant(safe-area-inset-top);
-            padding-top: env(safe-area-inset-top);
-        }
-    }
-
-    /* Opcional: Oculta elementos específicos en modo PWA */
-    .pwa-mode .browser-ui-element {
-        display: none !important;
-    }
-
-    </style>
-
 <html lang="en">
 
 <head>
-    <link rel="manifest" href="{% url 'manifest' %}" crossorigin="use-credentials">
-
-    {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <!-- Para Android/Chrome -->
     <meta name="mobile-web-app-capable" content="yes">
-    
     <!-- Para iOS/Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+
+    <link rel="manifest" href="{% url 'manifest' %}" crossorigin="use-credentials">
+    {% progressive_web_app_meta %}
+
     <link rel="shortcut icon" href="{% static 'images/olympia_logo.png' %}" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
     <title>CFF Olympia</title>
+
+    <style>
+        :root {
+            --nav-h: 70px;
+        }
+
+        /* altura del navbar */
+
+        body {
+            margin: 0;
+        }
+
+        main {
+            margin-top: var(--nav-h);
+            /* offset para que el contenido no quede tapado */
+        }
+
+        /* PWA fix */
+        .pwa-mode {
+            overflow: hidden !important;
+            height: 100vh !important;
+            position: fixed;
+            width: 100%;
+        }
+
+        @supports (-webkit-touch-callout: none) {
+            .pwa-mode {
+                -webkit-touch-callout: none;
+                height: -webkit-fill-available;
+                padding-top: env(safe-area-inset-top);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -65,6 +65,9 @@
     
     {% endblock %}
 
+
+
+</body>
 
     <script src="{% static 'js/script.js' %}"></script>
     <script>
@@ -117,7 +120,6 @@
             }
         });
     </script>
-</body>
 
 </html>
 

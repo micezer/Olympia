@@ -103,6 +103,14 @@ class Match(models.Model):
     competition = models.CharField(max_length=100, blank=True)
     match_notes = models.TextField(blank=True)
     
+    # Fixture information - ADD THIS FIELD ONLY
+    matchday = models.PositiveIntegerField(
+        null=True, 
+        blank=True,
+        verbose_name="Jornada",
+        help_text="Número de jornada (ej: 1, 2, 3...)"
+    )
+    
     class Meta:
         ordering = ['-date']
         verbose_name_plural = "Matches"
@@ -119,7 +127,7 @@ class Match(models.Model):
     @property
     def result(self):
         if self.has_played:
-            return f"{self.home_score} - {self.away_score}"
+            return f"{极home_score} - {self.away_score}"
         return "TBD"
     
     @property
@@ -158,6 +166,14 @@ class Match(models.Model):
     @property
     def is_future_match(self):
         return self.date > timezone.now() and self.home_score is None
+    
+    # ADD THIS PROPERTY FOR FIXTURE DISPLAY
+    @property
+    def fixture(self):
+        """Returns the matchday in a display-friendly format"""
+        if self.matchday:
+            return f"J{self.matchday}"
+        return ""
     
     # models.py
 from django.db import models
