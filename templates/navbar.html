@@ -1,7 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
@@ -129,6 +126,20 @@
             font-weight: 500;
         }
 
+        header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-h);
+  z-index: 999; /* que siempre quede arriba */
+  background: white; /* o el color que uses */
+}
+
+main {
+  padding-top: var(--nav-h); /* evita que el contenido se monte */
+}
+
         .header__logo {
             position: absolute;
             top: 50%;
@@ -225,8 +236,6 @@
         }
     </style>
 </head>
-
-<body>
     <nav class="navbar">
         <div class="nav-container">
             <input type="checkbox" class="checkbox" id="menu-toggle">
@@ -272,6 +281,3 @@
         {% block content %}{% endblock %}
     </main>
 
-</body>
-
-</html>

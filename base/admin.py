@@ -21,40 +21,24 @@ from .models import Player
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = (
-        'short_date', 
-        'home_team', 
-        'away_team', 
-        'home_score', 
-        'away_score',
-        'location_name',
-        'is_olympia_home'
-    )
-    list_filter = ('date', 'is_olympia_home', 'competition')
-    search_fields = ('home_team', 'away_team', 'location_name')
-    date_hierarchy = 'date'
+    list_display = ('home_team', 'away_team', 'date', 'matchday', 'competition')
+    list_filter = ('date', 'competition', 'matchday')
+    search_fields = ('home_team', 'away_team', 'competition')
     fieldsets = (
-        ('Match Details', {
-            'fields': (
-                'date', 
-                'home_team', 
-                'away_team', 
-                'home_team_logo', 
-                'away_team_logo',
-                'is_olympia_home',
-                'competition'
-            )
+        (None, {
+            'fields': ('date', 'home_team', 'away_team', 'matchday')
+        }),
+        ('Logos', {
+            'fields': ('home_team_logo', 'away_team_logo')
         }),
         ('Scores', {
-            'fields': ('home_score', 'away_score'),
-            'classes': ('collapse',)
+            'fields': ('home_score', 'away_score', 'is_olympia_home')
         }),
         ('Location', {
             'fields': ('location_name', 'location_address', 'maps_url')
         }),
         ('Additional Info', {
-            'fields': ('match_notes',),
-            'classes': ('collapse',)
+            'fields': ('competition', 'match_notes')
         }),
     )
 

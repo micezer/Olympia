@@ -676,6 +676,708 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2025-08-26T13:07:09.666Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "53",
+        "object_repr": "CFF Olympia vs Granada B - 2026-02-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2025-08-26T13:07:35.215Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2025-08-26T13:16:17.054Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\", \"Location name\", \"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2025-08-26T13:16:30.332Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2025-08-26T14:06:16.369Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\", \"Location name\", \"Location address\", \"Google Maps URL\", \"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2025-08-26T14:07:45.127Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2025-08-26T14:08:01.755Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2025-08-26T14:08:09.622Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "41",
+        "object_repr": "Real Betis B vs CFF Olympia - 2025-10-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2025-08-26T14:10:04.149Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "42",
+        "object_repr": "CFF Olympia vs Getafe - 2025-10-19",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2025-08-26T14:10:11.113Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "43",
+        "object_repr": "Granada B vs CFF Olympia - 2025-11-02",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2025-08-26T14:10:16.947Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "44",
+        "object_repr": "CFF Olympia vs Cacereño II - 2025-11-09",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2025-08-26T14:10:23.642Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "45",
+        "object_repr": "Pozuelo Alarcón vs CFF Olympia - 2025-11-16",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2025-08-26T14:10:30.544Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "46",
+        "object_repr": "CFF Olympia vs Guiniguada - 2025-11-23",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2025-08-26T14:10:39.059Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "47",
+        "object_repr": "Femarguín vs CFF Olympia - 2025-12-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2025-08-26T14:10:51.239Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "48",
+        "object_repr": "CFF Olympia vs Sport Extremadura - 2025-12-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2025-08-26T14:10:57.662Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "49",
+        "object_repr": "Juan Grande vs CFF Olympia - 2026-01-11",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2025-08-26T14:11:03.003Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "50",
+        "object_repr": "CFF Olympia vs Córdoba CF - 2026-01-18",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2025-08-26T14:11:08.335Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "51",
+        "object_repr": "CFF Olympia vs Real Betis B - 2026-02-01",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2025-08-26T14:11:14.328Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "52",
+        "object_repr": "Unión Viera vs CFF Olympia - 2026-02-08",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2025-08-26T14:11:18.952Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "53",
+        "object_repr": "CFF Olympia vs Granada B - 2026-02-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2025-08-26T14:11:23.885Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "54",
+        "object_repr": "Getafe vs CFF Olympia - 2026-02-22",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2025-08-26T14:11:29.562Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "55",
+        "object_repr": "Málaga vs CFF Olympia - 2026-03-08",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2025-08-26T14:11:34.105Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "56",
+        "object_repr": "CFF Olympia vs Sporting de Huelva - 2026-03-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2025-08-26T14:11:40.844Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "57",
+        "object_repr": "Sport Extremadura vs CFF Olympia - 2026-03-22",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2025-08-26T14:11:46.467Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "56",
+        "object_repr": "CFF Olympia vs Sporting de Huelva - 2026-03-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 78,
+    "fields": {
+        "action_time": "2025-08-26T14:11:52.298Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "57",
+        "object_repr": "Sport Extremadura vs CFF Olympia - 2026-03-22",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 79,
+    "fields": {
+        "action_time": "2025-08-26T14:12:28.483Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "58",
+        "object_repr": "CFF Olympia vs Pozuelo Alarcón - 2026-03-29",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 80,
+    "fields": {
+        "action_time": "2025-08-26T14:12:33.854Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "59",
+        "object_repr": "Cacereño II vs CFF Olympia - 2026-04-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 81,
+    "fields": {
+        "action_time": "2025-08-26T14:12:39.512Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "60",
+        "object_repr": "CFF Olympia vs Femarguín - 2026-04-19",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 82,
+    "fields": {
+        "action_time": "2025-08-26T14:12:46.073Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "61",
+        "object_repr": "Guiniguada vs CFF Olympia - 2026-04-26",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Jornada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 83,
+    "fields": {
+        "action_time": "2025-08-26T14:13:28.342Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 84,
+    "fields": {
+        "action_time": "2025-08-26T14:13:34.139Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "61",
+        "object_repr": "Guiniguada vs CFF Olympia - 2026-04-26",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 85,
+    "fields": {
+        "action_time": "2025-08-26T14:13:38.730Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "60",
+        "object_repr": "CFF Olympia vs Femarguín - 2026-04-19",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 86,
+    "fields": {
+        "action_time": "2025-08-26T14:13:42.801Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "59",
+        "object_repr": "Cacereño II vs CFF Olympia - 2026-04-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 87,
+    "fields": {
+        "action_time": "2025-08-26T14:13:47.805Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "58",
+        "object_repr": "CFF Olympia vs Pozuelo Alarcón - 2026-03-29",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 88,
+    "fields": {
+        "action_time": "2025-08-26T14:13:51.309Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "57",
+        "object_repr": "Sport Extremadura vs CFF Olympia - 2026-03-22",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 89,
+    "fields": {
+        "action_time": "2025-08-26T14:13:55.539Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "56",
+        "object_repr": "CFF Olympia vs Sporting de Huelva - 2026-03-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 90,
+    "fields": {
+        "action_time": "2025-08-26T14:13:59.617Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "55",
+        "object_repr": "Málaga vs CFF Olympia - 2026-03-08",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 91,
+    "fields": {
+        "action_time": "2025-08-26T14:14:05.560Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "54",
+        "object_repr": "Getafe vs CFF Olympia - 2026-02-22",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 92,
+    "fields": {
+        "action_time": "2025-08-26T14:14:09.929Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "53",
+        "object_repr": "CFF Olympia vs Granada B - 2026-02-15",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 93,
+    "fields": {
+        "action_time": "2025-08-26T14:14:14.286Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "52",
+        "object_repr": "Unión Viera vs CFF Olympia - 2026-02-08",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 94,
+    "fields": {
+        "action_time": "2025-08-26T14:14:18.690Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "51",
+        "object_repr": "CFF Olympia vs Real Betis B - 2026-02-01",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 95,
+    "fields": {
+        "action_time": "2025-08-26T14:14:22.445Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "50",
+        "object_repr": "CFF Olympia vs Córdoba CF - 2026-01-18",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 96,
+    "fields": {
+        "action_time": "2025-08-26T14:14:26.615Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "49",
+        "object_repr": "Juan Grande vs CFF Olympia - 2026-01-11",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 97,
+    "fields": {
+        "action_time": "2025-08-26T14:14:31.721Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "41",
+        "object_repr": "Real Betis B vs CFF Olympia - 2025-10-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 98,
+    "fields": {
+        "action_time": "2025-08-26T14:14:35.360Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "49",
+        "object_repr": "Juan Grande vs CFF Olympia - 2026-01-11",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 99,
+    "fields": {
+        "action_time": "2025-08-26T14:14:39.897Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "47",
+        "object_repr": "Femarguín vs CFF Olympia - 2025-12-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 100,
+    "fields": {
+        "action_time": "2025-08-26T14:14:43.616Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "48",
+        "object_repr": "CFF Olympia vs Sport Extremadura - 2025-12-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 101,
+    "fields": {
+        "action_time": "2025-08-26T14:14:49.808Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "46",
+        "object_repr": "CFF Olympia vs Guiniguada - 2025-11-23",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 102,
+    "fields": {
+        "action_time": "2025-08-26T14:14:55.515Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "45",
+        "object_repr": "Pozuelo Alarcón vs CFF Olympia - 2025-11-16",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 103,
+    "fields": {
+        "action_time": "2025-08-26T14:14:59.167Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "44",
+        "object_repr": "CFF Olympia vs Cacereño II - 2025-11-09",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 104,
+    "fields": {
+        "action_time": "2025-08-26T14:15:03.306Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "43",
+        "object_repr": "Granada B vs CFF Olympia - 2025-11-02",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 105,
+    "fields": {
+        "action_time": "2025-08-26T14:15:07.794Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "42",
+        "object_repr": "CFF Olympia vs Getafe - 2025-10-19",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 106,
+    "fields": {
+        "action_time": "2025-08-26T14:15:12.701Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Competition\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -1040,7 +1742,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
-        "last_login": "2025-08-25T12:56:11.260Z",
+        "last_login": "2025-08-26T12:59:32.993Z",
         "is_superuser": true,
         "username": "mexes",
         "first_name": "",
@@ -1143,6 +1845,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "80w04wkjso6b5hy8w8ddfxzxieafmjeg",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqtGv:Z3r-s-blqBccGgfzmNhVRLi3emDOYTjUht8eItAl4K0",
+        "expire_date": "2025-09-09T12:59:33.001Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "qqtpqbimwbk3frf8jqox02niycer1sey",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqWk7:uL96_KVCOsRt624f9Oy0AIP1LFHjQvJZUjozjsX3s-4",
@@ -1172,8 +1882,9 @@
         "location_name": "Ciudad deportiva Rafael Gómez",
         "location_address": "14010 Córdoba",
         "maps_url": "https://maps.app.goo.gl/KSiqf8YMJ4Jkdp878",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 1
     }
 },
 {
@@ -1192,7 +1903,8 @@
         "location_address": "",
         "maps_url": "",
         "competition": "Copa de la Reina",
-        "match_notes": ""
+        "match_notes": "",
+        "matchday": null
     }
 },
 {
@@ -1207,11 +1919,12 @@
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
-        "location_name": "Ciudad deportiva Rafael Gómez",
+        "location_name": "Recinto Ferial",
         "location_address": "14010 Córdoba",
         "maps_url": "https://maps.app.goo.gl/KSiqf8YMJ4Jkdp878",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 2
     }
 },
 {
@@ -1226,11 +1939,12 @@
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
-        "location_name": "",
-        "location_address": "",
-        "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "location_name": "Recinto Ferial",
+        "location_address": "Av. Ntra. Señora del Retamar, s/n, 28232 Las Rozas de Madrid, Madrid",
+        "maps_url": "https://maps.app.goo.gl/JUXmW16wJUuZCf8j7",
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 3
     }
 },
 {
@@ -1248,8 +1962,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 4
     }
 },
 {
@@ -1267,8 +1982,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 5
     }
 },
 {
@@ -1286,8 +2002,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 6
     }
 },
 {
@@ -1305,8 +2022,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 7
     }
 },
 {
@@ -1324,8 +2042,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 8
     }
 },
 {
@@ -1343,8 +2062,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 9
     }
 },
 {
@@ -1362,8 +2082,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 10
     }
 },
 {
@@ -1381,8 +2102,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 11
     }
 },
 {
@@ -1400,8 +2122,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 12
     }
 },
 {
@@ -1419,8 +2142,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 13
     }
 },
 {
@@ -1438,8 +2162,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 14
     }
 },
 {
@@ -1457,8 +2182,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 15
     }
 },
 {
@@ -1476,8 +2202,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 16
     }
 },
 {
@@ -1495,8 +2222,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 17
     }
 },
 {
@@ -1514,8 +2242,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 18
     }
 },
 {
@@ -1533,8 +2262,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 19
     }
 },
 {
@@ -1552,8 +2282,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 20
     }
 },
 {
@@ -1571,8 +2302,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 21
     }
 },
 {
@@ -1590,8 +2322,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 22
     }
 },
 {
@@ -1609,8 +2342,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 23
     }
 },
 {
@@ -1628,8 +2362,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 24
     }
 },
 {
@@ -1647,8 +2382,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 25
     }
 },
 {
@@ -1666,8 +2402,9 @@
         "location_name": "",
         "location_address": "",
         "maps_url": "",
-        "competition": "Segunda Federación FutFem",
-        "match_notes": ""
+        "competition": "2ª Federación GRUPO 3",
+        "match_notes": "",
+        "matchday": 26
     }
 },
 {
