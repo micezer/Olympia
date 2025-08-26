@@ -28,7 +28,7 @@ class Command(BaseCommand):
     "Nuria": "nuria_defensa_senior_b",
     "Lucía": "lucia_defensa_senior_b",
     "Daniela": "daniela_defensa_senior_b",
-    "Andrea": "andrea_defensa_senior_b",
+    "Andrea": "andrea_rodriguez_jdxwky",
     "Paola": "paola_defensa_senior_b",
     "Mireya": "mireya_defensa_senior_b",
     "Cristina": "cristina_defensa_senior_b",
