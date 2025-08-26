@@ -91,7 +91,7 @@ class Command(BaseCommand):
         
         # Función para construir URL
         def build_cloudinary_url(public_id):
-            return f"https://res.cloudinary.com/tu_cloud_name/image/upload/{public_id}.jpg"
+            return f"https://res.cloudinary.com/tu_cloud_name/image/upload/{public_id}.png"
         
         # Resto del código de actualización...
         # Primero, actualizar jugadoras del Senior A
