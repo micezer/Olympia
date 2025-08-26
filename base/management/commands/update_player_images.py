@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from base.models import Player
 from cloudinary import uploader
 
+
 class Command(BaseCommand):
     help = 'Asigna imágenes de Cloudinary a las jugadoras'
 
@@ -14,14 +15,14 @@ class Command(BaseCommand):
             
             # DEFENSAS SENIOR A
             "A. Totana": "a_totana_defensa_senior_a",
-            "Elisa": "elisa_defensa_senior_a",
-            "Gabi": "gabi_defensa_senior_a",
+            "Elisa": "elisa_puerta_e365oo",
+            "Gabi": "gabi_de_la_villa_wgaud1",
             "Laura": "laura_defensa_senior_a",
             
             # CENTROCAMPISTAS SENIOR A
-            "Gema Prieto": "gema_prieto_centro_senior_a",
-            "Marta Moreno": "marta_moreno_centro_senior_a",
-            "Patri": "patri_centro_senior_a",
+            "Gema Prieto": "gema_prieto_kk4jvw",
+            "Marta Moreno": "marta_moreno_wurdmg",
+            "Patri": "patri_camacho_ykmm6b",
             "Yoli": "yoli_centro_senior_a",
             "Ana": "ana_centro_senior_a",
             "Rosita": "rosita_centro_senior_a",
@@ -36,7 +37,7 @@ class Command(BaseCommand):
             "Belén": "belen_delantero_senior_a",
             "Albita": "albita_delantero_senior_a",
             "L. Viñas": "l_vinas_delantero_senior_a",
-            "Lucía.S": "lucia_s_delantero_senior_a",
+            "Lucía.S": "lucia_sanchez_duxlw4",
             
             # PORTERAS SENIOR B
             "Carmen": "carmen_porteria_senior_b",
