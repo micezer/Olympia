@@ -103,38 +103,6 @@
   background-color: white;
 }
 
-/* Webview message styles */
-.webview-message {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 20px;
-  text-align: center;
-  color: white;
-}
-
-.webview-message p {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-.external-browser-btn {
-  background-color: var(--primary-gold);
-  color: var(--secondary-blue);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.external-browser-btn:hover {
-  background-color: #d4c9a1;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .webview-overlay {
@@ -253,125 +221,66 @@
         });
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const webviewOverlay = document.getElementById('webviewOverlay');
-        const webviewFrame = document.getElementById('webviewFrame');
-        const webviewTitle = document.getElementById('webviewTitle');
-        const webviewClose = document.getElementById('webviewClose');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const webviewOverlay = document.getElementById('webviewOverlay');
+            const webviewFrame = document.getElementById('webviewFrame');
+            const webviewTitle = document.getElementById('webviewTitle');
+            const webviewClose = document.getElementById('webviewClose');
 
-        // Function to open webview
-        function openWebview(url, title) {
-            webviewTitle.textContent = title;
-            webviewOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            // Clear any previous messages
-            const existingMessage = webviewFrame.parentNode.querySelector('.webview-message');
-            if (existingMessage) {
-                existingMessage.remove();
+            // Function to open webview
+            function openWebview(url, title) {
+                webviewTitle.textContent = title;
+                webviewFrame.src = url;
+                webviewOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
             }
 
-            // Reset iframe display
-            webviewFrame.style.display = 'block';
-
-            // Try to load the URL
-            try {
-                webviewFrame.src = encodeURI(url);
-            } catch (e) {
-                showWebviewMessage('Error loading content: ' + e.message);
+            // Function to close webview
+            function closeWebview() {
+                webviewOverlay.style.display = 'none';
+                webviewFrame.src = 'about:blank';
+                document.body.style.overflow = ''; // Re-enable scrolling
             }
 
-            // Set a timeout to check if content loaded
-            setTimeout(function () {
-                try {
-                    // Check if iframe has content
-                    if (!webviewFrame.contentWindow ||
-                        !webviewFrame.contentWindow.document ||
-                        webviewFrame.contentWindow.document.body.children.length === 0) {
-                        showWebviewMessage('El contenido no se puede mostrar dentro de la aplicación. Por favor, abre en el navegador.');
-                    }
-                } catch (e) {
-                    // This will happen with cross-origin restrictions
-                    showWebviewMessage('El sitio web no permite mostrarse dentro de la aplicación. Por favor, abre en el navegador.');
+            // Close webview when clicking close button
+            webviewClose.addEventListener('click', closeWebview);
+
+            // Close webview when clicking outside content
+            webviewOverlay.addEventListener('click', function (e) {
+                if (e.target === webviewOverlay) {
+                    closeWebview();
                 }
-            }, 2000);
-        }
-
-        // Show message instead of iframe
-        function showWebviewMessage(message) {
-            webviewFrame.style.display = 'none';
-
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'webview-message';
-            messageDiv.innerHTML = `
-      <p>${message}</p>
-      <button class="external-browser-btn">Abrir en Navegador</button>
-    `;
-
-            webviewFrame.parentNode.appendChild(messageDiv);
-
-            // Add event listener to the button
-            messageDiv.querySelector('.external-browser-btn').addEventListener('click', function () {
-                window.open(webviewFrame.src, '_blank');
-                closeWebview();
             });
-        }
 
-        // Function to close webview
-        function closeWebview() {
-            webviewOverlay.style.display = 'none';
-            webviewFrame.src = 'about:blank';
-            document.body.style.overflow = '';
+            // Close webview with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && webviewOverlay.style.display === 'flex') {
+                    closeWebview();
+                }
+            });
 
-            // Clear any messages
-            const existingMessage = webviewFrame.parentNode.querySelector('.webview-message');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
+            // Modify your team template to use webview instead of direct links
+            document.addEventListener('click', function (e) {
+                // Check if clicked element is a calendar link
+                if (e.target.closest('a[href*="calendario"]') ||
+                    e.target.closest('a[href*="calendar"]')) {
+                    e.preventDefault();
+                    const link = e.target.closest('a');
+                    openWebview(link.href, 'Calendario');
+                }
 
-            // Reset iframe display
-            webviewFrame.style.display = 'block';
-        }
-
-        // Close webview when clicking close button
-        webviewClose.addEventListener('click', closeWebview);
-
-        // Close webview when clicking outside content
-        webviewOverlay.addEventListener('click', function (e) {
-            if (e.target === webviewOverlay) {
-                closeWebview();
-            }
+                // Check if clicked element is a classification link
+                if (e.target.closest('a[href*="clasificacion"]') ||
+                    e.target.closest('a[href*="clasification"]') ||
+                    e.target.closest('a[href*="table"]')) {
+                    e.preventDefault();
+                    const link = e.target.closest('a');
+                    openWebview(link.href, 'Clasificación');
+                }
+            });
         });
-
-        // Close webview with Escape key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && webviewOverlay.style.display === 'flex') {
-                closeWebview();
-            }
-        });
-
-        // Handle webview links
-        document.addEventListener('click', function (e) {
-            // Check if clicked element is a calendar link
-            if (e.target.closest('a[title="Calendario"]') ||
-                e.target.closest('a[title="Calendar"]')) {
-                e.preventDefault();
-                const link = e.target.closest('a');
-                openWebview(link.href, 'Calendario');
-            }
-
-            // Check if clicked element is a classification link
-            if (e.target.closest('a[title="Clasificación"]') ||
-                e.target.closest('a[title="Classification"]') ||
-                e.target.closest('a[title="Table"]')) {
-                e.preventDefault();
-                const link = e.target.closest('a');
-                openWebview(link.href, 'Clasificación');
-            }
-        });
-    });
-</script>
+    </script>
 
 </html>
 
