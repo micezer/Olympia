@@ -11,20 +11,20 @@ class Command(BaseCommand):
         # Mapeo de nombres de jugadoras a public_ids de Cloudinary
         player_public_ids = {
             # PORTERAS SENIOR A
-            "Andrea": "andrea_rodriguez_jdxwky",
+            "Andrea": "andrea_rodriguez_nucjaq",
             
             # DEFENSAS SENIOR A
-            "A. Totana": "a_totana_defensa_senior_a",
+            "A. Totana": "andrea_totana_ujtwxs",
             "Elisa": "elisa_puerta_e365oo",
             "Gabi": "gabi_de_la_villa_wgaud1",
-            "Laura": "laura_defensa_senior_a",
-            
+            "Laura": "laura_gonzalez_rtrvnv",
+
             # CENTROCAMPISTAS SENIOR A
             "Gema Prieto": "gema_prieto_kk4jvw",
             "Marta Moreno": "marta_moreno_wurdmg",
             "Patri": "patri_camacho_ykmm6b",
-            "Yoli": "yoli_centro_senior_a",
-            "Ana": "ana_centro_senior_a",
+            "Yoli": "yoanda_albalat_hrosej",
+            "Ana": "andra_totana_qyihmn",
             "Rosita": "rosita_centro_senior_a",
             "Alfayate": "alfayate_centro_senior_a",
             "S. Sánchez": "s_sanchez_centro_senior_a",
@@ -47,7 +47,7 @@ class Command(BaseCommand):
             "Nuria": "nuria_defensa_senior_b",
             "Lucía": "lucia_defensa_senior_b",
             "Daniela": "daniela_defensa_senior_b",
-            "Andrea": "andrea_rodriguez_jdxwky",
+            "Andrea": "andrea_rodriguez_nucjaq",
             "Paola": "paola_defensa_senior_b",
             "Mireya": "mireya_defensa_senior_b",
             "Cristina": "cristina_defensa_senior_b",
