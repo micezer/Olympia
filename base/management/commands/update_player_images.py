@@ -11,34 +11,32 @@ class Command(BaseCommand):
         # Mapeo de nombres de jugadoras a public_ids de Cloudinary
         player_public_ids = {
             # PORTERAS SENIOR A
-            "Andrea": "andrea_rodriguez_nucjaq",
-            
+            "Andrea Rodriguez": "andrea_rodriguez_nucjaq",
+            "Laura Zaballos": "laurazaballos_gqv9be",
+
             # DEFENSAS SENIOR A
-            "A. Totana": "andrea_totana_ujtwxs",
-            "Elisa": "elisa_puerta_e365oo",
-            "Gabi": "gabi_de_la_villa_wgaud1",
-            "Laura": "laura_gonzalez_rtrvnv",
+            "Andrea Totana": "andra_totana_qyihmn",
+            "Elisa Puerta": "elisa_puerta_qxgppy",
+            "Laura González": "laura_gonzalez_pmustm",
 
             # CENTROCAMPISTAS SENIOR A
-            "Gema Prieto": "gema_prieto_kk4jvw",
-            "Marta Moreno": "marta_moreno_wurdmg",
-            "Patri": "patri_camacho_ykmm6b",
-            "Yoli": "yoanda_albalat_hrosej",
-            "Ana": "andra_totana_qyihmn",
-            "Rosita": "rosita_centro_senior_a",
-            "Alfayate": "alfayate_centro_senior_a",
-            "S. Sánchez": "s_sanchez_centro_senior_a",
-            "María": "maria_centro_senior_a",
-            
+            "Gema Prieto": "gema_prieto_nermsd",
+            "Yolanda Albalat": "yoanda_albalat_hrosej",
+            "Ana Hortelano": "ana_hortelano_t4tkxq",
+            "Ainara Mauri": "ainara_mauri_dorczd",
+            "Manuela Alfayate": "manuela_alfayete_siqbfj",
+            "Sara Sánchez": "sara_sanchez_lnpxqg",
+            "Maria Herrero": "mariaherrero_hewosr",
+
             # DELANTERAS SENIOR A
-            "Rocio Zafra": "rocio_zafra_delantero_senior_a",
-            "María": "maria_delantero_senior_a",
-            "Rincón": "rincon_delantero_senior_a",
-            "Belén": "belen_delantero_senior_a",
-            "Albita": "albita_delantero_senior_a",
-            "L. Viñas": "l_vinas_delantero_senior_a",
-            "Lucía.S": "lucia_sanchez_duxlw4",
-            
+            "Rocio Zafra": "rociozafra_cnqvvw",
+            "María Bravo": "maria_bravo_d97cza",
+            "Cristina Rincón": "cristina_rincon_wprer9",
+            "Belén Peralta": "belen_peralta_jpi0sq",
+            "Alba Masa": "alba_masa_dyzdbp",
+            "Laura Viñas": "lauravinas_njlphi",
+            "Lucía Sanchez": "lucia_sanchez_vb0vxm",
+
             # PORTERAS SENIOR B
             "Carmen": "carmen_porteria_senior_b",
             "L. Martín": "l_martin_porteria_senior_b",
