@@ -490,220 +490,166 @@ def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
 @csrf_exempt
+@require_POST
 def check_existing_registration(request):
-    if request.method == 'POST':
+    try:
+        data = json.loads(request.body)
+        dni = data.get('dni', '').strip()
+        check_complete = data.get('check_complete', False)
+
+        
+        if not dni:
+            return JsonResponse({'error': 'DNI is required'}, status=400)
+        
         try:
-            data = json.loads(request.body)
-            dni = data.get('dni', '').strip()
+            registration = PlayerRegistration.objects.get(dni=dni)
+            return JsonResponse({
+                'exists': True,
+                'nombre': registration.name or '',
+                'fecha_nacimiento': registration.birthday.strftime('%Y-%m-%d') if registration.birthday else ''
+            })
+        except PlayerRegistration.DoesNotExist:
+            return JsonResponse({'exists': False})
             
-            if not dni:
-                return JsonResponse({'error': 'DNI is required'}, status=400)
-            
-            # Check if a registration with this DNI already exists
-            try:
-                registration = PlayerRegistration.objects.get(dni=dni)
-                return JsonResponse({
-                    'exists': True,
-                    'nombre': registration.name,
-                    'apellido': '',  # You might need to adjust this based on your data structure
-                    'fecha_nacimiento': registration.birthday.strftime('%Y-%m-%d') if registration.birthday else ''
-                })
-            except PlayerRegistration.DoesNotExist:
-                return JsonResponse({'exists': False})
-                
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON'}, status=400)
-    return JsonResponse({'error': 'Invalid request method'}, status=405)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
 
 @csrf_exempt
-def save_registration(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
+@require_POST
+def complete_registration(request):
+    try:
+        data = json.loads(request.body)
+        dni = data.get('dni', '').strip()
+        
+        if not dni:
+            return JsonResponse({'status': 'error', 'message': 'DNI is required'}, status=400)
+        
+        registration = PlayerRegistration.objects.get(dni=dni)
+        registration.registration_complete = True
+        registration.save()
+        
+        return JsonResponse({'status': 'success', 'message': 'Registration marked as complete'})
             
-            # Extract the data from the request
-            dni = data.get('step1', {}).get('data', {}).get('dni', '').strip()
-            
-            # If only step1 is completed (just DNI)
-            if data.get('step1', {}).get('completed') and not data.get('step2', {}).get('completed'):
-                if not dni:
-                    return JsonResponse({'status': 'error', 'message': 'DNI is required'}, status=400)
-                
-                # Check if this DNI already exists
-                try:
-                    registration = PlayerRegistration.objects.get(dni=dni)
-                    return JsonResponse({
-                        'status': 'success', 
-                        'message': 'DNI verified',
-                    })
-                except PlayerRegistration.DoesNotExist:
-                    # DNI doesn't exist, just return success
-                    return JsonResponse({
-                        'status': 'success', 
-                        'message': 'DNI saved successfully',
-                    })
-            
-            # If both steps are completed, save all data
-            elif data.get('step1', {}).get('completed') and data.get('step2', {}).get('completed'):
-                name = data.get('step2', {}).get('data', {}).get('nombre', '').strip()
-                last_name = data.get('step2', {}).get('data', {}).get('apellido', '').strip()
-                birthday_str = data.get('step2', {}).get('data', {}).get('fecha_nacimiento', '').strip()
-                
-                if not dni or not name or not last_name or not birthday_str:
-                    return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
-                
-                # Parse the birthday
-                from datetime import datetime
-                try:
-                    birthday = datetime.strptime(birthday_str, '%Y-%m-%d').date()
-                except ValueError:
-                    return JsonResponse({'status': 'error', 'message': 'Invalid date format'}, status=400)
-                
-                # Create hardcoded form data (excluding name, dni, and birthday)
-                hardcoded_data = {
-                    "position": "Delantero",
-                    "team": "Senior A",
-                    "medical_info": {
-                        "blood_type": "A+",
-                        "allergies": "Ninguna",
-                        "emergency_contact": {
-                            "name": "Maria Lopez",
-                            "phone": "123-456-7890",
-                            "relationship": "Madre"
-                        }
-                    },
-                    "equipment_size": "M",
-                    "previous_experience": "2 años en liga juvenil",
-                    "registration_date": timezone.now().isoformat()
-                }
-                
-                # Check if this is an update or a new registration
-                full_name = f"{name} {last_name}"
-                try:
-                    registration = PlayerRegistration.objects.get(dni=dni)
-                    registration.name = full_name
-                    registration.birthday = birthday
-                    registration.registration_data = hardcoded_data
-                    registration.save()
-                    action = "updated"
-                except PlayerRegistration.DoesNotExist:
-                    registration = PlayerRegistration.objects.create(
-                        dni=dni,
-                        name=full_name,
-                        birthday=birthday,
-                        registration_data=hardcoded_data
-                    )
-                    action = "created"
-                
-                return JsonResponse({
-                    'status': 'success', 
-                    'message': f'Registration {action} successfully',
-                    'registration_id': registration.id
-                })
-            else:
-                return JsonResponse({'status': 'error', 'message': 'Invalid form data'}, status=400)
-                
-        except json.JSONDecodeError:
-            return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+    except PlayerRegistration.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Registration not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    
 
-# In your Django view, update the save_registration function to handle step1 data
+
+
+# views.py
+import logging
+logger = logging.getLogger(__name__)
+
 @csrf_exempt
 @require_POST
 def save_registration(request):
     try:
         data = json.loads(request.body)
+        print("Received data:", data)  # Debug print
         
-        # Check if we're saving step1 (only DNI) or step2 (all data)
+        # Handle step 1 (only DNI)
         if data.get('step1', {}).get('completed') and not data.get('step2', {}).get('completed'):
-            # Only step1 is completed (just DNI)
             dni = data.get('step1', {}).get('data', {}).get('dni', '').strip()
-            
             if not dni:
                 return JsonResponse({'status': 'error', 'message': 'DNI is required'}, status=400)
             
-            # Check if this DNI already exists
-            try:
-                registration = PlayerRegistration.objects.get(dni=dni)
-                # DNI exists, return success but don't update anything
-                return JsonResponse({
-                    'status': 'success', 
-                    'message': 'DNI verified',
-                    'registration_id': registration.id
-                })
-            except PlayerRegistration.DoesNotExist:
-                # DNI doesn't exist, create a temporary record with just DNI
-                registration = PlayerRegistration.objects.create(
-                    dni=dni,
-                    name='Pending',  # Temporary placeholder
-                    birthday=date.today(),  # Temporary placeholder
-                    registration_data={}  # Empty for now
-                )
-                return JsonResponse({
-                    'status': 'success', 
-                    'message': 'DNI saved successfully',
-                    'registration_id': registration.id
-                })
+            # Just return success - we'll save everything in step 2
+            return JsonResponse({'status': 'success', 'message': 'DNI received'})
         
-        # If both steps are completed, save all data
+        # Handle step 2 (all data)
         elif data.get('step1', {}).get('completed') and data.get('step2', {}).get('completed'):
             dni = data.get('step1', {}).get('data', {}).get('dni', '').strip()
             name = data.get('step2', {}).get('data', {}).get('nombre', '').strip()
             last_name = data.get('step2', {}).get('data', {}).get('apellido', '').strip()
             birthday_str = data.get('step2', {}).get('data', {}).get('fecha_nacimiento', '').strip()
             
-            if not dni or not name or not last_name or not birthday_str:
-                return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+            if not dni:
+                return JsonResponse({'status': 'error', 'message': 'DNI is required'}, status=400)
             
-            # Parse the birthday
-            try:
-                birthday = datetime.strptime(birthday_str, '%Y-%m-%d').date()
-            except ValueError:
-                return JsonResponse({'status': 'error', 'message': 'Invalid date format'}, status=400)
-            
-            # Create hardcoded form data (excluding name, dni, and birthday)
+            # Create hardcoded data
             hardcoded_data = {
                 "position": "Delantero",
                 "team": "Senior A",
                 "medical_info": {
                     "blood_type": "A+",
-                    "allergies": "Ninguna",
-                    "emergency_contact": {
-                        "name": "Maria Lopez",
-                        "phone": "123-456-7890",
-                        "relationship": "Madre"
-                    }
-                },
-                "equipment_size": "M",
-                "previous_experience": "2 años en liga juvenil",
-                "registration_date": timezone.now().isoformat()
+                    "allergies": "Ninguna"
+                }
             }
             
-            # Check if this is an update or a new registration
-            full_name = f"{name} {last_name}"
-            try:
-                registration = PlayerRegistration.objects.get(dni=dni)
-                registration.name = full_name
-                registration.birthday = birthday
-                registration.registration_data = hardcoded_data
-                registration.save()
-                action = "updated"
-            except PlayerRegistration.DoesNotExist:
-                registration = PlayerRegistration.objects.create(
-                    dni=dni,
-                    name=full_name,
-                    birthday=birthday,
-                    registration_data=hardcoded_data
-                )
-                action = "created"
+            # Create or update registration
+            full_name = f"{name} {last_name}".strip()
             
+            registration, created = PlayerRegistration.objects.update_or_create(
+                dni=dni,
+                defaults={
+                    'name': full_name,
+                    'birthday': birthday_str if birthday_str else None,
+                    'registration_data': hardcoded_data
+                }
+            )
+            
+            action = "created" if created else "updated"
             return JsonResponse({
                 'status': 'success', 
                 'message': f'Registration {action} successfully',
                 'registration_id': registration.id
             })
-        else:
-            return JsonResponse({'status': 'error', 'message': 'Invalid form data'}, status=400)
+        
+        return JsonResponse({'status': 'error', 'message': 'Invalid data'}, status=400)
             
-    except json.JSONDecodeError:
-        return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+    except Exception as e:
+        print("Error:", str(e))  # Debug print
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    
+@csrf_exempt
+@require_POST
+def check_payment_eligibility(request):
+    try:
+        data = json.loads(request.body)
+        dni = data.get('dni', '').strip()
+        
+        if not dni:
+            return JsonResponse({'eligible': False, 'message': 'DNI is required'}, status=400)
+        
+        try:
+            registration = PlayerRegistration.objects.get(dni=dni)
+            
+            # Verificar que todos los campos obligatorios estén completos
+            required_fields = [
+                registration.name, registration.surname, registration.birthday,
+                registration.position, registration.team, 
+                registration.emergency_contact_name, registration.emergency_contact_phone,
+                registration.equipment_size
+            ]
+            
+            if all(required_fields) and registration.registration_complete:
+                return JsonResponse({
+                    'eligible': True,
+                    'message': 'Puede proceder al pago',
+                    'payment_url': '/payment/process/'  # URL de tu pasarela de pago
+                })
+            else:
+                return JsonResponse({
+                    'eligible': False,
+                    'message': 'Complete todos los campos de inscripción primero'
+                })
+                
+        except PlayerRegistration.DoesNotExist:
+            return JsonResponse({
+                'eligible': False, 
+                'message': 'No se encontró inscripción con este DNI'
+            })
+            
+    except Exception as e:
+        return JsonResponse({'eligible': False, 'message': str(e)}, status=500)
+
+
+# views.py - Add this test view
+@csrf_exempt
+def test_csrf(request):
+    if request.method == 'POST':
+        return JsonResponse({'message': 'CSRF test successful', 'csrf_token': get_token(request)})
+    return JsonResponse({'error': 'POST method required'}, status=400)
