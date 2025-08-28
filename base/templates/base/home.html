@@ -98,12 +98,21 @@ main {
       backdrop-filter: blur(5px);
     }
 
-    .match-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
+      .match-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+    .match-main-title {
+    color: var(--primary-gold);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  
 
     .match-title {
       color: #b8ac84;
@@ -113,37 +122,46 @@ main {
       letter-spacing: 1px;
     }
 
+      .match-date-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
     .match-date {
-      color: var(--primary-gold);
-      font-size: 13px;
-      align-items: center;
-      float: right;
-      display: flex;
-      gap: 10px;
-      font-weight: 900;
-    }
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+    .match-time {
+    color: var(--primary-gold);
+    font-size: 12px;
+    font-weight: 700;
+  }
 
     .teams-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem 0;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    position: relative;
+  }
 
-    .team {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 40%;
-    }
+      .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+  }
 
-    .team-logo {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-
+     .team-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
     .team-logo:hover {
       transform: scale(1.1);
     }
@@ -166,19 +184,29 @@ main {
       font-weight: 700;
     }
 
-    .vs-circle {
-      background: #b8ac84;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      color: #1f2531;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+      .vs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .vs-circle {
+    background: #b8ac84;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #1f2531;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
     /* Last Matches Section */
     .last-matches {
@@ -302,6 +330,41 @@ main {
       font-weight: 900;
     }
 
+      .location-label {
+    display: block;
+    font-size: 10px;
+    color: var(--primary-gold);
+    margin-bottom: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .location-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+
+    .location-container {
+    margin-top: 0.8rem;
+    padding: 0.6rem;
+    background: rgba(184, 172, 132, 0.15);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--primary-gold);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
     .location-link {
       color: #b8ac84;
       text-decoration: none;
@@ -312,6 +375,11 @@ main {
       color: #d4c9a1;
       text-decoration: underline;
     }
+      .location-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
 
     /* Compact match date */
     .compact-date {
@@ -323,7 +391,6 @@ main {
 
         .copa-image-container {
         text-align: center;
-        margin: 20px 0;
         cursor: pointer;
         transition: transform 0.3s ease;
     }
@@ -365,8 +432,8 @@ main {
     .copa-modal-content {
         margin: auto;
         display: block;
-        max-width: 90%;
-        max-height: 90%;
+        max-width: 70%;
+        max-height: 70%;
         border-radius: 8px;
         animation: zoom 0.3s ease;
     }
@@ -408,26 +475,39 @@ main {
         }
     }
 
-.match-title-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 5px;
-}
+  .match-title-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+  }
 
-.fixture-info {
-  background: var(--primary-gold);
-  color: var(--secondary-blue);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  order: 1; /* This ensures the fixture comes first */
-}
 
-.match-title {
-  order: 2; /* This ensures the title comes after the fixture */
-}
+   .fixture-info {
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    white-space: nowrap;
+    display: inline-block;
+    width: auto; /* Esto hace que se adapte al contenido */
+  }
+    .competition-badge {
+    background: rgba(184, 172, 132, 0.2);
+    color: var(--primary-gold);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+  }
+
 
 .competition-icon {
   width: 20px;
@@ -472,91 +552,147 @@ main {
 <body>
 
   <main>
-    <div class="next-match-container">
-      <div class="match-header">
-        <div class="match-left-info">
-          <div class="match-title-container">
-            <!-- Fixture information from database -->
-            {% if next_match and next_match.fixture %}
-            <div class="fixture-info">{{ next_match.fixture }}</div>
-            {% endif %}
-          
-            <h2 class="match-title">Próximo Partido</h2>
-          </div>
-          {% if next_match and next_match.competition %}
-          <div class="match-competition">
-            <img src="{% static 'images/icons/official_c3165075-bf39-41f3-ba15-dfb028b4dfb9.avif' %}" alt="Competition" class="competition-icon">
-            <span>{{ next_match.competition }}</span>
-          </div>
-          {% endif %}
-        </div>
-    
-        {% if next_match %}
-        <div class="match-right-info">
-          <div class="match-date">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84" class="match-title-icon">
-              <path
-                d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20V6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
-            </svg>
-            <span>{{ next_match.formatted_date }}</span>
-          </div>
-    
-          <!-- Location with maps link -->
-          {% if next_match.location_name %}
-          <div class="match-location">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#b8ac84">
-              <path
-                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-            </svg>
-            {% if next_match.maps_url %}
-            <a href="{{ next_match.maps_url }}" target="_blank" class="location-link">
-              {{ next_match.location_name }}
-            </a>
-            {% else %}
-            <span>{{ next_match.location_name }}</span>
-            {% endif %}
-          </div>
-          {% endif %}
-        </div>
-        {% endif %}
-      </div>
+    <!-- HTML modificado para el próximo partido -->
+<!-- HTML modificado para el próximo partido -->
+<div class="next-match-container">
+  <div class="match-header">
+    <div class="match-left-info">
+      <div class="match-main-title">Próximo Partido</div>
+      {% if next_match and next_match.fixture %}
+      <div class="fixture-info">{{ next_match.fixture }}</div>
+      {% endif %}
+    </div>
 
-      {% if next_match %}
-      <div class="teams-container">
-        <!-- If Olympia is home, show them on left -->
-        {% if next_match.is_olympia_home %}
-        <div class="team">
-          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
-          <div class="team-name">{{ next_match.home_team }}</div>
-        </div>
-
-        <div class="vs-circle">VS</div>
-
-        <div class="team">
-          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
-          <div class="team-name">{{ next_match.away_team }}</div>
-        </div>
-        {% else %}
-        <!-- If Olympia is away, show opponent on left -->
-        <div class="team">
-          <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
-          <div class="team-name">{{ next_match.home_team }}</div>
-        </div>
-
-        <div class="vs-circle">VS</div>
-
-        <div class="team">
-          <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
-          <div class="team-name">{{ next_match.away_team }}</div>
-        </div>
-        {% endif %}
-      </div>
-      {% else %}
-      <div class="no-matches">
-        <p>No hay próximos partidos programados</p>
+    <div class="match-right-info">
+      {% if next_match and next_match.competition %}
+      <div class="competition-badge">
+        <img src="{% static 'images/icons/official_c3165075-bf39-41f3-ba15-dfb028b4dfb9.avif' %}" alt="Competition"
+          class="competition-icon" width="14" height="14">
+        <span>{{ next_match.competition }}</span>
       </div>
       {% endif %}
     </div>
+  </div>
+
+  {% if next_match %}
+  <!-- Equipos -->
+  <div class="teams-container">
+    <!-- Si Olympia es local -->
+    {% if next_match.is_olympia_home %}
+    <div class="team">
+      <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+      <div class="team-name">{{ next_match.home_team }}</div>
+    </div>
+
+    <div class="vs-container">
+      <div class="vs-circle">VS</div>
+      <div class="match-date-time">
+        <div class="match-date">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff"
+            style="vertical-align: middle; margin-right: 4px;">
+            <path
+              d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20V6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
+          </svg>
+          {{ next_match.date|date:"d/m/Y" }}
+        </div>
+        <!-- MOSTRAR HORA - Diferentes opciones -->
+        <div class="match-time">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#b8ac84"
+            style="vertical-align: middle; margin-right: 3px;">
+            <path
+              d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z" />
+          </svg>
+          {% if next_match.time %} <!-- Si tienes campo time -->
+          {{ next_match.time }}
+          {% elif next_match.date and next_match.date|date:"H:i" != "00:00" %} <!-- Si es DateTimeField con hora -->
+          {{ next_match.date|time:"H:i" }}
+          {% else %} <!-- Hora por defecto -->
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="team">
+      <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+      <div class="team-name">{{ next_match.away_team }}</div>
+    </div>
+    {% else %}
+    <!-- Si Olympia es visitante -->
+    <div class="team">
+      <img src="{{ next_match.home_team_logo.url }}" alt="{{ next_match.home_team }}" class="team-logo">
+      <div class="team-name">{{ next_match.home_team }}</div>
+    </div>
+
+    <div class="vs-container">
+      <div class="vs-circle">VS</div>
+      <div class="match-date-time">
+        <div class="match-date">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff"
+            style="vertical-align: middle; margin-right: 4px;">
+            <path
+              d="M19,4H17V3H15V4H9V3H7V4H5C3.9,4 3,4.9 3,6V20C3,21.1 3.9,22 5,22H19C20.1,22 21,21.1 21,20V6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" />
+          </svg>
+          {{ next_match.date|date:"d/m/Y" }}
+        </div>
+        <!-- MOSTRAR HORA - Diferentes opciones -->
+        <div class="match-time">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#b8ac84"
+            style="vertical-align: middle; margin-right: 3px;">
+            <path
+              d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z" />
+          </svg>
+          {% if next_match.time %} <!-- Si tienes campo time -->
+          {{ next_match.time }}
+          {% elif next_match.date and next_match.date|date:"H:i" != "00:00" %} <!-- Si es DateTimeField con hora -->
+          {{ next_match.date|time:"H:i" }}
+          {% else %} <!-- Hora por defecto -->
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="team">
+      <img src="{{ next_match.away_team_logo.url }}" alt="{{ next_match.away_team }}" class="team-logo">
+      <div class="team-name">{{ next_match.away_team }}</div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Ubicación compacta y centrada -->
+  {% if next_match.location_name %}
+  <div style="display: flex; justify-content: center;">
+    {% if next_match.maps_url %}
+    <a href="{{ next_match.maps_url }}" target="_blank" class="location-container">
+      <span class="location-label">Ubicación</span>
+      <span class="location-name">
+        <svg class="location-icon" viewBox="0 0 24 24" fill="#b8ac84">
+          <path
+            d="M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M9,7A3,3 0 0,1 12,10A3,3 0 0,1 9,13A3,3 0 0,1 6,10A3,3 0 0,1 9,7Z" />
+        </svg>
+        {{ next_match.location_name }}
+      </span>
+    </a>
+    {% else %}
+    <div class="location-container">
+      <span class="location-label">Ubicación</span>
+      <span class="location-name">
+        <svg class="location-icon" viewBox="0 0 24 24" fill="#b8ac84">
+          <path
+            d="M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M9,7A3,3 0 0,1 12,10A3,3 0 0,1 9,13A3,3 0 0,1 6,10A3,3 0 0,1 9,7Z" />
+        </svg>
+        {{ next_match.location_name }}
+      </span>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% else %}
+  <div class="no-matches">
+    <p>No hay próximos partidos programados</p>
+  </div>
+  {% endif %}
+</div>
 
     <!-- Last Matches Section -->
     <div class="last-matches">
