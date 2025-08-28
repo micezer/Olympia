@@ -206,3 +206,16 @@ class Player(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.get_team_display()}"
+    
+
+
+class PlayerRegistration(models.Model):
+    dni = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=100)
+    birthday = models.DateField()
+    registration_data = models.JSONField()  # Stores the hardcoded form data as JSON
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.dni})"

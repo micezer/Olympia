@@ -1,3 +1,7 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -658,7 +662,8 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRFToken': getCookie('csrftoken'),
+                            'X-CSRFToken': getCSRFToken(),
+                            'X-Requested-With': 'XMLHttpRequest'
                         },
                         body: JSON.stringify({
                             dni: dni,
@@ -826,7 +831,25 @@
             closePopup(); // Ensure popup is hidden on load
             updatePrice(); // Initialize price display
         });
+
+        function getCSRFToken() {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, 10) === 'csrftoken=') {
+                            cookieValue = decodeURIComponent(cookie.substring(10));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
     </script>
 </body>
 
 </html>
+
+{% endblock %}

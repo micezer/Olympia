@@ -901,9 +901,9 @@
                     <img src="{% static 'images/olympia_logo.png' %}" alt="Opponent Logo"
                         style="width: 50px; height: 50px; object-fit: contain;" id="opponentLogo">
                     <div class="match-info">
-                        <div class="match-date" id="matchDate">Sáb, 15 Oct</div>
-                        <div class="match-time" id="matchTime">18:00 H</div>
-                        <div class="match-location" id="matchLocation">Estadio</div>
+                        <div class="match-date" id="matchDate"></div>
+                        <div class="match-time" id="matchTime"></div>
+                        <div class="match-location" id="matchLocation"></div>
                     </div>
                 </div>
             </div>
@@ -1432,38 +1432,6 @@
             playerModal.classList.remove('active');
         }
 
-        // Fallback function with dummy data (in case API is not available)
-        function getDummyPlayers(teamId) {
-            // This is sample data - replace with your actual players
-            const dummyPlayers = {
-                senior_a: [
-                    { id: 1, name: "Player One", full_name: "Player One Full", number: 1, position: "portero", team: "senior_a", birth_date: "1990-01-01", nationality: "Española", image: null },
-                    { id: 2, name: "Player Two", full_name: "Player Two Full", number: 2, position: "defensa", team: "senior_a", birth_date: "1991-02-02", nationality: "Española", image: null },
-                    { id: 3, name: "Player Three", full_name: "Player Three Full", number: 3, position: "defensa", team: "senior_a", birth_date: "1992-03-03", nationality: "Española", image: null },
-                    { id: 4, name: "Player Four", full_name: "Player Four Full", number: 4, position: "centrocampista", team: "senior_a", birth_date: "1993-04-04", nationality: "Española", image: null },
-                    { id: 5, name: "Player Five", full_name: "Player Five Full", number: 5, position: "centrocampista", team: "senior_a", birth_date: "1994-05-05", nationality: "Española", image: null },
-                    { id: 6, name: "Player Six", full_name: "Player Six Full", number: 6, position: "delantero", team: "senior_a", birth_date: "1995-06-06", nationality: "Española", image: null },
-                ],
-                senior_b: [
-                    { id: 7, name: "Player Seven", full_name: "Player Seven Full", number: 7, position: "portero", team: "senior_b", birth_date: "1996-07-07", nationality: "Española", image: null },
-                    { id: 8, name: "Player Eight", full_name: "Player Eight Full", number: 8, position: "defensa", team: "senior_b", birth_date: "1997-08-08", nationality: "Española", image: null },
-                    { id: 9, name: "Player Nine", full_name: "Player Nine Full", number: 9, position: "defensa", team: "senior_b", birth_date: "1998-09-09", nationality: "Española", image: null },
-                    { id: 10, name: "Player Ten", full_name: "Player Ten Full", number: 10, position: "centrocampista", team: "senior_b", birth_date: "1999-10-10", nationality: "Española", image: null },
-                    { id: 11, name: "Player Eleven", full_name: "Player Eleven Full", number: 11, position: "centrocampista", team: "senior_b", birth_date: "2000-11-11", nationality: "Española", image: null },
-                    { id: 12, name: "Player Twelve", full_name: "Player Twelve Full", number: 12, position: "delantero", team: "senior_b", birth_date: "2001-12-12", nationality: "Española", image: null },
-                ],
-                cantera: [
-                    { id: 13, name: "Youth One", full_name: "Youth One Full", number: 13, position: "portero", team: "cantera", birth_date: "2002-01-01", nationality: "Española", image: null },
-                    { id: 14, name: "Youth Two", full_name: "Youth Two Full", number: 14, position: "defensa", team: "cantera", birth_date: "2003-02-02", nationality: "Española", image: null },
-                    { id: 15, name: "Youth Three", full_name: "Youth Three Full", number: 15, position: "defensa", team: "cantera", birth_date: "2004-03-03", nationality: "Española", image: null },
-                    { id: 16, name: "Youth Four", full_name: "Youth Four Full", number: 16, position: "centrocampista", team: "cantera", birth_date: "2005-04-04", nationality: "Española", image: null },
-                    { id: 17, name: "Youth Five", full_name: "Youth Five Full", number: 17, position: "centrocampista", team: "cantera", birth_date: "2006-05-05", nationality: "Española", image: null },
-                    { id: 18, name: "Youth Six", full_name: "Youth Six Full", number: 18, position: "delantero", team: "cantera", birth_date: "2007-06-06", nationality: "Española", image: null },
-                ]
-            };
-
-            return dummyPlayers[teamId] || [];
-        }
 
         // Initialize with the first team
         selectTeam('senior_a');

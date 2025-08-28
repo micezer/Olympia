@@ -1,0 +1,613 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inscripción de Jugadoras</title>
+    <style>
+        :root {
+            --primary-blue: #2a374c;
+            --secondary-blue: #1f2531;
+            --primary-gold: #b8ac84;
+            --secondary-gold: #7f765a;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+            --sombra: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--primary-blue);
+            color: var(--blanco);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-gold);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h2 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para el menú de pasos */
+        .steps-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 40px auto;
+            padding-top: 40px;
+            animation: fadeIn 0.6s ease-out;
+            justify-content: center;
+        }
+
+        .step-card {
+            border: 2px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s;
+            background-color: var(--secondary-blue);
+            color: var(--blanco);
+            box-shadow: var(--sombra);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-card.completed {
+            background-color: rgba(184, 172, 132, 0.1);
+            border-color: var(--secondary-gold);
+        }
+
+        .step-card.active {
+            background-color: var(--primary-gold);
+            color: var(--secondary-blue);
+            font-weight: bold;
+        }
+
+        .step-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+            border-color: #555;
+        }
+
+        /* Estilos para el formulario de pasos */
+        .form-container {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 50px;
+            padding: 30px;
+            box-shadow: var(--sombra);
+            border: 1px solid rgba(184, 172, 132, 0.2);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-gold);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(184, 172, 132, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--secondary-blue);
+            color: var(--blanco);
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 2px rgba(184, 172, 132, 0.3);
+        }
+
+        .navigation-buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background: var(--primary-gold);
+            color: var(--secondary-blue);
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: var(--secondary-gold);
+        }
+
+        button.secondary {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+        }
+
+        button.secondary:hover {
+            background: rgba(184, 172, 132, 0.1);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .alert-success {
+            background-color: rgba(46, 125, 50, 0.2);
+            border: 1px solid #2e7d32;
+            color: #a5d6a7;
+        }
+
+        .alert-error {
+            background-color: rgba(198, 40, 40, 0.2);
+            border: 1px solid #c62828;
+            color: #ffabab;
+        }
+
+        .alert-info {
+            background-color: rgba(30, 136, 229, 0.2);
+            border: 1px solid #1e88e5;
+            color: #90caf9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps-menu {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .steps-menu {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulario de Inscripción</h1>
+
+    <!-- Menú de pasos -->
+    <div class="steps-menu" id="stepsMenu">
+        <div class="step-card active" data-step="1" onclick="navigateToStep(1)">
+            <div>Información Básica</div>
+        </div>
+        <div class="step-card locked" data-step="2" onclick="navigateToStep(2)">
+            <div>Continuar Inscripción</div>
+        </div>
+    </div>
+
+    <!-- Contenedor del formulario actual -->
+    <div id="currentFormContainer">
+        <!-- Paso 1: Información Básica -->
+        <div class="form-container active" id="step1Form">
+            <h2>Información Básica</h2>
+
+            <div class="form-group">
+                <label for="dni">DNI*</label>
+                <input type="text" id="dni" name="dni" placeholder="Escribe tu DNI" required>
+                <div class="error-message" id="dni_error"></div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button type="button" class="secondary" onclick="checkExistingRegistration()">Recuperar datos</button>
+                <button type="button" onclick="saveStep(1)">Continuar</button>
+            </div>
+        </div>
+
+        <!-- Paso 2: Continuar con el resto de la información -->
+        <div class="form-container" id="step2Form">
+            <h2>Completa tu Información</h2>
+
+            <div class="form-group">
+                <label for="nombre">Nombre*</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                <div class="error-message" id="nombre_error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido*</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Escribe tu apellido" required>
+                <div class="error-message" id="apellido_error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de Nacimiento*</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                <div class="error-message" id="fecha_nacimiento_error"></div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button type="button" class="secondary" onclick="navigateToStep(1)">Anterior</button>
+                <button type="button" onclick="saveStep(2)">Guardar y Finalizar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para mensajes -->
+    <div id="messageContainer" style="margin-top: 20px;"></div>
+
+    <script>
+        // Objeto para almacenar los datos del formulario
+        const formData = {
+            step1: { completed: false, data: {} },
+            step2: { completed: false, data: {} }
+        };
+
+        // Mostrar el menú de pasos al cargar la página
+        document.addEventListener('DOMContentLoaded', function () {
+            showStepsMenu();
+        });
+
+        // Función para mostrar el menú de pasos
+        function showStepsMenu() {
+            document.getElementById('currentFormContainer').style.display = 'none';
+            document.getElementById('stepsMenu').style.display = 'grid';
+            updateStepCards();
+        }
+
+        // Función para navegar a un paso específico
+        function navigateToStep(stepNumber) {
+            const stepCard = document.querySelector(`.step-card[data-step="${stepNumber}"]`);
+
+            // Si el paso está bloqueado y no está completado, no permitir navegar
+            if (stepNumber > 1 && !formData[`step${stepNumber - 1}`].completed &&
+                stepCard.classList.contains('locked')) {
+                return;
+            }
+
+            // Ocultar menú de pasos
+            document.getElementById('stepsMenu').style.display = 'none';
+            document.getElementById('currentFormContainer').style.display = 'block';
+
+            // Ocultar todos los formularios
+            document.querySelectorAll('.form-container').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Mostrar el formulario correspondiente
+            document.getElementById(`step${stepNumber}Form`).classList.add('active');
+        }
+
+        // Replace the current checkExistingRegistration function with this version
+            function checkExistingRegistration() {
+                const dni = document.getElementById('dni').value.trim();
+
+                if (!dni) {
+                    showMessage('Por favor ingresa tu DNI', 'error');
+                    const errorElement = document.getElementById('dni_error');
+                    if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
+                    return;
+                }
+
+                // Clear any error message
+                const errorElement = document.getElementById('dni_error');
+                if (errorElement) errorElement.textContent = '';
+
+                // Obtener el CSRF token
+                const csrfToken = getCSRFToken();
+
+                // In checkExistingRegistration function:
+                fetch("{% url 'check_existing_registration' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken(),
+                    },
+                    body: JSON.stringify({ dni: dni })
+                })
+                    .then(response => {
+                        // Check if response is JSON
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json();
+                        } else {
+                            // If not JSON, throw an error
+                            throw new Error('Server returned non-JSON response');
+                        }
+                    })
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
+                        if (data.exists) {
+                            // Cargar los datos existentes
+                            document.getElementById('nombre').value = data.nombre || '';
+                            document.getElementById('apellido').value = data.apellido || '';
+                            document.getElementById('fecha_nacimiento').value = data.fecha_nacimiento || '';
+
+                            // Guardar el DNI en los datos del formulario
+                            formData.step1.data.dni = dni;
+                            formData.step1.completed = true;
+
+                            // Actualizar tarjetas de pasos
+                            updateStepCards();
+
+                            // Navegar al siguiente paso
+                            navigateToStep(2);
+
+                            showMessage('Datos recuperados correctamente', 'success');
+                        } else {
+                            showMessage('No se encontró un registro con este DNI. Por favor continúa con la inscripción.', 'info');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showMessage('Error al verificar el DNI: ' + error.message, 'error');
+                    });
+            }
+
+        // Replace the current saveStep function with this updated version
+            function saveStep(stepNumber) {
+                // For step 1, we only need to validate DNI
+                if (stepNumber === 1) {
+                    const dni = document.getElementById('dni').value.trim();
+                    if (!dni) {
+                        showMessage('Por favor ingresa tu DNI', 'error');
+                        const errorElement = document.getElementById('dni_error');
+                        if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
+                        return;
+                    }
+
+                    // Clear any error messages
+                    const errorElement = document.getElementById('dni_error');
+                    if (errorElement) errorElement.textContent = '';
+
+                    // Save DNI data
+                    formData[`step${stepNumber}`].data.dni = dni;
+                    formData[`step${stepNumber}`].completed = true;
+
+                    // Obtener el CSRF token
+                    const csrfToken = getCSRFToken();
+
+                    // Enviar datos al servidor
+                    fetch("{% url 'save_registration' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCSRFToken(),
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                        .then(response => {
+                            // Check if response is JSON
+                            const contentType = response.headers.get('content-type');
+                            if (contentType && contentType.includes('application/json')) {
+                                return response.json();
+                            } else {
+                                // If not JSON, throw an error
+                                throw new Error('Server returned non-JSON response');
+                            }
+                        })
+                        .then(data => {
+
+                             if (data.status === 'error') {
+                                throw new Error(data.message);
+                            }
+                            if (data.status === 'success') {
+                                // Navegar al siguiente paso
+                                updateStepCards();
+                                navigateToStep(2);
+                            } else {
+                                throw new Error(data.message || 'Error al guardar');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            showMessage('Error al guardar los datos: ' + error.message, 'error');
+                        });
+
+                } else if (stepNumber === 2) {
+                    // For step 2, validate all required fields
+                    let isValid = true;
+                    const formContainer = document.getElementById(`step${stepNumber}Form`);
+                    const requiredInputs = formContainer.querySelectorAll('[required]');
+
+                    requiredInputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            const errorElement = document.getElementById(`${input.name}_error`);
+                            if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
+                        } else {
+                            const errorElement = document.getElementById(`${input.name}_error`);
+                            if (errorElement) errorElement.textContent = '';
+                        }
+                    });
+
+                    if (!isValid) {
+                        showMessage('Por favor completa todos los campos requeridos', 'error');
+                        return;
+                    }
+
+                    // Guardar datos del paso
+                    const inputs = formContainer.querySelectorAll('input, select');
+                    inputs.forEach(input => {
+                        formData[`step${stepNumber}`].data[input.name] = input.value;
+                    });
+
+                    // Marcar el paso como completado
+                    formData[`step${stepNumber}`].completed = true;
+
+                    // Obtener el CSRF token
+                    const csrfToken = getCSRFToken();
+
+                    // Enviar datos al servidor
+                    fetch("{% url 'save_registration' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                showMessage('Inscripción completada con éxito', 'success');
+                                // Aquí podrías redirigir a una página de éxito o resetear el formulario
+                                setTimeout(() => {
+                                    // Resetear formulario
+                                    document.querySelectorAll('input').forEach(input => input.value = '');
+                                    formData.step1.completed = false;
+                                    formData.step2.completed = false;
+                                    showStepsMenu();
+                                }, 2000);
+                            } else {
+                                throw new Error(data.message || 'Error al guardar');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            showMessage('Error al guardar los datos: ' + error.message, 'error');
+                        });
+                }
+            }
+
+        // Función para actualizar las tarjetas de pasos
+        function updateStepCards() {
+            const stepCards = document.querySelectorAll('.step-card');
+
+            stepCards.forEach(card => {
+                const stepNumber = parseInt(card.dataset.step);
+
+                // Resetear clases
+                card.classList.remove('active', 'completed', 'locked');
+
+                // Marcar pasos completados
+                if (formData[`step${stepNumber}`].completed) {
+                    card.classList.add('completed');
+                }
+
+                // Desbloquear pasos si el anterior está completado
+                if (stepNumber === 1 || formData[`step${stepNumber - 1}`].completed) {
+                    card.classList.remove('locked');
+                } else {
+                    card.classList.add('locked');
+                }
+            });
+        }
+
+        // Función para mostrar mensajes
+        function showMessage(message, type) {
+            const container = document.getElementById('messageContainer');
+            const alertClass = type === 'error' ? 'alert-error' :
+                type === 'success' ? 'alert-success' : 'alert-info';
+            container.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
+            setTimeout(() => { container.innerHTML = ''; }, 5000);
+        }
+
+        // Replace your getCSRFToken function with this improved version
+            function getCSRFToken() {
+                // 1. Try to get it from the cookie
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, 10) === 'csrftoken=') {
+                            cookieValue = decodeURIComponent(cookie.substring(10));
+                            break;
+                        }
+                    }
+                }
+
+                // 2. If not found in cookie, try to get it from the DOM
+                if (!cookieValue) {
+                    const csrfInput = document.querySelector('[name=csrfmiddlewaretoken]');
+                    if (csrfInput && csrfInput.value) {
+                        cookieValue = csrfInput.value;
+                    }
+                }
+
+                // 3. If still not found, make a request to get it
+                if (!cookieValue) {
+                    // This would need to be implemented if needed
+                    console.error('CSRF token not found');
+                }
+
+                return cookieValue;
+            }
+    </script>
+</body>
+
+</html>
+
+{% endblock %}
