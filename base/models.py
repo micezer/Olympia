@@ -211,11 +211,21 @@ class Player(models.Model):
 
 class PlayerRegistration(models.Model):
     dni = models.CharField(max_length=20, unique=True)
-    name = models.CharField(max_length=100)
-    birthday = models.DateField()
-    registration_data = models.JSONField()  # Stores the hardcoded form data as JSON
+    name = models.CharField(max_length=100, blank=True)
+    surname = models.CharField(max_length=100, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+    position = models.CharField(max_length=50, blank=True)
+    team = models.CharField(max_length=50, blank=True)
+    blood_type = models.CharField(max_length=5, blank=True)
+    allergies = models.TextField(blank=True)
+    emergency_contact_name = models.CharField(max_length=100, blank=True)
+    emergency_contact_phone = models.CharField(max_length=20, blank=True)
+    emergency_contact_relationship = models.CharField(max_length=50, blank=True)
+    equipment_size = models.CharField(max_length=10, blank=True)
+    previous_experience = models.TextField(blank=True)
+    registration_complete = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
     def __str__(self):
-        return f"{self.name} ({self.dni})"
+        return f"{self.name} {self.surname} ({self.dni})"
