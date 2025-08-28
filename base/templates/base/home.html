@@ -116,8 +116,9 @@ main {
     .match-date {
       color: var(--primary-gold);
       font-size: 13px;
-      display: flex;
       align-items: center;
+      float: right;
+      display: flex;
       gap: 10px;
       font-weight: 900;
     }
@@ -294,6 +295,7 @@ main {
     .match-location {
       display: flex;
       align-items: center;
+      float: right;
       gap: 8px;
       margin-top: 8px;
       font-size: 13px;
@@ -319,21 +321,91 @@ main {
       text-align: center;
     }
 
-    /* Copa de la Reina Image Section */
-    .copa-image-container {
-      width: 100%;
-      max-width: 500px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        .copa-image-container {
+        text-align: center;
+        margin: 20px 0;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .copa-image-container:hover {
+        transform: scale(1.02);
     }
 
     .copa-image {
-      width: 100%;
-      max-width: 350px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-height: 200px;
+        object-fit: contain;
+    }
+
+    .copa-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .copa-modal.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+    }
+
+    .copa-modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        animation: zoom 0.3s ease;
+    }
+
+    @keyframes zoom {
+        from {transform: scale(0.9);}
+        to {transform: scale(1);}
+    }
+
+    .copa-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: var(--primary-gold);
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .copa-modal-close:hover {
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .copa-image {
+            max-height: 150px;
+        }
+
+        .copa-modal-content {
+            max-width: 95%;
+            max-height: 80%;
+        }
+
+        .copa-modal-close {
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+        }
     }
 
 .match-title-container {
@@ -519,13 +591,58 @@ main {
       </div>
     </div>
 
-    <!-- Copa de la Reina Image -->
-    <div class="copa-image-container">
-      <img src="{% static 'images/icons/copa_de_la_reina.jpg' %}" alt="Copa de la Reina" class="copa-image">
-    </div>
+          <!-- Copa de la Reina Image -->
+          <div class="copa-image-container" id="copaImageContainer">
+            <img src="{% static 'images/icons/copa_de_la_reina.jpg' %}" alt="Copa de la Reina" class="copa-image">
+          </div>
+          <!-- Modal para imagen ampliada -->
+          <div class="copa-modal" id="copaModal">
+            <span class="copa-modal-close" id="copaModalClose">&times;</span>
+            <img class="copa-modal-content" id="copaModalImage">
+          </div>
 
 
   </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const copaImageContainer = document.getElementById('copaImageContainer');
+    const copaModal = document.getElementById('copaModal');
+    const copaModalImage = document.getElementById('copaModalImage');
+    const copaModalClose = document.getElementById('copaModalClose');
+
+    if (copaImageContainer) {
+      copaImageContainer.addEventListener('click', function () {
+        // Cambia esta ruta por la imagen que quieres mostrar en el modal
+        copaModalImage.src = "{% static 'images/copadelareina.png' %}";
+        copaModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    if (copaModalClose) {
+      copaModalClose.addEventListener('click', function () {
+        copaModal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+
+    if (copaModal) {
+      copaModal.addEventListener('click', function (e) {
+        if (e.target === copaModal) {
+          copaModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && copaModal.classList.contains('active')) {
+        copaModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+</script>
 </body>
 
 </html>
