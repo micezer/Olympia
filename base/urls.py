@@ -30,6 +30,11 @@ urlpatterns = [
     path('check-existing-registration/', views.check_existing_registration, name='check_existing_registration'),
     path('save-registration/', views.save_registration, name='save_registration'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
+    path('test-csrf/', views.test_csrf, name='test_csrf'),
+    path('complete-registration/', views.complete_registration, name='complete_registration'),
+    path('check-payment-eligibility/', views.check_payment_eligibility, name='check_payment_eligibility'),
+
+
 
 
 
