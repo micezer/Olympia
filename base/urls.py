@@ -27,14 +27,11 @@ urlpatterns = [
     path('tickets/', views.get_tickets, name='get_tickets'),
     path('api/players/', views.get_players_by_team, name='get_players_by_team'),
     path('inscripcion/', views.registration_form, name='registration_form'),
-    path('check-existing-registration/', views.check_existing_registration, name='check_existing_registration'),
-    path('save-registration/', views.save_registration, name='save_registration'),
+    path('api/check-registration/', views.CheckRegistrationView.as_view(), name='check_registration'),
+    path('api/save-registration/', views.SaveRegistrationView.as_view(), name='save_registration'),
+    path('api/recover-data/', views.RecoverDataView.as_view(), name='recover_data'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
-    path('test-csrf/', views.test_csrf, name='test_csrf'),
-    path('complete-registration/', views.complete_registration, name='complete_registration'),
-    path('check-payment-eligibility/', views.check_payment_eligibility, name='check_payment_eligibility'),
-
-
+   
 
 
 
