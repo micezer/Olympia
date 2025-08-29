@@ -498,7 +498,8 @@
 
     <script>
         // URL base de la API - Cambia esto por tu URL real en producción
-        const API_BASE_URL = 'https://cff-olympia.onrender.com';
+        const API_BASE_URL = 'http://localhost:8000';
+        //const API_BASE_URL = 'https://cff-olympia.onrender.com';
         // Constantes para endpoints de la API
         const API_ENDPOINTS = {
             check: '/api/check-registration/',
@@ -593,238 +594,271 @@
         }
 
         // Función para recuperar datos existentes
-        async function recoverData() {
-            const dni = document.getElementById('recover_dni').value.trim();
-            const recoverButton = document.getElementById('recoverButton');
+            async function recoverData() {
+                const dni = document.getElementById('recover_dni').value.trim();
+                const recoverButton = document.getElementById('recoverButton');
 
-            if (!dni) {
-                showMessage('Por favor ingresa tu DNI', 'error');
-                return;
-            }
-
-            // Mostrar indicador de carga
-            recoverButton.innerHTML = '<span class="loading"></span> Recuperando...';
-            recoverButton.disabled = true;
-
-            try {
-                const response = await fetch(API_BASE_URL + API_ENDPOINTS.recover, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ dni: dni })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
+                if (!dni) {
+                    showMessage('Por favor ingresa tu DNI', 'error');
+                    return;
                 }
 
-                const data = await response.json();
+                // Mostrar indicador de carga
+                recoverButton.innerHTML = '<span class="loading"></span> Recuperando...';
+                recoverButton.disabled = true;
 
-                if (data.exists) {
-                    // Guardar el DNI en los datos del formulario
-                    formData.step1.data.dni = dni;
-                    formData.step1.completed = true;
+                
 
-                    // Llenar los campos con los datos recuperados
-                    document.getElementById('dni').value = dni;
+                try {
+                    console.log('Enviando DNI a /recover-data/:', dni);
+                    console.log('URL:', API_BASE_URL + API_ENDPOINTS.recover);
 
-                    if (data.nombre) {
-                        document.getElementById('nombre').value = data.nombre;
-                        formData.step2.data.nombre = data.nombre;
+                    const response = await fetch(API_BASE_URL + API_ENDPOINTS.recover, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ dni: dni })
+                    });
+
+                    const data = await response.json();
+
+                    console.log('Respuesta de /recover-data/:', data);
+                    console.log('Status:', response.status);
+
+                    if (!response.ok) {
+                        throw new Error(data.error || `Error HTTP: ${response.status}`);
                     }
 
-                    if (data.apellido) {
-                        document.getElementById('apellido').value = data.apellido;
-                        formData.step2.data.apellido = data.apellido;
+                    if (data.exists) {
+                        // Guardar el DNI en los datos del formulario
+                        formData.step1.data.dni = dni;
+                        formData.step1.completed = true;
+
+                        // Llenar los campos con los datos recuperados
+                        document.getElementById('dni').value = dni;
+
+                        if (data.name) {
+                            document.getElementById('nombre').value = data.name;
+                            formData.step2.data.nombre = data.name;
+                        }
+
+                        if (data.surname) {
+                            document.getElementById('apellido').value = data.surname;
+                            formData.step2.data.apellido = data.surname;
+                        }
+
+                        if (data.birthday) {
+                            document.getElementById('fecha_nacimiento').value = data.birthday;
+                            formData.step2.data.fecha_nacimiento = data.birthday;
+                        }
+
+                        if (data.position) {
+                            document.getElementById('posicion').value = data.position;
+                            formData.step3.data.posicion = data.position;
+                        }
+
+                        if (data.team) {
+                            document.getElementById('equipo').value = data.team;
+                            formData.step3.data.equipo = data.team;
+                        }
+
+                        if (data.blood_type) {
+                            document.getElementById('tipo_sangre').value = data.blood_type;
+                            formData.step4.data.tipo_sangre = data.blood_type;
+                        }
+
+                        if (data.allergies) {
+                            document.getElementById('alergias').value = data.allergies;
+                            formData.step4.data.alergias = data.allergies;
+                        }
+
+                        if (data.emergency_contact_name) {
+                            document.getElementById('contacto_emergencia_nombre').value = data.emergency_contact_name;
+                            formData.step4.data.contacto_emergencia_nombre = data.emergency_contact_name;
+                        }
+
+                        if (data.emergency_contact_phone) {
+                            document.getElementById('contacto_emergencia_telefono').value = data.emergency_contact_phone;
+                            formData.step4.data.contacto_emergencia_telefono = data.emergency_contact_phone;
+                        }
+
+                        if (data.emergency_contact_relationship) {
+                            document.getElementById('contacto_emergencia_parentesco').value = data.emergency_contact_relationship;
+                            formData.step4.data.contacto_emergencia_parentesco = data.emergency_contact_relationship;
+                        }
+
+                        if (data.equipment_size) {
+                            document.getElementById('talla_equipacion').value = data.equipment_size;
+                            formData.step5.data.talla_equipacion = data.equipment_size;
+                        }
+
+                        if (data.previous_experience) {
+                            document.getElementById('experiencia_previa').value = data.previous_experience;
+                            formData.step5.data.experiencia_previa = data.previous_experience;
+                        }
+
+                        // Marcar pasos como completados según los datos recuperados
+                        if (data.name && data.surname && data.birthday) {
+                            formData.step2.completed = true;
+                        }
+
+                        if (data.position && data.team) {
+                            formData.step3.completed = true;
+                        }
+
+                        if (data.emergency_contact_name && data.emergency_contact_phone && data.emergency_contact_relationship) {
+                            formData.step4.completed = true;
+                        }
+
+                        if (data.equipment_size) {
+                            formData.step5.completed = true;
+                        }
+
+                        // Actualizar tarjetas de pasos
+                        updateStepCards();
+
+                        // Mostrar menú de pasos
+                        document.getElementById('recoverScreen').style.display = 'none';
+                        document.getElementById('stepsMenu').style.display = 'grid';
+
+                        showMessage('Datos recuperados correctamente. Puedes continuar desde donde lo dejaste.', 'success');
+                    } else {
+                        showMessage('No se encontró un registro con este DNI. Por favor inicia una nueva inscripción.', 'info');
                     }
-
-                    if (data.fecha_nacimiento) {
-                        document.getElementById('fecha_nacimiento').value = data.fecha_nacimiento;
-                        formData.step2.data.fecha_nacimiento = data.fecha_nacimiento;
-                    }
-
-                    if (data.posicion) {
-                        document.getElementById('posicion').value = data.posicion;
-                        formData.step3.data.posicion = data.posicion;
-                    }
-
-                    if (data.equipo) {
-                        document.getElementById('equipo').value = data.equipo;
-                        formData.step3.data.equipo = data.equipo;
-                    }
-
-                    if (data.tipo_sangre) {
-                        document.getElementById('tipo_sangre').value = data.tipo_sangre;
-                        formData.step4.data.tipo_sangre = data.tipo_sangre;
-                    }
-
-                    if (data.alergias) {
-                        document.getElementById('alergias').value = data.alergias;
-                        formData.step4.data.alergias = data.alergias;
-                    }
-
-                    if (data.contacto_emergencia_nombre) {
-                        document.getElementById('contacto_emergencia_nombre').value = data.contacto_emergencia_nombre;
-                        formData.step4.data.contacto_emergencia_nombre = data.contacto_emergencia_nombre;
-                    }
-
-                    if (data.contacto_emergencia_telefono) {
-                        document.getElementById('contacto_emergencia_telefono').value = data.contacto_emergencia_telefono;
-                        formData.step4.data.contacto_emergencia_telefono = data.contacto_emergencia_telefono;
-                    }
-
-                    if (data.contacto_emergencia_parentesco) {
-                        document.getElementById('contacto_emergencia_parentesco').value = data.contacto_emergencia_parentesco;
-                        formData.step4.data.contacto_emergencia_parentesco = data.contacto_emergencia_parentesco;
-                    }
-
-                    if (data.talla_equipacion) {
-                        document.getElementById('talla_equipacion').value = data.talla_equipacion;
-                        formData.step5.data.talla_equipacion = data.talla_equipacion;
-                    }
-
-                    if (data.experiencia_previa) {
-                        document.getElementById('experiencia_previa').value = data.experiencia_previa;
-                        formData.step5.data.experiencia_previa = data.experiencia_previa;
-                    }
-
-                    // Marcar pasos como completados según los datos recuperados
-                    if (data.nombre && data.apellido && data.fecha_nacimiento) {
-                        formData.step2.completed = true;
-                    }
-
-                    if (data.posicion && data.equipo) {
-                        formData.step3.completed = true;
-                    }
-
-                    if (data.contacto_emergencia_nombre && data.contacto_emergencia_telefono && data.contacto_emergencia_parentesco) {
-                        formData.step4.completed = true;
-                    }
-
-                    if (data.talla_equipacion) {
-                        formData.step5.completed = true;
-                    }
-
-                    // Actualizar tarjetas de pasos
-                    updateStepCards();
-
-                    // Mostrar menú de pasos
-                    document.getElementById('recoverScreen').style.display = 'none';
-                    document.getElementById('stepsMenu').style.display = 'grid';
-
-                    showMessage('Datos recuperados correctamente. Puedes continuar desde donde lo dejaste.', 'success');
-                } else {
-                    showMessage('No se encontró un registro con este DNI. Por favor inicia una nueva inscripción.', 'info');
+                } catch (error) {
+                    console.error('Error:', error);
+                    showMessage('Error al recuperar los datos: ' + error.message, 'error');
+                } finally {
+                    // Restaurar botón
+                    recoverButton.innerHTML = 'Recuperar datos';
+                    recoverButton.disabled = false;
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Error al recuperar los datos. Por favor intenta nuevamente.', 'error');
-            } finally {
-                // Restaurar botón
-                recoverButton.innerHTML = 'Recuperar datos';
-                recoverButton.disabled = false;
             }
-        }
 
         // Función para guardar un paso completo
-        async function saveStep(stepNumber) {
-            // Validar campos requeridos
-            let isValid = true;
-            const formContainer = document.getElementById(`step${stepNumber}Form`);
-            const requiredInputs = formContainer.querySelectorAll('[required]');
-            const stepButton = document.getElementById(`step${stepNumber}Button`);
+            async function saveStep(stepNumber) {
+                // Validar campos requeridos
+                let isValid = true;
+                const formContainer = document.getElementById(`step${stepNumber}Form`);
+                const requiredInputs = formContainer.querySelectorAll('[required]');
+                const stepButton = document.getElementById(`step${stepNumber}Button`);
 
-            requiredInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    const errorElement = document.getElementById(`${input.name}_error`);
-                    if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
-                } else {
-                    const errorElement = document.getElementById(`${input.name}_error`);
-                    if (errorElement) errorElement.textContent = '';
-                }
-            });
-
-            if (!isValid) {
-                showMessage('Por favor completa todos los campos requeridos', 'error');
-                return;
-            }
-
-            // Guardar datos del paso
-            const inputs = formContainer.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                formData[`step${stepNumber}`].data[input.name] = input.value;
-            });
-
-            // Marcar el paso como completado
-            formData[`step${stepNumber}`].completed = true;
-
-            // Mostrar indicador de carga
-            stepButton.innerHTML = '<span class="loading"></span> Guardando...';
-            stepButton.disabled = true;
-
-            try {
-                // Preparar datos para enviar al servidor
-                const dataToSend = {
-                    dni: formData.step1.data.dni,
-                    ...formData.step2.data,
-                    ...formData.step3.data,
-                    ...formData.step4.data,
-                    ...formData.step5.data,
-                    current_step: stepNumber
-                };
-
-                const response = await fetch(API_BASE_URL + API_ENDPOINTS.save, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSend)
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        const errorElement = document.getElementById(`${input.name}_error`);
+                        if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
+                        input.style.borderColor = '#ff6b6b';
+                    } else {
+                        const errorElement = document.getElementById(`${input.name}_error`);
+                        if (errorElement) errorElement.textContent = '';
+                        input.style.borderColor = '';
+                    }
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
+                if (!isValid) {
+                    showMessage('Por favor completa todos los campos requeridos', 'error');
+                    // Scroll to first error
+                    const firstError = formContainer.querySelector('[required]:invalid');
+                    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
                 }
 
-                const result = await response.json();
+                // Guardar datos del paso
+                const inputs = formContainer.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    formData[`step${stepNumber}`].data[input.name] = input.value;
+                });
 
-                if (result.status === 'success') {
-                    if (stepNumber < 5) {
-                        // Navegar al menú de pasos
-                        updateStepCards();
-                        backToStepsMenu();
-                        showMessage('Paso ' + stepNumber + ' guardado correctamente', 'success');
-                    } else {
-                        showMessage('Inscripción completada con éxito', 'success');
-                        // Resetear formulario después de éxito
-                        setTimeout(() => {
-                            document.querySelectorAll('input, select, textarea').forEach(input => {
-                                if (input.id !== 'recover_dni') input.value = '';
-                            });
-                            for (let key in formData) {
-                                formData[key].completed = false;
-                                formData[key].data = {};
-                            }
-                            showWelcomeScreen();
-                        }, 2000);
+                // Marcar el paso como completado
+                formData[`step${stepNumber}`].completed = true;
+
+                // Mostrar indicador de carga
+                stepButton.innerHTML = '<span class="loading"></span> Guardando...';
+                stepButton.disabled = true;
+
+                try {
+                    // Preparar datos para enviar al servidor
+                    const dataToSend = {
+                        dni: formData.step1.data.dni,
+                        current_step: stepNumber
+                    };
+
+                    // Agregar datos específicos de cada paso
+                    if (stepNumber >= 2) {
+                        Object.assign(dataToSend, formData.step2.data);
                     }
-                } else {
-                    throw new Error(result.message || 'Error al guardar');
+                    if (stepNumber >= 3) {
+                        Object.assign(dataToSend, formData.step3.data);
+                    }
+                    if (stepNumber >= 4) {
+                        Object.assign(dataToSend, formData.step4.data);
+                    }
+                    if (stepNumber >= 5) {
+                        Object.assign(dataToSend, formData.step5.data);
+                    }
+
+                    console.log('Enviando datos a /save-registration/:', dataToSend);
+                    console.log('URL:', API_BASE_URL + API_ENDPOINTS.save);
+
+                    const response = await fetch(API_BASE_URL + API_ENDPOINTS.save, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    const responseData = await response.json();
+
+                    console.log('Respuesta de /save-registration/:', responseData);
+                    console.log('Status:', response.status);
+
+                    if (!response.ok) {
+                        // Si la respuesta no es OK, mostrar el error del servidor
+                        throw new Error(responseData.error || `Error HTTP: ${response.status}`);
+                    }
+
+                    if (responseData.status === 'success') {
+                        if (stepNumber < 5) {
+                            // Navegar al menú de pasos
+                            updateStepCards();
+                            backToStepsMenu();
+                            showMessage('Paso ' + stepNumber + ' guardado correctamente', 'success');
+                        } else {
+                            showMessage('Inscripción completada con éxito', 'success');
+                            // Resetear formulario después de éxito
+                            setTimeout(() => {
+                                document.querySelectorAll('input, select, textarea').forEach(input => {
+                                    if (input.id !== 'recover_dni') input.value = '';
+                                });
+                                for (let key in formData) {
+                                    formData[key].completed = false;
+                                    formData[key].data = {};
+                                }
+                                showWelcomeScreen();
+                            }, 2000);
+                        }
+                    } else {
+                        throw new Error(responseData.message || 'Error al guardar');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showMessage('Error al guardar los datos: ' + error.message, 'error');
+
+                    // Mostrar más detalles en consola para debugging
+                    console.log('Datos enviados:', dataToSend);
+                } finally {
+                    // Restaurar botón
+                    if (stepNumber < 5) {
+                        stepButton.innerHTML = stepNumber === 1 ? 'Continuar' : 'Guardar y continuar';
+                    } else {
+                        stepButton.innerHTML = 'Guardar y Finalizar';
+                    }
+                    stepButton.disabled = false;
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Error al guardar los datos: ' + error.message, 'error');
-            } finally {
-                // Restaurar botón
-                if (stepNumber < 5) {
-                    stepButton.innerHTML = stepNumber === 1 ? 'Continuar' : 'Guardar y continuar';
-                } else {
-                    stepButton.innerHTML = 'Guardar y Finalizar';
-                }
-                stepButton.disabled = false;
             }
-        }
 
         // Función para actualizar las tarjetas de pasos
         function updateStepCards() {
