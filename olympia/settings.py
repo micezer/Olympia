@@ -49,9 +49,9 @@ SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+ALLOWED_HOSTS = ['cff-olympia.onrender.com', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['cff-olympia.onrender.com']
-ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
     'pwa',
+    'corsheaders',
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -101,6 +102,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'olympia.urls'
@@ -252,9 +254,11 @@ STRIPE_PUBLIC_KEY = 'your_publishable_key'
 STRIPE_SECRET_KEY = 'your_secret_key'
 STRIPE_WEBHOOK_SECRET = 'your_webhook_secret'
 
+# Configure CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",  # Django
-    "http://192.168.1.139:8000",  # Your frontend (adjust as needed)
+    "https://cff-olympia.onrender.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
 # For development only - allows session cookies to work cross-origin
