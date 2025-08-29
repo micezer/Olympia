@@ -501,12 +501,28 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 import re
 
+# views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.decorators import method_decorator
+from django.views import View
+import json
+from .models import PlayerRegistration
+from django.core.exceptions import ValidationError
+import re
+from datetime import datetime
+
 @method_decorator(csrf_exempt, name='dispatch')
-@method_decorator(require_POST, name='dispatch')
 class CheckRegistrationView(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)
+            # Parse JSON data
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+            except:
+                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+                
             dni = data.get('dni', '').strip()
             
             if not dni:
@@ -514,12 +530,11 @@ class CheckRegistrationView(View):
             
             try:
                 player = PlayerRegistration.objects.get(dni=dni)
-                return JsonResponse({
+                response_data = {
                     'exists': True,
                     'dni': player.dni,
                     'name': player.name,
                     'surname': player.surname,
-                    'birthday': player.birthday.isoformat() if player.birthday else None,
                     'position': player.position,
                     'team': player.team,
                     'blood_type': player.blood_type,
@@ -530,30 +545,35 @@ class CheckRegistrationView(View):
                     'equipment_size': player.equipment_size,
                     'previous_experience': player.previous_experience,
                     'registration_complete': player.registration_complete
-                })
+                }
+                
+                # Add birthday if exists
+                if player.birthday:
+                    response_data['birthday'] = player.birthday.strftime('%Y-%m-%d')
+                    
+                return JsonResponse(response_data)
+                
             except PlayerRegistration.DoesNotExist:
                 return JsonResponse({'exists': False})
                 
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON'}, status=400)
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
 
 @method_decorator(csrf_exempt, name='dispatch')
-@method_decorator(require_POST, name='dispatch')
 class SaveRegistrationView(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)
+            # Parse JSON data
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+            except:
+                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+                
             dni = data.get('dni', '').strip()
-            current_step = data.get('current_step', 1)
+            current_step = int(data.get('current_step', 1))
             
             if not dni:
                 return JsonResponse({'error': 'DNI is required'}, status=400)
-            
-            # Validate DNI format (adjust based on your country's requirements)
-            if not re.match(r'^[0-9]{7,10}$', dni):
-                return JsonResponse({'error': 'Invalid DNI format'}, status=400)
             
             # Get or create player registration
             player, created = PlayerRegistration.objects.get_or_create(dni=dni)
@@ -564,26 +584,31 @@ class SaveRegistrationView(View):
                 pass
                 
             if current_step >= 2:
-                player.name = data.get('nombre', '')
-                player.surname = data.get('apellido', '')
-                birthday = data.get('fecha_nacimiento')
-                if birthday:
-                    player.birthday = birthday
+                player.name = data.get('nombre', player.name or '')
+                player.surname = data.get('apellido', player.surname or '')
+                
+                # Handle birthday field
+                birthday_str = data.get('fecha_nacimiento', '')
+                if birthday_str:
+                    try:
+                        player.birthday = datetime.strptime(birthday_str, '%Y-%m-%d').date()
+                    except ValueError:
+                        pass  # Keep existing value if parsing fails
                 
             if current_step >= 3:
-                player.position = data.get('posicion', '')
-                player.team = data.get('equipo', '')
+                player.position = data.get('posicion', player.position or '')
+                player.team = data.get('equipo', player.team or '')
                 
             if current_step >= 4:
-                player.blood_type = data.get('tipo_sangre', '')
-                player.allergies = data.get('alergias', '')
-                player.emergency_contact_name = data.get('contacto_emergencia_nombre', '')
-                player.emergency_contact_phone = data.get('contacto_emergencia_telefono', '')
-                player.emergency_contact_relationship = data.get('contacto_emergencia_parentesco', '')
+                player.blood_type = data.get('tipo_sangre', player.blood_type or '')
+                player.allergies = data.get('alergias', player.allergies or '')
+                player.emergency_contact_name = data.get('contacto_emergencia_nombre', player.emergency_contact_name or '')
+                player.emergency_contact_phone = data.get('contacto_emergencia_telefono', player.emergency_contact_phone or '')
+                player.emergency_contact_relationship = data.get('contacto_emergencia_parentesco', player.emergency_contact_relationship or '')
                 
             if current_step >= 5:
-                player.equipment_size = data.get('talla_equipacion', '')
-                player.previous_experience = data.get('experiencia_previa', '')
+                player.equipment_size = data.get('talla_equipacion', player.equipment_size or '')
+                player.previous_experience = data.get('experiencia_previa', player.previous_experience or '')
                 player.registration_complete = True
                 
             player.save()
@@ -595,19 +620,19 @@ class SaveRegistrationView(View):
                 'registration_complete': player.registration_complete
             })
             
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON'}, status=400)
-        except ValidationError as e:
-            return JsonResponse({'error': str(e)}, status=400)
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
 
 @method_decorator(csrf_exempt, name='dispatch')
-@method_decorator(require_POST, name='dispatch')
 class RecoverDataView(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)
+            # Parse JSON data
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+            except:
+                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+                
             dni = data.get('dni', '').strip()
             
             if not dni:
@@ -615,12 +640,11 @@ class RecoverDataView(View):
             
             try:
                 player = PlayerRegistration.objects.get(dni=dni)
-                return JsonResponse({
+                response_data = {
                     'exists': True,
                     'dni': player.dni,
                     'name': player.name,
                     'surname': player.surname,
-                    'birthday': player.birthday.isoformat() if player.birthday else None,
                     'position': player.position,
                     'team': player.team,
                     'blood_type': player.blood_type,
@@ -631,11 +655,16 @@ class RecoverDataView(View):
                     'equipment_size': player.equipment_size,
                     'previous_experience': player.previous_experience,
                     'registration_complete': player.registration_complete
-                })
+                }
+                
+                # Add birthday if exists
+                if player.birthday:
+                    response_data['birthday'] = player.birthday.strftime('%Y-%m-%d')
+                    
+                return JsonResponse(response_data)
+                
             except PlayerRegistration.DoesNotExist:
                 return JsonResponse({'exists': False})
                 
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON'}, status=400)
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
