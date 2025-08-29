@@ -292,8 +292,3 @@ CSRF_USE_SESSIONS = False
 CSRF_COOKIE_HTTPONLY = False  # Needs to be False for JavaScript access
 
 
-# Database (Render provee DATABASE_URL)
-import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
