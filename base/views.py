@@ -453,8 +453,11 @@ def create_inscription(request):
                     'message': 'Invalid JSON format'
                 }, status=400)
             
-            # Validate required fields
-            required_fields = ['full_name', 'email', 'phone', 'birthdate', 'address', 'city', 'zip_code', 'category', 'position']
+            # Validate required fields - UPDATED FOR NEW FORM
+            required_fields = [
+                'full_name', 'birthdate', 'category', 'birth_municipality', 
+                'empadronamiento', 'landline', 'address', 'city', 'zip_code'
+            ]
             missing_fields = [field for field in required_fields if field not in data or not data[field]]
             
             if missing_fields:
@@ -462,35 +465,6 @@ def create_inscription(request):
                     'status': 'error',
                     'message': f'Missing required fields: {", ".join(missing_fields)}'
                 }, status=400)
-            
-            # Create the inscription (without saving to database as requested)
-            # If you want to save to database, uncomment the following lines:
-            """
-            inscription = Inscription(
-                full_name=data['full_name'],
-                email=data['email'],
-                phone=data['phone'],
-                birthdate=data['birthdate'],
-                address=data['address'],
-                city=data['city'],
-                zip_code=data['zip_code'],
-                category=data['category'],
-                position=data['position'],
-                experience=data.get('experience'),
-                previous_clubs=data.get('previous_clubs', ''),
-                medical_conditions=data.get('medical_conditions', ''),
-            )
-            
-            # Set hardcoded values
-            inscription.season = data.get('season', '2023/2024')
-            inscription.registration_fee = data.get('registration_fee', 150.00)
-            
-            if 'included_items' in data:
-                inscription.set_included_items(data['included_items'])
-            
-            inscription.save()
-            inscription_number = inscription.inscription_number
-            """
             
             # Generate inscription number without saving to DB
             import uuid
@@ -517,7 +491,7 @@ def create_inscription(request):
     }, status=405)
 
 def send_inscription_emails(data, inscription_number):
-    """Send confirmation emails"""
+    """Send confirmation emails - UPDATED FOR NEW FIELDS"""
     try:
         # Email to customer
         customer_subject = f'Confirmación de inscripción #{inscription_number} - Club Olympia'
@@ -528,7 +502,7 @@ Detalles de tu inscripción:
 Número de inscripción: {inscription_number}
 Nombre: {data['full_name']}
 Categoría: {data['category']}
-Posición: {data['position']}
+Fecha de nacimiento: {data['birthdate']}
 
 Hemos recibido tu solicitud y nos pondremos en contacto contigo pronto para completar el proceso.
 
@@ -537,32 +511,42 @@ Para cualquier consulta, puedes contactarnos en inscripciones@olympia.com
 ¡Te damos la bienvenida a Olympia!
 '''
         
-        send_mail(
-            customer_subject,
-            customer_message,
-            settings.DEFAULT_FROM_EMAIL,
-            [data['email']],
-            fail_silently=False,
-        )
+        # Use appropriate email (player email if available, otherwise parent email)
+        recipient_email = data.get('email')  # Player email for adults
         
-        # Email to club
+        if recipient_email:
+            send_mail(
+                customer_subject,
+                customer_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [recipient_email],
+                fail_silently=False,
+            )
+        
+        # Email to club - UPDATED WITH NEW FIELDS
         club_subject = f'Nueva inscripción #{inscription_number} - {data["full_name"]}'
         club_message = f'''
 Nueva inscripción recibida en el sistema:
 
 INFORMACIÓN PERSONAL:
 Nombre: {data['full_name']}
-Email: {data['email']}
-Teléfono: {data['phone']}
 Fecha de nacimiento: {data['birthdate']}
-Dirección: {data['address']}, {data['city']} {data['zip_code']}
-
-INFORMACIÓN DEPORTIVA:
 Categoría: {data['category']}
-Posición: {data['position']}
-Experiencia: {data.get('experience', 'No especificada')} años
-Club anterior: {data.get('previous_clubs', 'Ninguno')}
-Condiciones médicas: {data.get('medical_conditions', 'Ninguna')}
+Municipio de nacimiento: {data['birth_municipality']}
+Empadronamiento: {data['empadronamiento']}
+DNI Jugadora: {data.get('player_dni', 'No proporcionado')}
+Email Jugadora: {data.get('email', 'No proporcionado')}
+Teléfono Jugadora: {data.get('phone', 'No proporcionado')}
+Teléfono Fijo: {data['landline']}
+
+DOMICILIO:
+Dirección: {data['address']}
+Población: {data['city']}
+Código Postal: {data['zip_code']}
+
+EXPERIENCIA PREVIA:
+¿Ha jugado antes?: {data.get('played_before', 'No especificado')}
+Equipos anteriores y posición: {data.get('previous_teams', 'No especificado')}
 
 DATOS DE LA INSCRIPCIÓN:
 Número: {inscription_number}
@@ -571,7 +555,7 @@ Cuota: {data.get('registration_fee', '150')}€
 '''
         
         # Send to club email (configure this in your settings)
-        club_email = getattr(settings, 'CLUB_EMAIL', 'inscripciones@olympia.com')
+        club_email = getattr(settings, 'CLUB_EMAIL', 'moezehero@gmail.com')
         
         send_mail(
             club_subject,
