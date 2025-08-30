@@ -209,23 +209,77 @@ class Player(models.Model):
     
 
 
-class PlayerRegistration(models.Model):
-    dni = models.CharField(max_length=20, unique=True)
-    name = models.CharField(max_length=100, blank=True)
-    surname = models.CharField(max_length=100, blank=True)
-    birthday = models.DateField(null=True, blank=True)
-    position = models.CharField(max_length=50, blank=True)
-    team = models.CharField(max_length=50, blank=True)
-    blood_type = models.CharField(max_length=5, blank=True)
-    allergies = models.TextField(blank=True)
-    emergency_contact_name = models.CharField(max_length=100, blank=True)
-    emergency_contact_phone = models.CharField(max_length=20, blank=True)
-    emergency_contact_relationship = models.CharField(max_length=50, blank=True)
-    equipment_size = models.CharField(max_length=10, blank=True)
-    previous_experience = models.TextField(blank=True)
-    registration_complete = models.BooleanField(default=False)
+from django.db import models
+import uuid
+
+class Inscription(models.Model):
+    # Personal Information
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    birthdate = models.DateField()
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=10)
+    
+    # Sports Information
+    CATEGORY_CHOICES = [
+        ('Prebenjamín', 'Prebenjamín'),
+        ('Benjamín', 'Benjamín'),
+        ('Alevín', 'Alevín'),
+        ('Infantil', 'Infantil'),
+        ('Cadete', 'Cadete'),
+        ('Juvenil', 'Juvenil'),
+        ('Senior', 'Senior'),
+    ]
+    
+    POSITION_CHOICES = [
+        ('Portero', 'Portero'),
+        ('Defensa', 'Defensa'),
+        ('Centrocampista', 'Centrocampista'),
+        ('Delantero', 'Delantero'),
+    ]
+    
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    position = models.CharField(max_length=20, choices=POSITION_CHOICES)
+    experience = models.PositiveIntegerField(null=True, blank=True)
+    previous_clubs = models.CharField(max_length=200, blank=True)
+    medical_conditions = models.TextField(blank=True)
+    
+    # System fields
+    inscription_number = models.CharField(max_length=10, unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    # Hardcoded JSON data
+    season = models.CharField(max_length=20, default="2023/2024")
+    registration_fee = models.DecimalField(max_digits=6, decimal_places=2, default=150.00)
+    included_items = models.TextField(
+        default='[{"item": "Uniforme completo", "quantity": 1}, {"item": "Seguro médico", "quantity": 1}, {"item": "Acceso a instalaciones", "quantity": 1}]'
+    )
+    
+    class Meta:
+        verbose_name = "Inscripción"
+        verbose_name_plural = "Inscripciones"
+        ordering = ['-created_at']
+    
     def __str__(self):
-        return f"{self.name} {self.surname} ({self.dni})"
+        return f"{self.full_name} - {self.category} - {self.inscription_number}"
+    
+    def save(self, *args, **kwargs):
+        if not self.inscription_number:
+            self.inscription_number = str(uuid.uuid4())[:8].upper()
+        super().save(*args, **kwargs)
+    
+    def get_included_items(self):
+        """Parse the included_items JSON string into Python objects"""
+        import json
+        try:
+            return json.loads(self.included_items)
+        except (json.JSONDecodeError, TypeError):
+            return []
+    
+    def set_included_items(self, items_list):
+        """Set included_items from a Python list"""
+        import json
+        self.included_items = json.dumps(items_list)

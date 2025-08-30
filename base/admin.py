@@ -53,12 +53,3 @@ class PlayerAdmin(admin.ModelAdmin):
     search_fields = ("name", "full_name", "role")
 
 
-# admin.py
-from django.contrib import admin
-from .models import PlayerRegistration
-
-@admin.register(PlayerRegistration)
-class PlayerRegistrationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'dni', 'birthday', 'created_at')
-    search_fields = ('name', 'dni')
-    list_filter = ('created_at',)
