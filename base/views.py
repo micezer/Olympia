@@ -323,70 +323,8 @@ Productos:
     )
 
 
-logger = logging.getLogger(__name__)
 
-def test_form(request):
-    # Renderiza el formulario
-    return render(request, 'base/test_form.html')
 
-logger = logging.getLogger(__name__)
-
-def formulario_inscripcion(request):
-    if request.method == 'GET':
-        return render(request, 'base/test_form.html')
-    
-    if request.method == 'POST':
-        try:
-            # Recoger datos del formulario
-            datos = {
-                'nombre_completo': request.POST.get('nombre_completo'),
-                'fecha_nacimiento': request.POST.get('fecha_nacimiento'),
-                'dni': request.POST.get('dni'),
-                'posicion': request.POST.get('posicion'),
-                'club_anterior': request.POST.get('club_anterior', 'Ninguno'),
-                'email': request.POST.get('email'),
-                'contacto_emergencia': request.POST.get('contacto_emergencia')
-            }
-
-            # Generar PDF
-            pdf = generar_pdf_inscripcion(datos)
-
-            # Configurar y enviar email
-            email = EmailMessage(
-                subject=f"Nueva Inscripción: {datos['nombre_completo']}",
-                body=f"""
-                Nueva jugadora registrada:
-                Nombre: {datos['nombre_completo']}
-                Edad: {datos['fecha_nacimiento']}
-                Posición: {datos['posicion']}
-                
-                PDF adjunto con detalles completos.
-                """,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=['obiezeh999@gmail.com'],
-                reply_to=[datos['email']],
-            )
-            
-            email.attach(
-                f"inscripcion_{datos['dni']}.pdf",
-                pdf.getvalue(),
-                "application/pdf"
-            )
-            
-            email.send(fail_silently=False)
-            
-            return JsonResponse({
-                'status': 'success',
-                'message': 'Inscripción enviada correctamente'
-            })
-            
-        except Exception as e:
-            logger.error(f"Error en inscripción: {str(e)}")
-            return JsonResponse({
-                'status': 'error',
-                'message': 'Error al procesar la inscripción'
-            }, status=500)
-        
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -475,7 +413,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 import json
-from .models import PlayerRegistration
 
 def registration_form(request):
     return render(request, 'registration_form.html')
@@ -490,181 +427,160 @@ def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
 
+
+import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-from django.utils.decorators import method_decorator
-from django.views import View
-import json
-from .models import PlayerRegistration
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
-import re
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import Inscription
 
-# views.py
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-from django.utils.decorators import method_decorator
-from django.views import View
-import json
-from .models import PlayerRegistration
-from django.core.exceptions import ValidationError
-import re
-from datetime import datetime
+def get_csrf_token(request):
+    """Helper function to get CSRF token"""
+    from django.middleware.csrf import get_token
+    return get_token(request)
 
-@method_decorator(csrf_exempt, name='dispatch')
-class CheckRegistrationView(View):
-    def post(self, request):
+@csrf_exempt
+def create_inscription(request):
+    if request.method == 'POST':
         try:
             # Parse JSON data
             try:
-                data = json.loads(request.body.decode('utf-8'))
-            except:
-                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-                
-            dni = data.get('dni', '').strip()
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Invalid JSON format'
+                }, status=400)
             
-            if not dni:
-                return JsonResponse({'error': 'DNI is required'}, status=400)
+            # Validate required fields
+            required_fields = ['full_name', 'email', 'phone', 'birthdate', 'address', 'city', 'zip_code', 'category', 'position']
+            missing_fields = [field for field in required_fields if field not in data or not data[field]]
             
-            try:
-                player = PlayerRegistration.objects.get(dni=dni)
-                response_data = {
-                    'exists': True,
-                    'dni': player.dni,
-                    'name': player.name,
-                    'surname': player.surname,
-                    'position': player.position,
-                    'team': player.team,
-                    'blood_type': player.blood_type,
-                    'allergies': player.allergies,
-                    'emergency_contact_name': player.emergency_contact_name,
-                    'emergency_contact_phone': player.emergency_contact_phone,
-                    'emergency_contact_relationship': player.emergency_contact_relationship,
-                    'equipment_size': player.equipment_size,
-                    'previous_experience': player.previous_experience,
-                    'registration_complete': player.registration_complete
-                }
-                
-                # Add birthday if exists
-                if player.birthday:
-                    response_data['birthday'] = player.birthday.strftime('%Y-%m-%d')
-                    
-                return JsonResponse(response_data)
-                
-            except PlayerRegistration.DoesNotExist:
-                return JsonResponse({'exists': False})
-                
-        except Exception as e:
-            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
-
-@method_decorator(csrf_exempt, name='dispatch')
-class SaveRegistrationView(View):
-    def post(self, request):
-        try:
-            # Parse JSON data
-            try:
-                data = json.loads(request.body.decode('utf-8'))
-            except:
-                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-                
-            dni = data.get('dni', '').strip()
-            current_step = int(data.get('current_step', 1))
+            if missing_fields:
+                return JsonResponse({
+                    'status': 'error',
+                    'message': f'Missing required fields: {", ".join(missing_fields)}'
+                }, status=400)
             
-            if not dni:
-                return JsonResponse({'error': 'DNI is required'}, status=400)
+            # Create the inscription (without saving to database as requested)
+            # If you want to save to database, uncomment the following lines:
+            """
+            inscription = Inscription(
+                full_name=data['full_name'],
+                email=data['email'],
+                phone=data['phone'],
+                birthdate=data['birthdate'],
+                address=data['address'],
+                city=data['city'],
+                zip_code=data['zip_code'],
+                category=data['category'],
+                position=data['position'],
+                experience=data.get('experience'),
+                previous_clubs=data.get('previous_clubs', ''),
+                medical_conditions=data.get('medical_conditions', ''),
+            )
             
-            # Get or create player registration
-            player, created = PlayerRegistration.objects.get_or_create(dni=dni)
+            # Set hardcoded values
+            inscription.season = data.get('season', '2023/2024')
+            inscription.registration_fee = data.get('registration_fee', 150.00)
             
-            # Update fields based on the current step
-            if current_step >= 1:
-                # Step 1 is just DNI, which we already have
-                pass
-                
-            if current_step >= 2:
-                player.name = data.get('nombre', player.name or '')
-                player.surname = data.get('apellido', player.surname or '')
-                
-                # Handle birthday field
-                birthday_str = data.get('fecha_nacimiento', '')
-                if birthday_str:
-                    try:
-                        player.birthday = datetime.strptime(birthday_str, '%Y-%m-%d').date()
-                    except ValueError:
-                        pass  # Keep existing value if parsing fails
-                
-            if current_step >= 3:
-                player.position = data.get('posicion', player.position or '')
-                player.team = data.get('equipo', player.team or '')
-                
-            if current_step >= 4:
-                player.blood_type = data.get('tipo_sangre', player.blood_type or '')
-                player.allergies = data.get('alergias', player.allergies or '')
-                player.emergency_contact_name = data.get('contacto_emergencia_nombre', player.emergency_contact_name or '')
-                player.emergency_contact_phone = data.get('contacto_emergencia_telefono', player.emergency_contact_phone or '')
-                player.emergency_contact_relationship = data.get('contacto_emergencia_parentesco', player.emergency_contact_relationship or '')
-                
-            if current_step >= 5:
-                player.equipment_size = data.get('talla_equipacion', player.equipment_size or '')
-                player.previous_experience = data.get('experiencia_previa', player.previous_experience or '')
-                player.registration_complete = True
-                
-            player.save()
+            if 'included_items' in data:
+                inscription.set_included_items(data['included_items'])
+            
+            inscription.save()
+            inscription_number = inscription.inscription_number
+            """
+            
+            # Generate inscription number without saving to DB
+            import uuid
+            inscription_number = str(uuid.uuid4())[:8].upper()
+            
+            # Send emails
+            send_inscription_emails(data, inscription_number)
             
             return JsonResponse({
                 'status': 'success',
-                'message': 'Registration saved successfully',
-                'current_step': current_step,
-                'registration_complete': player.registration_complete
+                'inscription_number': inscription_number,
+                'message': 'Inscripción recibida correctamente'
             })
             
         except Exception as e:
-            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
+            return JsonResponse({
+                'status': 'error',
+                'message': f'Error processing inscription: {str(e)}'
+            }, status=500)
+    
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Only POST requests are allowed'
+    }, status=405)
 
-@method_decorator(csrf_exempt, name='dispatch')
-class RecoverDataView(View):
-    def post(self, request):
-        try:
-            # Parse JSON data
-            try:
-                data = json.loads(request.body.decode('utf-8'))
-            except:
-                return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-                
-            dni = data.get('dni', '').strip()
-            
-            if not dni:
-                return JsonResponse({'error': 'DNI is required'}, status=400)
-            
-            try:
-                player = PlayerRegistration.objects.get(dni=dni)
-                response_data = {
-                    'exists': True,
-                    'dni': player.dni,
-                    'name': player.name,
-                    'surname': player.surname,
-                    'position': player.position,
-                    'team': player.team,
-                    'blood_type': player.blood_type,
-                    'allergies': player.allergies,
-                    'emergency_contact_name': player.emergency_contact_name,
-                    'emergency_contact_phone': player.emergency_contact_phone,
-                    'emergency_contact_relationship': player.emergency_contact_relationship,
-                    'equipment_size': player.equipment_size,
-                    'previous_experience': player.previous_experience,
-                    'registration_complete': player.registration_complete
-                }
-                
-                # Add birthday if exists
-                if player.birthday:
-                    response_data['birthday'] = player.birthday.strftime('%Y-%m-%d')
-                    
-                return JsonResponse(response_data)
-                
-            except PlayerRegistration.DoesNotExist:
-                return JsonResponse({'exists': False})
-                
-        except Exception as e:
-            return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
+def send_inscription_emails(data, inscription_number):
+    """Send confirmation emails"""
+    try:
+        # Email to customer
+        customer_subject = f'Confirmación de inscripción #{inscription_number} - Club Olympia'
+        customer_message = f'''
+Gracias por tu inscripción en Club Olympia!
+
+Detalles de tu inscripción:
+Número de inscripción: {inscription_number}
+Nombre: {data['full_name']}
+Categoría: {data['category']}
+Posición: {data['position']}
+
+Hemos recibido tu solicitud y nos pondremos en contacto contigo pronto para completar el proceso.
+
+Para cualquier consulta, puedes contactarnos en inscripciones@olympia.com
+
+¡Te damos la bienvenida a Olympia!
+'''
+        
+        send_mail(
+            customer_subject,
+            customer_message,
+            settings.DEFAULT_FROM_EMAIL,
+            [data['email']],
+            fail_silently=False,
+        )
+        
+        # Email to club
+        club_subject = f'Nueva inscripción #{inscription_number} - {data["full_name"]}'
+        club_message = f'''
+Nueva inscripción recibida en el sistema:
+
+INFORMACIÓN PERSONAL:
+Nombre: {data['full_name']}
+Email: {data['email']}
+Teléfono: {data['phone']}
+Fecha de nacimiento: {data['birthdate']}
+Dirección: {data['address']}, {data['city']} {data['zip_code']}
+
+INFORMACIÓN DEPORTIVA:
+Categoría: {data['category']}
+Posición: {data['position']}
+Experiencia: {data.get('experience', 'No especificada')} años
+Club anterior: {data.get('previous_clubs', 'Ninguno')}
+Condiciones médicas: {data.get('medical_conditions', 'Ninguna')}
+
+DATOS DE LA INSCRIPCIÓN:
+Número: {inscription_number}
+Temporada: {data.get('season', '2023/2024')}
+Cuota: {data.get('registration_fee', '150')}€
+'''
+        
+        # Send to club email (configure this in your settings)
+        club_email = getattr(settings, 'CLUB_EMAIL', 'inscripciones@olympia.com')
+        
+        send_mail(
+            club_subject,
+            club_message,
+            settings.DEFAULT_FROM_EMAIL,
+            [club_email],
+            fail_silently=False,
+        )
+        
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        # Don't fail the entire request if email fails

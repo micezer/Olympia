@@ -15,24 +15,22 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # ✅ This line is required
     path('home/', views.home, name="home"),
     path('offline/', views.offline, name="offline"),
-    path('inscripcion/', views.inscripcion_view, name='inscripcion'),
     path('tienda/', views.tienda_view, name='tienda'),
     path('cantera/', views.cantera_view, name='cantera'),
     path('download/', views.download_view, name='download'),
     path('about/', views.about_view, name='about'),
-    path('enviar-email/', views.formulario_inscripcion, name='enviar_email'),
     path('create-order/', views.create_order, name='create_order'),
     path('ticket/', views.ticket_purchase, name='ticket_purchase'),
     path('purchase/', views.purchase_ticket, name='purchase_ticket'),
     path('tickets/', views.get_tickets, name='get_tickets'),
     path('api/players/', views.get_players_by_team, name='get_players_by_team'),
-    path('inscripcion/', views.registration_form, name='registration_form'),
-    path('api/check-registration/', views.CheckRegistrationView.as_view(), name='check_registration'),
-    path('api/save-registration/', views.SaveRegistrationView.as_view(), name='save_registration'),
-    path('api/recover-data/', views.RecoverDataView.as_view(), name='recover_data'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
-   
+    path('inscripcion/', views.inscripcion_view, name='inscripcion'),
+    path('create-inscription/', views.create_inscription, name='create_inscription'),
 
+
+
+  
 
 
 
