@@ -248,6 +248,7 @@
         font-weight: 600;
         color: var(--primary-gold);
         min-width: 200px;
+        margin-right: 15px;
     }
 
     .summary-value {
@@ -308,6 +309,52 @@
         display: none;
     }
 
+        /* Estilo para checkboxes cuadrados con X cuando están seleccionados */
+    input[type="radio"]:checked::before {
+        content: "✕";
+        position: absolute;
+        top: -2px;
+        left: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--primary-gold);
+    }
+    
+    /* Cambiar color del borde cuando está seleccionado */
+    input[type="radio"]:checked {
+        border-color: var(--secondary-gold);
+        background-color: rgba(184, 172, 132, 0.1);
+    }
+    
+    /* Estilo para el hover */
+    input[type="radio"]:hover {
+        border-color: var(--secondary-gold);
+    }
+
+        /* Estilo para checkboxes cuadrados con X cuando están seleccionados */
+    input[type="checkbox"]:checked::before {
+        content: "✕";
+        position: absolute;
+        top: -2px;
+        left: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--primary-gold);
+    }
+    
+    /* Cambiar color del borde cuando está seleccionado */
+    input[type="checkbox"]:checked {
+        border-color: var(--secondary-gold);
+        background-color: rgba(184, 172, 132, 0.1);
+    }
+    
+    /* Estilo para el hover */
+    input[type="checkbox"]:hover {
+        border-color: var(--secondary-gold);
+    }
+
+    
+
     /* Responsive */
     @media (max-width: 768px) {
         .steps-menu {
@@ -329,6 +376,7 @@
         .summary-label {
             min-width: auto;
             margin-bottom: 5px;
+            margin-right: 0;
         }
     }
 
@@ -393,259 +441,453 @@
     </div>
 </div>
 
-<!-- Contenedor del formulario actual -->
-<div id="currentFormContainer" style="display: none;">
-    <!-- Paso 1: Información Personal -->
-    <div class="form-container active" id="step1Form">
-        <h2>Información Personal</h2>
+<!-- Paso 1: Información Personal -->
+<div class="form-container" id="step1Form">
+    <h2>Información Personal</h2>
 
-        <div class="form-group">
-            <label for="full-name">Nombre completo*</label>
-            <input type="text" id="full-name" name="full-name" placeholder="Escribe tu nombre completo" required>
-            <div class="error-message" id="full-name_error"></div>
+    <div class="form-group">
+        <label for="full-name">Nombre completo*</label>
+        <input type="text" id="full-name" name="full-name" placeholder="Escribe tu nombre completo" required>
+        <div class="error-message" id="full-name_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="birthdate">Fecha de Nacimiento*</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+        <div class="error-message" id="birthdate_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Categoría*</label>
+        <select id="category" name="category" required>
+            <option value="">Selecciona una categoría</option>
+            <option value="Olympeques (2020-2021)">Olympeques (2020-2021)</option>
+            <option value="Benjamín">Benjamín</option>
+            <option value="Alevín">Alevín</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Cadete">Cadete</option>
+            <option value="Juvenil">Juvenil</option>
+            <option value="Senior">Senior</option>
+        </select>
+        <div class="error-message" id="category_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="birth-municipality">Municipio de Nacimiento*</label>
+        <input type="text" id="birth-municipality" name="birth-municipality"
+            placeholder="Escribe tu municipio de nacimiento" required>
+        <div class="error-message" id="birth-municipality_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="empadronamiento">Empadronada en*</label>
+        <input type="text" id="empadronamiento" name="empadronamiento"
+            placeholder="Escribe tu municipio de empadronamiento" required>
+        <div class="error-message" id="empadronamiento_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="player-dni">DNI Jugadora (mayores de 14)</label>
+        <input type="text" id="player-dni" name="player-dni" placeholder="Escribe tu DNI">
+        <div class="error-message" id="player-dni_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Jugadora (mayores de edad)</label>
+        <input type="email" id="email" name="email" placeholder="Escribe tu email">
+        <div class="error-message" id="email_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Teléfono Jugadora (mayores de edad)</label>
+        <input type="tel" id="phone" name="phone" placeholder="Escribe tu teléfono">
+        <div class="error-message" id="phone_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="landline">Teléfono Fijo*</label>
+        <input type="tel" id="landline" name="landline" placeholder="Escribe tu teléfono fijo" required>
+        <div class="error-message" id="landline_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="address">Domicilio*</label>
+        <input type="text" id="address" name="address" placeholder="Escribe tu dirección" required>
+        <div class="error-message" id="address_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="city">Población*</label>
+        <input type="text" id="city" name="city" placeholder="Escribe tu población" required>
+        <div class="error-message" id="city_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="zip-code">Código Postal*</label>
+        <input type="text" id="zip-code" name="zip-code" placeholder="Escribe tu código postal" required>
+        <div class="error-message" id="zip-code_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label style="display: block; margin-bottom: 10px; font-weight: 500; color: var(--primary-gold);">¿Has jugado al
+            fútbol antes?*</label>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="radio" id="played-before-yes" name="played-before" value="si" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                Sí
+            </label>
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="radio" id="played-before-no" name="played-before" value="no" style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                No
+            </label>
         </div>
+        <div class="error-message" id="played-before_error"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="email">Email*</label>
-            <input type="email" id="email" name="email" placeholder="Escribe tu email" required>
-            <div class="error-message" id="email_error"></div>
+    <div class="form-group" id="previous-teams-container" style="display: none;">
+        <label for="previous-teams">En caso afirmativo, cuéntanos en qué equipos y cuál es tu posición</label>
+        <textarea id="previous-teams" name="previous-teams" placeholder="Equipos anteriores y posición"></textarea>
+        <div class="error-message" id="previous-teams_error"></div>
+    </div>
+
+    <!-- Datos de la Madre/Tutor -->
+    <div class="form-group">
+        <label for="mother-name">Nombre Completo Madre/Tutor*</label>
+        <input type="text" id="mother-name" name="mother-name" placeholder="Escribe aquí" required>
+        <div class="error-message" id="mother-name_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="mother-dni">DNI Madre/Tutor*</label>
+        <input type="text" id="mother-dni" name="mother-dni" placeholder="Escribe aquí" required>
+        <div class="error-message" id="mother-dni_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="mother-email">Email Madre/Tutor*</label>
+        <input type="email" id="mother-email" name="mother-email" placeholder="Escribe aquí" required>
+        <div class="error-message" id="mother-email_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="mother-phone">Teléfono Madre/Tutor*</label>
+        <input type="tel" id="mother-phone" name="mother-phone" placeholder="Escribe aquí" required>
+        <div class="error-message" id="mother-phone_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="mother-birthplace">Lugar Nacimiento Madre/Tutor*</label>
+        <input type="text" id="mother-birthplace" name="mother-birthplace" placeholder="Escribe aquí" required>
+        <div class="error-message" id="mother-birthplace_error"></div>
+    </div>
+    
+    <!-- Datos del Padre -->
+    <div class="form-group">
+        <label for="father-name">Nombre Completo Padre</label>
+        <input type="text" id="father-name" name="father-name" placeholder="Escribe aquí">
+        <div class="error-message" id="father-name_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="father-dni">DNI Padre</label>
+        <input type="text" id="father-dni" name="father-dni" placeholder="Escribe aquí">
+        <div class="error-message" id="father-dni_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="father-email">Email Padre</label>
+        <input type="email" id="father-email" name="father-email" placeholder="Escribe aquí">
+        <div class="error-message" id="father-email_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="father-phone">Teléfono Padre</label>
+        <input type="tel" id="father-phone" name="father-phone" placeholder="Escribe aquí">
+        <div class="error-message" id="father-phone_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="father-birthplace">Lugar Nacimiento Padre</label>
+        <input type="text" id="father-birthplace" name="father-birthplace" placeholder="Escribe aquí">
+        <div class="error-message" id="father-birthplace_error"></div>
+    </div>
+    
+    <!-- Checkboxes de consentimiento con enlaces -->
+    <div class="form-group">
+        <label style="display: block; margin-bottom: 10px; font-weight: 500; color: var(--primary-gold);">
+            Acepto las <a href="https://www.cffolympia.es/public/docs/Normas%20y%20Requistos%20del%20CFF%20Olympia.pdf"
+                target="_blank" style="color: var(--primary-gold); text-decoration: underline;">normas y requisitos del
+                club</a>.*
+        </label>
+        <div style="display: flex; align-items: center;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="club-rules" name="club-rules" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                Sí, acepto
+            </label>
         </div>
-
-        <div class="form-group">
-            <label for="phone">Teléfono*</label>
-            <input type="tel" id="phone" name="phone" placeholder="Escribe tu teléfono" required>
-            <div class="error-message" id="phone_error"></div>
+        <div class="error-message" id="club-rules_error"></div>
+    </div>
+    
+    <div class="form-group">
+        <label style="display: block; margin-bottom: 10px; font-weight: 500; color: var(--primary-gold);">
+            Acepto la <a
+                href="https://www.cffolympia.es/public/docs/Pol%C3%ADtica%20de%20privacidad%20CFF%20Olympia%20Las%20Rozas.pdf"
+                target="_blank" style="color: var(--primary-gold); text-decoration: underline;">política de privacidad</a>.*
+        </label>
+        <div style="display: flex; align-items: center;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                Sí, acepto
+            </label>
         </div>
+        <p style="font-size: 0.9rem; color: #ccc; margin-top: 5px; margin-left: 25px;">
+            Si no nos permite utilizar estos datos es posible que no podamos prestarle los servicios solicitados,
+            pues tal información es necesaria para que podamos desarrollar nuestra actividad de manera coherente y efectiva.
+        </p>
+        <div class="error-message" id="privacy-policy_error"></div>
+    </div>
+    
+    <div class="form-group">
+    <div class="checkbox-group" style="display: flex; align-items: flex-start;">
+        <input type="checkbox" id="health-data" name="health-data" required 
+               style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                      border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+        <label for="health-data" style="cursor: pointer; margin: 0;">Consiento el uso de los datos relativos a mi salud o, en su caso, como tutores a la
+            salud de mi hijo o menor a nuestro cargo para poder recibir los servicios solicitados.*</label>
+    </div>
+    <div class="error-message" id="health-data_error"></div>
+</div>
 
-        <div class="form-group">
-            <label for="birthdate">Fecha de Nacimiento*</label>
-            <input type="date" id="birthdate" name="birthdate" required>
-            <div class="error-message" id="birthdate_error"></div>
+<div class="form-group">
+    <div class="checkbox-group" style="display: flex; align-items: flex-start;">
+        <input type="checkbox" id="social-media-image" name="social-media-image"
+               style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                      border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+        <label for="social-media-image" style="cursor: pointer; margin: 0;">Consiento que se utilice mi imagen o, en su caso, como tutores la imagen de
+            nuestro hijo o menor a nuestro cargo para su publicación a través de las redes sociales con el fin de dar a
+            conocer la entidad y difundir su actividad.</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="checkbox-group" style="display: flex; align-items: flex-start;">
+        <input type="checkbox" id="internet-image" name="internet-image"
+               style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                      border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+        <label for="internet-image" style="cursor: pointer; margin: 0;">Consiento la publicación de mi imagen o, en su caso, la imagen de nuestro hijo o
+            menor a nuestro cargo en Internet y otros medios similares para difundir las actividades de su
+            entidad.</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="checkbox-group" style="display: flex; align-items: flex-start;">
+        <input type="checkbox" id="marketing" name="marketing"
+               style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                      border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+        <label for="marketing" style="cursor: pointer; margin: 0;">Consiento el uso de mis datos personales para recibir publicidad de su entidad.</label>
+    </div>
+</div>
+    
+    <div class="form-group">
+        <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">
+            Podrá retirar cualquiera de estos consentimientos cuando lo considere oportuno.
+        </p>
+    </div>
+
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="backToStepsMenu()">Volver al menú</button>
+        <button type="button" id="step1Button" onclick="saveStep(1)">Continuar</button>
+    </div>
+</div>
+
+<!-- Paso 2: Domiciliación -->
+<div class="form-container" id="step2Form">
+    <h2>Formulario de Domiciliación Bancaria</h2>
+
+    <div class="form-group">
+        <label for="bank-name">Nombre del Banco*</label>
+        <input type="text" id="bank-name" name="bank-name" placeholder="Nombre de tu banco" required>
+        <div class="error-message" id="bank-name_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="account-holder">Titular de la Cuenta*</label>
+        <input type="text" id="account-holder" name="account-holder" placeholder="Titular de la cuenta" required>
+        <div class="error-message" id="account-holder_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="account-number">Número de Cuenta (IBAN)*</label>
+        <input type="text" id="account-number" name="account-number" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX"
+            required>
+        <div class="error-message" id="account-number_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="signature-date">Fecha de Firma*</label>
+        <input type="date" id="signature-date" name="signature-date" required>
+        <div class="error-message" id="signature-date_error"></div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(1)">Anterior</button>
+        <button type="button" id="step2Button" onclick="saveStep(2)">Guardar y continuar</button>
+    </div>
+</div>
+
+<!-- Paso 3: Autorización para menores -->
+<div class="form-container" id="step3Form">
+    <h2>Autorización para Menores de Edad</h2>
+
+    <div class="form-group">
+        <label for="parent-name">Nombre del Padre/Madre/Tutor*</label>
+        <input type="text" id="parent-name" name="parent-name" placeholder="Nombre completo" required>
+        <div class="error-message" id="parent-name_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="parent-dni">DNI del Padre/Madre/Tutor*</label>
+        <input type="text" id="parent-dni" name="parent-dni" placeholder="DNI o NIE" required>
+        <div class="error-message" id="parent-dni_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="parent-phone">Teléfono de Contacto*</label>
+        <input type="tel" id="parent-phone" name="parent-phone" placeholder="Número de teléfono" required>
+        <div class="error-message" id="parent-phone_error"></div>
+    </div>
+
+    <div class="form-group">
+        <div class="checkbox-group">
+            <input type="checkbox" id="medical-authorization" name="medical-authorization" required>
+            <label for="medical-authorization">Autorizo al club a solicitar atención médica en caso de
+                emergencia*</label>
         </div>
+        <div class="error-message" id="medical-authorization_error"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="address">Dirección*</label>
-            <input type="text" id="address" name="address" placeholder="Escribe tu dirección" required>
-            <div class="error-message" id="address_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="city">Ciudad*</label>
-            <input type="text" id="city" name="city" placeholder="Escribe tu ciudad" required>
-            <div class="error-message" id="city_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="zip-code">Código Postal*</label>
-            <input type="text" id="zip-code" name="zip-code" placeholder="Escribe tu código postal" required>
-            <div class="error-message" id="zip-code_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="category">Categoría*</label>
-            <select id="category" name="category" required>
-                <option value="">Selecciona una categoría</option>
-                <option value="Olympeques">Olympeques</option>
-                <option value="Benjamín">Benjamín</option>
-                <option value="Alevín">Alevín</option>
-                <option value="Infantil">Infantil</option>
-                <option value="Cadete">Cadete</option>
-                <option value="Juvenil">Juvenil</option>
-                <option value="Senior">Senior</option>
-            </select>
-            <div class="error-message" id="category_error"></div>
-        </div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="backToStepsMenu()">Volver al menú</button>
-            <button type="button" id="step1Button" onclick="saveStep(1)">Continuar</button>
+    <div class="form-group">
+        <div class="checkbox-group">
+            <input type="checkbox" id="image-authorization" name="image-authorization">
+            <label for="image-authorization">Autorizo el uso de imagen del menor para actividades del club</label>
         </div>
     </div>
 
-    <!-- Paso 2: Domiciliación -->
-    <div class="form-container" id="step2Form">
-        <h2>Formulario de Domiciliación Bancaria</h2>
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(2)">Anterior</button>
+        <button type="button" id="step3Button" onclick="saveStep(3)">Guardar y continuar</button>
+    </div>
+</div>
 
-        <div class="form-group">
-            <label for="bank-name">Nombre del Banco*</label>
-            <input type="text" id="bank-name" name="bank-name" placeholder="Nombre de tu banco" required>
-            <div class="error-message" id="bank-name_error"></div>
+<!-- Paso 4: Protección de datos -->
+<div class="form-container" id="step4Form">
+    <h2>Anexo de Protección de Datos</h2>
+
+    <div class="form-group">
+        <p>De conformidad con lo establecido en la normativa vigente en Protección de Datos de Carácter Personal, le
+            informamos que los datos personales facilitados serán tratados por CLUB OLYMPIA con la finalidad de
+            gestionar su inscripción y participación en las actividades del club.</p>
+    </div>
+
+    <div class="form-group">
+        <div class="checkbox-group">
+            <input type="checkbox" id="data-processing" name="data-processing" required>
+            <label for="data-processing">He leído y acepto la política de protección de datos*</label>
         </div>
+        <div class="error-message" id="data-processing_error"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="account-holder">Titular de la Cuenta*</label>
-            <input type="text" id="account-holder" name="account-holder" placeholder="Titular de la cuenta" required>
-            <div class="error-message" id="account-holder_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="account-number">Número de Cuenta (IBAN)*</label>
-            <input type="text" id="account-number" name="account-number" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX"
-                required>
-            <div class="error-message" id="account-number_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="signature-date">Fecha de Firma*</label>
-            <input type="date" id="signature-date" name="signature-date" required>
-            <div class="error-message" id="signature-date_error"></div>
-        </div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(1)">Anterior</button>
-            <button type="button" id="step2Button" onclick="saveStep(2)">Guardar y continuar</button>
+    <div class="form-group">
+        <div class="checkbox-group">
+            <input type="checkbox" id="communications" name="communications">
+            <label for="communications">Acepto recibir comunicaciones del club sobre actividades y eventos</label>
         </div>
     </div>
 
-    <!-- Paso 3: Autorización para menores -->
-    <div class="form-container" id="step3Form">
-        <h2>Autorización para Menores de Edad</h2>
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(3)">Anterior</button>
+        <button type="button" id="step4Button" onclick="saveStep(4)">Guardar y continuar</button>
+    </div>
+</div>
 
-        <div class="form-group">
-            <label for="parent-name">Nombre del Padre/Madre/Tutor*</label>
-            <input type="text" id="parent-name" name="parent-name" placeholder="Nombre completo" required>
-            <div class="error-message" id="parent-name_error"></div>
-        </div>
+<!-- Paso 5: Carta de compromiso -->
+<div class="form-container" id="step5Form">
+    <h2>Carta de Compromiso</h2>
 
-        <div class="form-group">
-            <label for="parent-dni">DNI del Padre/Madre/Tutor*</label>
-            <input type="text" id="parent-dni" name="parent-dni" placeholder="DNI o NIE" required>
-            <div class="error-message" id="parent-dni_error"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="parent-phone">Teléfono de Contacto*</label>
-            <input type="tel" id="parent-phone" name="parent-phone" placeholder="Número de teléfono" required>
-            <div class="error-message" id="parent-phone_error"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox" id="medical-authorization" name="medical-authorization" required>
-                <label for="medical-authorization">Autorizo al club a solicitar atención médica en caso de
-                    emergencia*</label>
-            </div>
-            <div class="error-message" id="medical-authorization_error"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox" id="image-authorization" name="image-authorization">
-                <label for="image-authorization">Autorizo el uso de imagen del menor para actividades del club</label>
-            </div>
-        </div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(2)">Anterior</button>
-            <button type="button" id="step3Button" onclick="saveStep(3)">Guardar y continuar</button>
-        </div>
+    <div class="form-group">
+        <p>Como jugador/miembro del Club Olympia, me comprometo a:</p>
+        <ul>
+            <li>Asistir regularmente a los entrenamientos y partidos</li>
+            <li>Mantener una actitud deportiva y respetuosa</li>
+            <li>Cumplir con las normas del club</li>
+            <li>Representar dignamente al club en competiciones</li>
+        </ul>
     </div>
 
-    <!-- Paso 4: Protección de datos -->
-    <div class="form-container" id="step4Form">
-        <h2>Anexo de Protección de Datos</h2>
-
-        <div class="form-group">
-            <p>De conformidad con lo establecido en la normativa vigente en Protección de Datos de Carácter Personal, le
-                informamos que los datos personales facilitados serán tratados por CLUB OLYMPIA con la finalidad de
-                gestionar su inscripción y participación en las actividades del club.</p>
+    <div class="form-group">
+        <div class="checkbox-group">
+            <input type="checkbox" id="commitment-agreement" name="commitment-agreement" required>
+            <label for="commitment-agreement">Acepto y me comprometo a cumplir con las normas del club*</label>
         </div>
-
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox" id="data-processing" name="data-processing" required>
-                <label for="data-processing">He leído y acepto la política de protección de datos*</label>
-            </div>
-            <div class="error-message" id="data-processing_error"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox" id="communications" name="communications">
-                <label for="communications">Acepto recibir comunicaciones del club sobre actividades y eventos</label>
-            </div>
-        </div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(3)">Anterior</button>
-            <button type="button" id="step4Button" onclick="saveStep(4)">Guardar y continuar</button>
-        </div>
+        <div class="error-message" id="commitment-agreement_error"></div>
     </div>
 
-    <!-- Paso 5: Carta de compromiso -->
-    <div class="form-container" id="step5Form">
-        <h2>Carta de Compromiso</h2>
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(4)">Anterior</button>
+        <button type="button" id="step5Button" onclick="saveStep(5)">Guardar y continuar</button>
+    </div>
+</div>
 
-        <div class="form-group">
-            <p>Como jugador/miembro del Club Olympia, me comprometo a:</p>
-            <ul>
-                <li>Asistir regularmente a los entrenamientos y partidos</li>
-                <li>Mantener una actitud deportiva y respetuosa</li>
-                <li>Cumplir con las normas del club</li>
-                <li>Representar dignamente al club en competiciones</li>
-            </ul>
-        </div>
+<!-- Paso 6: Confirmación -->
+<div class="form-container" id="step6Form">
+    <h2>Confirmación de Inscripción</h2>
 
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox" id="commitment-agreement" name="commitment-agreement" required>
-                <label for="commitment-agreement">Acepto y me comprometo a cumplir con las normas del club*</label>
-            </div>
-            <div class="error-message" id="commitment-agreement_error"></div>
-        </div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(4)">Anterior</button>
-            <button type="button" id="step5Button" onclick="saveStep(5)">Guardar y continuar</button>
-        </div>
+    <div class="summary-container" id="resumenInscripcion">
+        <!-- Aquí se mostrará el resumen de los datos -->
     </div>
 
-    <!-- Paso 6: Confirmación -->
-    <div class="form-container" id="step6Form">
-        <h2>Confirmación de Inscripción</h2>
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(5)">Anterior</button>
+        <button type="button" id="step6Button" onclick="saveStep(6)">Confirmar y Proceder al Pago</button>
+    </div>
+</div>
 
-        <div class="summary-container" id="resumenInscripcion">
-            <!-- Aquí se mostrará el resumen de los datos -->
-        </div>
+<!-- Paso 7: Pago -->
+<div class="form-container" id="step7Form">
+    <h2>Pago de Inscripción</h2>
 
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(5)">Anterior</button>
-            <button type="button" id="step6Button" onclick="saveStep(6)">Confirmar y Proceder al Pago</button>
-        </div>
+    <div class="payment-info">
+        <h3>Instrucciones de Pago</h3>
+        <p>Para completar tu inscripción, realiza el pago de la cuota mediante transferencia bancaria:</p>
+        <p><strong>Banco:</strong> Banco Example</p>
+        <p><strong>Titular:</strong> Club Olympia</p>
+        <p><strong>IBAN:</strong> ESXX XXXX XXXX XXXX XXXX XXXX</p>
+        <p><strong>Concepto:</strong> Inscripción <span id="payment-name"></span> - <span id="payment-category"></span>
+        </p>
+        <p><strong>Importe:</strong> 150,00€</p>
+        <p>Una vez realizado el pago, haz clic en el botón "Completar Inscripción" para finalizar el proceso.</p>
     </div>
 
-    <!-- Paso 7: Pago -->
-    <div class="form-container" id="step7Form">
-        <h2>Pago de Inscripción</h2>
+    <div class="form-group">
+        <label for="comprobante_pago">¿Ya has realizado el pago?*</label>
+        <select id="comprobante_pago" name="comprobante_pago" required>
+            <option value="">Selecciona una opción</option>
+            <option value="si">Sí, he realizado el pago</option>
+            <option value="no">No, lo haré más tarde</option>
+        </select>
+        <div class="error-message" id="comprobante_pago_error"></div>
+    </div>
 
-        <div class="payment-info">
-            <h3>Instrucciones de Pago</h3>
-            <p>Para completar tu inscripción, realiza el pago de la cuota mediante transferencia bancaria:</p>
-            <p><strong>Banco:</strong> Banco Example</p>
-            <p><strong>Titular:</strong> Club Olympia</p>
-            <p><strong>IBAN:</strong> ESXX XXXX XXXX XXXX XXXX XXXX</p>
-            <p><strong>Concepto:</strong> Inscripción <span id="payment-name"></span> - <span
-                    id="payment-category"></span></p>
-            <p><strong>Importe:</strong> 150,00€</p>
-            <p>Una vez realizado el pago, haz clic en el botón "Completar Inscripción" para finalizar el proceso.</p>
-        </div>
+    <div id="payment-message" class="payment-message"></div>
 
-        <div class="form-group">
-            <label for="comprobante_pago">¿Ya has realizado el pago?*</label>
-            <select id="comprobante_pago" name="comprobante_pago" required>
-                <option value="">Selecciona una opción</option>
-                <option value="si">Sí, he realizado el pago</option>
-                <option value="no">No, lo haré más tarde</option>
-            </select>
-            <div class="error-message" id="comprobante_pago_error"></div>
-        </div>
-
-        <div id="payment-message" class="payment-message"></div>
-
-        <div class="navigation-buttons">
-            <button type="button" class="secondary" onclick="navigateToStep(6)">Anterior</button>
-            <button type="button" id="step7Button" onclick="completeRegistration()">Completar Inscripción</button>
-        </div>
+    <div class="navigation-buttons">
+        <button type="button" class="secondary" onclick="navigateToStep(6)">Anterior</button>
+        <button type="button" id="step7Button" onclick="completeRegistration()">Completar Inscripción</button>
     </div>
 </div>
 
@@ -678,62 +920,82 @@
     function startRegistration() {
         document.getElementById('welcomeScreen').style.display = 'none';
         document.getElementById('stepsMenu').style.display = 'grid';
-        document.getElementById('currentFormContainer').style.display = 'block';
         showStepForm(1);
     }
 
     function backToStepsMenu() {
-        document.getElementById('currentFormContainer').style.display = 'none';
+        hideAllForms();
         document.getElementById('stepsMenu').style.display = 'grid';
     }
 
-    function showStepForm(stepNumber) {
-        // Hide all forms
-        document.querySelectorAll('.form-container').forEach(form => {
-            form.classList.remove('active');
-        });
+    // Also fix the hideAllForms function to handle null elements
+        function hideAllForms() {
+            // Hide all forms
+            document.querySelectorAll('.form-container').forEach(form => {
+                if (form) {
+                    form.style.display = 'none';
+                }
+            });
+        }
+    // Fix the showStepForm function
+        function showStepForm(stepNumber) {
+            // Hide step menu and all forms
+            const stepsMenu = document.getElementById('stepsMenu');
+            if (stepsMenu) {
+                stepsMenu.style.display = 'none';
+            }
 
-        // Show the selected form
-        document.getElementById(`step${stepNumber}Form`).classList.add('active');
-    }
+            hideAllForms();
+
+            // Show the selected form
+            const stepForm = document.getElementById(`step${stepNumber}Form`);
+            if (stepForm) {
+                stepForm.style.display = 'block';
+            }
+        }
 
     function navigateToStep(stepNumber) {
-        // Validate current step before leaving
-        if (currentStep !== stepNumber && !validateStep(currentStep)) {
-            return;
+            // Validate current step before leaving
+            if (currentStep !== stepNumber && !validateStep(currentStep)) {
+                return;
+            }
+
+            // Save current step data
+            saveStepData(currentStep);
+
+            // Mark current step as completed
+            if (currentStep < stepNumber) {
+                completedSteps.add(currentStep);
+                const currentStepCard = document.querySelector(`.step-card[data-step="${currentStep}"]`);
+                if (currentStepCard) {
+                    currentStepCard.classList.add('completed');
+                }
+            }
+
+            // Update UI
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            currentStep = stepNumber;
+            const newStepCard = document.querySelector(`.step-card[data-step="${stepNumber}"]`);
+            if (newStepCard) {
+                newStepCard.classList.add('active');
+            }
+
+            // Show the form for the current step
+            showStepForm(stepNumber);
+
+            // Special handling for confirmation step
+            if (currentStep === 6) {
+                updateConfirmationSummary();
+            }
+
+            // Special handling for payment step
+            if (currentStep === 7) {
+                updatePaymentInfo();
+            }
         }
-
-        // Save current step data
-        saveStepData(currentStep);
-
-        // Mark current step as completed
-        if (currentStep < stepNumber) {
-            completedSteps.add(currentStep);
-            document.querySelector(`.step-card[data-step="${currentStep}"]`).classList.add('completed');
-        }
-
-        // Update UI
-        document.querySelectorAll('.step-card').forEach(card => {
-            card.classList.remove('active');
-        });
-
-        currentStep = stepNumber;
-        document.querySelector(`.step-card[data-step="${stepNumber}"]`).classList.add('active');
-
-        // Show the form for the current step
-        showStepForm(stepNumber);
-
-        // Special handling for confirmation step
-        if (currentStep === 6) {
-            updateConfirmationSummary();
-        }
-
-        // Special handling for payment step
-        if (currentStep === 7) {
-            updatePaymentInfo();
-        }
-    }
-
     function updateStepAccess() {
         document.querySelectorAll('.step-card').forEach((card, index) => {
             const stepNumber = index + 1;
@@ -766,34 +1028,67 @@
         }
     }
 
-    function validateStep1() {
-        const required = ['full-name', 'email', 'phone', 'birthdate', 'address', 'city', 'zip-code', 'category'];
-        let isValid = true;
+    // Add this script to handle the conditional field
+        document.addEventListener('DOMContentLoaded', function () {
+            const playedBeforeYes = document.getElementById('played-before-yes');
+            const playedBeforeNo = document.getElementById('played-before-no');
+            const previousTeamsContainer = document.getElementById('previous-teams-container');
 
-        required.forEach(field => {
-            const element = document.getElementById(field);
-            const errorElement = document.getElementById(`${field}_error`);
-            if (!element.value.trim()) {
-                element.style.borderColor = 'red';
-                errorElement.textContent = 'Este campo es obligatorio';
-                isValid = false;
-            } else {
-                element.style.borderColor = '';
-                errorElement.textContent = '';
+            if (playedBeforeYes && playedBeforeNo && previousTeamsContainer) {
+                playedBeforeYes.addEventListener('change', function () {
+                    previousTeamsContainer.style.display = this.checked ? 'block' : 'none';
+                });
+
+                playedBeforeNo.addEventListener('change', function () {
+                    previousTeamsContainer.style.display = this.checked ? 'none' : 'block';
+                });
             }
         });
 
-        // Email validation
-        const email = document.getElementById('email');
-        const emailError = document.getElementById('email_error');
-        if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-            email.style.borderColor = 'red';
-            emailError.textContent = 'Por favor, introduce un email válido';
-            isValid = false;
-        }
 
-        return isValid;
-    }
+
+    // Update the validation for Step 1
+        function validateStep1() {
+            const required = ['full-name', 'birthdate', 'category', 'birth_municipality', 'empadronamiento', 'landline', 'address', 'city', 'zip-code', 'played-before'];
+            let isValid = true;
+
+            required.forEach(field => {
+                if (field === 'played-before') {
+                    const yesRadio = document.getElementById('played-before-yes');
+                    const noRadio = document.getElementById('played-before-no');
+                    const errorElement = document.getElementById(`${field}_error`);
+
+                    if (!yesRadio.checked && !noRadio.checked) {
+                        errorElement.textContent = 'Debes seleccionar una opción';
+                        isValid = false;
+                    } else {
+                        errorElement.textContent = '';
+                    }
+                } else {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.value.trim()) {
+                        element.style.borderColor = 'red';
+                        errorElement.textContent = 'Este campo es obligatorio';
+                        isValid = false;
+                    } else {
+                        element.style.borderColor = '';
+                        errorElement.textContent = '';
+                    }
+                }
+            });
+
+            // Email validation (if provided)
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('email_error');
+            if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                email.style.borderColor = 'red';
+                emailError.textContent = 'Por favor, introduce un email válido';
+                isValid = false;
+            }
+
+            return isValid;
+        }
 
     function validateStep2() {
         const required = ['bank-name', 'account-holder', 'account-number', 'signature-date'];
@@ -897,19 +1192,25 @@
     }
 
     function saveStepData(step) {
-        switch (step) {
-            case 1:
-                formData.step1 = {
-                    fullName: document.getElementById('full-name').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    birthdate: document.getElementById('birthdate').value,
-                    address: document.getElementById('address').value,
-                    city: document.getElementById('city').value,
-                    zipCode: document.getElementById('zip-code').value,
-                    category: document.getElementById('category').value
-                };
-                break;
+            switch (step) {
+                case 1:
+                    formData.step1 = {
+                        fullName: document.getElementById('full-name').value,
+                        birthdate: document.getElementById('birthdate').value,
+                        category: document.getElementById('category').value,
+                        birthMunicipality: document.getElementById('birth_municipality').value,
+                        empadronamiento: document.getElementById('empadronamiento').value,
+                        playerDni: document.getElementById('player-dni').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        landline: document.getElementById('landline').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        zipCode: document.getElementById('zip-code').value,
+                        playedBefore: document.querySelector('input[name="played-before"]:checked')?.value,
+                        previousTeams: document.getElementById('previous-teams').value
+                    };
+                    break;
             case 2:
                 formData.step2 = {
                     bankName: document.getElementById('bank-name').value,
@@ -947,42 +1248,48 @@
     }
 
     function updateConfirmationSummary() {
-        const summaryContainer = document.getElementById('resumenInscripcion');
-        summaryContainer.innerHTML = `
-            <h3>Resumen de tu inscripción</h3>
-            <div class="summary-item">
-                <div class="summary-label">Nombre completo:</div>
-                <div class="summary-value">${formData.step1.fullName || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Email:</div>
-                <div class="summary-value">${formData.step1.email || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Teléfono:</div>
-                <div class="summary-value">${formData.step1.phone || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Fecha de nacimiento:</div>
-                <div class="summary-value">${formatDate(formData.step1.birthdate) || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Dirección:</div>
-                <div class="summary-value">${formData.step1.address || ''}, ${formData.step1.city || ''} ${formData.step1.zipCode || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Categoría:</div>
-                <div class="summary-value">${formData.step1.category || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Banco:</div>
-                <div class="summary-value">${formData.step2.bankName || ''}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Titular de cuenta:</div>
-                <div class="summary-value">${formData.step2.accountHolder || ''}</div>
-            </div>
-        `;
+            const summaryContainer = document.getElementById('resumenInscripcion');
+            summaryContainer.innerHTML = `
+        <h3>Resumen de tu inscripción</h3>
+        <div class="summary-item">
+            <div class="summary-label">Nombre completo:</div>
+            <div class="summary-value">${formData.step1.fullName || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Email:</div>
+            <div class="summary-value">${formData.step1.email || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Teléfono:</div>
+            <div class="summary-value">${formData.step1.phone || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Fecha de nacimiento:</div>
+            <div class="summary-value">${formatDate(formData.step1.birthdate) || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Dirección:</div>
+            <div class="summary-value">${formData.step1.address || ''}, ${formData.step1.city || ''} ${formData.step1.zipCode || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Categoría:</div>
+            <div class="summary-value">${formData.step1.category || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Posición:</div>
+            <div class="summary-value">${formData.step1.position || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Banco:</div>
+            <div class="summary-value">${formData.step2.bankName || ''}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Titular de cuenta:</div>
+            <div class="summary-value">${formData.step2.accountHolder || ''}</div>
+        </div>
+    `;
+        // DEBUG: Check email functionality
+        debugEmailFunctionality();
     }
 
     function updatePaymentInfo() {
@@ -996,34 +1303,46 @@
         return date.toLocaleDateString('es-ES');
     }
 
-    function completeRegistration() {
-        if (!validateStep(7)) return;
+    // Fix the field name mapping in completeRegistration function
+        function completeRegistration() {
+            if (!validateStep(7)) return;
 
-        saveStepData(7);
+            saveStepData(7);
 
-        const submitButton = document.getElementById('step7Button');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Procesando...';
+            const submitButton = document.getElementById('step7Button');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Procesando...';
 
-        // Prepare data for submission
-        const submissionData = {
-            ...formData.step1,
-            ...formData.step2,
-            ...formData.step3,
-            ...formData.step4,
-            ...formData.step5,
-            ...formData.step7,
-            season: "2023/2024",
-            registration_fee: "150"
-        };
+            const submissionData = {
+                full_name: formData.step1.fullName,
+                birthdate: formData.step1.birthdate,
+                category: formData.step1.category,
+                birth_municipality: formData.step1.birthMunicipality, // Changed to match backend
+                empadronamiento: formData.step1.empadronamiento, // Changed to match backend
+                player_dni: formData.step1.playerDni,
+                email: formData.step1.email,
+                phone: formData.step1.phone,
+                landline: formData.step1.landline, // Changed to match backend
+                address: formData.step1.address,
+                city: formData.step1.city,
+                zip_code: formData.step1.zipCode,
+                played_before: formData.step1.playedBefore,
+                previous_teams: formData.step1.previousTeams,
+                // Add other steps data as needed
+                season: "2023/2024",
+                registration_fee: "150"
+            };
 
-        // Get CSRF token
-        const csrftoken = getCookie('csrftoken');
+                // DEBUG: Log the data being sent
+            console.log("DEBUG: Submission data:", submissionData);
+            console.log("DEBUG: Birth municipality:", submissionData.birth_municipality);
+            console.log("DEBUG: Empadronamiento:", submissionData.empadronamiento);
+            console.log("DEBUG: Landline:", submissionData.landline);
+            // Get CSRF token
+            const csrftoken = getCookie('csrftoken');
+            console.log("DEBUG: CSRF Token:", csrftoken ? "Found" : "Not found");
 
-        // Simulate API call (replace with actual API endpoint)
-        setTimeout(() => {
-            // This would be your actual fetch call to the server
-            /*
+            // Make the actual API call
             fetch('/create-inscription/', {
                 method: 'POST',
                 headers: {
@@ -1032,31 +1351,41 @@
                 },
                 body: JSON.stringify(submissionData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showConfirmationScreen(data.inscription_number);
-                } else {
-                    throw new Error(data.message || 'Error al procesar la inscripción');
-                }
-            })
-            .catch(error => {
-                showMessage(`Error: ${error.message}`, 'error');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Completar Inscripción';
-            });
-            */
+                .then(response => {
+                    console.log("DEBUG: Response status:", response.status);
+                    console.log("DEBUG: Response headers:", Object.fromEntries(response.headers.entries()));
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("DEBUG: Response data:", data);
+                    if (data.status === 'success') {
+                        showConfirmationScreen(data.inscription_number);
+                    } else {
+                        throw new Error(data.message || 'Error al procesar la inscripción');
+                    }
+                })
+                .catch(error => {
+                    console.error("DEBUG: Error details:", error);
+                    showMessage(`Error: ${error.message}`, 'error');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Completar Inscripción';
+                });
+        }
 
-            // Simulate success for demo purposes
-            const referenceNumber = 'REF-' + Math.floor(100000 + Math.random() * 900000);
-            showConfirmationScreen(referenceNumber);
-        }, 1500);
-    }
+    // Add this function to help debug email issues
+        function debugEmailFunctionality() {
+            console.group("EMAIL DEBUG INFO");
+            console.log("Form Data:", formData);
+            console.log("Email Address:", formData.step1.email);
+            console.log("Current Domain:", window.location.hostname);
+            console.groupEnd();
+        }
+
 
     function showConfirmationScreen(referenceNumber) {
         // Hide all other screens
         document.getElementById('stepsMenu').style.display = 'none';
-        document.getElementById('currentFormContainer').style.display = 'none';
+        hideAllForms();
 
         // Show confirmation screen
         document.getElementById('confirmation-email').textContent = formData.step1.email;
