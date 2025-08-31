@@ -1047,43 +1047,57 @@
 
 
 
-    // Update the validation for Step 1
+    // Specifically for Step 1 validation only
         function validateStep1() {
-            const required = ['full-name', 'birthdate', 'category', 'birth_municipality', 'empadronamiento', 'landline', 'address', 'city', 'zip-code', 'played-before'];
+            const required = [
+                'full-name', 'birthdate', 'category', 'birth-municipality',
+                'empadronamiento', 'landline', 'address', 'city', 'zip-code',
+                'mother-name', 'mother-dni', 'mother-email', 'mother-phone', 'mother-birthplace',
+                'club-rules', 'privacy-policy', 'health-data'
+            ];
             let isValid = true;
 
             required.forEach(field => {
-                if (field === 'played-before') {
-                    const yesRadio = document.getElementById('played-before-yes');
-                    const noRadio = document.getElementById('played-before-no');
+                if (field === 'club-rules' || field === 'privacy-policy' || field === 'health-data') {
+                    const element = document.getElementById(field);
                     const errorElement = document.getElementById(`${field}_error`);
-
-                    if (!yesRadio.checked && !noRadio.checked) {
-                        errorElement.textContent = 'Debes seleccionar una opción';
+                    if (element && !element.checked) {
+                        element.style.outline = '2px solid red';
+                        if (errorElement) errorElement.textContent = 'Debes aceptar este campo';
                         isValid = false;
-                    } else {
-                        errorElement.textContent = '';
+                    } else if (element) {
+                        element.style.outline = '';
+                        if (errorElement) errorElement.textContent = '';
                     }
                 } else {
                     const element = document.getElementById(field);
                     const errorElement = document.getElementById(`${field}_error`);
-                    if (!element.value.trim()) {
+                    if (element && !element.value.trim()) {
                         element.style.borderColor = 'red';
-                        errorElement.textContent = 'Este campo es obligatorio';
+                        if (errorElement) errorElement.textContent = 'Este campo es obligatorio';
                         isValid = false;
-                    } else {
+                    } else if (element) {
                         element.style.borderColor = '';
-                        errorElement.textContent = '';
+                        if (errorElement) errorElement.textContent = '';
                     }
                 }
             });
 
             // Email validation (if provided)
             const email = document.getElementById('email');
+            const motherEmail = document.getElementById('mother-email');
             const emailError = document.getElementById('email_error');
-            if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+            const motherEmailError = document.getElementById('mother-email_error');
+
+            if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
                 email.style.borderColor = 'red';
-                emailError.textContent = 'Por favor, introduce un email válido';
+                if (emailError) emailError.textContent = 'Por favor, introduce un email válido';
+                isValid = false;
+            }
+
+            if (motherEmail && motherEmail.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(motherEmail.value)) {
+                motherEmail.style.borderColor = 'red';
+                if (motherEmailError) motherEmailError.textContent = 'Por favor, introduce un email válido';
                 isValid = false;
             }
 
@@ -1198,7 +1212,7 @@
                         fullName: document.getElementById('full-name').value,
                         birthdate: document.getElementById('birthdate').value,
                         category: document.getElementById('category').value,
-                        birthMunicipality: document.getElementById('birth_municipality').value,
+                        birthMunicipality: document.getElementById('birth-municipality').value,
                         empadronamiento: document.getElementById('empadronamiento').value,
                         playerDni: document.getElementById('player-dni').value,
                         email: document.getElementById('email').value,
@@ -1208,7 +1222,23 @@
                         city: document.getElementById('city').value,
                         zipCode: document.getElementById('zip-code').value,
                         playedBefore: document.querySelector('input[name="played-before"]:checked')?.value,
-                        previousTeams: document.getElementById('previous-teams').value
+                        previousTeams: document.getElementById('previous-teams').value,
+                        motherName: document.getElementById('mother-name').value,
+                        motherDni: document.getElementById('mother-dni').value,
+                        motherEmail: document.getElementById('mother-email').value,
+                        motherPhone: document.getElementById('mother-phone').value,
+                        motherBirthplace: document.getElementById('mother-birthplace').value,
+                        fatherName: document.getElementById('father-name').value,
+                        fatherDni: document.getElementById('father-dni').value,
+                        fatherEmail: document.getElementById('father-email').value,
+                        fatherPhone: document.getElementById('father-phone').value,
+                        fatherBirthplace: document.getElementById('father-birthplace').value,
+                        clubRules: document.getElementById('club-rules').checked,
+                        privacyPolicy: document.getElementById('privacy-policy').checked,
+                        healthData: document.getElementById('health-data').checked,
+                        socialMediaImage: document.getElementById('social-media-image').checked,
+                        internetImage: document.getElementById('internet-image').checked,
+                        marketing: document.getElementById('marketing').checked
                     };
                     break;
             case 2:
@@ -1303,7 +1333,116 @@
         return date.toLocaleDateString('es-ES');
     }
 
-    // Fix the field name mapping in completeRegistration function
+    // Update the validation for Step 1
+        function validateStep1() {
+            const required = [
+                'full-name', 'birthdate', 'category', 'birth-municipality',
+                'empadronamiento', 'landline', 'address', 'city', 'zip-code',
+                'mother-name', 'mother-dni', 'mother-email', 'mother-phone', 'mother-birthplace',
+                'club-rules', 'privacy-policy', 'health-data'
+            ];
+            let isValid = true;
+
+            required.forEach(field => {
+                if (field === 'played-before') {
+                    const yesRadio = document.getElementById('played-before-yes');
+                    const noRadio = document.getElementById('played-before-no');
+                    const errorElement = document.getElementById(`${field}_error`);
+
+                    if (!yesRadio.checked && !noRadio.checked) {
+                        errorElement.textContent = 'Debes seleccionar una opción';
+                        isValid = false;
+                    } else {
+                        errorElement.textContent = '';
+                    }
+                } else if (field === 'club-rules' || field === 'privacy-policy' || field === 'health-data') {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.checked) {
+                        element.style.outline = '2px solid red';
+                        errorElement.textContent = 'Debes aceptar este campo';
+                        isValid = false;
+                    } else {
+                        element.style.outline = '';
+                        errorElement.textContent = '';
+                    }
+                } else {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.value.trim()) {
+                        element.style.borderColor = 'red';
+                        errorElement.textContent = 'Este campo es obligatorio';
+                        isValid = false;
+                    } else {
+                        element.style.borderColor = '';
+                        errorElement.textContent = '';
+                    }
+                }
+            });
+
+            // Email validation (if provided)
+            const email = document.getElementById('email');
+            const motherEmail = document.getElementById('mother-email');
+            const emailError = document.getElementById('email_error');
+            const motherEmailError = document.getElementById('mother-email_error');
+
+            if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                email.style.borderColor = 'red';
+                emailError.textContent = 'Por favor, introduce un email válido';
+                isValid = false;
+            }
+
+            if (motherEmail.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(motherEmail.value)) {
+                motherEmail.style.borderColor = 'red';
+                motherEmailError.textContent = 'Por favor, introduce un email válido';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Update the saveStepData function for Step 1
+        function saveStepData(step) {
+            switch (step) {
+                case 1:
+                    formData.step1 = {
+                        fullName: document.getElementById('full-name').value,
+                        birthdate: document.getElementById('birthdate').value,
+                        category: document.getElementById('category').value,
+                        birthMunicipality: document.getElementById('birth-municipality').value,
+                        empadronamiento: document.getElementById('empadronamiento').value,
+                        playerDni: document.getElementById('player-dni').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        landline: document.getElementById('landline').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        zipCode: document.getElementById('zip-code').value,
+                        playedBefore: document.querySelector('input[name="played-before"]:checked')?.value,
+                        previousTeams: document.getElementById('previous-teams').value,
+                        motherName: document.getElementById('mother-name').value,
+                        motherDni: document.getElementById('mother-dni').value,
+                        motherEmail: document.getElementById('mother-email').value,
+                        motherPhone: document.getElementById('mother-phone').value,
+                        motherBirthplace: document.getElementById('mother-birthplace').value,
+                        fatherName: document.getElementById('father-name').value,
+                        fatherDni: document.getElementById('father-dni').value,
+                        fatherEmail: document.getElementById('father-email').value,
+                        fatherPhone: document.getElementById('father-phone').value,
+                        fatherBirthplace: document.getElementById('father-birthplace').value,
+                        clubRules: document.getElementById('club-rules').checked,
+                        privacyPolicy: document.getElementById('privacy-policy').checked,
+                        healthData: document.getElementById('health-data').checked,
+                        socialMediaImage: document.getElementById('social-media-image').checked,
+                        internetImage: document.getElementById('internet-image').checked,
+                        marketing: document.getElementById('marketing').checked
+                    };
+                    break;
+                // ... rest of the cases remain the same
+            }
+        }
+
+        // Update the completeRegistration function to match backend field names
         function completeRegistration() {
             if (!validateStep(7)) return;
 
@@ -1313,31 +1452,53 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Procesando...';
 
+            // Prepare data for submission - MATCH BACKEND FIELD NAMES
             const submissionData = {
+                // Player information
                 full_name: formData.step1.fullName,
                 birthdate: formData.step1.birthdate,
                 category: formData.step1.category,
-                birth_municipality: formData.step1.birthMunicipality, // Changed to match backend
-                empadronamiento: formData.step1.empadronamiento, // Changed to match backend
+                birth_municipality: formData.step1.birthMunicipality,
+                empadronamiento: formData.step1.empadronamiento,
                 player_dni: formData.step1.playerDni,
                 email: formData.step1.email,
                 phone: formData.step1.phone,
-                landline: formData.step1.landline, // Changed to match backend
+                landline: formData.step1.landline,
                 address: formData.step1.address,
                 city: formData.step1.city,
                 zip_code: formData.step1.zipCode,
                 played_before: formData.step1.playedBefore,
                 previous_teams: formData.step1.previousTeams,
-                // Add other steps data as needed
+
+                // Mother/Tutor information
+                mother_name: formData.step1.motherName,
+                mother_dni: formData.step1.motherDni,
+                mother_email: formData.step1.motherEmail,
+                mother_phone: formData.step1.motherPhone,
+                mother_birthplace: formData.step1.motherBirthplace,
+
+                // Father information (optional)
+                father_name: formData.step1.fatherName,
+                father_dni: formData.step1.fatherDni,
+                father_email: formData.step1.fatherEmail,
+                father_phone: formData.step1.fatherPhone,
+                father_birthplace: formData.step1.fatherBirthplace,
+
+                // Consents
+                club_rules: formData.step1.clubRules,
+                privacy_policy: formData.step1.privacyPolicy,
+                health_data: formData.step1.healthData,
+                social_media_image: formData.step1.socialMediaImage,
+                internet_image: formData.step1.internetImage,
+                marketing: formData.step1.marketing,
+
                 season: "2023/2024",
                 registration_fee: "150"
             };
 
-                // DEBUG: Log the data being sent
+            // DEBUG: Log the data being sent
             console.log("DEBUG: Submission data:", submissionData);
-            console.log("DEBUG: Birth municipality:", submissionData.birth_municipality);
-            console.log("DEBUG: Empadronamiento:", submissionData.empadronamiento);
-            console.log("DEBUG: Landline:", submissionData.landline);
+
             // Get CSRF token
             const csrftoken = getCookie('csrftoken');
             console.log("DEBUG: CSRF Token:", csrftoken ? "Found" : "Not found");
@@ -1426,11 +1587,26 @@
         }
     });
 
-    function saveStep(step) {
-        if (validateStep(step)) {
-            navigateToStep(step + 1);
+    // Update the saveStep function to only validate the current step
+        function saveStep(step) {
+            if (validateStep(step)) {
+                navigateToStep(step + 1);
+            }
         }
-    }
+
+        // Also update the event listeners to use the correct function
+        document.addEventListener('DOMContentLoaded', function () {
+            for (let i = 1; i <= 7; i++) {
+                const button = document.getElementById(`step${i}Button`);
+                if (button) {
+                    button.addEventListener('click', function () {
+                        if (validateStep(i)) {
+                            navigateToStep(i + 1);
+                        }
+                    });
+                }
+            }
+        });
 </script>
 
 {% endblock %}

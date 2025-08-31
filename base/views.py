@@ -67,6 +67,7 @@ def get_players_by_team(request):
                 'full_name': player.full_name,
                 'number': player.number,
                 'position': player.position,
+                'display_position': player.display_position,  # ¡AÑADE ESTA LÍNEA!
                 'team': player.team,
                 'birth_date': player.birth_date.strftime('%Y-%m-%d') if player.birth_date else None,
                 'nationality': player.nationality,
@@ -453,10 +454,12 @@ def create_inscription(request):
                     'message': 'Invalid JSON format'
                 }, status=400)
             
-            # Validate required fields - UPDATED FOR NEW FORM
+            # Validate required fields - UPDATED WITH ALL NECESSARY FIELDS
             required_fields = [
                 'full_name', 'birthdate', 'category', 'birth_municipality', 
-                'empadronamiento', 'landline', 'address', 'city', 'zip_code'
+                'empadronamiento', 'landline', 'address', 'city', 'zip_code',
+                'mother_name', 'mother_dni', 'mother_email', 'mother_phone', 'mother_birthplace',
+                'club_rules', 'privacy_policy', 'health_data'
             ]
             missing_fields = [field for field in required_fields if field not in data or not data[field]]
             
@@ -491,7 +494,7 @@ def create_inscription(request):
     }, status=405)
 
 def send_inscription_emails(data, inscription_number):
-    """Send confirmation emails - UPDATED FOR NEW FIELDS"""
+    """Send confirmation emails - UPDATED WITH ALL FIELDS"""
     try:
         # Email to customer
         customer_subject = f'Confirmación de inscripción #{inscription_number} - Club Olympia'
@@ -512,7 +515,7 @@ Para cualquier consulta, puedes contactarnos en inscripciones@olympia.com
 '''
         
         # Use appropriate email (player email if available, otherwise parent email)
-        recipient_email = data.get('email')  # Player email for adults
+        recipient_email = data.get('email') or data.get('mother_email')  # Player email or mother's email
         
         if recipient_email:
             send_mail(
@@ -523,7 +526,7 @@ Para cualquier consulta, puedes contactarnos en inscripciones@olympia.com
                 fail_silently=False,
             )
         
-        # Email to club - UPDATED WITH NEW FIELDS
+        # Email to club - UPDATED WITH ALL FIELDS
         club_subject = f'Nueva inscripción #{inscription_number} - {data["full_name"]}'
         club_message = f'''
 Nueva inscripción recibida en el sistema:
@@ -547,6 +550,28 @@ Código Postal: {data['zip_code']}
 EXPERIENCIA PREVIA:
 ¿Ha jugado antes?: {data.get('played_before', 'No especificado')}
 Equipos anteriores y posición: {data.get('previous_teams', 'No especificado')}
+
+DATOS DE LA MADRE/TUTOR:
+Nombre: {data['mother_name']}
+DNI: {data['mother_dni']}
+Email: {data['mother_email']}
+Teléfono: {data['mother_phone']}
+Lugar de nacimiento: {data['mother_birthplace']}
+
+DATOS DEL PADRE (OPCIONAL):
+Nombre: {data.get('father_name', 'No proporcionado')}
+DNI: {data.get('father_dni', 'No proporcionado')}
+Email: {data.get('father_email', 'No proporcionado')}
+Teléfono: {data.get('father_phone', 'No proporcionado')}
+Lugar de nacimiento: {data.get('father_birthplace', 'No proporcionado')}
+
+CONSENTIMIENTOS:
+Normas del club: {'Aceptado' if data.get('club_rules') else 'No aceptado'}
+Política de privacidad: {'Aceptado' if data.get('privacy_policy') else 'No aceptado'}
+Datos de salud: {'Aceptado' if data.get('health_data') else 'No aceptado'}
+Imagen redes sociales: {'Aceptado' if data.get('social_media_image') else 'No aceptado'}
+Imagen internet: {'Aceptado' if data.get('internet_image') else 'No aceptado'}
+Publicidad: {'Aceptado' if data.get('marketing') else 'No aceptado'}
 
 DATOS DE LA INSCRIPCIÓN:
 Número: {inscription_number}

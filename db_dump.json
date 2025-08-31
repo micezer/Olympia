@@ -2600,6 +2600,643 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 201,
+    "fields": {
+        "action_time": "2025-08-27T13:21:35.825Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "58",
+        "object_repr": "Tamara - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 202,
+    "fields": {
+        "action_time": "2025-08-27T13:24:03.847Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "7",
+        "object_repr": "Marta Moreno - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 203,
+    "fields": {
+        "action_time": "2025-08-28T12:44:47.338Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Michael Ezeh Ezeh (53905850Z)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 204,
+    "fields": {
+        "action_time": "2025-08-29T12:51:41.983Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "  (53905850u)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 205,
+    "fields": {
+        "action_time": "2025-08-29T12:51:41.983Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Michael Ezeh  (53905850Z)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 206,
+    "fields": {
+        "action_time": "2025-08-31T17:12:36.721Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Elisa Puerta - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 207,
+    "fields": {
+        "action_time": "2025-08-31T17:14:26.690Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Elisa Puerta - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 208,
+    "fields": {
+        "action_time": "2025-08-31T17:18:53.193Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Elisa Puerta - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 209,
+    "fields": {
+        "action_time": "2025-08-31T17:19:24.526Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Andrea Rodriguez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 210,
+    "fields": {
+        "action_time": "2025-08-31T17:19:56.182Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Andrea Totana - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 211,
+    "fields": {
+        "action_time": "2025-08-31T17:20:02.973Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Elisa Puerta - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 212,
+    "fields": {
+        "action_time": "2025-08-31T17:21:31.749Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "62",
+        "object_repr": "Tamara - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 213,
+    "fields": {
+        "action_time": "2025-08-31T17:21:47.375Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "62",
+        "object_repr": "Tamara Álvarez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 214,
+    "fields": {
+        "action_time": "2025-08-31T17:22:42.927Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "12",
+        "object_repr": "Manuela Alfayate - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 215,
+    "fields": {
+        "action_time": "2025-08-31T17:23:21.492Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "59",
+        "object_repr": "Ana Hortelano - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Number\", \"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 216,
+    "fields": {
+        "action_time": "2025-08-31T17:23:30.748Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "12",
+        "object_repr": "Manuela Alfayate - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 217,
+    "fields": {
+        "action_time": "2025-08-31T17:23:44.446Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "19",
+        "object_repr": "Alba Masa - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 218,
+    "fields": {
+        "action_time": "2025-08-31T17:24:30.128Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "18",
+        "object_repr": "Belén Peralta - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 219,
+    "fields": {
+        "action_time": "2025-08-31T17:24:43.022Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "15",
+        "object_repr": "Rocio Zafra - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 220,
+    "fields": {
+        "action_time": "2025-08-31T17:25:18.571Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "21",
+        "object_repr": "Lucía Sanchez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 221,
+    "fields": {
+        "action_time": "2025-08-31T17:25:36.805Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "13",
+        "object_repr": "Sara Sánchez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 222,
+    "fields": {
+        "action_time": "2025-08-31T17:26:00.639Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "20",
+        "object_repr": "Laura Viñas - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 223,
+    "fields": {
+        "action_time": "2025-08-31T17:27:03.161Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "6",
+        "object_repr": "Gema Prieto - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 224,
+    "fields": {
+        "action_time": "2025-08-31T17:27:12.234Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "9",
+        "object_repr": "Yolanda Albalat - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 225,
+    "fields": {
+        "action_time": "2025-08-31T17:27:25.680Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "14",
+        "object_repr": "Maria Herrero - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 226,
+    "fields": {
+        "action_time": "2025-08-31T17:27:38.380Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "17",
+        "object_repr": "Cristina Rincón - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 227,
+    "fields": {
+        "action_time": "2025-08-31T17:27:52.436Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "61",
+        "object_repr": "Ainara Mauri - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 228,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "29",
+        "object_repr": "DELEGADO - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 229,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "26",
+        "object_repr": "Alejandro - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 230,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "25",
+        "object_repr": "Maru - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 231,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "24",
+        "object_repr": "Rodrigo - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 232,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "23",
+        "object_repr": "Borja - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 233,
+    "fields": {
+        "action_time": "2025-08-31T17:29:35.242Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "22",
+        "object_repr": "Fernando - Senior A - Primer Equipo",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 234,
+    "fields": {
+        "action_time": "2025-08-31T17:30:42.335Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "27",
+        "object_repr": "Sergio De La Fuente - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Role\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 235,
+    "fields": {
+        "action_time": "2025-08-31T17:31:38.056Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "28",
+        "object_repr": "Adrian Sanchez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Role\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 236,
+    "fields": {
+        "action_time": "2025-08-31T17:32:48.517Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "63",
+        "object_repr": "Sofía Perez - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 237,
+    "fields": {
+        "action_time": "2025-08-31T17:38:39.790Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "64",
+        "object_repr": "Mauri Richards - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 238,
+    "fields": {
+        "action_time": "2025-08-31T17:38:46.257Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "64",
+        "object_repr": "Mauri Richards - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 239,
+    "fields": {
+        "action_time": "2025-08-31T17:39:40.794Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "64",
+        "object_repr": "Mauri Richards - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 240,
+    "fields": {
+        "action_time": "2025-08-31T17:39:46.775Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "64",
+        "object_repr": "Mauri Richards - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 241,
+    "fields": {
+        "action_time": "2025-08-31T17:41:12.151Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "65",
+        "object_repr": "Ivan Pernia - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 242,
+    "fields": {
+        "action_time": "2025-08-31T17:41:56.420Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "66",
+        "object_repr": "David González - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 243,
+    "fields": {
+        "action_time": "2025-08-31T17:42:37.615Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "67",
+        "object_repr": "Daniel Rojas - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 244,
+    "fields": {
+        "action_time": "2025-08-31T17:42:41.153Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "66",
+        "object_repr": "David González - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 245,
+    "fields": {
+        "action_time": "2025-08-31T17:42:43.779Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "65",
+        "object_repr": "Ivan Pernia - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 246,
+    "fields": {
+        "action_time": "2025-08-31T17:42:46.280Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "64",
+        "object_repr": "Mauri Richards - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 247,
+    "fields": {
+        "action_time": "2025-08-31T17:42:49.063Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "63",
+        "object_repr": "Sofía Perez - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 248,
+    "fields": {
+        "action_time": "2025-08-31T17:43:25.276Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "68",
+        "object_repr": "Cassandre Lamarca - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 249,
+    "fields": {
+        "action_time": "2025-08-31T17:43:59.898Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "69",
+        "object_repr": "Andrea Cacho - Senior A - Primer Equipo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -2960,11 +3597,83 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add player registration",
+        "content_type": 11,
+        "codename": "add_playerregistration"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change player registration",
+        "content_type": 11,
+        "codename": "change_playerregistration"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete player registration",
+        "content_type": 11,
+        "codename": "delete_playerregistration"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view player registration",
+        "content_type": 11,
+        "codename": "view_playerregistration"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add Inscripción",
+        "content_type": 12,
+        "codename": "add_inscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change Inscripción",
+        "content_type": 12,
+        "codename": "change_inscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete Inscripción",
+        "content_type": 12,
+        "codename": "delete_inscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view Inscripción",
+        "content_type": 12,
+        "codename": "view_inscription"
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
-        "last_login": "2025-08-27T11:14:46.345Z",
+        "last_login": "2025-08-31T17:12:09.465Z",
         "is_superuser": true,
         "username": "mexes",
         "first_name": "",
@@ -3058,11 +3767,35 @@
     }
 },
 {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "base",
+        "model": "playerregistration"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "base",
+        "model": "inscription"
+    }
+},
+{
     "model": "sessions.session",
     "pk": "2skhfh59xc68t4jbfw8ckq7yaojjnjo4",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1urE74:QpJ7qZoH3Jyf31P5q-aPuBmLe912TLKMWewUATB4E0s",
         "expire_date": "2025-09-10T11:14:46.354Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5dpvns7gywilerufujzlta023cmlyxum",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1usJt5:MUNxBeZPOaZXLKbh6BO3cSNR7tr8sNdELAd0Xqwn7SE",
+        "expire_date": "2025-09-13T11:36:51.994Z"
     }
 },
 {
@@ -3083,6 +3816,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "aysa9jgxkdm1jxvtga8ymhp6xtugeu48",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uryZi:wubESYtNZRb3GY6GQajWgCaNpsgVQlziNAVhnU5KBNA",
+        "expire_date": "2025-09-12T12:51:26.729Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "g5bo8bsemafidfc1w3c6rhwkweowp4de",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqxaU:fPV-yqhP7d-jJHJXy8WYT_WY7DPrBtzlE_vJi0xU1Ec",
@@ -3091,10 +3832,42 @@
 },
 {
     "model": "sessions.session",
+    "pk": "nxatgij7h1g1vnud8kya1kf9a3kni59w",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uslb7:UxFiSSZDeYlcmrjwTcMS3h39qoNbMp1lpMaNoR68MGE",
+        "expire_date": "2025-09-14T17:12:09.474Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ozulk9fpf626burb6nsk0d647m7ak2r9",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1urbiJ:pgGbUt5_oaseYALlCXzKoWwwIgdwpXDN_PJoZ4esOCc",
+        "expire_date": "2025-09-11T12:26:47.527Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "qqtpqbimwbk3frf8jqox02niycer1sey",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uqWk7:uL96_KVCOsRt624f9Oy0AIP1LFHjQvJZUjozjsX3s-4",
         "expire_date": "2025-09-08T12:56:11.268Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uy2jv0zbxj1qhge9a1bzjr4h3x3d89dm",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1urzLL:MVVy1yqVKcWeNHxYCyyqK_0ZCoQrRT4xnot91kk-5dc",
+        "expire_date": "2025-09-12T13:40:39.942Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "vlht36pc8j1xjzciker77dobjt55yjfe",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1urG4O:9gfDhHw9Agz0uOHO9FUmOKOou4sElBFXgL_A4DVctVs",
+        "expire_date": "2025-09-10T13:20:08.050Z"
     }
 },
 {
@@ -3661,10 +4434,11 @@
         "full_name": "Andrea Rodriguez Castellano",
         "number": 1,
         "position": "portero",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2003-09-02",
         "nationality": "Española",
-        "image": "image/upload/andrea_rodriguez_nucjaq",
+        "image": "image/upload/andrea_rodriguez_r6g6ew",
         "is_staff": false,
         "role": ""
     }
@@ -3677,10 +4451,11 @@
         "full_name": "Andrea Totana Nicolás",
         "number": 8,
         "position": "defensa",
+        "display_position": "Lateral",
         "team": "senior_a",
         "birth_date": "1997-05-06",
         "nationality": "Española",
-        "image": "image/upload/andra_totana_qyihmn",
+        "image": "image/upload/andrea_totana_h2mrkp",
         "is_staff": false,
         "role": ""
     }
@@ -3693,10 +4468,11 @@
         "full_name": "Elisa Puerta Martinez De Ubag",
         "number": 19,
         "position": "defensa",
+        "display_position": "Lateral",
         "team": "senior_a",
         "birth_date": "2002-07-11",
         "nationality": "Española",
-        "image": "image/upload/elisa_puerta_qxgppy",
+        "image": "image/upload/elisa_puerta_wlwlgr",
         "is_staff": false,
         "role": ""
     }
@@ -3709,6 +4485,7 @@
         "full_name": "Laura González Hernandez",
         "number": 27,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2006-02-15",
         "nationality": "Española",
@@ -3725,26 +4502,11 @@
         "full_name": "Gema Prieto Arenas",
         "number": 6,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "1996-06-06",
         "nationality": "Española",
-        "image": "image/upload/gema_prieto_nermsd",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 7,
-    "fields": {
-        "name": "Marta Moreno",
-        "full_name": "Marta Moreno",
-        "number": 8,
-        "position": "centrocampista",
-        "team": "senior_a",
-        "birth_date": "2000-07-24",
-        "nationality": "Española",
-        "image": "image/upload/marta_moreno_wurdmg",
+        "image": "image/upload/gema_prieto_lwivsj",
         "is_staff": false,
         "role": ""
     }
@@ -3757,10 +4519,11 @@
         "full_name": "Yolanda Albalat Collado",
         "number": 10,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "1998-07-14",
         "nationality": "Española",
-        "image": "image/upload/yoanda_albalat_hrosej",
+        "image": "image/upload/yolanda_albalat_tarbys",
         "is_staff": false,
         "role": ""
     }
@@ -3772,11 +4535,12 @@
         "name": "Manuela Alfayate",
         "full_name": "Manuela Alfayate Fernández",
         "number": 4,
-        "position": "centrocampista",
+        "position": "defensa",
+        "display_position": "Central",
         "team": "senior_a",
         "birth_date": "2006-11-11",
         "nationality": "Española",
-        "image": "image/upload/manuela_alfayete_siqbfj",
+        "image": "image/upload/manuela_alfayate_yipcnf",
         "is_staff": false,
         "role": ""
     }
@@ -3788,7 +4552,8 @@
         "name": "Sara Sánchez",
         "full_name": "Sara Sánchez Vega",
         "number": 17,
-        "position": "centrocampista",
+        "position": "delantero",
+        "display_position": "Extremo",
         "team": "senior_a",
         "birth_date": null,
         "nationality": "Española",
@@ -3805,10 +4570,11 @@
         "full_name": "Maria Herrero Oquiñena",
         "number": 16,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2001-11-12",
         "nationality": "Española",
-        "image": "image/upload/mariaherrero_hewosr",
+        "image": "image/upload/maria_herrero_mpn4qv",
         "is_staff": false,
         "role": ""
     }
@@ -3821,10 +4587,11 @@
         "full_name": "Rocío Zafra Domínguez",
         "number": 9,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "1994-12-07",
         "nationality": "Española",
-        "image": "image/upload/rociozafra_cnqvvw",
+        "image": "image/upload/rocio_zafra_rtxkdl",
         "is_staff": false,
         "role": ""
     }
@@ -3837,6 +4604,7 @@
         "full_name": "María Bravo Matías",
         "number": 30,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "1997-03-14",
         "nationality": "Española",
@@ -3852,11 +4620,12 @@
         "name": "Cristina Rincón",
         "full_name": "Cristina Rincón Frances",
         "number": 20,
-        "position": "delantero",
+        "position": "centrocampista",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2002-12-11",
         "nationality": "Española",
-        "image": "image/upload/cristina_rincon_wprer9",
+        "image": "image/upload/cristina_rincon_sp0nnp",
         "is_staff": false,
         "role": ""
     }
@@ -3869,10 +4638,11 @@
         "full_name": "Belén Peralta Madrigal",
         "number": 7,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "1999-02-08",
         "nationality": "Española",
-        "image": "image/upload/belen_peralta_jpi0sq",
+        "image": "image/upload/belen_peralta_m4dghu",
         "is_staff": false,
         "role": ""
     }
@@ -3884,11 +4654,12 @@
         "name": "Alba Masa",
         "full_name": "Alba Masa López",
         "number": 22,
-        "position": "delantero",
+        "position": "defensa",
+        "display_position": "Central",
         "team": "senior_a",
         "birth_date": "2003-10-25",
         "nationality": "Española",
-        "image": "image/upload/alba_masa_dyzdbp",
+        "image": "image/upload/alba_masa_ecjnwj",
         "is_staff": false,
         "role": ""
     }
@@ -3901,10 +4672,11 @@
         "full_name": "Laura Viñas Herrera",
         "number": 18,
         "position": "delantero",
+        "display_position": "Extremo",
         "team": "senior_a",
         "birth_date": "2004-11-11",
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/lauravinas_njlphi",
+        "nationality": "Española",
+        "image": "image/upload/laura_vinas_tlo8ph",
         "is_staff": false,
         "role": ""
     }
@@ -3917,140 +4689,47 @@
         "full_name": "Lucía Sanchez Herradon",
         "number": 11,
         "position": "delantero",
+        "display_position": "Extremo",
         "team": "senior_a",
         "birth_date": "2002-04-02",
         "nationality": "Española",
-        "image": "image/upload/lucia_sanchez_vb0vxm",
+        "image": "image/upload/lucia_sanchez_zu9047",
         "is_staff": false,
         "role": ""
     }
 },
 {
     "model": "base.player",
-    "pk": 22,
-    "fields": {
-        "name": "Fernando",
-        "full_name": "Fernando Zuazua Escalada",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": null,
-        "nationality": "Española",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/fernando_zuazua_tecnico_senior_a.png",
-        "is_staff": true,
-        "role": "Segundo entrenador"
-    }
-},
-{
-    "model": "base.player",
-    "pk": 23,
-    "fields": {
-        "name": "Borja",
-        "full_name": "Borja Carrera González",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": null,
-        "nationality": "Española",
-        "image": "image/upload/v1756231641/escudos/vtmhrqzupufdaljs0mjq.png",
-        "is_staff": true,
-        "role": "Preparador físico"
-    }
-},
-{
-    "model": "base.player",
-    "pk": 24,
-    "fields": {
-        "name": "Rodrigo",
-        "full_name": "Rodrigo Colado",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": "1991-09-30",
-        "nationality": "Española",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/rodrigo_colado_tecnico_senior_a.png",
-        "is_staff": true,
-        "role": "Fisioterapeuta"
-    }
-},
-{
-    "model": "base.player",
-    "pk": 25,
-    "fields": {
-        "name": "Maru",
-        "full_name": "Maru Monte",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": null,
-        "nationality": "Española",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/maru_monte_tecnico_senior_a.png",
-        "is_staff": true,
-        "role": "Psicólogo"
-    }
-},
-{
-    "model": "base.player",
-    "pk": 26,
-    "fields": {
-        "name": "Alejandro",
-        "full_name": "Alejandro Fernández",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": null,
-        "nationality": "Española",
-        "image": "image/upload/v1756231866/escudos/qu6ebk7zp9eoiq04apby.png",
-        "is_staff": true,
-        "role": "Encargado de material"
-    }
-},
-{
-    "model": "base.player",
     "pk": 27,
     "fields": {
-        "name": "Sergio",
-        "full_name": "Sergio De Lucas Fernandez",
+        "name": "Sergio De La Fuente",
+        "full_name": "Sergio De La Fuente",
         "number": 0,
         "position": "tecnico",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": null,
         "nationality": "Española",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/sergio_de_lucas_tecnico_senior_a.png",
+        "image": "image/upload/sergio_de_la_fuente_kfyq3w",
         "is_staff": true,
-        "role": "Analista"
+        "role": "Asistente"
     }
 },
 {
     "model": "base.player",
     "pk": 28,
     "fields": {
-        "name": "Adrian",
-        "full_name": "Adrian Sanchez Lopez",
+        "name": "Adrian Sanchez",
+        "full_name": "Adrian Sanchez",
         "number": 0,
         "position": "tecnico",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": null,
         "nationality": "Española",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/adrian_sanchez_tecnico_senior_a.png",
+        "image": "image/upload/adrian_sanchez_wsi7lp",
         "is_staff": true,
-        "role": "Delegado"
-    }
-},
-{
-    "model": "base.player",
-    "pk": 29,
-    "fields": {
-        "name": "DELEGADO",
-        "full_name": "DELEGADO",
-        "number": 0,
-        "position": "tecnico",
-        "team": "senior_a",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/delegado_tecnico_senior_a.png",
-        "is_staff": true,
-        "role": "Delegado"
+        "role": "Entrenador de Porteras"
     }
 },
 {
@@ -4061,6 +4740,7 @@
         "full_name": "Ana BelÃ©n De La Chica Cardenas",
         "number": 0,
         "position": "tecnico",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4077,6 +4757,7 @@
         "full_name": "Carmen",
         "number": 1,
         "position": "portero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4093,6 +4774,7 @@
         "full_name": "L. MartÃ­n",
         "number": 25,
         "position": "portero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4109,6 +4791,7 @@
         "full_name": "Nuria",
         "number": 28,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4125,6 +4808,7 @@
         "full_name": "LucÃ­a",
         "number": 3,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4141,6 +4825,7 @@
         "full_name": "Daniela",
         "number": 7,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4157,6 +4842,7 @@
         "full_name": "Andrea",
         "number": 2,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4173,6 +4859,7 @@
         "full_name": "Paola",
         "number": 22,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4189,6 +4876,7 @@
         "full_name": "Mireya",
         "number": 4,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4205,6 +4893,7 @@
         "full_name": "Cristina",
         "number": 14,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4221,6 +4910,7 @@
         "full_name": "Gadea",
         "number": 31,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4237,6 +4927,7 @@
         "full_name": "Bea",
         "number": 33,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4253,6 +4944,7 @@
         "full_name": "Teresa",
         "number": 32,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4269,6 +4961,7 @@
         "full_name": "Ana",
         "number": 51,
         "position": "defensa",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4285,6 +4978,7 @@
         "full_name": "L. FernÃ¡ndez",
         "number": 7,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4301,6 +4995,7 @@
         "full_name": "Raquel",
         "number": 10,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4317,6 +5012,7 @@
         "full_name": "Marina",
         "number": 23,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4333,6 +5029,7 @@
         "full_name": "Aroa",
         "number": 18,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4349,6 +5046,7 @@
         "full_name": "Iciar",
         "number": 20,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4365,6 +5063,7 @@
         "full_name": "Lorena",
         "number": 6,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4381,6 +5080,7 @@
         "full_name": "Susana",
         "number": 26,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4397,6 +5097,7 @@
         "full_name": "Mirem",
         "number": 88,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4413,6 +5114,7 @@
         "full_name": "Alejandra",
         "number": 11,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4429,6 +5131,7 @@
         "full_name": "Claudia",
         "number": 9,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4445,6 +5148,7 @@
         "full_name": "LucÃ­a",
         "number": 19,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4461,6 +5165,7 @@
         "full_name": "Clara",
         "number": 24,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4477,6 +5182,7 @@
         "full_name": "Victoria",
         "number": 29,
         "position": "delantero",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4493,6 +5199,7 @@
         "full_name": "Jose Pulido GarcÃ­a",
         "number": 0,
         "position": "tecnico",
+        "display_position": "",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -4503,32 +5210,17 @@
 },
 {
     "model": "base.player",
-    "pk": 58,
-    "fields": {
-        "name": "Tamara",
-        "full_name": "Tamara Álvarez Rodríguez",
-        "number": 0,
-        "position": "defensa",
-        "team": "senior_a",
-        "birth_date": "1995-01-09",
-        "nationality": "Española",
-        "image": "image/upload/v1756293427/escudos/pu5mzcumhbbtneguhcx9.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
     "pk": 59,
     "fields": {
         "name": "Ana Hortelano",
         "full_name": "Ana Hortelano Anton",
-        "number": 0,
-        "position": "centrocampista",
+        "number": 5,
+        "position": "defensa",
+        "display_position": "Central",
         "team": "senior_a",
         "birth_date": "2005-05-08",
         "nationality": "Española",
-        "image": "image/upload/ana_hortelano_t4tkxq",
+        "image": "image/upload/ana_hortelano_q7l88x",
         "is_staff": false,
         "role": ""
     }
@@ -4541,10 +5233,11 @@
         "full_name": "Laura Zaballos Berrio",
         "number": 13,
         "position": "portero",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2006-04-23",
         "nationality": "Española",
-        "image": "image/upload/laurazaballos_gqv9be",
+        "image": "image/upload/laura_zaballos_jynhsk",
         "is_staff": false,
         "role": ""
     }
@@ -4557,12 +5250,149 @@
         "full_name": "Ainara Mauri Gonzalez",
         "number": 24,
         "position": "centrocampista",
+        "display_position": "",
         "team": "senior_a",
         "birth_date": "2005-07-21",
         "nationality": "Española",
-        "image": "image/upload/ainara_mauri_dorczd",
+        "image": "image/upload/ainara_mauri_t6mael",
         "is_staff": false,
         "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 62,
+    "fields": {
+        "name": "Tamara Álvarez",
+        "full_name": "Tamara Álvarez Rodríguez",
+        "number": 21,
+        "position": "defensa",
+        "display_position": "Lateral",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/tamara_alvarez_sq0pfo",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 63,
+    "fields": {
+        "name": "Sofía Perez",
+        "full_name": "Sofía Perez",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/sofia_perez_bcaph4",
+        "is_staff": true,
+        "role": "Fisioterapeuta"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 64,
+    "fields": {
+        "name": "Mauri Richards",
+        "full_name": "Mauri Richards",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/mauri_richards_vr8xnd",
+        "is_staff": true,
+        "role": "Preparador físico"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 65,
+    "fields": {
+        "name": "Ivan Pernia",
+        "full_name": "Ivan Pernia",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/ivan_pernia_tihvqu",
+        "is_staff": true,
+        "role": "Primer entrenador"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 66,
+    "fields": {
+        "name": "David González",
+        "full_name": "David González",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/david_gonzalez_z2wrqv",
+        "is_staff": true,
+        "role": "Segundo entrenador"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 67,
+    "fields": {
+        "name": "Daniel Rojas",
+        "full_name": "Daniel Rojas",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/daniel_rojas_onrycd",
+        "is_staff": true,
+        "role": "Preparador físico"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 68,
+    "fields": {
+        "name": "Cassandre Lamarca",
+        "full_name": "Cassandre Lamarca",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/cassandre_lamarca_sluuxv",
+        "is_staff": true,
+        "role": "Fisioterapeuta"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 69,
+    "fields": {
+        "name": "Andrea Cacho",
+        "full_name": "Andrea Cacho",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_a",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/andrea_cacho_di0jim",
+        "is_staff": true,
+        "role": "Delegada"
     }
 }
 ]

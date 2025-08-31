@@ -11,31 +11,32 @@ class Command(BaseCommand):
         # Mapeo de nombres de jugadoras a public_ids de Cloudinary
         player_public_ids = {
             # PORTERAS SENIOR A
-            "Andrea Rodriguez": "andrea_rodriguez_nucjaq",
-            "Laura Zaballos": "laurazaballos_gqv9be",
+            "Andrea Rodriguez": "andrea_rodriguez_r6g6ew",
+            "Laura Zaballos": "laura_zaballos_jynhsk",
 
             # DEFENSAS SENIOR A
-            "Andrea Totana": "andra_totana_qyihmn",
-            "Elisa Puerta": "elisa_puerta_qxgppy",
+            "Andrea Totana": "andrea_totana_h2mrkp",
+            "Elisa Puerta": "elisa_puerta_wlwlgr",
             "Laura González": "laura_gonzalez_pmustm",
+            "Tamara Álvarez": "tamara_alvarez_sq0pfo",
 
             # CENTROCAMPISTAS SENIOR A
-            "Gema Prieto": "gema_prieto_nermsd",
-            "Yolanda Albalat": "yoanda_albalat_hrosej",
-            "Ana Hortelano": "ana_hortelano_t4tkxq",
-            "Ainara Mauri": "ainara_mauri_dorczd",
-            "Manuela Alfayate": "manuela_alfayete_siqbfj",
+            "Gema Prieto": "gema_prieto_lwivsj",
+            "Yolanda Albalat": "yolanda_albalat_tarbys",
+            "Ana Hortelano": "ana_hortelano_q7l88x",
+            "Ainara Mauri": "ainara_mauri_t6mael",
+            "Manuela Alfayate": "manuela_alfayate_yipcnf",
             "Sara Sánchez": "sara_sanchez_lnpxqg",
-            "Maria Herrero": "mariaherrero_hewosr",
+            "Maria Herrero": "maria_herrero_mpn4qv",
 
             # DELANTERAS SENIOR A
-            "Rocio Zafra": "rociozafra_cnqvvw",
+            "Rocio Zafra": "rocio_zafra_rtxkdl",
             "María Bravo": "maria_bravo_d97cza",
-            "Cristina Rincón": "cristina_rincon_wprer9",
-            "Belén Peralta": "belen_peralta_jpi0sq",
-            "Alba Masa": "alba_masa_dyzdbp",
-            "Laura Viñas": "lauravinas_njlphi",
-            "Lucía Sanchez": "lucia_sanchez_vb0vxm",
+            "Cristina Rincón": "cristina_rincon_sp0nnp",
+            "Belén Peralta": "belen_peralta_m4dghu",
+            "Alba Masa": "alba_masa_ecjnwj",
+            "Laura Viñas": "laura_vinas_tlo8ph",
+            "Lucía Sanchez": "lucia_sanchez_zu9047",
 
             # PORTERAS SENIOR B
             "Carmen": "carmen_porteria_senior_b",
@@ -72,16 +73,15 @@ class Command(BaseCommand):
             "Victoria": "victoria_delantero_senior_b",
             
             # CUERPO TÉCNICO
-            "Fernando Zuazua Escalada": "fernando_entrenador_senior_a",
-            "Borja Carrera González": "borja_entrenador_senior_a",
-            "Rodrigo Colado": "rodrigo_preparador_senior_a",
-            "Maru Monte": "maru_fisio_senior_a",
-            "Alejandro Fernández": "alejandro_psicologo_senior_a",
-            "Sergio De Lucas Fernandez": "sergio_material_senior_a",
-            "Adrian Sanchez Lopez": "adrian_analista_senior_a",
-            "DELEGADO": "delegado_senior_a",
-            "Ana Belén De La Chica Cardenas": "ana_belen_entrenador_senior_b",
-            "Jose Pulido García": "jose_entrenador_senior_b",
+            "Sofía Perez": "sofia_perez_bcaph4",
+            "Sergio De La Fuente": "sergio_de_la_fuente_kfyq3w",
+            "Mauri Richards": "mauri_richards_vr8xnd",
+            "Ivan Pernia": "ivan_pernia_tihvqu",
+            "David González": "david_gonzalez_z2wrqv",
+            "Daniel Rojas": "daniel_rojas_onrycd",
+            "Cassandre Lamarca": "cassandre_lamarca_sluuxv",
+            "Andrea Cacho": "andrea_cacho_di0jim",
+            "Adrian Sanchez": "adrian_sanchez_wsi7lp",
         }
 
         self.stdout.write("Iniciando asignación de imágenes de jugadoras...")
