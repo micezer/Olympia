@@ -70,6 +70,20 @@ from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Match(models.Model):
+    # Categoría del equipo (nuevo campo)
+    TEAM_CATEGORY_CHOICES = [
+        ('senior_a', 'Senior A - Primer Equipo'),
+        ('senior_b', 'Senior B'),
+        ('cantera', 'Cantera'),
+        ('other', 'Otro'),
+    ]
+    
+    team_category = models.CharField(
+        max_length=20,
+        choices=TEAM_CATEGORY_CHOICES,
+        default='senior_a',
+        verbose_name="Categoría del Equipo"
+    )
     # Match details
     date = models.DateTimeField()
     home_team = models.CharField(max_length=100)

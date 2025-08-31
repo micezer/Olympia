@@ -914,17 +914,28 @@
             </div>
 
             <!-- Next Match Section -->
-            <div class="next-match-section" id="nextMatchSection"
-                style="max-width: 500px; margin: 20px auto; background: var(--secondary-blue); border-radius: 6px; padding: 10px;">
-                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <img src="{% static 'images/olympia_logo.png' %}" alt="Team Logo"
-                        style="width: 50px; height: 50px; object-fit: contain;">
-                    <div style="font-size: 16px; font-weight: bold; color: var(--primary-gold); margin: 0 5px;">VS</div>
-                    <img src="{% static 'images/olympia_logo.png' %}" alt="Opponent Logo"
-                        style="width: 50px; height: 50px; object-fit: contain;" id="opponentLogo">
-                    <div class="match-info">
-                        <div class="match-date" id="matchDate"></div>
-                        <div class="match-time" id="matchTime"></div>
+            <div class="next-match-section" id="nextMatchSection" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <img src="{% static 'images/olympia_logo.png' %}" alt="Team Logo"
+                            style="width: 60px; height: 60px; object-fit: contain;">
+                        <div style="font-size: 12px; margin-top: 10px; color: var(--primary-gold);">OLYMPIA</div>
+                    </div>
+            
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="match-fixture" id="matchFixture"
+                            style="font-size: 14px; color: var(--primary-gold); font-weight: bold; margin-bottom: 5px;"></div>
+                        <div style="font-size: 18px; color: var(--primary-gold); margin: 0 5px;">VS</div>
+                    </div>
+            
+                    <div style="text-align: center;">
+                        <img src="" alt="Opponent Logo" id="opponentLogo" style="width: 60px; height: 60px; object-fit: contain;">
+                        <div style="font-size: 12px; margin-top: 10px; color: white;" id="opponentName"></div>
+                    </div>
+            
+                    <div class="match-info" style="text-align: center;">
+                        <div class="match-date" id="matchDate" style="font-weight: bold;"></div>
+                        <div class="match-time" id="matchTime" style="color: var(--primary-gold);"></div>
                         <div class="match-location" id="matchLocation"></div>
                     </div>
                 </div>
@@ -1108,6 +1119,8 @@
         const matchDate = document.getElementById('matchDate');
         const matchTime = document.getElementById('matchTime');
         const matchLocation = document.getElementById('matchLocation');
+        const matchFixture = document.getElementById('matchFixture');
+        const opponentName = document.getElementById('opponentName');
 
         // Modal elements
         const positionsModal = document.getElementById('positionsModal');
@@ -1205,46 +1218,60 @@
             updateNextMatch(teamId);
         }
 
-        // Function to update next match information
+        /// Function to update next match information
         function updateNextMatch(teamId) {
-            // This would typically come from your Django database
-            // For now, using placeholder data
-            const matches = {
-                senior_a: {
-                    date: "Sáb, 15 Oct",
-                    time: "18:00 H",
-                    location: "Estadio Municipal",
-                    opponent: "Local Opponent",
-                    opponentLogo: "{% static 'images/opponents/opponent1.png' %}"
-                },
-                senior_b: {
-                    date: "Dom, 16 Oct",
-                    time: "12:00 H",
-                    location: "Campo Municipal",
-                    opponent: "Visiting Team",
-                    opponentLogo: "{% static 'images/opponents/opponent2.png' %}"
-                },
-                cantera: {
-                    date: "Sáb, 22 Oct",
-                    time: "11:00 H",
-                    location: "Polideportivo",
-                    opponent: "Youth Rivals",
-                    opponentLogo: "{% static 'images/opponents/opponent3.png' %}"
-                }
-            };
+            // Solo mostrar para senior_a y senior_b
+            if (teamId !== 'senior_a' && teamId !== 'senior_b') {
+                nextMatchSection.style.display = 'none';
+                return;
+            }
 
-            const match = matches[teamId] || matches.senior_a; // Default to senior_a if not found
+            nextMatchSection.style.display = 'block';
 
-            matchDate.textContent = match.date;
-            matchTime.textContent = match.time;
-            matchLocation.textContent = match.location;
-            opponentLogo.src = match.opponentLogo;
-            opponentLogo.alt = match.opponent;
+            fetch(`/next-match/?team=${teamId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(match => {
+                    if (match && match.date) {
+                        // Datos desde la base de datos
+                        matchDate.textContent = match.date;
+                        matchTime.textContent = match.time;
+                        matchLocation.textContent = match.location;
+                        opponentName.textContent = match.opponent;
+
+                        // Logo del oponente
+                        if (match.opponent_logo) {
+                            opponentLogo.src = match.opponent_logo;
+                        } else {
+                            opponentLogo.src = ""; // Vacío si no hay logo
+                        }
+                        opponentLogo.alt = match.opponent;
+
+                        // Fixture
+                        if (match.fixture) {
+                            matchFixture.textContent = match.fixture;
+                            matchFixture.style.display = 'block';
+                        } else {
+                            matchFixture.style.display = 'none';
+                        }
+                    } else {
+                        // No hay próximo partido - ocultar la sección
+                        nextMatchSection.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching next match:', error);
+                    // En caso de error, ocultar la sección
+                    nextMatchSection.style.display = 'none';
+                });
         }
-
         // In the selectTeam function or wherever you fetch players
         function fetchPlayersByTeam(teamId) {
-            fetch(`/api/players/?team=${teamId}`)
+            fetch(`/players/?team=${teamId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
