@@ -505,82 +505,104 @@
     }
 
     .player-modal-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: var(--primary-gold);
-        color: var(--secondary-blue);
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        z-index: 2;
-        transition: all 0.3s ease;
-    }
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1003; /* Aumentado para que esté por encima de todo */
+    transition: all 0.3s ease;
+}
 
-    .player-modal-close:hover {
-        background: white;
-        transform: rotate(90deg);
-    }
 
-    .player-image-container {
-        width: 100%;
-        height: 450px;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
-    }
+.player-modal-close:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+.player-image-container {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end; /* Siempre alineado abajo */
+    justify-content: center;
+}
 
-    .player-image {
-        width: auto;
-        height: 100%;
-        object-fit: contain;
-        object-position: center;
-        transition: transform 0.5s ease;
-    }
+.player-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
+    background-image: url('{% static 'images/player_background.jpg' %}');
+    background-size: 120%;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
 
-    .player-modal-content:hover .player-image {
-        transform: scale(1.03);
-    }
+.player-modal-content:hover .player-background {
+    transform: scale(1.05);
+}
 
-    .player-details {
-        padding: 25px;
-        text-align: center;
-        background: var(--secondary-blue);
-        position: relative;
-    }
+.player-image {
+    position: relative;
+    width: auto;
+    height: 95%;
+    max-height: 420px;
+    object-fit: contain;
+    object-position: center bottom; /* Forzar alineación abajo */
+    transition: transform 0.5s ease;
+    z-index: 2;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+    margin-bottom: -5px; /* Ajuste fino para que toque el borde */
+    align-self: flex-end; /* Forzar alineación al fondo */
+    transform-origin: center bottom; /* El zoom se originará desde abajo */
+}
 
-    .player-details::before {
-        content: '';
-        position: absolute;
-        top: -20px;
-        left: 0;
-        right: 0;
-        height: 20px;
-        background: linear-gradient(to bottom, transparent, var(--secondary-blue));
-    }
+.player-modal-content:hover .player-image {
+    transform: scale(1.08); /* Zoom que se expande desde abajo */
+}
+   .player-details {
+    padding: 25px;
+    text-align: center;
+    background: var(--secondary-blue);
+    position: relative;
+    margin-top: -30px;
+    /* Elimina el gradient que creaba la sombra */
+}
 
-    .player-details-number {
-        display: inline-block;
-        background: var(--primary-gold);
-        color: var(--secondary-blue);
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        line-height: 60px;
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        box-shadow: 0 5px 15px rgba(184, 172, 132, 0.3);
-        transform: translateY(-50%);
-        border: 3px solid var(--secondary-blue);
-    }
+.player-details::before {
+    display: none; /* Elimina completamente la línea/sombra */
+}
+
+.player-details-number {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 60px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 0; /* Eliminamos el margin-bottom */
+    box-shadow: 0 5px 15px rgba(184, 172, 132, 0.3);
+    transform: translateY(-50%); /* Lo movemos hacia arriba */
+    border: 3px solid var(--secondary-blue);
+    position: relative;
+    z-index: 3; /* Aseguramos que esté por encima */
+}
 
     .player-details-name {
         font-size: 28px;
@@ -1056,6 +1078,9 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="player-image-container">
+                    <!-- Fondo para todas las jugadoras -->
+                    <div class="player-background"></div>
+                    <!-- Imagen PNG de la jugadora encima -->
                     <img src="" alt="Jugadora" class="player-image" id="modalPlayerImage">
                 </div>
                 <div class="player-details">
@@ -1136,22 +1161,22 @@
             }
         });
 
-        // Close modals
+        // Close buttons - usar closeAllModals para navegación
         positionsModalClose.addEventListener('click', closeAllModals);
         playersModalClose.addEventListener('click', closeAllModals);
         playerModalClose.addEventListener('click', closeAllModals);
 
-        // Close modal when clicking outside content
+        // Close modal when clicking outside content - usar cierre completo
         positionsModal.addEventListener('click', function (e) {
-            if (e.target === positionsModal) closeAllModals();
+            if (e.target === positionsModal) closeAllModalsCompletely();
         });
 
         playersModal.addEventListener('click', function (e) {
-            if (e.target === playersModal) closeAllModals();
+            if (e.target === playersModal) closeAllModalsCompletely();
         });
 
         playerModal.addEventListener('click', function (e) {
-            if (e.target === playerModal) closeAllModals();
+            if (e.target === playerModal) closeAllModalsCompletely();
         });
 
         // Function to select a team
@@ -1350,26 +1375,24 @@
 
         // Function to open player detail modal
         function openPlayerModal(player) {
+            const playerImage = document.getElementById('modalPlayerImage');
+
             // Use Cloudinary for images if available, otherwise fallback
             if (player.image) {
-                modalPlayerImage.src = player.image;
+                playerImage.src = player.image;
+                playerImage.classList.remove('staff-image');
             } else {
                 // Different default image for staff vs players
                 if (player.is_staff || player.position === 'tecnico') {
-                    modalPlayerImage.src = "{% static 'images/staff/default.jpg' %}";
+                    playerImage.src = "{% static 'images/staff/default.jpg' %}";
+                    playerImage.classList.add('staff-image');
                 } else {
-                    // Generate a default image path based on position
-                    const positionImages = {
-                        'portero': "{% static 'images/players/portero1.jpg' %}",
-                        'defensa': "{% static 'images/players/defensa1.jpg' %}",
-                        'centrocampista': "{% static 'images/players/centro1.jpg' %}",
-                        'delantero': "{% static 'images/players/delantero1.jpg' %}"
-                    };
-                    modalPlayerImage.src = positionImages[player.position] || "{% static 'images/players/default.jpg' %}";
+                    playerImage.src = "{% static 'images/players/default.png' %}";
+                    playerImage.classList.remove('staff-image');
                 }
             }
 
-            modalPlayerImage.alt = player.name;
+            playerImage.alt = player.name;
 
             // Different display for staff vs players
             if (player.is_staff || player.position === 'tecnico') {
@@ -1379,7 +1402,7 @@
             } else {
                 modalPlayerNumber.textContent = player.number;
                 modalPlayerName.textContent = player.full_name || player.name;
-                modalPlayerPosition.textContent = getPositionDisplayName(player.position);
+                modalPlayerPosition.textContent = player.display_position || getPositionDisplayName(player.position);
             }
 
             // Add additional player/staff info
@@ -1395,7 +1418,6 @@
             playersModal.classList.remove('active');
             playerModal.classList.add('active');
         }
-
         // Helper function to get position display name
         function getPositionDisplayName(positionValue) {
             const positionMap = {
@@ -1425,8 +1447,24 @@
             return date.toLocaleDateString('es-ES');
         }
 
-        // Function to close all modals
+        // Function to close modals with navigation
         function closeAllModals() {
+            if (playerModal.classList.contains('active')) {
+                // Si el modal de jugador está abierto, volver al modal de jugadoras
+                playerModal.classList.remove('active');
+                playersModal.classList.add('active');
+            } else if (playersModal.classList.contains('active')) {
+                // Si el modal de jugadoras está abierto, volver al modal de posiciones
+                playersModal.classList.remove('active');
+                positionsModal.classList.add('active');
+            } else if (positionsModal.classList.contains('active')) {
+                // Si el modal de posiciones está abierto, cerrar todo
+                positionsModal.classList.remove('active');
+            }
+        }
+
+        // Function to completely close all modals
+        function closeAllModalsCompletely() {
             positionsModal.classList.remove('active');
             playersModal.classList.remove('active');
             playerModal.classList.remove('active');

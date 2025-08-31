@@ -197,17 +197,18 @@ class Player(models.Model):
     full_name = models.CharField(max_length=200, blank=True)
     number = models.IntegerField()
     position = models.CharField(max_length=20, choices=POSITION_CHOICES)
+    display_position = models.CharField(max_length=50, blank=True)  # NUEVO CAMPO
     team = models.CharField(max_length=20, choices=TEAM_CHOICES)
     birth_date = models.DateField(null=True, blank=True)
-    nationality = models.CharField(max_length=50, default="Española")
-    image = CloudinaryField('image', folder='escudos')
-    is_staff = models.BooleanField(default=False)  # For technical staff
-    role = models.CharField(max_length=100, blank=True)  # For specific roles in technical staff
+    nationality = models.CharField(max_length=50, blank=True, default="")  # Cambiado a opcional
+    image = CloudinaryField('image', blank=True, folder='escudos')
+    is_staff = models.BooleanField(default=False)
+    role = models.CharField(max_length=100, blank=True)
     
     def __str__(self):
         return f"{self.name} - {self.get_team_display()}"
     
-
+    
 
 from django.db import models
 import uuid
