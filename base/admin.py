@@ -21,12 +21,12 @@ from .models import Player
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('home_team', 'away_team', 'date', 'matchday', 'competition')
-    list_filter = ('date', 'competition', 'matchday')
+    list_display = ('home_team', 'away_team', 'date', 'matchday', 'competition', 'team_category')
+    list_filter = ('date', 'competition', 'matchday', 'team_category')
     search_fields = ('home_team', 'away_team', 'competition')
     fieldsets = (
         (None, {
-            'fields': ('date', 'home_team', 'away_team', 'matchday')
+            'fields': ('team_category', 'date', 'home_team', 'away_team', 'matchday')
         }),
         ('Logos', {
             'fields': ('home_team_logo', 'away_team_logo')

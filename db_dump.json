@@ -3237,6 +3237,370 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 250,
+    "fields": {
+        "action_time": "2025-08-31T19:51:53.715Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 251,
+    "fields": {
+        "action_time": "2025-08-31T19:55:00.583Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "CFF Olympia vs Málaga - 2025-10-09",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 252,
+    "fields": {
+        "action_time": "2025-08-31T19:55:28.629Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 253,
+    "fields": {
+        "action_time": "2025-08-31T19:56:12.066Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 254,
+    "fields": {
+        "action_time": "2025-08-31T20:00:19.054Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 255,
+    "fields": {
+        "action_time": "2025-08-31T20:01:07.511Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 256,
+    "fields": {
+        "action_time": "2025-08-31T20:05:42.432Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "CFF Olympia vs Málaga - 2025-10-09",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 257,
+    "fields": {
+        "action_time": "2025-08-31T20:06:02.477Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 258,
+    "fields": {
+        "action_time": "2025-08-31T20:06:07.279Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 259,
+    "fields": {
+        "action_time": "2025-08-31T20:06:37.359Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 260,
+    "fields": {
+        "action_time": "2025-08-31T20:06:51.037Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 261,
+    "fields": {
+        "action_time": "2025-08-31T20:07:04.947Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 262,
+    "fields": {
+        "action_time": "2025-08-31T20:07:15.064Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 263,
+    "fields": {
+        "action_time": "2025-08-31T20:08:30.772Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "CFF Olympia vs Málaga - 2025-10-09",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 264,
+    "fields": {
+        "action_time": "2025-08-31T20:08:35.253Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "CFF Olympia vs Málaga - 2025-10-09",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 265,
+    "fields": {
+        "action_time": "2025-08-31T20:08:39.598Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 266,
+    "fields": {
+        "action_time": "2025-08-31T20:08:43.576Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 267,
+    "fields": {
+        "action_time": "2025-08-31T20:08:47.222Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 268,
+    "fields": {
+        "action_time": "2025-08-31T20:08:52.434Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 269,
+    "fields": {
+        "action_time": "2025-08-31T20:08:57.333Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 270,
+    "fields": {
+        "action_time": "2025-08-31T20:09:01.348Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 271,
+    "fields": {
+        "action_time": "2025-08-31T20:09:05.712Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "CFF Olympia vs Juan Grande - 2025-10-05",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 272,
+    "fields": {
+        "action_time": "2025-08-31T20:09:09.363Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "CFF Olympia vs Málaga - 2025-10-09",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 273,
+    "fields": {
+        "action_time": "2025-08-31T20:09:23.114Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 274,
+    "fields": {
+        "action_time": "2025-08-31T20:09:26.051Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 275,
+    "fields": {
+        "action_time": "2025-08-31T20:09:28.942Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 276,
+    "fields": {
+        "action_time": "2025-08-31T20:09:31.965Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 277,
+    "fields": {
+        "action_time": "2025-08-31T20:09:35.342Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -3890,6 +4254,7 @@
     "model": "base.match",
     "pk": 35,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-09-07T11:00:00Z",
         "home_team": "Córdoba CF",
         "away_team": "CFF Olympia",
@@ -3910,6 +4275,7 @@
     "model": "base.match",
     "pk": 36,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-09-10T14:14:07Z",
         "home_team": "CFF Olympia",
         "away_team": "Getafe",
@@ -3930,6 +4296,7 @@
     "model": "base.match",
     "pk": 37,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-09-14T17:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Málaga",
@@ -3950,6 +4317,7 @@
     "model": "base.match",
     "pk": 38,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-09-21T11:15:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Unión Viera",
@@ -3970,6 +4338,7 @@
     "model": "base.match",
     "pk": 39,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-09-28T12:00:00Z",
         "home_team": "Sporting de Huelva",
         "away_team": "CFF Olympia",
@@ -3990,6 +4359,7 @@
     "model": "base.match",
     "pk": 40,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-10-05T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Juan Grande",
@@ -4010,6 +4380,7 @@
     "model": "base.match",
     "pk": 41,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-10-12T00:00:00Z",
         "home_team": "Real Betis B",
         "away_team": "CFF Olympia",
@@ -4030,6 +4401,7 @@
     "model": "base.match",
     "pk": 42,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-10-19T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Getafe",
@@ -4050,6 +4422,7 @@
     "model": "base.match",
     "pk": 43,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-11-02T00:00:00Z",
         "home_team": "Granada B",
         "away_team": "CFF Olympia",
@@ -4070,6 +4443,7 @@
     "model": "base.match",
     "pk": 44,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-11-09T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Cacereño II",
@@ -4090,6 +4464,7 @@
     "model": "base.match",
     "pk": 45,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-11-16T00:00:00Z",
         "home_team": "Pozuelo Alarcón",
         "away_team": "CFF Olympia",
@@ -4110,6 +4485,7 @@
     "model": "base.match",
     "pk": 46,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-11-23T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Guiniguada",
@@ -4130,6 +4506,7 @@
     "model": "base.match",
     "pk": 47,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-12-07T00:00:00Z",
         "home_team": "Femarguín",
         "away_team": "CFF Olympia",
@@ -4150,6 +4527,7 @@
     "model": "base.match",
     "pk": 48,
     "fields": {
+        "team_category": "senior_a",
         "date": "2025-12-14T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Sport Extremadura",
@@ -4170,6 +4548,7 @@
     "model": "base.match",
     "pk": 49,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-01-11T00:00:00Z",
         "home_team": "Juan Grande",
         "away_team": "CFF Olympia",
@@ -4190,6 +4569,7 @@
     "model": "base.match",
     "pk": 50,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-01-18T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Córdoba CF",
@@ -4210,6 +4590,7 @@
     "model": "base.match",
     "pk": 51,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-02-01T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Real Betis B",
@@ -4230,6 +4611,7 @@
     "model": "base.match",
     "pk": 52,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-02-08T00:00:00Z",
         "home_team": "Unión Viera",
         "away_team": "CFF Olympia",
@@ -4250,6 +4632,7 @@
     "model": "base.match",
     "pk": 53,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-02-15T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Granada B",
@@ -4270,6 +4653,7 @@
     "model": "base.match",
     "pk": 54,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-02-22T00:00:00Z",
         "home_team": "Getafe",
         "away_team": "CFF Olympia",
@@ -4290,6 +4674,7 @@
     "model": "base.match",
     "pk": 55,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-03-08T00:00:00Z",
         "home_team": "Málaga",
         "away_team": "CFF Olympia",
@@ -4310,6 +4695,7 @@
     "model": "base.match",
     "pk": 56,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-03-15T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Sporting de Huelva",
@@ -4330,6 +4716,7 @@
     "model": "base.match",
     "pk": 57,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-03-22T00:00:00Z",
         "home_team": "Sport Extremadura",
         "away_team": "CFF Olympia",
@@ -4350,6 +4737,7 @@
     "model": "base.match",
     "pk": 58,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-03-29T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Pozuelo Alarcón",
@@ -4370,6 +4758,7 @@
     "model": "base.match",
     "pk": 59,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-04-12T00:00:00Z",
         "home_team": "Cacereño II",
         "away_team": "CFF Olympia",
@@ -4390,6 +4779,7 @@
     "model": "base.match",
     "pk": 60,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-04-19T00:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Femarguín",
@@ -4410,6 +4800,7 @@
     "model": "base.match",
     "pk": 61,
     "fields": {
+        "team_category": "senior_a",
         "date": "2026-04-26T00:00:00Z",
         "home_team": "Guiniguada",
         "away_team": "CFF Olympia",
@@ -4424,6 +4815,27 @@
         "competition": "2ª Federación GRUPO 3",
         "match_notes": "",
         "matchday": 26
+    }
+},
+{
+    "model": "base.match",
+    "pk": 62,
+    "fields": {
+        "team_category": "senior_b",
+        "date": "2025-10-09T17:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Málaga",
+        "home_team_logo": "image/upload/v1756670100/escudos/nwd4ogjcae1uknkak5ed.png",
+        "away_team_logo": "image/upload/v1756670101/escudos/xyf9d4ow0yi3zvfnli6r.jpg",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "",
+        "location_address": "",
+        "maps_url": "",
+        "competition": "",
+        "match_notes": "",
+        "matchday": 5
     }
 },
 {

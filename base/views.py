@@ -187,8 +187,74 @@ def home(request):
     response['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
     return response
 
+from django.db import models  # Añade esta importación
 
 
+# views.py
+from django.http import JsonResponse
+from django.utils import timezone
+from django.views.decorators.http import require_GET
+from django.views.decorators.cache import never_cache
+from .models import Match
+
+import logging
+logger = logging.getLogger(__name__)
+
+@never_cache
+@require_GET
+def get_next_match(request):
+    try:
+        team = request.GET.get('team')
+        
+        if team in ['senior_a', 'senior_b']:
+            now = timezone.now()
+            
+            # USAR EL MISMO FILTRO QUE LA VISTA HOME
+            next_match = Match.objects.filter(
+                date__gte=now,
+                home_score__isnull=True,  # ← Añadir este filtro
+                away_score__isnull=True   # ← Añadir este filtro
+            ).filter(
+                team_category=team  # Filtrar por categoría
+            ).order_by('date').first()
+            
+            if next_match:
+                # Determinar si Olympia es home o away
+                is_olympia_home = "OLYMPIA" in next_match.home_team.upper()
+                is_olympia_away = "OLYMPIA" in next_match.away_team.upper()
+                
+                if is_olympia_home:
+                    opponent_team = next_match.away_team
+                    opponent_logo = next_match.away_team_logo
+                elif is_olympia_away:
+                    opponent_team = next_match.home_team
+                    opponent_logo = next_match.home_team_logo
+                else:
+                    opponent_team = next_match.away_team
+                    opponent_logo = next_match.away_team_logo
+                
+                opponent_logo_url = ""
+                if opponent_logo:
+                    try:
+                        opponent_logo_url = opponent_logo.url
+                    except:
+                        pass
+                
+                return JsonResponse({
+                    'date': next_match.date.strftime('%a, %d %b'),
+                    'time': next_match.date.strftime('%H:%M H'),
+                    'location': next_match.location_name or 'Por determinar',
+                    'opponent': opponent_team,
+                    'opponent_logo': opponent_logo_url,
+                    'fixture': getattr(next_match, 'fixture', '') or '',
+                    'is_home': is_olympia_home
+                })
+        
+        return JsonResponse({})
+        
+    except Exception as e:
+        print(f"DEBUG: Error: {str(e)}")
+        return JsonResponse({'error': str(e)}, status=500)
 
 # views.py
 from django.http import JsonResponse
