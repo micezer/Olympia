@@ -21,7 +21,6 @@
         touch-action: manipulation;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        padding-top: -70px;
     }
 
     body::before {
@@ -47,7 +46,6 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
         margin-top: 0;
-        min-height: calc(100px - 30px);
     }
 
     .team-container {
@@ -144,10 +142,15 @@
     }
 
     .team-dropdown.active {
-        max-height: 500px;
-        opacity: 1;
-    }
-
+    max-height: 300px; /* Set a fixed height instead of auto/500px */
+    opacity: 1;
+    overflow-y: auto; /* Allow scrolling if needed */
+}
+.team-display-container {
+    margin-top: 20px; /* Reduce top margin */
+    animation: fadeIn 0.5s ease;
+    min-height: 80px; /* Reduce minimum height */
+}
     .team-option {
         padding: 12px 20px;
         color: white;
@@ -781,6 +784,212 @@
         font-size: 14px;
     }
 
+    /* Category Modal */
+.category-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.category-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.category-modal-content {
+    background: var(--secondary-blue);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 30px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.category-modal.active .category-modal-content {
+    transform: scale(1);
+}
+
+.category-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.category-modal-close:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+
+.category-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: var(--primary-gold);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.category-teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.category-team-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(184, 172, 132, 0.3);
+}
+
+.category-team-item:hover {
+    background: rgba(184, 172, 132, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.category-team-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+/* Team Modal */
+.team-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.team-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.team-modal-content {
+    background: var(--secondary-blue);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.team-modal.active .team-modal-content {
+    transform: scale(1);
+}
+
+.team-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.team-modal-close:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+
+.team-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: var(--primary-gold);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.team-actions-modal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.team-action-btn.modal-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Add this to center content vertically */
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 20px 25px; /* Increase padding for more height */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-width: 140px; /* Slightly wider */
+    min-height: 100px; /* Add fixed minimum height */
+}
+
+.team-action-btn.modal-btn:hover {
+    background: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.team-action-btn.modal-btn i {
+    font-size: 32px; /* Larger icon */
+    margin-bottom: 12px; /* More space between icon and text */
+}
+
+.team-action-btn.modal-btn span {
+    font-weight: bold;
+    font-size: 16px; /* Slightly larger text */
+}
+
     /* Responsive */
     @media (max-width: 768px) {
         .team-title {
@@ -904,6 +1113,7 @@
                 <div class="team-dropdown">
                     <div class="team-option" data-team="senior_a">Senior A - Primer Equipo</div>
                     <div class="team-option" data-team="senior_b">Senior B</div>
+                    <div class="team-option" data-team="senior_c">Senior C</div> <!-- Add this line -->
                     <div class="team-option" data-team="cantera">Cantera</div>
                 </div>
             </div>
@@ -972,10 +1182,10 @@
             <div class="team-header">
                 <div class="team-name-display">Senior B</div>
                 <div class="team-actions">
-                    <a href="YOUR_CALENDAR_LINK_SENIOR_B" class="team-action-btn" title="Calendario">
+                    <a href="https://www.rffm.es/competicion/calendario?temporada=21&tipojuego=1&competicion=24038099&grupo=24038100" class="team-action-btn" title="Calendario">
                         <i class="far fa-calendar-alt"></i>
                     </a>
-                    <a href="YOUR_TABLE_LINK_SENIOR_B" class="team-action-btn" title="Clasificación">
+                    <a href="https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=1&competicion=24038579&grupo=24038586&jornada=1&jornada=1&jornada=1" class="team-action-btn" title="Clasificación">
                         <i class="fas fa-table"></i>
                     </a>
                     <button class="team-action-btn players-btn" title="Jugadoras" id="playersButton">
@@ -985,69 +1195,84 @@
             </div>
         </template>
 
-        <!-- Template for Cantera -->
-        <template id="cantera_template">
+        <!-- Template for Senior C Team -->
+        <template id="senior_c_template">
             <div class="team-header">
-                <div class="team-name-display">Cantera</div>
-            </div>
-            <div class="cantera-grid">
-                <div class="cantera-team">
-                    <div class="cantera-team-name">Juvenil A</div>
-                    <div class="cantera-team-actions">
-                        <a href="YOUR_CALENDAR_LINK_JUVENIL_A" class="team-action-btn" title="Calendario">
-                            <i class="far fa-calendar-alt"></i>
-                        </a>
-                        <a href="YOUR_TABLE_LINK_JUVENIL_A" class="team-action-btn" title="Clasificación">
-                            <i class="fas fa-table"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="cantera-team">
-                    <div class="cantera-team-name">Juvenil B</div>
-                    <div class="cantera-team-actions">
-                        <a href="YOUR_CALENDAR_LINK_JUVENIL_B" class="team-action-btn" title="Calendario">
-                            <i class="far fa-calendar-alt"></i>
-                        </a>
-                        <a href="YOUR_TABLE_LINK_JUVENIL_B" class="team-action-btn" title="Clasificación">
-                            <i class="fas fa-table"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="cantera-team">
-                    <div class="cantera-team-name">Cadete A</div>
-                    <div class="cantera-team-actions">
-                        <a href="YOUR_CALENDAR_LINK_CADETE_A" class="team-action-btn" title="Calendario">
-                            <i class="far fa-calendar-alt"></i>
-                        </a>
-                        <a href="YOUR_TABLE_LINK_CADETE_A" class="team-action-btn" title="Clasificación">
-                            <i class="fas fa-table"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="cantera-team">
-                    <div class="cantera-team-name">Cadete B</div>
-                    <div class="cantera-team-actions">
-                        <a href="YOUR_CALENDAR_LINK_CADETE_B" class="team-action-btn" title="Calendario">
-                            <i class="far fa-calendar-alt"></i>
-                        </a>
-                        <a href="YOUR_TABLE_LINK_CADETE_B" class="team-action-btn" title="Clasificación">
-                            <i class="fas fa-table"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="cantera-team">
-                    <div class="cantera-team-name">Infantil</div>
-                    <div class="cantera-team-actions">
-                        <a href="YOUR_CALENDAR_LINK_INFANTIL" class="team-action-btn" title="Calendario">
-                            <i class="far fa-calendar-alt"></i>
-                        </a>
-                        <a href="YOUR_TABLE_LINK_INFANTIL" class="team-action-btn" title="Clasificación">
-                            <i class="fas fa-table"></i>
-                        </a>
-                    </div>
+                <div class="team-name-display">Senior C</div>
+                <div class="team-actions">
+                    <a href="#" class="team-action-btn" title="Calendario">
+                        <i class="far fa-calendar-alt"></i>
+                    </a> 
+                    <a href="#" class="team-action-btn" title="Clasificación">
+                        <i class="fas fa-table"></i>
+                    </a> 
+                    <button class="team-action-btn players-btn" title="Jugadoras" id="playersButton">
+                        <i class="fas fa-users"></i>
+                    </button>
                 </div>
             </div>
         </template>
+
+
+    <!-- Template for Cantera -->
+    <template id="cantera_template">
+        <div class="team-header">
+            <div class="team-name-display">Cantera</div>
+        </div>
+        <div class="cantera-grid">
+            <div class="cantera-team" data-category="juvenil">
+                <div class="cantera-team-name">Juvenil</div>
+            </div>
+            <div class="cantera-team" data-category="cadete">
+                <div class="cantera-team-name">Cadete</div>
+            </div>
+            <div class="cantera-team" data-category="infantil">
+                <div class="cantera-team-name">Infantil</div>
+            </div>
+            <div class="cantera-team" data-category="alevin">
+                <div class="cantera-team-name">Alevín</div>
+            </div>
+            <div class="cantera-team" data-category="benjamin">
+                <div class="cantera-team-name">Benjamín</div>
+            </div>
+            <div class="cantera-team" data-category="veteranas">
+                <div class="cantera-team-name">Veteranas</div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Category Modal -->
+    <div class="category-modal" id="categoryModal">
+        <div class="category-modal-content">
+            <div class="category-modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="category-modal-title" id="categoryModalTitle">Selecciona un equipo</h2>
+            <div class="category-teams-grid" id="categoryTeamsGrid">
+                <!-- Teams will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Team Modal -->
+    <div class="team-modal" id="teamModal">
+        <div class="team-modal-content">
+            <div class="team-modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="team-modal-title" id="teamModalTitle">Nombre del Equipo</h2>
+            <div class="team-actions-modal">
+                <a href="#" class="team-action-btn modal-btn" id="calendarBtn" target="_blank">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Calendario</span>
+                </a>
+                <a href="#" class="team-action-btn modal-btn" id="tableBtn" target="_blank">
+                    <i class="fas fa-table"></i>
+                    <span>Clasificación</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
         <!-- Positions Modal -->
         <div class="positions-modal" id="positionsModal">
@@ -1467,6 +1692,7 @@
             const teamMap = {
                 'senior_a': 'Senior A - Primer Equipo',
                 'senior_b': 'Senior B',
+                'senior_c': 'Senior C',  // Add this line
                 'cantera': 'Cantera'
             };
             return teamMap[teamId] || teamId;
@@ -1506,5 +1732,135 @@
         // Initialize with the first team
         selectTeam('senior_a');
     });
+
+    // Add these variables at the top with other DOM elements
+        const categoryModal = document.getElementById('categoryModal');
+        const categoryModalTitle = document.getElementById('categoryModalTitle');
+        const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
+        const categoryModalClose = categoryModal.querySelector('.category-modal-close');
+        const teamModal = document.getElementById('teamModal');
+        const teamModalTitle = document.getElementById('teamModalTitle');
+        const teamModalClose = teamModal.querySelector('.team-modal-close');
+        const calendarBtn = document.getElementById('calendarBtn');
+        const tableBtn = document.getElementById('tableBtn');
+
+        // Add event listeners for the new modals
+        categoryModalClose.addEventListener('click', closeAllModals);
+        teamModalClose.addEventListener('click', closeAllModals);
+
+        categoryModal.addEventListener('click', function (e) {
+            if (e.target === categoryModal) closeAllModalsCompletely();
+        });
+
+        teamModal.addEventListener('click', function (e) {
+            if (e.target === teamModal) closeAllModalsCompletely();
+        });
+
+        // Add this after your existing team selection code
+        document.addEventListener('click', function (e) {
+            // Handle cantera category clicks
+            if (e.target.closest('.cantera-team')) {
+                const category = e.target.closest('.cantera-team').getAttribute('data-category');
+                openCategoryModal(category);
+            }
+
+            // Handle category team clicks
+            if (e.target.closest('.category-team-item')) {
+                const teamName = e.target.closest('.category-team-item').getAttribute('data-team');
+                const teamData = e.target.closest('.category-team-item').getAttribute('data-team-data');
+                openTeamModal(teamName, teamData);
+            }
+        });
+
+        // Add these functions to handle the new modals
+        function openCategoryModal(category) {
+            categoryModalTitle.textContent = `Equipos ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+            categoryTeamsGrid.innerHTML = '';
+
+            // Define teams for each category
+            const teams = {
+                juvenil: [
+                    { name: 'Juvenil A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Juvenil B Preferente', calendar: '#', table: '#' }
+                ],
+                cadete: [
+                    { name: 'Cadete A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Cadete B Preferente', calendar: '#', table: '#' },
+                    { name: 'Cadete C Preferente', calendar: '#', table: '#' }
+                ],
+                infantil: [
+                    { name: 'Infantil F11 Regional Mixto', calendar: '#', table: '#' },
+                    { name: 'Infantil A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Infantil B Preferente', calendar: '#', table: '#' },
+                    { name: 'Infantil C Primera', calendar: '#', table: '#' },
+                    { name: 'Infantil D Primera', calendar: '#', table: '#' }
+                ],
+                alevin: [
+                    { name: 'Alevín A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Alevín B Preferente', calendar: '#', table: '#' },
+                    { name: 'Alevín C Preferente', calendar: '#', table: '#' }
+                ],
+                benjamin: [
+                    { name: 'Benjamín A Preferente', calendar: '#', table: '#' },
+                    { name: 'Benjamín B Primera Regional', calendar: '#', table: '#' },
+                    { name: 'Benjamín C Juegos Municipales', calendar: '#', table: '#' }
+                ],
+                veteranas: [
+                    { name: 'Veteranas Regional', calendar: '#', table: '#' }
+                ]
+            };
+
+            // Create team items for the selected category
+            teams[category].forEach(team => {
+                const teamItem = document.createElement('div');
+                teamItem.className = 'category-team-item';
+                teamItem.setAttribute('data-team', team.name);
+                teamItem.setAttribute('data-team-data', JSON.stringify(team));
+                teamItem.innerHTML = `<div class="category-team-name">${team.name}</div>`;
+                categoryTeamsGrid.appendChild(teamItem);
+            });
+
+            // Show modal
+            categoryModal.classList.add('active');
+        }
+
+        function openTeamModal(teamName, teamDataJson) {
+            const teamData = JSON.parse(teamDataJson);
+            teamModalTitle.textContent = teamName;
+
+            // Set links for calendar and table
+            calendarBtn.href = teamData.calendar;
+            tableBtn.href = teamData.table;
+
+            // Show modal
+            teamModal.classList.add('active');
+        }
+
+        // Update the closeAllModals function to include the new modals
+        function closeAllModals() {
+            if (teamModal.classList.contains('active')) {
+                teamModal.classList.remove('active');
+                categoryModal.classList.add('active');
+            } else if (categoryModal.classList.contains('active')) {
+                categoryModal.classList.remove('active');
+            } else if (playersModal.classList.contains('active')) {
+                playersModal.classList.remove('active');
+                positionsModal.classList.add('active');
+            } else if (positionsModal.classList.contains('active')) {
+                positionsModal.classList.remove('active');
+            }
+        }
+
+        // Update the closeAllModalsCompletely function
+        function closeAllModalsCompletely() {
+            positionsModal.classList.remove('active');
+            playersModal.classList.remove('active');
+            playerModal.classList.remove('active');
+            categoryModal.classList.remove('active');
+            teamModal.classList.remove('active');
+        }
+
+
+
 </script>
 {% endblock %}
