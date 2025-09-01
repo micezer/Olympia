@@ -38,87 +38,6 @@
             /* offset para que el contenido no quede tapado */
         }
 
-        /* Webview Overlay */
-.webview-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  padding: 20px;
-}
-
-.webview-container {
-  width: 90%;
-  height: 80%;
-  max-width: 900px;
-  background-color: var(--secondary-blue);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.webview-header {
-  background-color: var(--primary-blue);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--primary-gold);
-}
-
-.webview-title {
-  color: var(--primary-gold);
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.webview-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.webview-close:hover {
-  background-color: rgba(184, 172, 132, 0.2);
-}
-
-.webview-content {
-  height: calc(100% - 60px);
-  padding: 0;
-}
-
-.webview-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: white;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .webview-overlay {
-    padding: 10px;
-  }
-  
-  .webview-container {
-    width: 95%;
-    height: 85%;
-  }
-  
-  .webview-header {
-    padding: 12px 15px;
-  }
-}
-
         /* PWA fix */
         .pwa-mode {
             overflow: hidden !important;
@@ -145,25 +64,6 @@
     
     
     {% endblock %}
-
-
-    <!-- Webview Overlay -->
-    <div id="webviewOverlay" class="webview-overlay">
-        <div class="webview-container">
-            <div class="webview-header">
-                <div class="webview-title" id="webviewTitle">Loading...</div>
-                <button class="webview-close" id="webviewClose">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#b8ac84">
-                        <path
-                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                    </svg>
-                </button>
-            </div>
-            <div class="webview-content">
-                <iframe id="webviewFrame" src="about:blank"></iframe>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -218,67 +118,6 @@
                     menu.classList.toggle('header__menu--open');
                 });
             }
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const webviewOverlay = document.getElementById('webviewOverlay');
-            const webviewFrame = document.getElementById('webviewFrame');
-            const webviewTitle = document.getElementById('webviewTitle');
-            const webviewClose = document.getElementById('webviewClose');
-
-            // Function to open webview
-            function openWebview(url, title) {
-                webviewTitle.textContent = title;
-                webviewFrame.src = url;
-                webviewOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }
-
-            // Function to close webview
-            function closeWebview() {
-                webviewOverlay.style.display = 'none';
-                webviewFrame.src = 'about:blank';
-                document.body.style.overflow = ''; // Re-enable scrolling
-            }
-
-            // Close webview when clicking close button
-            webviewClose.addEventListener('click', closeWebview);
-
-            // Close webview when clicking outside content
-            webviewOverlay.addEventListener('click', function (e) {
-                if (e.target === webviewOverlay) {
-                    closeWebview();
-                }
-            });
-
-            // Close webview with Escape key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && webviewOverlay.style.display === 'flex') {
-                    closeWebview();
-                }
-            });
-
-            // Modify your team template to use webview instead of direct links
-            document.addEventListener('click', function (e) {
-                // Check if clicked element is a calendar link
-                if (e.target.closest('a[href*="calendario"]') ||
-                    e.target.closest('a[href*="calendar"]')) {
-                    e.preventDefault();
-                    const link = e.target.closest('a');
-                    openWebview(link.href, 'Calendario');
-                }
-
-                // Check if clicked element is a classification link
-                if (e.target.closest('a[href*="clasificacion"]') ||
-                    e.target.closest('a[href*="clasification"]') ||
-                    e.target.closest('a[href*="table"]')) {
-                    e.preventDefault();
-                    const link = e.target.closest('a');
-                    openWebview(link.href, 'Clasificación');
-                }
-            });
         });
     </script>
 
