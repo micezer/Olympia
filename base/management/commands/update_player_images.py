@@ -17,7 +17,7 @@ class Command(BaseCommand):
             # DEFENSAS SENIOR A
             "Andrea Totana": "andrea_totana_h2mrkp",
             "Elisa Puerta": "elisa_puerta_wlwlgr",
-            "Laura González": "laura_gonzalez_pmustm",
+            "Laura González": "laura_gonzalez_gv0zdu",
             "Tamara Álvarez": "tamara_alvarez_sq0pfo",
 
             # CENTROCAMPISTAS SENIOR A
@@ -31,7 +31,7 @@ class Command(BaseCommand):
 
             # DELANTERAS SENIOR A
             "Rocio Zafra": "rocio_zafra_rtxkdl",
-            "María Bravo": "maria_bravo_d97cza",
+            "María Bravo": "maria_bravo_dzhgy9",
             "Cristina Rincón": "cristina_rincon_sp0nnp",
             "Belén Peralta": "belen_peralta_m4dghu",
             "Alba Masa": "alba_masa_ecjnwj",
@@ -84,7 +84,7 @@ class Command(BaseCommand):
             "Adrian Sanchez": "adrian_sanchez_wsi7lp",
         }
 
-        self.stdout.write("Iniciando asignación de imágenes de jugadoras...")
+        self.stdout.write("Iniciando asignación de imágenFes de jugadoras...")
         
         updated_count = 0
         missing_count = 0
@@ -131,3 +131,6 @@ class Command(BaseCommand):
                 f"🎉 Proceso completado. {updated_count} imágenes asignadas, {missing_count} no encontradas"
             )
         )
+
+
+
