@@ -35,7 +35,6 @@
     }
 
     main {
-    
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -49,9 +48,8 @@
     }
 
     .team-container {
-
-               width: 100%;
-      max-width: 400px;
+        width: 100%;
+        max-width: 400px;
         margin: 0 auto;
         padding: 20px;
         padding-top: 70px;
@@ -142,15 +140,17 @@
     }
 
     .team-dropdown.active {
-    max-height: 300px; /* Set a fixed height instead of auto/500px */
-    opacity: 1;
-    overflow-y: auto; /* Allow scrolling if needed */
-}
-.team-display-container {
-    margin-top: 20px; /* Reduce top margin */
-    animation: fadeIn 0.5s ease;
-    min-height: 80px; /* Reduce minimum height */
-}
+        max-height: 300px;
+        opacity: 1;
+        overflow-y: auto;
+    }
+
+    .team-display-container {
+        margin-top: 20px;
+        animation: fadeIn 0.5s ease;
+        min-height: 80px;
+    }
+
     .team-option {
         padding: 12px 20px;
         color: white;
@@ -169,18 +169,11 @@
         padding-left: 25px;
     }
 
-    /* Team Display Container */
-    .team-display-container {
-        margin-top: 40px;
-        animation: fadeIn 0.5s ease;
-    }
-
     @keyframes fadeIn {
         from {
             opacity: 0;
             transform: translateY(20px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
@@ -203,8 +196,7 @@
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 1px;
-                max-width: 500px;
-
+        max-width: 500px;
     }
 
     .team-actions {
@@ -235,15 +227,6 @@
 
     .team-action-btn i {
         font-size: 18px;
-    }
-
-    /* Players Button */
-    .team-action-btn.players-btn {
-        background: var(--primary-gold);
-    }
-
-    .team-action-btn.players-btn:hover {
-        background: white;
     }
 
     /* Positions Modal */
@@ -419,27 +402,6 @@
         gap: 15px;
     }
 
-    /* Staff-specific styles in player modals */
-.player-item[data-player-id].staff-item {
-    background: rgba(184, 172, 132, 0.15);
-    border: 1px solid var(--primary-gold);
-}
-
-.player-item[data-player-id].staff-item:hover {
-    background: rgba(184, 172, 132, 0.25);
-}
-
-.player-number.staff-role {
-    color: var(--secondary-gold);
-    font-style: italic;
-}
-
-/* In the player detail modal for staff */
-.player-details-number.staff-number {
-    background: var(--secondary-gold);
-    color: var(--secondary-blue);
-}
-
     .player-item {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 6px;
@@ -508,104 +470,100 @@
     }
 
     .player-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1003; /* Aumentado para que esté por encima de todo */
-    transition: all 0.3s ease;
-}
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1003;
+        transition: all 0.3s ease;
+    }
 
+    .player-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
 
-.player-modal-close:hover {
-    background: white;
-    transform: rotate(90deg);
-}
-.player-image-container {
-    width: 100%;
-    height: 450px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end; /* Siempre alineado abajo */
-    justify-content: center;
-}
+    .player-image-container {
+        width: 100%;
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
 
-.player-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
-    background-image: url("{% static 'images/player_background.jpg' %}");
-    background-size: 120%;
-    background-position: center 30%;
-    background-repeat: no-repeat;
-    z-index: 1;
-    transition: transform 0.5s ease;
-}
+    .player-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
+        background-image: url("{% static 'images/player_background.jpg' %}");
+        background-size: 120%;
+        background-position: center 30%;
+        background-repeat: no-repeat;
+        z-index: 1;
+        transition: transform 0.5s ease;
+    }
 
-.player-modal-content:hover .player-background {
-    transform: scale(1.05);
-}
+    .player-modal-content:hover .player-background {
+        transform: scale(1.05);
+    }
 
-.player-image {
-    position: relative;
-    width: auto;
-    height: 95%;
-    max-height: 420px;
-    object-fit: contain;
-    object-position: center bottom; /* Forzar alineación abajo */
-    transition: transform 0.5s ease;
-    z-index: 2;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
-    margin-bottom: -5px; /* Ajuste fino para que toque el borde */
-    align-self: flex-end; /* Forzar alineación al fondo */
-    transform-origin: center bottom; /* El zoom se originará desde abajo */
-}
+    .player-image {
+        position: relative;
+        width: auto;
+        height: 95%;
+        max-height: 420px;
+        object-fit: contain;
+        object-position: center bottom;
+        transition: transform 0.5s ease;
+        z-index: 2;
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+        margin-bottom: -5px;
+        align-self: flex-end;
+        transform-origin: center bottom;
+    }
 
-.player-modal-content:hover .player-image {
-    transform: scale(1.08); /* Zoom que se expande desde abajo */
-}
-   .player-details {
-    padding: 25px;
-    text-align: center;
-    background: var(--secondary-blue);
-    position: relative;
-    margin-top: -30px;
-    /* Elimina el gradient que creaba la sombra */
-}
+    .player-modal-content:hover .player-image {
+        transform: scale(1.08);
+    }
 
-.player-details::before {
-    display: none; /* Elimina completamente la línea/sombra */
-}
+    .player-details {
+        padding: 25px;
+        text-align: center;
+        background: var(--secondary-blue);
+        position: relative;
+        margin-top: -30px;
+    }
 
-.player-details-number {
-    display: inline-block;
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    line-height: 60px;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 0; /* Eliminamos el margin-bottom */
-    box-shadow: 0 5px 15px rgba(184, 172, 132, 0.3);
-    transform: translateY(-50%); /* Lo movemos hacia arriba */
-    border: 3px solid var(--secondary-blue);
-    position: relative;
-    z-index: 3; /* Aseguramos que esté por encima */
-}
+    .player-details-number {
+        display: inline-block;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        line-height: 60px;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 0;
+        box-shadow: 0 5px 15px rgba(184, 172, 132, 0.3);
+        transform: translateY(-50%);
+        border: 3px solid var(--secondary-blue);
+        position: relative;
+        z-index: 3;
+    }
 
     .player-details-name {
         font-size: 28px;
@@ -634,14 +592,15 @@
         font-size: 14px;
     }
 
-  /* Update cantera grid layout */
-.cantera-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 30px;
-    margin-bottom: 20px; /* Add bottom margin */
-}
+    /* Update cantera grid layout */
+    .cantera-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
     @media (max-width: 992px) {
         .cantera-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -654,15 +613,16 @@
         }
     }
 
-   /* Add bottom spacing to cantera team items */
-.cantera-team {
-    background: var(--secondary-blue);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid rgba(184, 172, 132, 0.3);
-    margin-bottom: 10px; /* Ensure spacing at bottom */
-}
+    /* Add bottom spacing to cantera team items */
+    .cantera-team {
+        background: var(--secondary-blue);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+        margin-bottom: 10px;
+    }
+
     .cantera-team-name {
         font-size: 18px;
         font-weight: bold;
@@ -786,369 +746,368 @@
     }
 
     /* Category Modal */
-.category-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.category-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Increase category modal height and add padding */
-.category-modal-content {
-    background: var(--secondary-blue);
-    border-radius: 10px;
-    width: 90%;
-    max-width: 700px;
-    max-height: 85vh; /* Increased from 80vh */
-    overflow-y: auto;
-    padding: 30px;
-    padding-bottom: 40px; /* Added bottom padding */
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.category-modal.active .category-modal-content {
-    transform: scale(1);
-}
-
-.category-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 0.3s ease;
-}
-
-.category-modal-close:hover {
-    background: white;
-    transform: rotate(90deg);
-}
-
-.category-modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: var(--primary-gold);
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.category-teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-.category-team-item {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 20px 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(184, 172, 132, 0.3);
-}
-
-.category-team-item:hover {
-    background: rgba(184, 172, 132, 0.2);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.category-team-name {
-    font-weight: bold;
-    font-size: 16px;
-    color: white;
-}
-
-/* Team Modal */
-.team-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.team-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.team-modal-content {
-    background: var(--secondary-blue);
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    padding: 30px;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.team-modal.active .team-modal-content {
-    transform: scale(1);
-}
-
-.team-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 0.3s ease;
-}
-
-.team-modal-close:hover {
-    background: white;
-    transform: rotate(90deg);
-}
-
-.team-modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: var(--primary-gold);
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.team-actions-modal {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.team-action-btn.modal-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Add this to center content vertically */
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    border: none;
-    border-radius: 8px;
-    padding: 20px 25px; /* Increase padding for more height */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    min-width: 140px; /* Slightly wider */
-    min-height: 100px; /* Add fixed minimum height */
-}
-
-.team-action-btn.modal-btn:hover {
-    background: white;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.team-action-btn.modal-btn i {
-    font-size: 32px; /* Larger icon */
-    margin-bottom: 12px; /* More space between icon and text */
-}
-
-.team-action-btn.modal-btn span {
-    font-weight: bold;
-    font-size: 16px; /* Slightly larger text */
-}
-
-/* PDF Viewer Modal */
-.pdf-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1003;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.pdf-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.pdf-modal-content {
-    background: var(--secondary-blue);
-    border-radius: 10px;
-    width: 95%;
-    height: 90%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.pdf-modal.active .pdf-modal-content {
-    transform: scale(1);
-}
-
-.pdf-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
-}
-
-.pdf-modal-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--primary-gold);
-    margin: 0;
-}
-
-.pdf-modal-close {
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.pdf-modal-close:hover {
-    background: white;
-    transform: rotate(90deg);
-}
-
-.pdf-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px;
-    background: var(--secondary-blue);
-    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
-    flex-wrap: wrap;
-}
-
-.pdf-control-btn {
-    background: var(--primary-gold);
-    color: var(--secondary-blue);
-    border: none;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.pdf-control-btn:hover {
-    background: white;
-    transform: translateY(-2px);
-}
-
-.pdf-page-info {
-    color: white;
-    font-size: 14px;
-    min-width: 80px;
-    text-align: center;
-}
-
-.pdf-viewer-container {
-    flex: 1;
-    position: relative;
-    overflow: auto;
-    background: #f0f0f0;
-}
-
-#pdfCanvas {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-}
-
-.pdf-loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--primary-blue);
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Mobile specific styles */
-@media (max-width: 768px) {
-    .pdf-modal-content {
+    .category-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        border-radius: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    
+
+    .category-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .category-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 30px;
+        padding-bottom: 40px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .category-modal.active .category-modal-content {
+        transform: scale(1);
+    }
+
+    .category-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .category-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .category-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: var(--primary-gold);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .category-teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .category-team-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 20px 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .category-team-item:hover {
+        background: rgba(184, 172, 132, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .category-team-name {
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+    }
+
+    /* Team Modal */
+    .team-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .team-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .team-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .team-modal.active .team-modal-content {
+        transform: scale(1);
+    }
+
+    .team-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .team-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .team-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: var(--primary-gold);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .team-actions-modal {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .team-action-btn.modal-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        border: none;
+        border-radius: 8px;
+        padding: 20px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        min-width: 140px;
+        min-height: 100px;
+    }
+
+    .team-action-btn.modal-btn:hover {
+        background: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-action-btn.modal-btn i {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .team-action-btn.modal-btn span {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* PDF Viewer Modal */
+    .pdf-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1003;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .pdf-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .pdf-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 95%;
+        height: 90%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .pdf-modal.active .pdf-modal-content {
+        transform: scale(1);
+    }
+
+    .pdf-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .pdf-modal-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--primary-gold);
+        margin: 0;
+    }
+
+    .pdf-modal-close {
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pdf-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
     .pdf-controls {
-        padding: 8px;
-        gap: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        background: var(--secondary-blue);
+        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+        flex-wrap: wrap;
     }
-    
+
     .pdf-control-btn {
-        width: 35px;
-        height: 35px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        border: none;
+        border-radius: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
-    
+
+    .pdf-control-btn:hover {
+        background: white;
+        transform: translateY(-2px);
+    }
+
     .pdf-page-info {
-        font-size: 12px;
-        min-width: 70px;
+        color: white;
+        font-size: 14px;
+        min-width: 80px;
+        text-align: center;
     }
-}
+
+    .pdf-viewer-container {
+        flex: 1;
+        position: relative;
+        overflow: auto;
+        background: #f0f0f0;
+    }
+
+    #pdfCanvas {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .pdf-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--primary-blue);
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 768px) {
+        .pdf-modal-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+        
+        .pdf-controls {
+            padding: 8px;
+            gap: 5px;
+        }
+        
+        .pdf-control-btn {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .pdf-page-info {
+            font-size: 12px;
+            min-width: 70px;
+        }
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -1274,7 +1233,7 @@
                 <div class="team-dropdown">
                     <div class="team-option" data-team="senior_a">Senior A - Primer Equipo</div>
                     <div class="team-option" data-team="senior_b">Senior B</div>
-                    <div class="team-option" data-team="senior_c">Senior C</div> <!-- Add this line -->
+                    <div class="team-option" data-team="senior_c">Senior C</div>
                     <div class="team-option" data-team="cantera">Cantera</div>
                 </div>
             </div>
@@ -1376,99 +1335,96 @@
             </div>
         </template>
 
+        <!-- Template for Cantera -->
+        <template id="cantera_template">
+            <div class="team-header">
+                <div class="team-name-display">Cantera</div>
+            </div>
+            <div class="cantera-grid">
+                <div class="cantera-team" data-category="juvenil">
+                    <div class="cantera-team-name">Juvenil</div>
+                </div>
+                <div class="cantera-team" data-category="cadete">
+                    <div class="cantera-team-name">Cadete</div>
+                </div>
+                <div class="cantera-team" data-category="infantil">
+                    <div class="cantera-team-name">Infantil</div>
+                </div>
+                <div class="cantera-team" data-category="alevin">
+                    <div class="cantera-team-name">Alevín</div>
+                </div>
+                <div class="cantera-team" data-category="benjamin">
+                    <div class="cantera-team-name">Benjamín</div>
+                </div>
+                <div class="cantera-team" data-category="veteranas">
+                    <div class="cantera-team-name">Veteranas</div>
+                </div>
+            </div>
+        </template>
 
-    <!-- Template for Cantera -->
-    <template id="cantera_template">
-        <div class="team-header">
-            <div class="team-name-display">Cantera</div>
+        <!-- PDF Viewer Modal -->
+        <div class="pdf-modal" id="pdfModal">
+            <div class="pdf-modal-content">
+                <div class="pdf-modal-header">
+                    <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
+                    <div class="pdf-modal-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="pdf-controls">
+                    <button class="pdf-control-btn" id="pdfPrevPage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
+                    <button class="pdf-control-btn" id="pdfNextPage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="pdf-control-btn" id="pdfZoomOut">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="pdf-control-btn" id="pdfZoomIn">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+                <div class="pdf-viewer-container">
+                    <div class="pdf-loading" id="pdfLoading">Cargando PDF...</div>
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="cantera-grid">
-            <div class="cantera-team" data-category="juvenil">
-                <div class="cantera-team-name">Juvenil</div>
-            </div>
-            <div class="cantera-team" data-category="cadete">
-                <div class="cantera-team-name">Cadete</div>
-            </div>
-            <div class="cantera-team" data-category="infantil">
-                <div class="cantera-team-name">Infantil</div>
-            </div>
-            <div class="cantera-team" data-category="alevin">
-                <div class="cantera-team-name">Alevín</div>
-            </div>
-            <div class="cantera-team" data-category="benjamin">
-                <div class="cantera-team-name">Benjamín</div>
-            </div>
-            <div class="cantera-team" data-category="veteranas">
-                <div class="cantera-team-name">Veteranas</div>
-            </div>
-        </div>
-    </template>
 
-<!-- PDF Viewer Modal -->
-<div class="pdf-modal" id="pdfModal">
-    <div class="pdf-modal-content">
-        <div class="pdf-modal-header">
-            <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
-            <div class="pdf-modal-close">
-                <i class="fas fa-times"></i>
+        <!-- Category Modal -->
+        <div class="category-modal" id="categoryModal">
+            <div class="category-modal-content">
+                <div class="category-modal-close">
+                    <i class="fas fa-times"></i>
+                </div>
+                <h2 class="category-modal-title" id="categoryModalTitle">Selecciona un equipo</h2>
+                <div class="category-teams-grid" id="categoryTeamsGrid">
+                    <!-- Teams will be populated here -->
+                </div>
             </div>
         </div>
-        <div class="pdf-controls">
-            <button class="pdf-control-btn" id="pdfPrevPage">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
-            <button class="pdf-control-btn" id="pdfNextPage">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <button class="pdf-control-btn" id="pdfZoomOut">
-                <i class="fas fa-search-minus"></i>
-            </button>
-            <button class="pdf-control-btn" id="pdfZoomIn">
-                <i class="fas fa-search-plus"></i>
-            </button>
-        </div>
-        <div class="pdf-viewer-container">
-            <div class="pdf-loading" id="pdfLoading">Cargando PDF...</div>
-            <canvas id="pdfCanvas"></canvas>
-        </div>
-    </div>
-</div>
-
-
-
-    <!-- Category Modal -->
-    <div class="category-modal" id="categoryModal">
-        <div class="category-modal-content">
-            <div class="category-modal-close">
-                <i class="fas fa-times"></i>
-            </div>
-            <h2 class="category-modal-title" id="categoryModalTitle">Selecciona un equipo</h2>
-            <div class="category-teams-grid" id="categoryTeamsGrid">
-                <!-- Teams will be populated here -->
+        
+        <!-- Team Modal -->
+        <div class="team-modal" id="teamModal">
+            <div class="team-modal-content">
+                <div class="team-modal-close">
+                    <i class="fas fa-times"></i>
+                </div>
+                <h2 class="team-modal-title" id="teamModalTitle">Nombre del Equipo</h2>
+                <div class="team-actions-modal">
+                    <a href="#" class="team-action-btn modal-btn" id="calendarBtn" target="_blank">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>Calendario</span>
+                    </a>
+                    <a href="#" class="team-action-btn modal-btn" id="tableBtn" target="_blank">
+                        <i class="fas fa-table"></i>
+                        <span>Clasificación</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Team Modal -->
-    <div class="team-modal" id="teamModal">
-        <div class="team-modal-content">
-            <div class="team-modal-close">
-                <i class="fas fa-times"></i>
-            </div>
-            <h2 class="team-modal-title" id="teamModalTitle">Nombre del Equipo</h2>
-            <div class="team-actions-modal">
-                <a href="#" class="team-action-btn modal-btn" id="calendarBtn" target="_blank">
-                    <i class="far fa-calendar-alt"></i>
-                    <span>Calendario</span>
-                </a>
-                <a href="#" class="team-action-btn modal-btn" id="tableBtn" target="_blank">
-                    <i class="fas fa-table"></i>
-                    <span>Clasificación</span>
-                </a>
-            </div>
-        </div>
-    </div>
 
         <!-- Positions Modal -->
         <div class="positions-modal" id="positionsModal">
@@ -1479,7 +1435,7 @@
                 <h2 class="positions-modal-title" id="positionsModalTitle">Selecciona una posición</h2>
                 <div class="positions-grid" id="positionsModalGrid">
                     {% for position_value, position_name in POSITION_CHOICES %}
-                    {% if position_value != 'tecnico' %} <!-- Exclude technical staff from positions -->
+                    {% if position_value != 'tecnico' %}
                     <div class="position-modal-item" data-position="{{ position_value }}">
                         <div class="position-modal-name">{{ position_name }}</div>
                     </div>
@@ -1496,9 +1452,8 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <h2 class="players-modal-title" id="playersModalTitle">Position Title</h2>
-                <!-- In the players modal section: -->
                 <div class="players-grid" id="playersModalGrid">
-                    {% for player in players %} <!-- This will be populated dynamically via JS -->
+                    {% for player in players %}
                     <div class="player-item" data-player-id="{{ player.id }}">
                         <div class="player-name">{{ player.name }}</div>
                         <div class="player-number">#{{ player.number }}</div>
@@ -1515,9 +1470,7 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="player-image-container">
-                    <!-- Fondo para todas las jugadoras -->
                     <div class="player-background"></div>
-                    <!-- Imagen PNG de la jugadora encima -->
                     <img src="" alt="Jugadora" class="player-image" id="modalPlayerImage">
                 </div>
                 <div class="player-details">
@@ -1562,6 +1515,35 @@
         const modalPlayerPosition = document.getElementById('modalPlayerPosition');
         const modalPlayerInfo = document.getElementById('modalPlayerInfo');
 
+        // Category and Team modals
+        const categoryModal = document.getElementById('categoryModal');
+        const categoryModalTitle = document.getElementById('categoryModalTitle');
+        const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
+        const categoryModalClose = categoryModal.querySelector('.category-modal-close');
+        const teamModal = document.getElementById('teamModal');
+        const teamModalTitle = document.getElementById('teamModalTitle');
+        const teamModalClose = teamModal.querySelector('.team-modal-close');
+        const calendarBtn = document.getElementById('calendarBtn');
+        const tableBtn = document.getElementById('tableBtn');
+
+        // PDF modal elements
+        const pdfModal = document.getElementById('pdfModal');
+        const pdfModalTitle = document.getElementById('pdfModalTitle');
+        const pdfModalClose = pdfModal.querySelector('.pdf-modal-close');
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const pdfPrevPage = document.getElementById('pdfPrevPage');
+        const pdfNextPage = document.getElementById('pdfNextPage');
+        const pdfZoomIn = document.getElementById('pdfZoomIn');
+        const pdfZoomOut = document.getElementById('pdfZoomOut');
+        const pdfPageInfo = document.getElementById('pdfPageInfo');
+        const pdfLoading = document.getElementById('pdfLoading');
+
         // Close buttons
         const positionsModalClose = positionsModal.querySelector('.positions-modal-close');
         const playersModalClose = playersModal.querySelector('.players-modal-close');
@@ -1600,12 +1582,15 @@
             }
         });
 
-        // Close buttons - usar closeAllModals para navegación
+        // Close buttons
         positionsModalClose.addEventListener('click', closeAllModals);
         playersModalClose.addEventListener('click', closeAllModals);
         playerModalClose.addEventListener('click', closeAllModals);
+        categoryModalClose.addEventListener('click', closeAllModals);
+        teamModalClose.addEventListener('click', closeAllModals);
+        pdfModalClose.addEventListener('click', closePdfModal);
 
-        // Close modal when clicking outside content - usar cierre completo
+        // Close modal when clicking outside content
         positionsModal.addEventListener('click', function (e) {
             if (e.target === positionsModal) closeAllModalsCompletely();
         });
@@ -1616,6 +1601,48 @@
 
         playerModal.addEventListener('click', function (e) {
             if (e.target === playerModal) closeAllModalsCompletely();
+        });
+
+        categoryModal.addEventListener('click', function (e) {
+            if (e.target === categoryModal) closeAllModalsCompletely();
+        });
+
+        teamModal.addEventListener('click', function (e) {
+            if (e.target === teamModal) closeAllModalsCompletely();
+        });
+
+        pdfModal.addEventListener('click', function (e) {
+            if (e.target === pdfModal) closePdfModal();
+        });
+
+        // PDF controls
+        pdfPrevPage.addEventListener('click', onPrevPage);
+        pdfNextPage.addEventListener('click', onNextPage);
+        pdfZoomIn.addEventListener('click', onZoomIn);
+        pdfZoomOut.addEventListener('click', onZoomOut);
+
+        // Event listeners for various actions
+        document.addEventListener('click', function (e) {
+            // Handle calendar button clicks
+            if (e.target.closest('.calendar-btn')) {
+                e.preventDefault();
+                const pdfUrl = e.target.closest('.calendar-btn').getAttribute('data-pdf');
+                const title = e.target.closest('.calendar-btn').getAttribute('title') || 'Calendario';
+                openPdfModal(pdfUrl, title);
+            }
+
+            // Handle cantera category clicks
+            if (e.target.closest('.cantera-team')) {
+                const category = e.target.closest('.cantera-team').getAttribute('data-category');
+                openCategoryModal(category);
+            }
+
+            // Handle category team clicks
+            if (e.target.closest('.category-team-item')) {
+                const teamName = e.target.closest('.category-team-item').getAttribute('data-team');
+                const teamData = e.target.closest('.category-team-item').getAttribute('data-team-data');
+                openTeamModal(teamName, teamData);
+            }
         });
 
         // Function to select a team
@@ -1644,9 +1671,9 @@
             updateNextMatch(teamId);
         }
 
-        /// Function to update next match information
+        // Function to update next match information
         function updateNextMatch(teamId) {
-            // Solo mostrar para senior_a y senior_b
+            // Only show for senior_a and senior_b
             if (teamId !== 'senior_a' && teamId !== 'senior_b') {
                 nextMatchSection.style.display = 'none';
                 return;
@@ -1663,17 +1690,17 @@
                 })
                 .then(match => {
                     if (match && match.date) {
-                        // Datos desde la base de datos
+                        // Data from database
                         matchDate.textContent = match.date;
                         matchTime.textContent = match.time;
                         matchLocation.textContent = match.location;
                         opponentName.textContent = match.opponent;
 
-                        // Logo del oponente
+                        // Opponent logo
                         if (match.opponent_logo) {
                             opponentLogo.src = match.opponent_logo;
                         } else {
-                            opponentLogo.src = ""; // Vacío si no hay logo
+                            opponentLogo.src = "";
                         }
                         opponentLogo.alt = match.opponent;
 
@@ -1685,17 +1712,18 @@
                             matchFixture.style.display = 'none';
                         }
                     } else {
-                        // No hay próximo partido - ocultar la sección
+                        // No upcoming match - hide section
                         nextMatchSection.style.display = 'none';
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching next match:', error);
-                    // En caso de error, ocultar la sección
+                    // In case of error, hide section
                     nextMatchSection.style.display = 'none';
                 });
         }
-        // In the selectTeam function or wherever you fetch players
+
+        // Function to fetch players by team
         function fetchPlayersByTeam(teamId) {
             fetch(`/players/?team=${teamId}`)
                 .then(response => {
@@ -1804,14 +1832,14 @@
                 // Different display for staff vs players
                 if (position === 'tecnico' || player.is_staff) {
                     playerItem.innerHTML = `
-                <div class="player-name">${player.name}</div>
-                <div class="player-number">${player.role || 'Cuerpo Técnico'}</div>
-            `;
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-number">${player.role || 'Cuerpo Técnico'}</div>
+                    `;
                 } else {
                     playerItem.innerHTML = `
-                <div class="player-name">${player.name}</div>
-                <div class="player-number">#${player.number}</div>
-            `;
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-number">#${player.number}</div>
+                    `;
                 }
 
                 playerItem.addEventListener('click', function () {
@@ -1833,15 +1861,12 @@
             // Use Cloudinary for images if available, otherwise fallback
             if (player.image) {
                 playerImage.src = player.image;
-                playerImage.classList.remove('staff-image');
             } else {
                 // Different default image for staff vs players
                 if (player.is_staff || player.position === 'tecnico') {
                     playerImage.src = "{% static 'images/staff/default.jpg' %}";
-                    playerImage.classList.add('staff-image');
                 } else {
                     playerImage.src = "{% static 'images/players/default.png' %}";
-                    playerImage.classList.remove('staff-image');
                 }
             }
 
@@ -1860,115 +1885,19 @@
 
             // Add additional player/staff info
             modalPlayerInfo.innerHTML = `
-        <p><strong>Equipo:</strong> ${getTeamDisplayName(player.team)}</p>
-        ${player.birth_date ? `<p><strong>Fecha de nacimiento:</strong> ${formatDate(player.birth_date)}</p>` : ''}
-        ${player.nationality ? `<p><strong>Nacionalidad:</strong> ${player.nationality}</p>` : ''}
-        ${player.role && (player.is_staff || player.position === 'tecnico') ?
+                <p><strong>Equipo:</strong> ${getTeamDisplayName(player.team)}</p>
+                ${player.birth_date ? `<p><strong>Fecha de nacimiento:</strong> ${formatDate(player.birth_date)}</p>` : ''}
+                ${player.nationality ? `<p><strong>Nacionalidad:</strong> ${player.nationality}</p>` : ''}
+                ${player.role && (player.is_staff || player.position === 'tecnico') ?
                     `<p><strong>Rol:</strong> ${player.role}</p>` : ''}
-    `;
+            `;
 
             // Hide players modal and show player modal
             playersModal.classList.remove('active');
             playerModal.classList.add('active');
         }
-        // Helper function to get position display name
-        function getPositionDisplayName(positionValue) {
-            const positionMap = {
-                'portero': 'Portera',
-                'defensa': 'Defensa',
-                'centrocampista': 'Centrocampista',
-                'delantero': 'Delantera',
-                'tecnico': 'Cuerpo Técnico'
-            };
-            return positionMap[positionValue] || positionValue;
-        }
 
-        // Helper function to get team display name
-        function getTeamDisplayName(teamId) {
-            const teamMap = {
-                'senior_a': 'Senior A - Primer Equipo',
-                'senior_b': 'Senior B',
-                'senior_c': 'Senior C',  // Add this line
-                'cantera': 'Cantera'
-            };
-            return teamMap[teamId] || teamId;
-        }
-
-        // Helper function to format date
-        function formatDate(dateString) {
-            if (!dateString) return '';
-            const date = new Date(dateString);
-            return date.toLocaleDateString('es-ES');
-        }
-
-        // Function to close modals with navigation
-        function closeAllModals() {
-            if (playerModal.classList.contains('active')) {
-                // Si el modal de jugador está abierto, volver al modal de jugadoras
-                playerModal.classList.remove('active');
-                playersModal.classList.add('active');
-            } else if (playersModal.classList.contains('active')) {
-                // Si el modal de jugadoras está abierto, volver al modal de posiciones
-                playersModal.classList.remove('active');
-                positionsModal.classList.add('active');
-            } else if (positionsModal.classList.contains('active')) {
-                // Si el modal de posiciones está abierto, cerrar todo
-                positionsModal.classList.remove('active');
-            }
-        }
-
-        // Function to completely close all modals
-        function closeAllModalsCompletely() {
-            positionsModal.classList.remove('active');
-            playersModal.classList.remove('active');
-            playerModal.classList.remove('active');
-        }
-
-
-        // Initialize with the first team
-        selectTeam('senior_a');
-    });
-
-    // Add these variables at the top with other DOM elements
-        const categoryModal = document.getElementById('categoryModal');
-        const categoryModalTitle = document.getElementById('categoryModalTitle');
-        const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
-        const categoryModalClose = categoryModal.querySelector('.category-modal-close');
-        const teamModal = document.getElementById('teamModal');
-        const teamModalTitle = document.getElementById('teamModalTitle');
-        const teamModalClose = teamModal.querySelector('.team-modal-close');
-        const calendarBtn = document.getElementById('calendarBtn');
-        const tableBtn = document.getElementById('tableBtn');
-
-        // Add event listeners for the new modals
-        categoryModalClose.addEventListener('click', closeAllModals);
-        teamModalClose.addEventListener('click', closeAllModals);
-
-        categoryModal.addEventListener('click', function (e) {
-            if (e.target === categoryModal) closeAllModalsCompletely();
-        });
-
-        teamModal.addEventListener('click', function (e) {
-            if (e.target === teamModal) closeAllModalsCompletely();
-        });
-
-        // Add this after your existing team selection code
-        document.addEventListener('click', function (e) {
-            // Handle cantera category clicks
-            if (e.target.closest('.cantera-team')) {
-                const category = e.target.closest('.cantera-team').getAttribute('data-category');
-                openCategoryModal(category);
-            }
-
-            // Handle category team clicks
-            if (e.target.closest('.category-team-item')) {
-                const teamName = e.target.closest('.category-team-item').getAttribute('data-team');
-                const teamData = e.target.closest('.category-team-item').getAttribute('data-team-data');
-                openTeamModal(teamName, teamData);
-            }
-        });
-
-        // Add these functions to handle the new modals
+        // Function to open category modal
         function openCategoryModal(category) {
             categoryModalTitle.textContent = `Equipos ${category.charAt(0).toUpperCase() + category.slice(1)}`;
             categoryTeamsGrid.innerHTML = '';
@@ -2020,25 +1949,135 @@
             categoryModal.classList.add('active');
         }
 
+        // Function to open team modal
         function openTeamModal(teamName, teamDataJson) {
             const teamData = JSON.parse(teamDataJson);
             teamModalTitle.textContent = teamName;
 
-            // Set links for calendar and table
-            calendarBtn.href = teamData.calendar;
+            // Set up calendar button to open PDF viewer
+            calendarBtn.onclick = function (e) {
+                e.preventDefault();
+                openPdfModal(teamData.calendar, `Calendario - ${teamName}`);
+            };
+
+            // Set up table button
             tableBtn.href = teamData.table;
 
             // Show modal
             teamModal.classList.add('active');
         }
 
-        // Update the closeAllModals function to include the new modals
+        // Function to open PDF modal
+        function openPdfModal(pdfUrl, title) {
+            pdfModalTitle.textContent = title;
+            pdfLoading.style.display = 'block';
+            canvas.style.display = 'none';
+
+            // Reset PDF state
+            pageNum = 1;
+            scale = 1.5;
+
+            // Load PDF using PDF.js
+            pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+                pdfDoc = pdf;
+                pdfPageInfo.textContent = `Página ${pageNum} de ${pdf.numPages}`;
+                renderPage(pageNum);
+                canvas.style.display = 'block';
+                pdfModal.classList.add('active');
+            }).catch(function (error) {
+                console.error('Error loading PDF:', error);
+                pdfLoading.textContent = 'Error al cargar el PDF';
+                // Fallback: open in new tab after 2 seconds
+                setTimeout(() => {
+                    closePdfModal();
+                    window.open(pdfUrl, '_blank');
+                }, 2000);
+            });
+        }
+
+        // PDF.js functions
+        function renderPage(num) {
+            pageRendering = true;
+            pdfLoading.style.display = 'block';
+
+            pdfDoc.getPage(num).then(function (page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(function () {
+                    pageRendering = false;
+                    pdfLoading.style.display = 'none';
+
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+
+                    pdfPageInfo.textContent = `Página ${num} de ${pdfDoc.numPages}`;
+                });
+            });
+        }
+
+        function onPrevPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function onNextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function onZoomIn() {
+            if (scale >= 3) return;
+            scale += 0.25;
+            queueRenderPage(pageNum);
+        }
+
+        function onZoomOut() {
+            if (scale <= 0.5) return;
+            scale -= 0.25;
+            queueRenderPage(pageNum);
+        }
+
+        // Function to close PDF modal
+        function closePdfModal() {
+            pdfModal.classList.remove('active');
+            // Clean up
+            if (pdfDoc) {
+                pdfDoc.destroy();
+                pdfDoc = null;
+            }
+        }
+
+        // Function to close modals with navigation
         function closeAllModals() {
             if (teamModal.classList.contains('active')) {
                 teamModal.classList.remove('active');
                 categoryModal.classList.add('active');
             } else if (categoryModal.classList.contains('active')) {
                 categoryModal.classList.remove('active');
+            } else if (playerModal.classList.contains('active')) {
+                playerModal.classList.remove('active');
+                playersModal.classList.add('active');
             } else if (playersModal.classList.contains('active')) {
                 playersModal.classList.remove('active');
                 positionsModal.classList.add('active');
@@ -2047,223 +2086,48 @@
             }
         }
 
-        // Update the closeAllModalsCompletely function
+        // Function to completely close all modals
         function closeAllModalsCompletely() {
             positionsModal.classList.remove('active');
             playersModal.classList.remove('active');
             playerModal.classList.remove('active');
             categoryModal.classList.remove('active');
             teamModal.classList.remove('active');
+            pdfModal.classList.remove('active');
         }
 
-        
-    // Add these variables at the top with other DOM elements
-    const pdfModal = document.getElementById('pdfModal');
-    const pdfModalTitle = document.getElementById('pdfModalTitle');
-    const pdfViewer = document.getElementById('pdfViewer');
-    const pdfModalClose = pdfModal.querySelector('.pdf-modal-close');
-
-    // Add event listener for the PDF modal close button
-    pdfModalClose.addEventListener('click', closePdfModal);
-
-    pdfModal.addEventListener('click', function (e) {
-        if (e.target === pdfModal) closePdfModal();
-    });
-
-    // Function to open PDF modal
-    function openPdfModal(pdfUrl, title) {
-        pdfModalTitle.textContent = title;
-        pdfViewer.src = pdfUrl;
-        pdfModal.classList.add('active');
-    }
-
-    // Function to close PDF modal
-    function closePdfModal() {
-        pdfModal.classList.remove('active');
-        // Clear the iframe source when closing to free memory
-        setTimeout(() => {
-            pdfViewer.src = '';
-        }, 300);
-    }
-
-    // Update the closeAllModalsCompletely function
-    function closeAllModalsCompletely() {
-        positionsModal.classList.remove('active');
-        playersModal.classList.remove('active');
-        playerModal.classList.remove('active');
-        categoryModal.classList.remove('active');
-        teamModal.classList.remove('active');
-        pdfModal.classList.remove('active');
-    }
-
-    // Add this event listener to handle calendar button clicks
-        document.addEventListener('click', function (e) {
-            // Handle calendar button clicks
-            if (e.target.closest('.calendar-btn')) {
-                e.preventDefault();
-                const pdfUrl = e.target.closest('.calendar-btn').getAttribute('data-pdf');
-                const title = e.target.closest('.calendar-btn').getAttribute('title') || 'Calendario';
-                openPdfModal(pdfUrl, title);
-            }
-
-            // Handle cantera category clicks
-            if (e.target.closest('.cantera-team')) {
-                const category = e.target.closest('.cantera-team').getAttribute('data-category');
-                openCategoryModal(category);
-            }
-
-            // Handle category team clicks
-            if (e.target.closest('.category-team-item')) {
-                const teamName = e.target.closest('.category-team-item').getAttribute('data-team');
-                const teamData = e.target.closest('.category-team-item').getAttribute('data-team-data');
-                openTeamModal(teamName, teamData);
-            }
-        });
-
-        // Update the openTeamModal function to use the PDF viewer
-        function openTeamModal(teamName, teamDataJson) {
-            const teamData = JSON.parse(teamDataJson);
-            teamModalTitle.textContent = teamName;
-
-            // Set up calendar button to open PDF viewer
-            const calendarBtn = document.getElementById('calendarBtn');
-            calendarBtn.onclick = function (e) {
-                e.preventDefault();
-                openPdfModal(teamData.calendar, `Calendario - ${teamName}`);
+        // Helper function to get position display name
+        function getPositionDisplayName(positionValue) {
+            const positionMap = {
+                'portero': 'Portera',
+                'defensa': 'Defensa',
+                'centrocampista': 'Centrocampista',
+                'delantero': 'Delantera',
+                'tecnico': 'Cuerpo Técnico'
             };
-
-            // Set up table button (if you want to use PDF viewer for tables too)
-            const tableBtn = document.getElementById('tableBtn');
-            tableBtn.href = teamData.table;
-
-            // Show modal
-            teamModal.classList.add('active');
+            return positionMap[positionValue] || positionValue;
         }
 
-        // Add these variables at the top
-            let pdfDoc = null;
-            let pageNum = 1;
-            let pageRendering = false;
-            let pageNumPending = null;
-            let scale = 1.5;
-            const canvas = document.getElementById('pdfCanvas');
-            const ctx = canvas.getContext('2d');
-            const pdfPrevPage = document.getElementById('pdfPrevPage');
-            const pdfNextPage = document.getElementById('pdfNextPage');
-            const pdfZoomIn = document.getElementById('pdfZoomIn');
-            const pdfZoomOut = document.getElementById('pdfZoomOut');
-            const pdfPageInfo = document.getElementById('pdfPageInfo');
-            const pdfLoading = document.getElementById('pdfLoading');
+        // Helper function to get team display name
+        function getTeamDisplayName(teamId) {
+            const teamMap = {
+                'senior_a': 'Senior A - Primer Equipo',
+                'senior_b': 'Senior B',
+                'senior_c': 'Senior C',
+                'cantera': 'Cantera'
+            };
+            return teamMap[teamId] || teamId;
+        }
 
-            // Add event listeners for PDF controls
-            pdfPrevPage.addEventListener('click', onPrevPage);
-            pdfNextPage.addEventListener('click', onNextPage);
-            pdfZoomIn.addEventListener('click', onZoomIn);
-            pdfZoomOut.addEventListener('click', onZoomOut);
+        // Helper function to format date
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES');
+        }
 
-            // PDF.js functions
-            function renderPage(num) {
-                pageRendering = true;
-                pdfLoading.style.display = 'block';
-
-                pdfDoc.getPage(num).then(function (page) {
-                    const viewport = page.getViewport({ scale: scale });
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-
-                    const renderContext = {
-                        canvasContext: ctx,
-                        viewport: viewport
-                    };
-
-                    const renderTask = page.render(renderContext);
-
-                    renderTask.promise.then(function () {
-                        pageRendering = false;
-                        pdfLoading.style.display = 'none';
-
-                        if (pageNumPending !== null) {
-                            renderPage(pageNumPending);
-                            pageNumPending = null;
-                        }
-
-                        pdfPageInfo.textContent = `Página ${num} de ${pdfDoc.numPages}`;
-                    });
-                });
-            }
-
-            function onPrevPage() {
-                if (pageNum <= 1) return;
-                pageNum--;
-                queueRenderPage(pageNum);
-            }
-
-            function onNextPage() {
-                if (pageNum >= pdfDoc.numPages) return;
-                pageNum++;
-                queueRenderPage(pageNum);
-            }
-
-            function queueRenderPage(num) {
-                if (pageRendering) {
-                    pageNumPending = num;
-                } else {
-                    renderPage(num);
-                }
-            }
-
-            function onZoomIn() {
-                if (scale >= 3) return;
-                scale += 0.25;
-                queueRenderPage(pageNum);
-            }
-
-            function onZoomOut() {
-                if (scale <= 0.5) return;
-                scale -= 0.25;
-                queueRenderPage(pageNum);
-            }
-
-            // Update the openPdfModal function
-            function openPdfModal(pdfUrl, title) {
-                pdfModalTitle.textContent = title;
-                pdfLoading.style.display = 'block';
-                canvas.style.display = 'none';
-
-                // Reset PDF state
-                pageNum = 1;
-                scale = 1.5;
-
-                // Load PDF using PDF.js
-                pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
-                    pdfDoc = pdf;
-                    pdfPageInfo.textContent = `Página ${pageNum} de ${pdf.numPages}`;
-                    renderPage(pageNum);
-                    canvas.style.display = 'block';
-                    pdfModal.classList.add('active');
-                }).catch(function (error) {
-                    console.error('Error loading PDF:', error);
-                    pdfLoading.textContent = 'Error al cargar el PDF';
-                    // Fallback: open in new tab after 2 seconds
-                    setTimeout(() => {
-                        closePdfModal();
-                        window.open(pdfUrl, '_blank');
-                    }, 2000);
-                });
-            }
-
-            // Update closePdfModal function
-            function closePdfModal() {
-                pdfModal.classList.remove('active');
-                // Clean up
-                if (pdfDoc) {
-                    pdfDoc.destroy();
-                    pdfDoc = null;
-                }
-            }
-
-
-
-
+        // Initialize with the first team
+        selectTeam('senior_a');
+    });
 </script>
 {% endblock %}
