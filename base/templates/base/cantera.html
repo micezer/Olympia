@@ -174,6 +174,7 @@
             opacity: 0;
             transform: translateY(20px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -1092,17 +1093,17 @@
             height: 100%;
             border-radius: 0;
         }
-        
+
         .pdf-controls {
             padding: 8px;
             gap: 5px;
         }
-        
+
         .pdf-control-btn {
             width: 35px;
             height: 35px;
         }
-        
+
         .pdf-page-info {
             font-size: 12px;
             min-width: 70px;
@@ -1221,6 +1222,7 @@
 </style>
 <!-- Add in the head section -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
 <body>
     <main>
         <div class="team-container">
@@ -1251,23 +1253,24 @@
                             style="width: 60px; height: 60px; object-fit: contain;">
                         <div style="font-size: 12px; margin-top: 10px; color: var(--primary-gold);">OLYMPIA</div>
                     </div>
-            
+
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div class="match-fixture" id="matchFixture"
-                            style="font-size: 14px; color: var(--primary-gold); font-weight: bold; margin-bottom: 5px;"></div>
+                            style="font-size: 14px; color: var(--primary-gold); font-weight: bold; margin-bottom: 5px;">
+                        </div>
                         <div style="font-size: 18px; color: var(--primary-gold); margin: 0 5px;">VS</div>
                     </div>
-            
+
                     <div style="text-align: center;">
                         <img src="" alt="Opponent Logo" id="opponentLogo"
                             style="width: 60px; height: 60px; object-fit: contain; display: block; margin: 0 auto;">
-                    
+
                         <div id="opponentName" style="font-size: 12px; margin-top: 10px; color: white; 
                                     white-space: normal; word-wrap: break-word; overflow-wrap: break-word; 
                                     max-width: 80px; margin-left: auto; margin-right: auto;">
                         </div>
                     </div>
-            
+
                     <div class="match-info" style="text-align: center;">
                         <div class="match-date" id="matchDate" style="font-weight: bold;"></div>
                         <div class="match-time" id="matchTime" style="color: var(--primary-gold);"></div>
@@ -1324,10 +1327,10 @@
                 <div class="team-actions">
                     <a href="#" class="team-action-btn" title="Calendario">
                         <i class="far fa-calendar-alt"></i>
-                    </a> 
+                    </a>
                     <a href="#" class="team-action-btn" title="Clasificación">
                         <i class="fas fa-table"></i>
-                    </a> 
+                    </a>
                     <button class="team-action-btn players-btn" title="Jugadoras" id="playersButton">
                         <i class="fas fa-users"></i>
                     </button>
@@ -1405,7 +1408,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Team Modal -->
         <div class="team-modal" id="teamModal">
             <div class="team-modal-content">
