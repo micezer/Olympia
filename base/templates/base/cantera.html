@@ -546,7 +546,7 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
-    background-image: url('{% static 'images/player_background.jpg' %}');
+    background-image: url("{% static 'images/player_background.jpg' %}");
     background-size: 120%;
     background-position: center 30%;
     background-repeat: no-repeat;
@@ -1000,7 +1000,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1018,10 +1018,11 @@
 .pdf-modal-content {
     background: var(--secondary-blue);
     border-radius: 10px;
-    width: 90%;
-    height: 85%;
+    width: 95%;
+    height: 90%;
     max-width: 1000px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     position: relative;
     transform: scale(0.9);
     transition: transform 0.3s ease;
@@ -1031,10 +1032,22 @@
     transform: scale(1);
 }
 
+.pdf-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+}
+
+.pdf-modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-gold);
+    margin: 0;
+}
+
 .pdf-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
     background: var(--primary-gold);
     color: var(--secondary-blue);
     width: 30px;
@@ -1044,7 +1057,6 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 2;
     transition: all 0.3s ease;
 }
 
@@ -1053,21 +1065,89 @@
     transform: rotate(90deg);
 }
 
-.pdf-modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: var(--primary-gold);
+.pdf-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--secondary-blue);
+    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+    flex-wrap: wrap;
+}
+
+.pdf-control-btn {
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pdf-control-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+.pdf-page-info {
+    color: white;
+    font-size: 14px;
+    min-width: 80px;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .pdf-viewer-container {
-    width: 100%;
-    height: calc(100% - 50px);
-    border: 1px solid rgba(184, 172, 132, 0.3);
-    border-radius: 5px;
-    overflow: hidden;
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    background: #f0f0f0;
+}
+
+#pdfCanvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.pdf-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-blue);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .pdf-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    
+    .pdf-controls {
+        padding: 8px;
+        gap: 5px;
+    }
+    
+    .pdf-control-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .pdf-page-info {
+        font-size: 12px;
+        min-width: 70px;
+    }
 }
 
     /* Responsive */
@@ -1180,7 +1260,8 @@
         }
     }
 </style>
-
+<!-- Add in the head section -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 <body>
     <main>
         <div class="team-container">
@@ -1323,19 +1404,36 @@
         </div>
     </template>
 
-    <!-- Add this with your other modals -->
-    <!-- PDF Viewer Modal -->
-    <div class="pdf-modal" id="pdfModal">
-        <div class="pdf-modal-content">
+<!-- PDF Viewer Modal -->
+<div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
             <div class="pdf-modal-close">
                 <i class="fas fa-times"></i>
             </div>
-            <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
-            <div class="pdf-viewer-container">
-                <iframe id="pdfViewer" src="" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
+        </div>
+        <div class="pdf-controls">
+            <button class="pdf-control-btn" id="pdfPrevPage">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
+            <button class="pdf-control-btn" id="pdfNextPage">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="pdf-control-btn" id="pdfZoomOut">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button class="pdf-control-btn" id="pdfZoomIn">
+                <i class="fas fa-search-plus"></i>
+            </button>
+        </div>
+        <div class="pdf-viewer-container">
+            <div class="pdf-loading" id="pdfLoading">Cargando PDF...</div>
+            <canvas id="pdfCanvas"></canvas>
         </div>
     </div>
+</div>
 
 
 
@@ -2041,6 +2139,128 @@
             // Show modal
             teamModal.classList.add('active');
         }
+
+        // Add these variables at the top
+            let pdfDoc = null;
+            let pageNum = 1;
+            let pageRendering = false;
+            let pageNumPending = null;
+            let scale = 1.5;
+            const canvas = document.getElementById('pdfCanvas');
+            const ctx = canvas.getContext('2d');
+            const pdfPrevPage = document.getElementById('pdfPrevPage');
+            const pdfNextPage = document.getElementById('pdfNextPage');
+            const pdfZoomIn = document.getElementById('pdfZoomIn');
+            const pdfZoomOut = document.getElementById('pdfZoomOut');
+            const pdfPageInfo = document.getElementById('pdfPageInfo');
+            const pdfLoading = document.getElementById('pdfLoading');
+
+            // Add event listeners for PDF controls
+            pdfPrevPage.addEventListener('click', onPrevPage);
+            pdfNextPage.addEventListener('click', onNextPage);
+            pdfZoomIn.addEventListener('click', onZoomIn);
+            pdfZoomOut.addEventListener('click', onZoomOut);
+
+            // PDF.js functions
+            function renderPage(num) {
+                pageRendering = true;
+                pdfLoading.style.display = 'block';
+
+                pdfDoc.getPage(num).then(function (page) {
+                    const viewport = page.getViewport({ scale: scale });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+
+                    const renderTask = page.render(renderContext);
+
+                    renderTask.promise.then(function () {
+                        pageRendering = false;
+                        pdfLoading.style.display = 'none';
+
+                        if (pageNumPending !== null) {
+                            renderPage(pageNumPending);
+                            pageNumPending = null;
+                        }
+
+                        pdfPageInfo.textContent = `Página ${num} de ${pdfDoc.numPages}`;
+                    });
+                });
+            }
+
+            function onPrevPage() {
+                if (pageNum <= 1) return;
+                pageNum--;
+                queueRenderPage(pageNum);
+            }
+
+            function onNextPage() {
+                if (pageNum >= pdfDoc.numPages) return;
+                pageNum++;
+                queueRenderPage(pageNum);
+            }
+
+            function queueRenderPage(num) {
+                if (pageRendering) {
+                    pageNumPending = num;
+                } else {
+                    renderPage(num);
+                }
+            }
+
+            function onZoomIn() {
+                if (scale >= 3) return;
+                scale += 0.25;
+                queueRenderPage(pageNum);
+            }
+
+            function onZoomOut() {
+                if (scale <= 0.5) return;
+                scale -= 0.25;
+                queueRenderPage(pageNum);
+            }
+
+            // Update the openPdfModal function
+            function openPdfModal(pdfUrl, title) {
+                pdfModalTitle.textContent = title;
+                pdfLoading.style.display = 'block';
+                canvas.style.display = 'none';
+
+                // Reset PDF state
+                pageNum = 1;
+                scale = 1.5;
+
+                // Load PDF using PDF.js
+                pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+                    pdfDoc = pdf;
+                    pdfPageInfo.textContent = `Página ${pageNum} de ${pdf.numPages}`;
+                    renderPage(pageNum);
+                    canvas.style.display = 'block';
+                    pdfModal.classList.add('active');
+                }).catch(function (error) {
+                    console.error('Error loading PDF:', error);
+                    pdfLoading.textContent = 'Error al cargar el PDF';
+                    // Fallback: open in new tab after 2 seconds
+                    setTimeout(() => {
+                        closePdfModal();
+                        window.open(pdfUrl, '_blank');
+                    }, 2000);
+                });
+            }
+
+            // Update closePdfModal function
+            function closePdfModal() {
+                pdfModal.classList.remove('active');
+                // Clean up
+                if (pdfDoc) {
+                    pdfDoc.destroy();
+                    pdfDoc = null;
+                }
+            }
 
 
 
