@@ -12,6 +12,7 @@
     }
 
     body {
+            touch-action: pan-x pan-y; /* This prevents zooming on the body */
         background-color: var(--primary-blue);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: white;
@@ -1062,12 +1063,15 @@
         text-align: center;
     }
 
-    .pdf-viewer-container {
-        flex: 1;
-        position: relative;
-        overflow: auto;
-        background: #f0f0f0;
-    }
+/* Add this to your CSS */
+.pdf-viewer-container {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    background: #f0f0f0;
+    touch-action: manipulation; /* This allows zooming in the PDF container */
+}
+
 
     #pdfCanvas {
         display: block;
@@ -1220,6 +1224,12 @@
         }
     }
 </style>
+
+<head>
+
+    <!-- Add this to your head section (in main.html or wherever your base template is) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
 <!-- Add in the head section -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 
@@ -2132,5 +2142,82 @@
         // Initialize with the first team
         selectTeam('senior_a');
     });
+
+
+    // Add these variables at the top with your other PDF variables
+        let lastDistance = null;
+
+        // Add this function to handle pinch-to-zoom
+        function setupTouchZoom() {
+            const viewer = document.querySelector('.pdf-viewer-container');
+
+            viewer.addEventListener('touchstart', function (e) {
+                if (e.touches.length === 2) {
+                    e.preventDefault(); // Prevent page scroll when zooming PDF
+                    lastDistance = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                }
+            });
+
+            viewer.addEventListener('touchmove', function (e) {
+                if (e.touches.length === 2) {
+                    e.preventDefault(); // Prevent page scroll when zooming PDF
+
+                    const distance = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+
+                    if (lastDistance && lastDistance > 0) {
+                        const zoomFactor = distance / lastDistance;
+                        const newScale = scale * zoomFactor;
+
+                        // Limit zoom range
+                        scale = Math.max(0.5, Math.min(3, newScale));
+                        queueRenderPage(pageNum);
+                    }
+
+                    lastDistance = distance;
+                }
+            });
+
+            viewer.addEventListener('touchend', function () {
+                lastDistance = null;
+            });
+        }
+
+        // Call this function when opening the PDF modal
+        function openPdfModal(pdfUrl, title) {
+            // ... your existing code ...
+
+            // Add this line at the end of the function
+            setTimeout(setupTouchZoom, 100);
+        }
+
+        // Add this to your setupTouchZoom function
+            let lastTap = 0;
+            viewer.addEventListener('touchend', function (e) {
+                lastDistance = null;
+
+                // Handle double-tap zoom
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+
+                if (tapLength < 300 && tapLength > 0) {
+                    e.preventDefault();
+
+                    if (scale >= 2) {
+                        scale = 1;
+                    } else {
+                        scale += 0.5;
+                    }
+
+                    queueRenderPage(pageNum);
+                }
+
+                lastTap = currentTime;
+            });
 </script>
 {% endblock %}
