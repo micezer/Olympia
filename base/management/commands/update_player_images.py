@@ -26,7 +26,7 @@ class Command(BaseCommand):
             "Ana Hortelano": "ana_hortelano_q7l88x",
             "Ainara Mauri": "ainara_mauri_t6mael",
             "Manuela Alfayate": "manuela_alfayate_yipcnf",
-            "Sara Sánchez": "sara_sanchez_lnpxqg",
+            "Sara Sánchez": "",
             "Maria Herrero": "maria_herrero_mpn4qv",
 
             # DELANTERAS SENIOR A
@@ -38,51 +38,49 @@ class Command(BaseCommand):
             "Laura Viñas": "laura_vinas_tlo8ph",
             "Lucía Sanchez": "lucia_sanchez_zu9047",
 
+
             # PORTERAS SENIOR B
-            "Carmen": "carmen_porteria_senior_b",
-            "L. Martín": "l_martin_porteria_senior_b",
-            
+            "Carmen Sánchez": "carmen_sanchez-Photoroom_claoo4",
+            "Lucía Martín": "lucia_martin-Photoroom_pzaip0",
+
             # DEFENSAS SENIOR B
-            "Nuria": "nuria_defensa_senior_b",
-            "Lucía": "lucia_defensa_senior_b",
-            "Daniela": "daniela_defensa_senior_b",
-            "Andrea": "andrea_rodriguez_nucjaq",
-            "Paola": "paola_defensa_senior_b",
-            "Mireya": "mireya_defensa_senior_b",
-            "Cristina": "cristina_defensa_senior_b",
-            "Gadea": "gadea_defensa_senior_b",
-            "Bea": "bea_defensa_senior_b",
-            "Teresa": "teresa_defensa_senior_b",
-            "Ana": "ana_defensa_senior_b",
-            
+            "Nuria Díaz": "nuria_diaz-Photoroom_vn6yso",
+            "Lucía Adán": "lucia_adan-Photoroom_vvkdhs",
+            "Andrea Ovejero": "andrea_ovejero-Photoroom_nbzu8x",
+            "Lorena Fernández": "lorena_fernandez-Photoroom_km7nbr",
+            "Paola González": "paola_gonzalez-Photoroom_ypisxt",
+            "Mireya Nieto": "mireya_nieto-Photoroom_an7pkg",
+            "Cristina Tejada": "cristina_tejada-Photoroom_ugefg7",
+            "Marina Valmorisco": "marina_valmorisco-Photoroom_wnfskv",
+            "Teresa Brandau": "",
+            "Sarah Yagüe": "sarahyague-Photoroom_jda5pv",
+
+
             # CENTROCAMPISTAS SENIOR B
-            "L. Fernández": "l_fernandez_centro_senior_b",
-            "Raquel": "raquel_centro_senior_b",
-            "Marina": "marina_centro_senior_b",
-            "Aroa": "aroa_centro_senior_b",
-            "Iciar": "iciar_centro_senior_b",
-            "Lorena": "lorena_centro_senior_b",
-            "Susana": "susana_centro_senior_b",
-            "Mirem": "mirem_centro_senior_b",
+            "Lucía Fernández": "lucia_fernandez-Photoroom_lhi5uc",
+            "Raquel Guardado": "raquel_guardado-Photoroom_zfdbqb",
+            "Aroa González": "aroa_gonzalez-Photoroom_ydxm07",
+            "Iciar Cofrades": "iciar_cofrades-Photoroom_a2ehsx",
+            "Clara Gómez": "clara_gomez-Photoroom_xr0ass",
+            "Vicky Pérez": "vicky_perez-Photoroom_xtnb1z",
+            "Bea Asenjo": "bea_asenjo-Photoroom_fz9txe",
             
             # DELANTERAS SENIOR B
-            "Alejandra": "alejandra_delantero_senior_b",
-            "Claudia": "claudia_delantero_senior_b",
-            "Lucía": "lucia_delantero_senior_b",
-            "Clara": "clara_delantero_senior_b",
-            "Victoria": "victoria_delantero_senior_b",
+            "Daniela Sanchís": "daniela__sanchis-Photoroom_sbzrvg",
+            "Claudia Hernando": "claudia_hernando-Photoroom_c01hya",
+            "Lucía Nuñez": "lucia_nunez-Photoroom_awwnfh",
+            "Clara Fajardo": "clara_fajardo-Photoroom_dqjd7e",
+            "Iratxe Rodríguez": "iratxe_rodriguez-Photoroom_vss7xx",
             
             # CUERPO TÉCNICO
-            "Sofía Perez": "sofia_perez_bcaph4",
-            "Sergio De La Fuente": "sergio_de_la_fuente_kfyq3w",
-            "Mauri Richards": "mauri_richards_vr8xnd",
-            "Ivan Pernia": "ivan_pernia_tihvqu",
-            "David González": "david_gonzalez_z2wrqv",
-            "Daniel Rojas": "daniel_rojas_onrycd",
-            "Cassandre Lamarca": "cassandre_lamarca_sluuxv",
-            "Andrea Cacho": "andrea_cacho_di0jim",
-            "Adrian Sanchez": "adrian_sanchez_wsi7lp",
+            "Abiel Ojeda": "abiel_ojeda-Photoroom_wykhl3",
+            "Alba Mateos": "alba_mateos-Photoroom_clcz6p",
+            "Arantxa De La Chica": "arantxa_de_la_chica-Photoroom_bwf2ru",
+            "Emanuel Inga": "emanuel_inga_vbazk5",
+            "Lucía Sánchez": "lucia_sanchez-Photoroom_w9e9si",
         }
+
+
 
         self.stdout.write("Iniciando asignación de imágenFes de jugadoras...")
         
