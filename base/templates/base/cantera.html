@@ -993,6 +993,83 @@
     font-size: 16px; /* Slightly larger text */
 }
 
+/* PDF Viewer Modal */
+.pdf-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pdf-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pdf-modal-content {
+    background: var(--secondary-blue);
+    border-radius: 10px;
+    width: 90%;
+    height: 85%;
+    max-width: 1000px;
+    padding: 20px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.pdf-modal.active .pdf-modal-content {
+    transform: scale(1);
+}
+
+.pdf-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-gold);
+    color: var(--secondary-blue);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.pdf-modal-close:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+
+.pdf-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary-gold);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pdf-viewer-container {
+    width: 100%;
+    height: calc(100% - 50px);
+    border: 1px solid rgba(184, 172, 132, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
     /* Responsive */
     @media (max-width: 768px) {
         .team-title {
@@ -1165,8 +1242,8 @@
             <div class="team-header">
                 <div class="team-name-display">SENIOR A</div>
                 <div class="team-actions">
-                    <a href="https://rfef.es/sites/default/files/calendario_segunda_federacion_futbol_femenino_g3_2025-2026.pdf"
-                        class="team-action-btn" title="Calendario" target="_blank">
+                    <a href="#" class="team-action-btn calendar-btn" title="Calendario"
+                        data-pdf="{% static 'pdf/calendario_senior_a.pdf' %}">
                         <i class="far fa-calendar-alt"></i>
                     </a>
                     <a href="https://resultados.rfef.es/pnfg/NPcd/NFG_VisClasificacion?cod_primaria=1000120&codjornada=1&codcompeticion=23289351&codgrupo=23361077&codjornada=1"
@@ -1185,8 +1262,8 @@
             <div class="team-header">
                 <div class="team-name-display">Senior B</div>
                 <div class="team-actions">
-                    <a href="{% static 'pdf/calendario_senior_b.pdf' %}" class="team-action-btn" title="Calendario"
-                        target="_blank">
+                    <a href="#" class="team-action-btn calendar-btn" title="Calendario"
+                        data-pdf="{% static 'pdf/calendario_senior_b.pdf' %}">
                         <i class="far fa-calendar-alt"></i>
                     </a>
                     <a href="https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=1&competicion=24038579&grupo=24038586&jornada=1&jornada=1&jornada=1"
@@ -1245,6 +1322,22 @@
             </div>
         </div>
     </template>
+
+    <!-- Add this with your other modals -->
+    <!-- PDF Viewer Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
+            <div class="pdf-viewer-container">
+                <iframe id="pdfViewer" src="" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Category Modal -->
     <div class="category-modal" id="categoryModal">
@@ -1785,13 +1878,13 @@
             // Define teams for each category
             const teams = {
                 juvenil: [
-                    { name: 'Juvenil A Autonómica', calendar: '#', table: '#' },
-                    { name: 'Juvenil B Preferente', calendar: '#', table: '#' }
+                    { name: 'Juvenil A Autonómica', calendar: "{% static 'pdf/calendario_juvenil_a.pdf' %}", table: '#' },
+                    { name: 'Juvenil B Preferente', calendar: "{% static 'pdf/calendario_juvenil_b.pdf' %}", table: '#' }
                 ],
                 cadete: [
-                    { name: 'Cadete A Autonómica', calendar: '#', table: '#' },
-                    { name: 'Cadete B Preferente', calendar: '#', table: '#' },
-                    { name: 'Cadete C Preferente', calendar: '#', table: '#' }
+                    { name: 'Cadete A Autonómica', calendar: "{% static 'pdf/calendario_cadete_a.pdf' %}", table: '#' },
+                    { name: 'Cadete B Preferente', calendar: "{% static 'pdf/calendario_cadete_b.pdf' %}", table: '#' },
+                    { name: 'Cadete C Preferente', calendar: "{% static 'pdf/calendario_cadete_c.pdf' %}", table: '#' }
                 ],
                 infantil: [
                     { name: 'Infantil F11 Regional Mixto', calendar: '#', table: '#' },
@@ -1864,6 +1957,91 @@
             categoryModal.classList.remove('active');
             teamModal.classList.remove('active');
         }
+
+        
+    // Add these variables at the top with other DOM elements
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfModalTitle = document.getElementById('pdfModalTitle');
+    const pdfViewer = document.getElementById('pdfViewer');
+    const pdfModalClose = pdfModal.querySelector('.pdf-modal-close');
+
+    // Add event listener for the PDF modal close button
+    pdfModalClose.addEventListener('click', closePdfModal);
+
+    pdfModal.addEventListener('click', function (e) {
+        if (e.target === pdfModal) closePdfModal();
+    });
+
+    // Function to open PDF modal
+    function openPdfModal(pdfUrl, title) {
+        pdfModalTitle.textContent = title;
+        pdfViewer.src = pdfUrl;
+        pdfModal.classList.add('active');
+    }
+
+    // Function to close PDF modal
+    function closePdfModal() {
+        pdfModal.classList.remove('active');
+        // Clear the iframe source when closing to free memory
+        setTimeout(() => {
+            pdfViewer.src = '';
+        }, 300);
+    }
+
+    // Update the closeAllModalsCompletely function
+    function closeAllModalsCompletely() {
+        positionsModal.classList.remove('active');
+        playersModal.classList.remove('active');
+        playerModal.classList.remove('active');
+        categoryModal.classList.remove('active');
+        teamModal.classList.remove('active');
+        pdfModal.classList.remove('active');
+    }
+
+    // Add this event listener to handle calendar button clicks
+        document.addEventListener('click', function (e) {
+            // Handle calendar button clicks
+            if (e.target.closest('.calendar-btn')) {
+                e.preventDefault();
+                const pdfUrl = e.target.closest('.calendar-btn').getAttribute('data-pdf');
+                const title = e.target.closest('.calendar-btn').getAttribute('title') || 'Calendario';
+                openPdfModal(pdfUrl, title);
+            }
+
+            // Handle cantera category clicks
+            if (e.target.closest('.cantera-team')) {
+                const category = e.target.closest('.cantera-team').getAttribute('data-category');
+                openCategoryModal(category);
+            }
+
+            // Handle category team clicks
+            if (e.target.closest('.category-team-item')) {
+                const teamName = e.target.closest('.category-team-item').getAttribute('data-team');
+                const teamData = e.target.closest('.category-team-item').getAttribute('data-team-data');
+                openTeamModal(teamName, teamData);
+            }
+        });
+
+        // Update the openTeamModal function to use the PDF viewer
+        function openTeamModal(teamName, teamDataJson) {
+            const teamData = JSON.parse(teamDataJson);
+            teamModalTitle.textContent = teamName;
+
+            // Set up calendar button to open PDF viewer
+            const calendarBtn = document.getElementById('calendarBtn');
+            calendarBtn.onclick = function (e) {
+                e.preventDefault();
+                openPdfModal(teamData.calendar, `Calendario - ${teamName}`);
+            };
+
+            // Set up table button (if you want to use PDF viewer for tables too)
+            const tableBtn = document.getElementById('tableBtn');
+            tableBtn.href = teamData.table;
+
+            // Show modal
+            teamModal.classList.add('active');
+        }
+
 
 
 
