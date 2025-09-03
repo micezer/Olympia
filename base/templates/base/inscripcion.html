@@ -219,6 +219,7 @@
     }
 
     .welcome-screen {
+                display: block; /* Visible por defecto */
         text-align: center;
         padding: 40px;
         background-color: rgba(255, 255, 255, 0.05);
@@ -353,6 +354,326 @@
         border-color: var(--secondary-gold);
     }
 
+        .edit-btn {
+        background: transparent;
+        border: 1px solid var(--primary-gold);
+        color: var(--primary-gold);
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        margin-left: 10px;
+    }
+
+    .edit-btn:hover {
+        background: rgba(184, 172, 132, 0.1);
+    }
+
+    .summary-section {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .summary-section h4 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--primary-gold);
+        margin-bottom: 15px;
+    }
+
+        #confirmationButton {
+        background: var(--secondary-gold);
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        color: var(--secondary-blue);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 20px;
+    }
+    
+    #confirmationButton:hover {
+        background: var(--primary-gold);
+        transform: translateY(-2px);
+    }
+    
+    #confirmationButton:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+        #player-name-display,
+    #player-dni-display,
+    #player-address-display {
+        color: var(--primary-gold);
+        font-weight: bold;
+    }
+
+      .confirmation-steps {
+        margin: 25px 0;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .confirmation-step-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid rgba(184, 172, 132, 0.2);
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .confirmation-step-item:last-child {
+        border-bottom: none;
+    }
+
+    .confirmation-step-info h4 {
+        color: var(--primary-gold);
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+    }
+
+    .confirmation-step-info p {
+        color: #ccc;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .confirmation-total {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(184, 172, 132, 0.1);
+        border-radius: 8px;
+        margin: 25px 0;
+    }
+
+    .confirmation-total h4 {
+        color: var(--primary-gold);
+        font-size: 1.3rem;
+        margin: 0 0 10px 0;
+    }
+
+    .confirmation-note {
+        color: #ccc;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .edit-btn {
+        background: transparent;
+        border: 1px solid var(--primary-gold);
+        color: var(--primary-gold);
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        white-space: nowrap;
+    }
+
+    .edit-btn:hover {
+        background: rgba(184, 172, 132, 0.1);
+        transform: translateY(-2px);
+    }
+
+.welcome-screen {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--primary-blue);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.welcome-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: 1rem;
+}
+
+.welcome-header h1 {
+    color: var(--primary-gold);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(184, 134, 11, 0.3);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.step-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.step-info h3 {
+    margin: 0 0 0.3rem 0;
+    color: var(--primary-gold);
+    font-size: 0.95rem;
+}
+
+.step-info p {
+    margin: 0;
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+.important-notice {
+    background: rgba(184, 134, 11, 0.1);
+    border: 1px solid var(--primary-gold);
+    border-radius: 8px;
+    padding: 1.2rem;
+}
+
+.notice-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.notice-header h3 {
+    color: var(--primary-gold);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.notice-content ol {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.notice-content li {
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.payment-info {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.payment-info h4 {
+    margin: 0 0 0.4rem 0;
+    color: var(--primary-gold);
+    font-size: 0.95rem;
+}
+
+.payment-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #ddd;
+}
+
+.welcome-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.primary-button {
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    border: none;
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.primary-button:hover {
+    background-color: var(--secondary-gold);
+    transform: scale(1.03);
+}
+
+.time-estimate {
+    margin: 0;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-screen {
+        padding: 1.5rem;
+    }
+}
+
+    @media (max-width: 768px) {
+        .confirmation-step-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .edit-btn {
+            align-self: flex-end;
+        }
+    }
+
+    
+
     
 
     /* Responsive */
@@ -408,36 +729,95 @@
 
 <h1>Formulario de Inscripción - Club Olympia</h1>
 
-<!-- Pantalla de bienvenida -->
 <div class="welcome-screen" id="welcomeScreen">
-    <h2>Bienvenido al proceso de inscripción</h2>
-    <p>Para formalizar tu inscripción al Club Olympia, completa todos los pasos del formulario.</p>
-    <p><strong>Importante:</strong> Tu inscripción solo será válida una vez completado el formulario.</p>
-    <button onclick="startRegistration()">Comenzar inscripción</button>
-</div>
+    <div class="welcome-header">
+        <h1>Formulario de Inscripción - Club Olympia</h1>
+        <p>Abriendo camino, cumpliendo sueños desde 2015</p>
+    </div>
 
-<!-- Menú de pasos -->
-<div class="steps-menu" id="stepsMenu" style="display: none;">
-    <div class="step-card active" data-step="1" onclick="navigateToStep(1)">
-        <div>Información Personal</div>
+    <div class="welcome-content">
+        <div class="process-guide">
+            <h2>Proceso de inscripción en 6 pasos</h2>
+            <p>Completa toda la información requerida para formalizar tu inscripción:</p>
+
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <h3>Información Personal</h3>
+                        <p>Datos de la jugadora y tutores</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <h3>Domiciliación Bancaria</h3>
+                        <p>Datos para pagos</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <h3>Autorización Menores</h3>
+                        <p>Permisos necesarios</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-info">
+                        <h3>Protección de Datos</h3>
+                        <p>Consentimientos</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-info">
+                        <h3>Carta de Compromiso</h3>
+                        <p>Compromisos</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div class="step-info">
+                        <h3>Confirmación</h3>
+                        <p>Revisión final</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="important-notice">
+            <div class="notice-header">
+                <span>📋</span>
+                <h3>Aspectos importantes</h3>
+            </div>
+            <div class="notice-content">
+                <ol>
+                    <li><strong>Debes completar todos los pasos</strong> para que tu información se guarde
+                        correctamente.</li>
+                    <li>La inscripción solo se formalizará una vez realizado el pago correspondiente.</li>
+                    <li>Al final del proceso, podrás realizar el pago de forma segura a través de nuestra aplicación.
+                    </li>
+                    <li>Si abandonas el proceso antes de completarlo, deberás comenzar desde el principio.</li>
+                </ol>
+
+                <div class="payment-info">
+                    <h4>📱 Pago mediante la app</h4>
+                    <p>Al finalizar la inscripción, se te redirigirá a nuestra aplicación para realizar el pago de forma
+                        segura con tarjeta o cuenta bancaria.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="step-card locked" data-step="2" onclick="navigateToStep(2)">
-        <div>Domiciliación</div>
-    </div>
-    <div class="step-card locked" data-step="3" onclick="navigateToStep(3)">
-        <div>Autorización</div>
-    </div>
-    <div class="step-card locked" data-step="4" onclick="navigateToStep(4)">
-        <div>Protección Datos</div>
-    </div>
-    <div class="step-card locked" data-step="5" onclick="navigateToStep(5)">
-        <div>Compromiso</div>
-    </div>
-    <div class="step-card locked" data-step="6" onclick="navigateToStep(6)">
-        <div>Confirmación</div>
-    </div>
-    <div class="step-card locked" data-step="7" onclick="navigateToStep(7)">
-        <div>Pago</div>
+
+    <div class="welcome-actions">
+        <button class="primary-button" onclick="startRegistration()">Comenzar inscripción</button>
+        <p class="time-estimate">⏱️ Tiempo estimado: 15-20 minutos</p>
     </div>
 </div>
 
@@ -700,81 +1080,207 @@
     </div>
 
     <div class="navigation-buttons">
-        <button type="button" class="secondary" onclick="backToStepsMenu()">Volver al menú</button>
+        <button type="button" class="secondary" onclick="backToStart()">Volver al menú</button>
         <button type="button" id="step1Button" onclick="saveStep(1)">Continuar</button>
+    </div>
+    <!-- En CADA paso (1-5), añade este botón: -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" id="confirmationButton" onclick="goToConfirmation()"
+            style="display: none; background: var(--secondary-gold);">
+            Ir a Confirmación
+        </button>
     </div>
 </div>
 
-<!-- Paso 2: Domiciliación -->
+<!-- Paso 2: Domiciliación Bancaria -->
 <div class="form-container" id="step2Form">
-    <h2>Formulario de Domiciliación Bancaria</h2>
+    <h2>Orden de Domiciliación de Adeudo Directo SEPA</h2>
 
-    <div class="form-group">
-        <label for="bank-name">Nombre del Banco*</label>
-        <input type="text" id="bank-name" name="bank-name" placeholder="Nombre de tu banco" required>
-        <div class="error-message" id="bank-name_error"></div>
+    <div style="background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+        <p style="text-align: center; font-style: italic; color: var(--primary-gold);">
+            CFF OLYMPIA LAS ROZAS<br>
+            Abriendo camino, cumpliendo sueños desde 2015
+        </p>
     </div>
 
     <div class="form-group">
-        <label for="account-holder">Titular de la Cuenta*</label>
-        <input type="text" id="account-holder" name="account-holder" placeholder="Titular de la cuenta" required>
+        <label for="signature-date">En las Rozas de Madrid, a _____ de _________________ de 2.02__*</label>
+        <input type="date" id="signature-date" name="signature-date" required>
+        <div class="error-message" id="signature-date_error"></div>
+    </div>
+
+    <div style="background-color: rgba(184, 172, 132, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h4 style="color: var(--primary-gold); margin-bottom: 10px;">DATOS DEL CLUB</h4>
+        <p>• Identificador del acreedor: <strong>G87362638</strong></p>
+        <p>• Nombre del acreedor: <strong>CLUB DEPORTIVO BÁSICO FÚTBOL FEMENINO OLYMPIA LAS ROZAS</strong></p>
+        <p>• Dirección del acreedor: <strong>CALLE TERUEL 3, 28231 LAS ROZAS DE MADRID, ESPAÑA</strong></p>
+    </div>
+
+    <div class="form-group">
+        <label for="account-holder">Nombre y Apellidos del Titular de la Cuenta*</label>
+        <input type="text" id="account-holder" name="account-holder" placeholder="Nombre completo del titular" required>
         <div class="error-message" id="account-holder_error"></div>
     </div>
 
     <div class="form-group">
-        <label for="account-number">Número de Cuenta (IBAN)*</label>
-        <input type="text" id="account-number" name="account-number" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX"
-            required>
-        <div class="error-message" id="account-number_error"></div>
+        <label for="account-holder-dni">DNI del Titular de la Cuenta*</label>
+        <input type="text" id="account-holder-dni" name="account-holder-dni" placeholder="DNI del titular" required>
+        <div class="error-message" id="account-holder-dni_error"></div>
     </div>
 
     <div class="form-group">
-        <label for="signature-date">Fecha de Firma*</label>
-        <input type="date" id="signature-date" name="signature-date" required>
-        <div class="error-message" id="signature-date_error"></div>
+        <label for="account-holder-address">Domicilio del Titular*</label>
+        <input type="text" id="account-holder-address" name="account-holder-address" placeholder="Dirección completa"
+            required>
+        <div class="error-message" id="account-holder-address_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="account-holder-zip">Código Postal*</label>
+        <input type="text" id="account-holder-zip" name="account-holder-zip" placeholder="Código postal" required>
+        <div class="error-message" id="account-holder-zip_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="account-holder-city">Población*</label>
+        <input type="text" id="account-holder-city" name="account-holder-city" placeholder="Población" required>
+        <div class="error-message" id="account-holder-city_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="account-holder-province">Provincia*</label>
+        <input type="text" id="account-holder-province" name="account-holder-province" placeholder="Provincia" required>
+        <div class="error-message" id="account-holder-province_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="swift-code">SWIFT Code (entre 8 y 11 caracteres)</label>
+        <input type="text" id="swift-code" name="swift-code" placeholder="Código SWIFT">
+        <div class="error-message" id="swift-code_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="iban">IBAN - Número de cuenta*</label>
+        <input type="text" id="iban" name="iban" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX" required>
+        <div class="error-message" id="iban_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Tipo de Pago*</label>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="radio" id="payment-type-recurrent" name="payment-type" value="recurrent" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                Pago Recurrente
+            </label>
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="radio" id="payment-type-single" name="payment-type" value="single" style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                              border-radius: 3px; margin-right: 8px; position: relative;">
+                Pago Único
+            </label>
+        </div>
+        <div class="error-message" id="payment-type_error"></div>
     </div>
 
     <div class="navigation-buttons">
         <button type="button" class="secondary" onclick="navigateToStep(1)">Anterior</button>
         <button type="button" id="step2Button" onclick="saveStep(2)">Guardar y continuar</button>
+        <!-- En CADA paso (1-5), añade este botón: -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="button" id="confirmationButton" onclick="goToConfirmation()"
+                style="display: none; background: var(--secondary-gold);">
+                Ir a Confirmación
+            </button>
+        </div>
     </div>
+
 </div>
 
-<!-- Paso 3: Autorización para menores -->
+<!-- Paso 3: Autorización para Menores -->
 <div class="form-container" id="step3Form">
-    <h2>Autorización para Menores de Edad</h2>
+    <h2>Autorización para Inscribir a un Menor de Edad</h2>
 
-    <div class="form-group">
-        <label for="parent-name">Nombre del Padre/Madre/Tutor*</label>
-        <input type="text" id="parent-name" name="parent-name" placeholder="Nombre completo" required>
-        <div class="error-message" id="parent-name_error"></div>
+    <div style="background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+        <p style="text-align: center; font-style: italic; color: var(--primary-gold);">
+            CFF OLYMPIA LAS ROZAS<br>
+            Abriendo camino, cumpliendo sueños desde 2015
+        </p>
     </div>
 
     <div class="form-group">
-        <label for="parent-dni">DNI del Padre/Madre/Tutor*</label>
-        <input type="text" id="parent-dni" name="parent-dni" placeholder="DNI o NIE" required>
-        <div class="error-message" id="parent-dni_error"></div>
+        <label for="authorization-date">En las Rozas de Madrid, a _____ de _________________ de 2.0___*</label>
+        <input type="date" id="authorization-date" name="authorization-date" required>
+        <div class="error-message" id="authorization-date_error"></div>
+    </div>
+
+    <div style="background-color: rgba(184, 172, 132, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h4 style="color: var(--primary-gold); margin-bottom: 10px;">A RELLENAR POR EL TUTOR O REPRESENTANTE:</h4>
+        <p>Por medio de la presente, el/los abajo firmante/s, ostentando, individual o conjuntamente,
+            la patria potestad o tutela de la menor <strong id="player-name-display"></strong>,
+            con DNI/NIE/Nº de pasaporte <strong id="player-dni-display"></strong>, y con domicilio
+            en <strong id="player-address-display"></strong></p>
     </div>
 
     <div class="form-group">
-        <label for="parent-phone">Teléfono de Contacto*</label>
-        <input type="tel" id="parent-phone" name="parent-phone" placeholder="Número de teléfono" required>
-        <div class="error-message" id="parent-phone_error"></div>
+        <label for="mother-signature-name">Nombre y Apellidos (Madre/Tutora)*</label>
+        <input type="text" id="mother-signature-name" name="mother-signature-name" required>
+        <div class="error-message" id="mother-signature-name_error"></div>
     </div>
 
     <div class="form-group">
-        <div class="checkbox-group">
-            <input type="checkbox" id="medical-authorization" name="medical-authorization" required>
-            <label for="medical-authorization">Autorizo al club a solicitar atención médica en caso de
-                emergencia*</label>
+        <label for="mother-signature-dni">DNI/NIE/Pasaporte (Madre/Tutora)*</label>
+        <input type="text" id="mother-signature-dni" name="mother-signature-dni" required>
+        <div class="error-message" id="mother-signature-dni_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="mother-signature">Firma (Madre/Tutora)*</label>
+        <input type="text" id="mother-signature" name="mother-signature"
+            placeholder="Escriba su nombre completo como firma" required>
+        <div class="error-message" id="mother-signature_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="father-signature-name">Nombre y Apellidos (Padre/Tutor)</label>
+        <input type="text" id="father-signature-name" name="father-signature-name">
+        <div class="error-message" id="father-signature-name_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="father-signature-dni">DNI/NIE/Pasaporte (Padre/Tutor)</label>
+        <input type="text" id="father-signature-dni" name="father-signature-dni">
+        <div class="error-message" id="father-signature-dni_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="father-signature">Firma (Padre/Tutor)</label>
+        <input type="text" id="father-signature" name="father-signature"
+            placeholder="Escriba su nombre completo como firma">
+        <div class="error-message" id="father-signature_error"></div>
+    </div>
+
+    <div style="background-color: rgba(184, 172, 132, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h4 style="color: var(--primary-gold); margin-bottom: 10px;">DECLARACIÓN RESPONSABLE</h4>
+        <p style="font-size: 0.9rem; margin-bottom: 15px;">(Solo rellenar en el caso de ser un único progenitor)</p>
+
+        <div class="form-group">
+            <label for="single-parent-reason">Motivo de declaración responsable*</label>
+            <select id="single-parent-reason" name="single-parent-reason">
+                <option value="">Seleccione el motivo</option>
+                <option value="monoparental">Familia monoparental</option>
+                <option value="fallecimiento">Fallecimiento del otro progenitor</option>
+                <option value="privacion">Privación de la patria potestad por resolución judicial</option>
+                <option value="alejamiento">Orden o sentencia de alejamiento</option>
+                <option value="consentimiento">Consentimiento expreso del otro progenitor</option>
+                <option value="otras">Otras circunstancias</option>
+            </select>
+            <div class="error-message" id="single-parent-reason_error"></div>
         </div>
-        <div class="error-message" id="medical-authorization_error"></div>
-    </div>
 
-    <div class="form-group">
-        <div class="checkbox-group">
-            <input type="checkbox" id="image-authorization" name="image-authorization">
-            <label for="image-authorization">Autorizo el uso de imagen del menor para actividades del club</label>
+        <div class="form-group" id="other-reason-container" style="display: none;">
+            <label for="other-reason">Especifique otras circunstancias</label>
+            <textarea id="other-reason" name="other-reason" placeholder="Describa las circunstancias"></textarea>
+            <div class="error-message" id="other-reason_error"></div>
         </div>
     </div>
 
@@ -782,64 +1288,210 @@
         <button type="button" class="secondary" onclick="navigateToStep(2)">Anterior</button>
         <button type="button" id="step3Button" onclick="saveStep(3)">Guardar y continuar</button>
     </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" id="confirmationButton" onclick="goToConfirmation()"
+            style="display: none; background: var(--secondary-gold);">
+            Ir a Confirmación
+        </button>
+    </div>
 </div>
 
-<!-- Paso 4: Protección de datos -->
+<!-- Paso 4: Protección de Datos -->
 <div class="form-container" id="step4Form">
-    <h2>Anexo de Protección de Datos</h2>
+    <h2>Anexo - Protección de Datos</h2>
 
-    <div class="form-group">
-        <p>De conformidad con lo establecido en la normativa vigente en Protección de Datos de Carácter Personal, le
-            informamos que los datos personales facilitados serán tratados por CLUB OLYMPIA con la finalidad de
-            gestionar su inscripción y participación en las actividades del club.</p>
+    <div style="background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+        <p style="text-align: center; font-style: italic; color: var(--primary-gold);">
+            CFF OLYMPIA LAS ROZAS<br>
+            Abriendo camino, cumpliendo sueños desde 2015
+        </p>
+    </div>
+
+    <div style="background-color: rgba(184, 172, 132, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <p>De conformidad con la normativa vigente y aplicable en protección de datos de
+            carácter personal, le informamos que sus datos serán incorporados al sistema de
+            tratamiento titularidad de Club de Fútbol Femenino Olympia Las Rozas con CIF
+            G87362638 y domicilio social sito en calle Teruel 3, 28231 Las Rozas de Madrid, Madrid.</p>
+
+        <p><strong>• Responsable del Tratamiento:</strong> CDB Fútbol Femenino Olympia Las Rozas</p>
+        <p><strong>• Finalidad:</strong> Gestionar y facilitar el uso de la Web, el acceso a los servicios
+            contratados, solucionar sus consultas, y la correcta organización, gestión y
+            administración de aquellos trámites realizados a través de la Web del Club, así
+            como dar soporte a cualquier duda, problema o reclamación que pudieran
+            surgir con el uso de la Web. Envío por cualquier medio incluyendo por correo
+            electrónico, u otra información equivalente de comunicación electrónica,
+            publicidad o promociones sobre los productos o servicios del Club, de los
+            patrocinadores del Club, siempre que haya prestado o solicitado su
+            consentimiento y dándole la posibilidad de darse de baja en cada
+            comunicación.</p>
+        <p><strong>• Plazo de conservación:</strong> Mientras esté inscrita la jugadora en el club</p>
+        <p><strong>• Base legítima:</strong> El interés legítimo de acuerdo con la legislación vigente y
+            aplicable de protección de datos.</p>
+        <p><strong>• Cesiones:</strong> Solo serán cedidos en caso de ser necesario a la/s entidad/es
+            pública/s competente/s.</p>
+
+        <p>De acuerdo con los derechos que le confiere la normativa vigente y aplicable en
+            protección de datos podrá́ ejercer los derechos de acceso, rectificación, limitación de
+            tratamiento, supresión ("derecho al olvido"), portabilidad y oposición al tratamiento de
+            sus datos de carácter personal así como la revocación del consentimiento prestado
+            para el tratamiento de los mismos, dirigiendo su petición a la dirección postal indicada
+            más arriba o al correo electrónico: info@cffolympia.es.</p>
+
+        <p>Si las personas interesadas entienden que se han visto perjudicadas por el tratamiento o en el
+            ejercicio de sus derechos, pueden presentar una reclamación ante la Agencia Española de
+            Protección de Datos a través de la sede electrónica accesible en la página web
+            https://www.aepd.es/.</p>
+
+        <p>El CDB Fútbol Femenino Olympia Las Rozas informa que con la firma del presente documento
+            se otorga el consentimiento explícito para el tratamiento de los datos según las finalidades
+            mencionadas anteriormente.</p>
     </div>
 
     <div class="form-group">
-        <div class="checkbox-group">
-            <input type="checkbox" id="data-processing" name="data-processing" required>
-            <label for="data-processing">He leído y acepto la política de protección de datos*</label>
-        </div>
-        <div class="error-message" id="data-processing_error"></div>
+        <label for="data-protection-signature-name">Nombre y Apellidos*</label>
+        <input type="text" id="data-protection-signature-name" name="data-protection-signature-name" required>
+        <div class="error-message" id="data-protection-signature-name_error"></div>
     </div>
 
     <div class="form-group">
-        <div class="checkbox-group">
-            <input type="checkbox" id="communications" name="communications">
-            <label for="communications">Acepto recibir comunicaciones del club sobre actividades y eventos</label>
+        <label for="data-protection-signature-dni">DNI/NIE/Pasaporte*</label>
+        <input type="text" id="data-protection-signature-dni" name="data-protection-signature-dni" required>
+        <div class="error-message" id="data-protection-signature-dni_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="data-protection-signature">Firma*</label>
+        <input type="text" id="data-protection-signature" name="data-protection-signature"
+            placeholder="Escriba su nombre completo como firma" required>
+        <div class="error-message" id="data-protection-signature_error"></div>
+    </div>
+
+    <div class="form-group">
+        <div class="checkbox-group" style="display: flex; align-items: flex-start;">
+            <input type="checkbox" id="data-protection-consent" name="data-protection-consent" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="data-protection-consent" style="cursor: pointer; margin: 0;">Confirmo que he leído y comprendido
+                la política de protección de datos y doy mi consentimiento explícito para el tratamiento de mis datos
+                según las finalidades mencionadas anteriormente.*</label>
         </div>
+        <div class="error-message" id="data-protection-consent_error"></div>
     </div>
 
     <div class="navigation-buttons">
         <button type="button" class="secondary" onclick="navigateToStep(3)">Anterior</button>
         <button type="button" id="step4Button" onclick="saveStep(4)">Guardar y continuar</button>
     </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" id="confirmationButton" onclick="goToConfirmation()"
+            style="display: none; background: var(--secondary-gold);">
+            Ir a Confirmación
+        </button>
+    </div>
 </div>
 
-<!-- Paso 5: Carta de compromiso -->
+<!-- Paso 5: Carta de Compromiso -->
 <div class="form-container" id="step5Form">
     <h2>Carta de Compromiso</h2>
 
-    <div class="form-group">
-        <p>Como jugador/miembro del Club Olympia, me comprometo a:</p>
-        <ul>
-            <li>Asistir regularmente a los entrenamientos y partidos</li>
-            <li>Mantener una actitud deportiva y respetuosa</li>
-            <li>Cumplir con las normas del club</li>
-            <li>Representar dignamente al club en competiciones</li>
-        </ul>
+    <div style="background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+        <p style="text-align: center; font-style: italic; color: var(--primary-gold);">
+            CFF OLYMPIA LAS ROZAS<br>
+            Abriendo camino, cumpliendo sueños desde 2015
+        </p>
     </div>
 
     <div class="form-group">
-        <div class="checkbox-group">
-            <input type="checkbox" id="commitment-agreement" name="commitment-agreement" required>
-            <label for="commitment-agreement">Acepto y me comprometo a cumplir con las normas del club*</label>
+        <label for="commitment-date">En las Rozas de Madrid, a _____ de _________________ de 2.0___*</label>
+        <input type="date" id="commitment-date" name="commitment-date" required>
+        <div class="error-message" id="commitment-date_error"></div>
+    </div>
+
+    <div style="background-color: rgba(184, 172, 132, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <p><strong>Nombre de la jugadora:</strong> <span id="commitment-player-name"
+                style="color: var(--primary-gold); font-weight: bold;"></span></p>
+        <p><strong>DNI de la jugadora:</strong> <span id="commitment-player-dni"
+                style="color: var(--primary-gold); font-weight: bold;"></span></p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h4 style="color: var(--primary-gold); margin-bottom: 15px;">COMPROMISOS:</h4>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-behavior" name="commitment-behavior" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-behavior" style="cursor: pointer; margin: 0;">A tener un comportamiento correcto y
+                con respeto hacia los entrenadores, jugadores, directivos, adversarios, árbitros, público o empleados
+                del club durante los entrenamientos, partidos, concentraciones y cualquier actividad que esté
+                relacionado con el club.</label>
         </div>
-        <div class="error-message" id="commitment-agreement_error"></div>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-sportsmanship" name="commitment-sportsmanship" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-sportsmanship" style="cursor: pointer; margin: 0;">Aceptar las derrotas y las
+                victorias con deportividad sin meterme con nadie.</label>
+        </div>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-social-media" name="commitment-social-media" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-social-media" style="cursor: pointer; margin: 0;">A respetar las más elementales
+                reglas del trato social y de respeto a las personas e instituciones cuando utilicen WhatsApp, redes
+                sociales o lleven a cabo comunicaciones públicas.</label>
+        </div>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-coach" name="commitment-coach" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-coach" style="cursor: pointer; margin: 0;">A acatar cualquier orden del entrenador
+                cuando éste se halle en funciones como tal, y permanecerá en el campo, la concentración, o la reunión,
+                mientras no se diga lo contrario.</label>
+        </div>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-punctuality" name="commitment-punctuality" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-punctuality" style="cursor: pointer; margin: 0;">A asistir puntualmente a todas las
+                sesiones de fuerza y a los entrenamientos programados, salvo los que el entrenador designe como
+                "voluntarios". Solamente el entrenador, según su criterio, puede dar permiso para faltar o llegar con
+                retraso a ellos.</label>
+        </div>
+
+        <div class="checkbox-group" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+            <input type="checkbox" id="commitment-communication" name="commitment-communication" required style="appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); 
+                          border-radius: 3px; margin-right: 8px; position: relative; flex-shrink: 0; margin-top: 3px;">
+            <label for="commitment-communication" style="cursor: pointer; margin: 0;">A informar con antelación al
+                entrenador si no puede asistir a un entrenamiento o a un partido a causa de una enfermedad o algún
+                imprevisto.</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="player-signature">Firma de la Jugadora*</label>
+        <input type="text" id="player-signature" name="player-signature"
+            placeholder="Escriba su nombre completo como firma" required>
+        <div class="error-message" id="player-signature_error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="parent-signature">Firma Padre/Madre/Tutor*</label>
+        <input type="text" id="parent-signature" name="parent-signature"
+            placeholder="Escriba su nombre completo como firma" required>
+        <div class="error-message" id="parent-signature_error"></div>
     </div>
 
     <div class="navigation-buttons">
         <button type="button" class="secondary" onclick="navigateToStep(4)">Anterior</button>
         <button type="button" id="step5Button" onclick="saveStep(5)">Guardar y continuar</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" id="confirmationButton" onclick="goToConfirmation()"
+            style="display: none; background: var(--secondary-gold);">
+            Ir a Confirmación
+        </button>
     </div>
 </div>
 
@@ -848,12 +1500,7 @@
     <h2>Confirmación de Inscripción</h2>
 
     <div class="summary-container" id="resumenInscripcion">
-        <!-- Aquí se mostrará el resumen de los datos -->
-    </div>
-
-    <div class="navigation-buttons">
-        <button type="button" class="secondary" onclick="navigateToStep(5)">Anterior</button>
-        <button type="button" id="step6Button" onclick="saveStep(6)">Confirmar y Proceder al Pago</button>
+        <!-- Aquí se mostrará el resumen simplificado -->
     </div>
 </div>
 
@@ -905,6 +1552,7 @@
 
 <script>
     // State management
+    let confirmationReached = false;
     let currentStep = 1;
     const completedSteps = new Set();
     const formData = {
@@ -918,84 +1566,123 @@
     };
 
     function startRegistration() {
-        document.getElementById('welcomeScreen').style.display = 'none';
-        document.getElementById('stepsMenu').style.display = 'grid';
-        showStepForm(1);
-    }
-
-    function backToStepsMenu() {
-        hideAllForms();
-        document.getElementById('stepsMenu').style.display = 'grid';
-    }
+            document.getElementById('welcomeScreen').style.display = 'none';
+            showStepForm(1); // Mostrar directamente el paso 1
+            currentStep = 1; // Establecer el paso actual como 1
+        }
+        function backToStart() {
+            if (confirm('¿Estás seguro de que quieres volver al inicio? Los datos no guardados se perderán.')) {
+                window.location.reload();
+            }
+        }
 
     // Also fix the hideAllForms function to handle null elements
-        function hideAllForms() {
-            // Hide all forms
-            document.querySelectorAll('.form-container').forEach(form => {
-                if (form) {
-                    form.style.display = 'none';
+        // Y la función hideAllForms:
+            function hideAllForms() {
+                // Hide all forms
+                document.querySelectorAll('.form-container').forEach(form => {
+                    if (form) {
+                        form.style.display = 'none';
+                    }
+                });
+
+                // También ocultar la pantalla de confirmación si está visible
+                const confirmationScreen = document.getElementById('confirmationScreen');
+                if (confirmationScreen) {
+                    confirmationScreen.style.display = 'none';
                 }
-            });
-        }
+            }
     // Fix the showStepForm function
-        function showStepForm(stepNumber) {
-            // Hide step menu and all forms
-            const stepsMenu = document.getElementById('stepsMenu');
-            if (stepsMenu) {
-                stepsMenu.style.display = 'none';
-            }
+        // Función simplificada para mostrar formularios:
+            function showStepForm(stepNumber) {
+                // Hide all forms
+                hideAllForms();
 
-            hideAllForms();
-
-            // Show the selected form
-            const stepForm = document.getElementById(`step${stepNumber}Form`);
-            if (stepForm) {
-                stepForm.style.display = 'block';
-            }
-        }
-
-    function navigateToStep(stepNumber) {
-            // Validate current step before leaving
-            if (currentStep !== stepNumber && !validateStep(currentStep)) {
-                return;
-            }
-
-            // Save current step data
-            saveStepData(currentStep);
-
-            // Mark current step as completed
-            if (currentStep < stepNumber) {
-                completedSteps.add(currentStep);
-                const currentStepCard = document.querySelector(`.step-card[data-step="${currentStep}"]`);
-                if (currentStepCard) {
-                    currentStepCard.classList.add('completed');
+                // Show the selected form
+                const stepForm = document.getElementById(`step${stepNumber}Form`);
+                if (stepForm) {
+                    stepForm.style.display = 'block';
                 }
             }
 
-            // Update UI
-            document.querySelectorAll('.step-card').forEach(card => {
-                card.classList.remove('active');
-            });
+    // Modifica la función navigateToStep para que funcione sin el menú:
+        function navigateToStep(stepNumber) {
+            // Save current step data
+            // Si estamos viniendo desde confirmación, guardar el paso actual primero
+            if (currentStep === 6 && stepNumber !== 6) {
+                // Cuando vamos a editar desde confirmación, no validamos
+                // porque el usuario solo quiere modificar algo específico
+                saveStepData(currentStep);
+            } else if (currentStep !== stepNumber && !validateStep(currentStep)) {
+                // Validación normal para otros casos
+                return;
+            } else {
+                saveStepData(currentStep);
+            }
 
             currentStep = stepNumber;
-            const newStepCard = document.querySelector(`.step-card[data-step="${stepNumber}"]`);
-            if (newStepCard) {
-                newStepCard.classList.add('active');
-            }
 
             // Show the form for the current step
             showStepForm(stepNumber);
 
-            // Special handling for confirmation step
-            if (currentStep === 6) {
+            if (stepNumber === 3) {
+                populatePlayerData();
+            }
+
+
+            // Marcar que hemos llegado a confirmación cuando estemos en el paso 6
+            if (stepNumber === 6) {
+                confirmationReached = true;
                 updateConfirmationSummary();
             }
+
+
+            if (stepNumber === 4) {
+                populateDataProtectionData();
+            }
+
+            if (stepNumber === 5) {
+                populateCommitmentData();
+            }
+
+           
 
             // Special handling for payment step
             if (currentStep === 7) {
                 updatePaymentInfo();
             }
+
+             // Show the form for the current step
+            updateConfirmationButton(); // Actualizar visibilidad del botón
+
+
         }
+
+    // Función para mostrar/ocultar el botón de confirmación
+        function updateConfirmationButton() {
+            const confirmationBtn = document.getElementById('confirmationButton');
+            if (confirmationBtn) {
+                confirmationBtn.style.display = confirmationReached ? 'block' : 'none';
+            }
+        }
+
+    // Función para ir directamente a la pantalla de confirmación
+        function goToConfirmation() {
+            if (validateStep(currentStep)) {
+                saveStepData(currentStep);
+                navigateToStep(6);
+            }
+        }
+
+    // Función para volver a confirmación después de editar
+        function backToConfirmation() {
+            if (validateStep(currentStep)) {
+                saveStepData(currentStep);
+                navigateToStep(6);
+            }
+        }
+
+
     function updateStepAccess() {
         document.querySelectorAll('.step-card').forEach((card, index) => {
             const stepNumber = index + 1;
@@ -1105,88 +1792,166 @@
         }
 
     function validateStep2() {
-        const required = ['bank-name', 'account-holder', 'account-number', 'signature-date'];
-        let isValid = true;
+            const required = [
+                'signature-date', 'account-holder', 'account-holder-dni',
+                'account-holder-address', 'account-holder-zip', 'account-holder-city',
+                'account-holder-province', 'iban', 'payment-type'
+            ];
+            let isValid = true;
 
-        required.forEach(field => {
-            const element = document.getElementById(field);
-            const errorElement = document.getElementById(`${field}_error`);
-            if (!element.value.trim()) {
-                element.style.borderColor = 'red';
-                errorElement.textContent = 'Este campo es obligatorio';
+            required.forEach(field => {
+                if (field === 'payment-type') {
+                    const recurrentRadio = document.getElementById('payment-type-recurrent');
+                    const singleRadio = document.getElementById('payment-type-single');
+                    const errorElement = document.getElementById(`${field}_error`);
+
+                    if (!recurrentRadio.checked && !singleRadio.checked) {
+                        errorElement.textContent = 'Debes seleccionar un tipo de pago';
+                        isValid = false;
+                    } else {
+                        errorElement.textContent = '';
+                    }
+                } else {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.value.trim()) {
+                        element.style.borderColor = 'red';
+                        errorElement.textContent = 'Este campo es obligatorio';
+                        isValid = false;
+                    } else {
+                        element.style.borderColor = '';
+                        errorElement.textContent = '';
+                    }
+                }
+            });
+
+            // Validación básica de IBAN (formato español)
+            const iban = document.getElementById('iban');
+            const ibanError = document.getElementById('iban_error');
+            if (iban.value && !/^ES\d{22}$/.test(iban.value.replace(/\s/g, ''))) {
+                iban.style.borderColor = 'red';
+                ibanError.textContent = 'Formato de IBAN español incorrecto (ES seguido de 22 dígitos)';
                 isValid = false;
-            } else {
-                element.style.borderColor = '';
-                errorElement.textContent = '';
             }
-        });
 
-        return isValid;
-    }
+            return isValid;
+        }
 
-    function validateStep3() {
-        const required = ['parent-name', 'parent-dni', 'parent-phone', 'medical-authorization'];
-        let isValid = true;
+    // Validación para el paso 3
+        function validateStep3() {
+            const required = [
+                'authorization-date', 'mother-signature-name',
+                'mother-signature-dni', 'mother-signature'
+            ];
+            let isValid = true;
 
-        required.forEach(field => {
-            const element = document.getElementById(field);
-            const errorElement = document.getElementById(`${field}_error`);
-
-            if (element.type === 'checkbox') {
-                if (!element.checked) {
-                    element.style.outline = '2px solid red';
-                    errorElement.textContent = 'Debes aceptar esta autorización';
+            required.forEach(field => {
+                const element = document.getElementById(field);
+                const errorElement = document.getElementById(`${field}_error`);
+                if (!element.value.trim()) {
+                    element.style.borderColor = 'red';
+                    errorElement.textContent = 'Este campo es obligatorio';
                     isValid = false;
                 } else {
-                    element.style.outline = '';
+                    element.style.borderColor = '';
                     errorElement.textContent = '';
                 }
-            } else if (!element.value.trim()) {
-                element.style.borderColor = 'red';
-                errorElement.textContent = 'Este campo es obligatorio';
-                isValid = false;
-            } else {
-                element.style.borderColor = '';
-                errorElement.textContent = '';
-            }
-        });
+            });
 
-        return isValid;
-    }
-
-    function validateStep4() {
-        const dataProcessing = document.getElementById('data-processing');
-        const dataProcessingError = document.getElementById('data-processing_error');
-        let isValid = true;
-
-        if (!dataProcessing.checked) {
-            dataProcessing.style.outline = '2px solid red';
-            dataProcessingError.textContent = 'Debes aceptar la política de protección de datos';
-            isValid = false;
-        } else {
-            dataProcessing.style.outline = '';
-            dataProcessingError.textContent = '';
+            return isValid;
         }
 
-        return isValid;
-    }
+    // Validación para el paso 4
+        function validateStep4() {
+            const required = [
+                'data-protection-signature-name',
+                'data-protection-signature-dni',
+                'data-protection-signature',
+                'data-protection-consent'
+            ];
+            let isValid = true;
 
-    function validateStep5() {
-        const commitment = document.getElementById('commitment-agreement');
-        const commitmentError = document.getElementById('commitment-agreement_error');
-        let isValid = true;
+            required.forEach(field => {
+                if (field === 'data-protection-consent') {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.checked) {
+                        element.style.outline = '2px solid red';
+                        errorElement.textContent = 'Debe aceptar el consentimiento de protección de datos';
+                        isValid = false;
+                    } else {
+                        element.style.outline = '';
+                        errorElement.textContent = '';
+                    }
+                } else {
+                    const element = document.getElementById(field);
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (!element.value.trim()) {
+                        element.style.borderColor = 'red';
+                        errorElement.textContent = 'Este campo es obligatorio';
+                        isValid = false;
+                    } else {
+                        element.style.borderColor = '';
+                        errorElement.textContent = '';
+                    }
+                }
+            });
 
-        if (!commitment.checked) {
-            commitment.style.outline = '2px solid red';
-            commitmentError.textContent = 'Debes aceptar el compromiso';
-            isValid = false;
-        } else {
-            commitment.style.outline = '';
-            commitmentError.textContent = '';
+            return isValid;
         }
 
-        return isValid;
-    }
+    // Validación corregida para el paso 5
+        function validateStep5() {
+            const requiredCheckboxes = [
+                'commitment-behavior', 'commitment-sportsmanship', 'commitment-social-media',
+                'commitment-coach', 'commitment-punctuality', 'commitment-communication'
+            ];
+
+            const requiredFields = [
+                'commitment-date', 'player-signature', 'parent-signature'
+            ];
+
+            let isValid = true;
+
+            // Validar checkboxes
+            requiredCheckboxes.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.checked) {
+                    element.style.outline = '2px solid red';
+                    isValid = false;
+
+                    // Crear o actualizar mensaje de error
+                    let errorElement = document.getElementById(`${field}_error`);
+                    if (!errorElement) {
+                        errorElement = document.createElement('div');
+                        errorElement.className = 'error-message';
+                        errorElement.id = `${field}_error`;
+                        element.parentNode.appendChild(errorElement);
+                    }
+                    errorElement.textContent = 'Debe aceptar este compromiso';
+                } else {
+                    element.style.outline = '';
+                    const errorElement = document.getElementById(`${field}_error`);
+                    if (errorElement) errorElement.textContent = '';
+                }
+            });
+
+            // Validar campos de texto
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                const errorElement = document.getElementById(`${field}_error`);
+                if (!element.value.trim()) {
+                    element.style.borderColor = 'red';
+                    errorElement.textContent = 'Este campo es obligatorio';
+                    isValid = false;
+                } else {
+                    element.style.borderColor = '';
+                    errorElement.textContent = '';
+                }
+            });
+
+            return isValid;
+        }
 
     function validateStep7() {
         const comprobantePago = document.getElementById('comprobante_pago');
@@ -1243,31 +2008,51 @@
                     break;
             case 2:
                 formData.step2 = {
-                    bankName: document.getElementById('bank-name').value,
-                    accountHolder: document.getElementById('account-holder').value,
-                    accountNumber: document.getElementById('account-number').value,
-                    signatureDate: document.getElementById('signature-date').value
+                        signatureDate: document.getElementById('signature-date').value,
+                        accountHolder: document.getElementById('account-holder').value,
+                        accountHolderDni: document.getElementById('account-holder-dni').value,
+                        accountHolderAddress: document.getElementById('account-holder-address').value,
+                        accountHolderZip: document.getElementById('account-holder-zip').value,
+                        accountHolderCity: document.getElementById('account-holder-city').value,
+                        accountHolderProvince: document.getElementById('account-holder-province').value,
+                        swiftCode: document.getElementById('swift-code').value,
+                        iban: document.getElementById('iban').value,
+                        paymentType: document.querySelector('input[name="payment-type"]:checked')?.value
                 };
                 break;
             case 3:
                 formData.step3 = {
-                    parentName: document.getElementById('parent-name').value,
-                    parentDni: document.getElementById('parent-dni').value,
-                    parentPhone: document.getElementById('parent-phone').value,
-                    medicalAuthorization: document.getElementById('medical-authorization').checked,
-                    imageAuthorization: document.getElementById('image-authorization').checked
-                };
+                        authorizationDate: document.getElementById('authorization-date').value,
+                        motherSignatureName: document.getElementById('mother-signature-name').value,
+                        motherSignatureDni: document.getElementById('mother-signature-dni').value,
+                        motherSignature: document.getElementById('mother-signature').value,
+                        fatherSignatureName: document.getElementById('father-signature-name').value,
+                        fatherSignatureDni: document.getElementById('father-signature-dni').value,
+                        fatherSignature: document.getElementById('father-signature').value,
+                        singleParentReason: document.getElementById('single-parent-reason').value,
+                        otherReason: document.getElementById('other-reason').value
+                    };
                 break;
             case 4:
-                formData.step4 = {
-                    dataProcessing: document.getElementById('data-processing').checked,
-                    communications: document.getElementById('communications').checked
-                };
+                    formData.step4 = {
+                        dataProtectionSignatureName: document.getElementById('data-protection-signature-name').value,
+                        dataProtectionSignatureDni: document.getElementById('data-protection-signature-dni').value,
+                        dataProtectionSignature: document.getElementById('data-protection-signature').value,
+                        dataProtectionConsent: document.getElementById('data-protection-consent').checked
+                    };
                 break;
             case 5:
                 formData.step5 = {
-                    commitmentAgreement: document.getElementById('commitment-agreement').checked
-                };
+                        commitmentDate: document.getElementById('commitment-date').value,
+                        commitmentBehavior: document.getElementById('commitment-behavior').checked,
+                        commitmentSportsmanship: document.getElementById('commitment-sportsmanship').checked,
+                        commitmentSocialMedia: document.getElementById('commitment-social-media').checked,
+                        commitmentCoach: document.getElementById('commitment-coach').checked,
+                        commitmentPunctuality: document.getElementById('commitment-punctuality').checked,
+                        commitmentCommunication: document.getElementById('commitment-communication').checked,
+                        playerSignature: document.getElementById('player-signature').value,
+                        parentSignature: document.getElementById('parent-signature').value
+                    };
                 break;
             case 7:
                 formData.step7 = {
@@ -1277,45 +2062,114 @@
         }
     }
 
+    // Rellenar automáticamente con datos del tutor si están disponibles
+        function populateDataProtectionData() {
+            if (formData.step1 && formData.step3) {
+                // Usar datos de la madre/tutora por defecto
+                document.getElementById('data-protection-signature-name').value =
+                    formData.step3.motherSignatureName || formData.step1.motherName || '';
+
+                document.getElementById('data-protection-signature-dni').value =
+                    formData.step3.motherSignatureDni || formData.step1.motherDni || '';
+            }
+        }
+
+    
+        // Rellenar automáticamente con datos del jugador
+            function populateCommitmentData() {
+                if (formData.step1) {
+                    document.getElementById('commitment-player-name').textContent = formData.step1.fullName || '';
+                    document.getElementById('commitment-player-dni').textContent = formData.step1.playerDni || 'No proporcionado';
+
+                    // Autorellenar firma de la jugadora
+                    document.getElementById('player-signature').value = formData.step1.fullName || '';
+
+                    // Autorellenar firma del tutor (usar madre por defecto)
+                    if (formData.step3) {
+                        document.getElementById('parent-signature').value = formData.step3.motherSignatureName || '';
+                    }
+                }
+            }
+
+
+    function populatePlayerData() {
+            if (formData.step1) {
+                document.getElementById('player-name-display').textContent = formData.step1.fullName || '';
+                document.getElementById('player-dni-display').textContent = formData.step1.playerDni || 'No proporcionado';
+                document.getElementById('player-address-display').textContent =
+                    `${formData.step1.address || ''}, ${formData.step1.city || ''} ${formData.step1.zipCode || ''}`;
+            }
+        }
+
+        // Mostrar/ocultar campo de otras circunstancias
+        document.addEventListener('DOMContentLoaded', function () {
+            const reasonSelect = document.getElementById('single-parent-reason');
+            const otherReasonContainer = document.getElementById('other-reason-container');
+
+            if (reasonSelect && otherReasonContainer) {
+                reasonSelect.addEventListener('change', function () {
+                    otherReasonContainer.style.display = this.value === 'otras' ? 'block' : 'none';
+                });
+            }
+        });
+
+
     function updateConfirmationSummary() {
             const summaryContainer = document.getElementById('resumenInscripcion');
-            summaryContainer.innerHTML = `
-        <h3>Resumen de tu inscripción</h3>
-        <div class="summary-item">
-            <div class="summary-label">Nombre completo:</div>
-            <div class="summary-value">${formData.step1.fullName || ''}</div>
+             summaryContainer.innerHTML = `
+        <h3>Revisa y confirma tu inscripción</h3>
+        <p>Por favor, revisa que toda la información sea correcta antes de proceder al pago.</p>
+        
+        <div class="confirmation-steps">
+            <div class="confirmation-step-item">
+                <div class="confirmation-step-info">
+                    <h4>Paso 1: Información Personal</h4>
+                    <p>Datos personales de la jugadora y tutores</p>
+                </div>
+                <button type="button" class="edit-btn" onclick="navigateToStep(1)">✏️ Editar</button>
+            </div>
+
+            <div class="confirmation-step-item">
+                <div class="confirmation-step-info">
+                    <h4>Paso 2: Domiciliación Bancaria</h4>
+                    <p>Datos de cuenta bancaria para domiciliación</p>
+                </div>
+                <button type="button" class="edit-btn" onclick="navigateToStep(2)">✏️ Editar</button>
+            </div>
+
+            <div class="confirmation-step-item">
+                <div class="confirmation-step-info">
+                    <h4>Paso 3: Autorización para Menores</h4>
+                    <p>Autorización y consentimiento de tutores</p>
+                </div>
+                <button type="button" class="edit-btn" onclick="navigateToStep(3)">✏️ Editar</button>
+            </div>
+
+            <div class="confirmation-step-item">
+                <div class="confirmation-step-info">
+                    <h4>Paso 4: Protección de Datos</h4>
+                    <p>Consentimiento para tratamiento de datos</p>
+                </div>
+                <button type="button" class="edit-btn" onclick="navigateToStep(4)">✏️ Editar</button>
+            </div>
+
+            <div class="confirmation-step-item">
+                <div class="confirmation-step-info">
+                    <h4>Paso 5: Carta de Compromiso</h4>
+                    <p>Compromisos de la jugadora y tutores</p>
+                </div>
+                <button type="button" class="edit-btn" onclick="navigateToStep(5)">✏️ Editar</button>
+            </div>
         </div>
-        <div class="summary-item">
-            <div class="summary-label">Email:</div>
-            <div class="summary-value">${formData.step1.email || ''}</div>
+
+        <div class="confirmation-total">
+            <h4>Total a pagar: 130,00€</h4>
+            <p class="confirmation-note">Una vez confirmado, serás redirigido a la pasarela de pago</p>
         </div>
-        <div class="summary-item">
-            <div class="summary-label">Teléfono:</div>
-            <div class="summary-value">${formData.step1.phone || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Fecha de nacimiento:</div>
-            <div class="summary-value">${formatDate(formData.step1.birthdate) || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Dirección:</div>
-            <div class="summary-value">${formData.step1.address || ''}, ${formData.step1.city || ''} ${formData.step1.zipCode || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Categoría:</div>
-            <div class="summary-value">${formData.step1.category || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Posición:</div>
-            <div class="summary-value">${formData.step1.position || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Banco:</div>
-            <div class="summary-value">${formData.step2.bankName || ''}</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">Titular de cuenta:</div>
-            <div class="summary-value">${formData.step2.accountHolder || ''}</div>
+
+        <div class="navigation-buttons">
+            <button type="button" class="secondary" onclick="navigateToStep(5)">Anterior</button>
+            <button type="button" id="step6Button" onclick="saveStep(6)">Confirmar y Proceder al Pago</button>
         </div>
     `;
         // DEBUG: Check email functionality
@@ -1401,46 +2255,6 @@
             return isValid;
         }
 
-        // Update the saveStepData function for Step 1
-        function saveStepData(step) {
-            switch (step) {
-                case 1:
-                    formData.step1 = {
-                        fullName: document.getElementById('full-name').value,
-                        birthdate: document.getElementById('birthdate').value,
-                        category: document.getElementById('category').value,
-                        birthMunicipality: document.getElementById('birth-municipality').value,
-                        empadronamiento: document.getElementById('empadronamiento').value,
-                        playerDni: document.getElementById('player-dni').value,
-                        email: document.getElementById('email').value,
-                        phone: document.getElementById('phone').value,
-                        landline: document.getElementById('landline').value,
-                        address: document.getElementById('address').value,
-                        city: document.getElementById('city').value,
-                        zipCode: document.getElementById('zip-code').value,
-                        playedBefore: document.querySelector('input[name="played-before"]:checked')?.value,
-                        previousTeams: document.getElementById('previous-teams').value,
-                        motherName: document.getElementById('mother-name').value,
-                        motherDni: document.getElementById('mother-dni').value,
-                        motherEmail: document.getElementById('mother-email').value,
-                        motherPhone: document.getElementById('mother-phone').value,
-                        motherBirthplace: document.getElementById('mother-birthplace').value,
-                        fatherName: document.getElementById('father-name').value,
-                        fatherDni: document.getElementById('father-dni').value,
-                        fatherEmail: document.getElementById('father-email').value,
-                        fatherPhone: document.getElementById('father-phone').value,
-                        fatherBirthplace: document.getElementById('father-birthplace').value,
-                        clubRules: document.getElementById('club-rules').checked,
-                        privacyPolicy: document.getElementById('privacy-policy').checked,
-                        healthData: document.getElementById('health-data').checked,
-                        socialMediaImage: document.getElementById('social-media-image').checked,
-                        internetImage: document.getElementById('internet-image').checked,
-                        marketing: document.getElementById('marketing').checked
-                    };
-                    break;
-                // ... rest of the cases remain the same
-            }
-        }
 
         // Update the completeRegistration function to match backend field names
         function completeRegistration() {
@@ -1492,6 +2306,50 @@
                 internet_image: formData.step1.internetImage,
                 marketing: formData.step1.marketing,
 
+                // Bank information
+                signature_date: formData.step2.signatureDate,
+                account_holder: formData.step2.accountHolder,
+                account_holder_dni: formData.step2.accountHolderDni,
+                account_holder_address: formData.step2.accountHolderAddress,
+                account_holder_zip: formData.step2.accountHolderZip,
+                account_holder_city: formData.step2.accountHolderCity,
+                account_holder_province: formData.step2.accountHolderProvince,
+                swift_code: formData.step2.swiftCode,
+                iban: formData.step2.iban,
+                payment_type: formData.step2.paymentType,
+
+                // Authorization data
+                authorization_date: formData.step3.authorizationDate,
+                mother_signature_name: formData.step3.motherSignatureName,
+                mother_signature_dni: formData.step3.motherSignatureDni,
+                mother_signature: formData.step3.motherSignature,
+                father_signature_name: formData.step3.fatherSignatureName,
+                father_signature_dni: formData.step3.fatherSignatureDni,
+                father_signature: formData.step3.fatherSignature,
+                single_parent_reason: formData.step3.singleParentReason,
+                other_reason: formData.step3.otherReason,
+
+                // Data protection
+                data_protection_signature_name: formData.step4.dataProtectionSignatureName,
+                data_protection_signature_dni: formData.step4.dataProtectionSignatureDni,
+                data_protection_signature: formData.step4.dataProtectionSignature,
+                data_protection_consent: formData.step4.dataProtectionConsent,
+
+                // Commitment letter
+                commitment_date: formData.step5.commitmentDate,
+                commitment_behavior: formData.step5.commitmentBehavior,
+                commitment_sportsmanship: formData.step5.commitmentSportsmanship,
+                commitment_social_media: formData.step5.commitmentSocialMedia,
+                commitment_coach: formData.step5.commitmentCoach,
+                commitment_punctuality: formData.step5.commitmentPunctuality,
+                commitment_communication: formData.step5.commitmentCommunication,
+                player_signature: formData.step5.playerSignature,
+                parent_signature: formData.step5.parentSignature,
+
+                // Payment information
+                comprobante_pago: formData.step7.comprobantePago,
+
+                // Additional fields
                 season: "2023/2024",
                 registration_fee: "150"
             };
@@ -1545,7 +2403,6 @@
 
     function showConfirmationScreen(referenceNumber) {
         // Hide all other screens
-        document.getElementById('stepsMenu').style.display = 'none';
         hideAllForms();
 
         // Show confirmation screen
@@ -1587,9 +2444,18 @@
         }
     });
 
-    // Update the saveStep function to only validate the current step
-        function saveStep(step) {
-            if (validateStep(step)) {
+    function saveStep(step) {
+            if (step === 6) {
+                // Para el paso de confirmación, proceder directamente al pago
+                navigateToStep(7);
+            } else if (validateStep(step)) {
+                saveStepData(step);
+
+                // Si estamos en el último paso antes de confirmación, mostrar el botón
+                if (step === 5) {
+                    confirmationReached = true;
+                }
+
                 navigateToStep(step + 1);
             }
         }
@@ -1608,5 +2474,7 @@
             }
         });
 </script>
+
+
 
 {% endblock %}
