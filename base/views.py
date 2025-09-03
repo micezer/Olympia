@@ -639,22 +639,74 @@ Imagen redes sociales: {'Aceptado' if data.get('social_media_image') else 'No ac
 Imagen internet: {'Aceptado' if data.get('internet_image') else 'No aceptado'}
 Publicidad: {'Aceptado' if data.get('marketing') else 'No aceptado'}
 
+DATOS BANCARIOS:
+Titular de la cuenta: {data['account_holder']}
+DNI Titular: {data['account_holder_dni']}
+Dirección: {data['account_holder_address']}
+C.P.: {data['account_holder_zip']} Población: {data['account_holder_city']}
+Provincia: {data['account_holder_province']}
+SWIFT Code: {data.get('swift_code', 'No proporcionado')}
+IBAN: {data['iban']}
+Tipo de Pago: {data['payment_type']}
+Fecha de firma: {data['signature_date']}
+
+AUTORIZACIÓN MENOR:
+Fecha autorización: {data['authorization_date']}
+Firma madre/tutora: {data['mother_signature_name']} (DNI: {data['mother_signature_dni']})
+Firma padre/tutor: {data.get('father_signature_name', 'No proporcionada')}
+Declaración responsable: {data.get('single_parent_reason', 'No aplica')}
+Otras circunstancias: {data['other_reason']} if data.get('other_reason') else ''
+
+
+# Añadir esta sección en el email al club
+PROTECCIÓN DE DATOS:
+Firma: {data['data_protection_signature_name']} (DNI: {data['data_protection_signature_dni']})
+Consentimiento protección datos: {'Sí' if data.get('data_protection_consent') else 'No'}
+
+CARTA COMPROMISO:
+Fecha compromiso: {data['commitment_date']}
+Firma jugadora: {data['player_signature']}
+Firma tutor: {data['parent_signature']}
+Compromisos aceptados: 
+- Comportamiento: {'Sí' if data.get('commitment_behavior') else 'No'}
+- Deportividad: {'Sí' if data.get('commitment_sportsmanship') else 'No'}
+- Redes sociales: {'Sí' if data.get('commitment_social_media') else 'No'}
+- Entrenador: {'Sí' if data.get('commitment_coach') else 'No'}
+- Puntualidad: {'Sí' if data.get('commitment_punctuality') else 'No'}
+- Comunicación: {'Sí' if data.get('commitment_communication') else 'No'}
+
 DATOS DE LA INSCRIPCIÓN:
 Número: {inscription_number}
-Temporada: {data.get('season', '2023/2024')}
-Cuota: {data.get('registration_fee', '150')}€
+Temporada: {data.get('season', '2025/2026')}
+Cuota: {data.get('registration_fee', '130')}€
 '''
         
-        # Send to club email (configure this in your settings)
+       # Send to club email - FIXED EMAIL CONFIGURATION
         club_email = getattr(settings, 'CLUB_EMAIL', 'moezehero@gmail.com')
+        print(f"DEBUG: Intentando enviar email al club: {club_email}")
         
-        send_mail(
-            club_subject,
-            club_message,
-            settings.DEFAULT_FROM_EMAIL,
-            [club_email],
-            fail_silently=False,
-        )
+        try:
+            send_mail(
+                club_subject,
+                club_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [club_email],
+                fail_silently=False,
+            )
+            print("DEBUG: Email enviado al club correctamente")
+        except Exception as e:
+            print(f"ERROR: No se pudo enviar email al club: {str(e)}")
+            # Intentar enviar a un email alternativo
+            try:
+                send_mail(
+                    "ERROR - Inscripción no notificada",
+                    f"No se pudo enviar la notificación de inscripción #{inscription_number} al club. Error: {str(e)}",
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.DEFAULT_FROM_EMAIL],  # Enviar a sí mismo para notificar el error
+                    fail_silently=False,
+                )
+            except:
+                print("ERROR: No se pudo enviar email de error")
         
     except Exception as e:
         print(f"Error sending email: {e}")
