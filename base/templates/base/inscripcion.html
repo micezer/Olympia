@@ -482,165 +482,130 @@
     }
 
 .welcome-screen {
-    max-width: 950px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--primary-blue);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     color: white;
 }
 
 .welcome-header {
     text-align: center;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid var(--primary-gold);
-    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--primary-gold);
 }
 
 .welcome-header h1 {
     color: var(--primary-gold);
-    margin-bottom: 0.5rem;
-    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
 }
 
-.welcome-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+.welcome-header p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+.process-guide h2 {
+    color: var(--primary-gold);
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
-    margin-top: 1rem;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 .step-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(184, 134, 11, 0.3);
-    transition: all 0.3s ease;
-    height: 100%;
+    padding: 0.6rem 0.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    border: 1px solid rgba(184, 134, 11, 0.2);
+    transition: all 0.2s ease;
+    min-height: 70px;
 }
 
 .step-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-gold);
+    background: rgba(184, 134, 11, 0.05);
 }
 
 .step-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     background-color: var(--primary-gold);
     color: var(--primary-blue);
     border-radius: 50%;
     font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
 }
 
 .step-info h3 {
-    margin: 0 0 0.3rem 0;
+    margin: 0 0 0.2rem 0;
     color: var(--primary-gold);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .step-info p {
     margin: 0;
-    color: #ccc;
-    font-size: 0.8rem;
+    color: #bbb;
+    font-size: 0.7rem;
 }
 
 .important-notice {
-    background: rgba(184, 134, 11, 0.1);
-    border: 1px solid var(--primary-gold);
-    border-radius: 8px;
-    padding: 1.2rem;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.notice-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.notice-header h3 {
-    color: var(--primary-gold);
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-.notice-content ol {
-    padding-left: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.notice-content li {
-    margin-bottom: 0.6rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.payment-info {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 0.8rem;
-    border-radius: 6px;
-    margin-top: 1rem;
-}
-
-.payment-info h4 {
-    margin: 0 0 0.4rem 0;
-    color: var(--primary-gold);
-    font-size: 0.95rem;
-}
-
-.payment-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: #ddd;
+.notice-content ul {
+    padding-left: 0;
+    list-style-position: inside;
+    text-align: left;
+    display: inline-block;
 }
 
 .welcome-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
 }
 
 .primary-button {
     background-color: var(--primary-gold);
     color: var(--primary-blue);
     border: none;
-    padding: 0.8rem 2.5rem;
-    border-radius: 6px;
+    padding: 0.7rem 1.8rem;
+    border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 1rem;
+    transition: all 0.2s;
+    font-size: 0.9rem;
 }
 
 .primary-button:hover {
     background-color: var(--secondary-gold);
-    transform: scale(1.03);
-}
-
-.time-estimate {
-    margin: 0;
-    color: #aaa;
-    font-size: 0.9rem;
+    transform: scale(1.02);
 }
 
 /* Responsive */
@@ -651,55 +616,27 @@
 }
 
 @media (max-width: 480px) {
+    .welcome-screen {
+        padding: 1rem;
+    }
+    
     .steps-grid {
         grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
     
-    .welcome-screen {
-        padding: 1.5rem;
+    .step-item {
+        flex-direction: row;
+        text-align: left;
+        padding: 0.5rem;
+        min-height: auto;
+    }
+    
+    .step-number {
+        margin-right: 0.6rem;
+        margin-bottom: 0;
     }
 }
-
-    @media (max-width: 768px) {
-        .confirmation-step-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .edit-btn {
-            align-self: flex-end;
-        }
-    }
-
-    
-
-    
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .steps-menu {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .form-container {
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        .summary-item {
-            flex-direction: column;
-        }
-
-        .summary-label {
-            min-width: auto;
-            margin-bottom: 5px;
-            margin-right: 0;
-        }
-    }
 
     @media (max-width: 600px) {
         .steps-menu {
@@ -727,48 +664,45 @@
     }
 </style>
 
-<h1>Formulario de Inscripción - Club Olympia</h1>
-
 <div class="welcome-screen" id="welcomeScreen">
     <div class="welcome-header">
-        <h1>Formulario de Inscripción - Club Olympia</h1>
+        <h1>Inscripción - Club Olympia</h1>
         <p>Abriendo camino, cumpliendo sueños desde 2015</p>
     </div>
 
     <div class="welcome-content">
         <div class="process-guide">
-            <h2>Proceso de inscripción en 6 pasos</h2>
-            <p>Completa toda la información requerida para formalizar tu inscripción:</p>
+            <h2>Proceso en 6 pasos</h2>
 
             <div class="steps-grid">
                 <div class="step-item">
                     <div class="step-number">1</div>
                     <div class="step-info">
-                        <h3>Información Personal</h3>
-                        <p>Datos de la jugadora y tutores</p>
+                        <h3>Datos Personales</h3>
+                        <p>Jugadora y tutores</p>
                     </div>
                 </div>
 
                 <div class="step-item">
                     <div class="step-number">2</div>
                     <div class="step-info">
-                        <h3>Domiciliación Bancaria</h3>
-                        <p>Datos para pagos</p>
+                        <h3>Datos Bancarios</h3>
+                        <p>Para domiciliación</p>
                     </div>
                 </div>
 
                 <div class="step-item">
                     <div class="step-number">3</div>
                     <div class="step-info">
-                        <h3>Autorización Menores</h3>
-                        <p>Permisos necesarios</p>
+                        <h3>Autorización</h3>
+                        <p>Para menores</p>
                     </div>
                 </div>
 
                 <div class="step-item">
                     <div class="step-number">4</div>
                     <div class="step-info">
-                        <h3>Protección de Datos</h3>
+                        <h3>Protección Datos</h3>
                         <p>Consentimientos</p>
                     </div>
                 </div>
@@ -776,8 +710,8 @@
                 <div class="step-item">
                     <div class="step-number">5</div>
                     <div class="step-info">
-                        <h3>Carta de Compromiso</h3>
-                        <p>Compromisos</p>
+                        <h3>Compromiso</h3>
+                        <p>Normas del club</p>
                     </div>
                 </div>
 
@@ -785,7 +719,7 @@
                     <div class="step-number">6</div>
                     <div class="step-info">
                         <h3>Confirmación</h3>
-                        <p>Revisión final</p>
+                        <p>Y pago final</p>
                     </div>
                 </div>
             </div>
@@ -793,31 +727,23 @@
 
         <div class="important-notice">
             <div class="notice-header">
-                <span>📋</span>
-                <h3>Aspectos importantes</h3>
+                <span>⚠️</span>
+                <h3>Importante</h3>
             </div>
-            <div class="notice-content">
-                <ol>
-                    <li><strong>Debes completar todos los pasos</strong> para que tu información se guarde
-                        correctamente.</li>
-                    <li>La inscripción solo se formalizará una vez realizado el pago correspondiente.</li>
-                    <li>Al final del proceso, podrás realizar el pago de forma segura a través de nuestra aplicación.
-                    </li>
-                    <li>Si abandonas el proceso antes de completarlo, deberás comenzar desde el principio.</li>
-                </ol>
-
-                <div class="payment-info">
-                    <h4>📱 Pago mediante la app</h4>
-                    <p>Al finalizar la inscripción, se te redirigirá a nuestra aplicación para realizar el pago de forma
-                        segura con tarjeta o cuenta bancaria.</p>
+                <div class="notice-content">
+                    <ul>
+                        <li>Completa <strong>todos los pasos</strong> para guardar tu información</li>
+                        <li>La inscripción solo es válida tras el <strong>pago final</strong></li>
+                        <li>Al terminar, realizarás el pago mediante nuestra app</li>
+                        <li>Si abandonas, deberás comenzar desde cero</li>
+                        <li>Tiempo estimado: 15-20 minutos</li>
+                    </ul>
                 </div>
-            </div>
         </div>
     </div>
 
     <div class="welcome-actions">
         <button class="primary-button" onclick="startRegistration()">Comenzar inscripción</button>
-        <p class="time-estimate">⏱️ Tiempo estimado: 15-20 minutos</p>
     </div>
 </div>
 
@@ -2474,7 +2400,5 @@
             }
         });
 </script>
-
-
 
 {% endblock %}
