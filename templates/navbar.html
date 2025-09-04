@@ -21,7 +21,6 @@
             top: 0;
             left: 0;
             background-color: #2a374c;
-            /* Principal Azul */
             z-index: 1000;
         }
 
@@ -45,7 +44,6 @@
         .navbar .nav-container a {
             text-decoration: none;
             color: #b8ac84;
-            /* Principal Dorado */
             font-weight: 500;
             font-size: 1.2rem;
             padding: 0.7rem;
@@ -54,7 +52,6 @@
         .navbar .nav-container a:hover {
             font-weight: bolder;
             color: #7f765a;
-            /* Secundario Dorado */
         }
 
         .nav-container .checkbox {
@@ -88,7 +85,6 @@
             width: 100%;
             border-radius: 10px;
             background: #b8ac84;
-            /* Principal Dorado */
         }
 
         .nav-container .hamburger-lines .line1 {
@@ -112,7 +108,6 @@
             height: 100vh;
             width: 100vw;
             background-color: #1f2531;
-            /* Secundario Azul */
             transform: translateX(-150%);
             transition: transform 0.5s ease-in-out;
             z-index: 999;
@@ -137,14 +132,11 @@
             width: 100%;
             height: var(--nav-h);
             z-index: 999;
-            /* que siempre quede arriba */
             background: white;
-            /* o el color que uses */
         }
 
         main {
             padding-top: var(--nav-h);
-            /* evita que el contenido se monte */
         }
 
         .header__logo {
@@ -178,18 +170,15 @@
 
         .nav-container input[type="checkbox"]:checked~.hamburger-lines .line {
             background: #b8ac84;
-            /* Principal Dorado */
         }
 
         .navbar .menu-items a {
             color: #b8ac84;
-            /* Principal Dorado */
             font-size: 20px;
         }
 
         .navbar .menu-items a:hover {
             color: #7f765a;
-            /* Secundario Dorado */
         }
 
         /* Social Media Icons Styles */
@@ -202,7 +191,6 @@
 
         .social-circle {
             border: solid 1px #b8ac84;
-            /* Principal Dorado */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,7 +199,6 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             color: #b8ac84;
-            /* Principal Dorado */
             transition: all 0.3s ease;
         }
 
@@ -219,9 +206,7 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
             color: #7f765a;
-            /* Secundario Dorado */
             border-color: #7f765a;
-            /* Secundario Dorado */
         }
 
         .social-circle i {
@@ -242,100 +227,63 @@
             }
         }
 
-        /* NEW ANIMATION STYLES ADDED BELOW */
+        /* NEW: Page transition overlay */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2a374c 0%, #1f2531 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
 
-        /* Page transition animation */
-        .page-transition {
+        .transition-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .transition-logo {
+            width: 120px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .transition-overlay.active .transition-logo {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* NEW: Add a subtle fade-in for page content */
+        .main-content {
             animation: fadeIn 0.5s ease-in-out;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
-        }
-
-        /* Navbar link hover animation */
-        .navbar .nav-container a {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .navbar .nav-container a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: #b8ac84;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .navbar .nav-container a:hover::after {
-            width: 70%;
-        }
-
-        /* Logo hover animation */
-        .header__logo {
-            transition: transform 0.3s ease;
-        }
-
-        .header__logo:hover {
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-
-        /* Menu items animation when opening */
-        .navbar .menu-items li {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger the menu item animations */
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(4) {
-            transition-delay: 0.4s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(5) {
-            transition-delay: 0.5s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(6) {
-            transition-delay: 0.6s;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.menu-items li:nth-child(7) {
-            transition-delay: 0.7s;
         }
     </style>
 </head>
 
 <body>
+    <!-- NEW: Transition overlay -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <img src="{% static 'images/olympia_logo.png' %}" alt="Olympia Logo" class="transition-logo">
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <input type="checkbox" class="checkbox" id="menu-toggle">
@@ -351,14 +299,18 @@
             </a>
 
             <ul class="menu-items">
-                <li><a href="{% url 'home' %}" class="nav-link"><i class="fas fa-home"></i> INICIO</a></li>
-                <li><a href="{% url 'cantera' %}" class="nav-link"><i class="fas fa-user-plus"></i> EQUIPOS</a></li>
-                <li><a href="{% url 'inscripcion' %}" class="nav-link"><i class="fas fa-user-plus"></i> INSCRÍBETE</a>
+                <li><a href="{% url 'home' %}" class="nav-link" data-transition="home"><i class="fas fa-home"></i>
+                        INICIO</a></li>
+                <li><a href="{% url 'cantera' %}" class="nav-link" data-transition="cantera"><i
+                            class="fas fa-user-plus"></i> EQUIPOS</a></li>
+                <li><a href="{% url 'inscripcion' %}" class="nav-link" data-transition="inscripcion"><i
+                            class="fas fa-user-plus"></i> INSCRÍBETE</a></li>
+                <li><a href="{% url 'ticket_purchase' %}" class="nav-link" data-transition="tickets"><i
+                            class="fas fa-user-plus"></i> ENTRADAS</a></li>
+                <li><a href="{% url 'tienda' %}" class="nav-link" data-transition="tienda"><i class="fas fa-store"></i>
+                        TIENDA</a></li>
+                <li><a href="" class="nav-link" data-transition="contacto"><i class="fas fa-envelope"></i> CONTACTO</a>
                 </li>
-                <li><a href="{% url 'ticket_purchase' %}" class="nav-link"><i class="fas fa-user-plus"></i> ENTRADAS</a>
-                </li>
-                <li><a href="{% url 'tienda' %}" class="nav-link"><i class="fas fa-store"></i> TIENDA</a></li>
-                <li><a href="" class="nav-link"><i class="fas fa-envelope"></i> CONTACTO</a></li>
 
                 <!-- Social Media Icons -->
                 <li class="social-icons">
@@ -379,40 +331,61 @@
         </div>
     </nav>
 
-    <main class="container page-transition">
+    <main class="container main-content">
         {% block content %}{% endblock %}
     </main>
 
     <script>
-        // Add animation when navigating between pages
         document.addEventListener('DOMContentLoaded', function () {
-            // Add page transition class to main content
-            const mainContent = document.querySelector('.container');
-            if (mainContent) {
-                mainContent.classList.add('page-transition');
+            const overlay = document.getElementById('transitionOverlay');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Function to handle navigation with smooth transition
+            function navigateWithTransition(e) {
+                // Only handle left clicks (ignore right clicks etc.)
+                if (e.button !== 0 || e.metaKey || e.ctrlKey) return;
+
+                e.preventDefault();
+
+                const targetUrl = this.href;
+
+                // Show the transition overlay
+                overlay.classList.add('active');
+
+                // Close mobile menu if open
+                document.getElementById('menu-toggle').checked = false;
+
+                // Wait for the transition to show before navigating
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 800); // This matches the CSS transition time
             }
 
-            // Add smooth transition when clicking on nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
+            // Add event listeners to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', navigateWithTransition);
 
-                    // Add a loading animation
-                    document.body.style.opacity = '0.7';
-                    document.body.style.transition = 'opacity 0.3s ease';
-
-                    // Navigate after a short delay for the animation
-                    setTimeout(() => {
-                        window.location.href = this.href;
-                    }, 300);
+                // Also handle middle click and right click correctly
+                link.addEventListener('auxclick', function (e) {
+                    if (e.button === 1) { // Middle click
+                        window.open(this.href, '_blank');
+                    }
                 });
             });
 
-            // Close mobile menu when a link is clicked
-            document.querySelectorAll('.menu-items a').forEach(link => {
-                link.addEventListener('click', function () {
-                    document.getElementById('menu-toggle').checked = false;
-                });
+            // Hide the overlay when the page is fully loaded
+            window.addEventListener('load', function () {
+                // Small delay to ensure everything is loaded
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                }, 300);
+            });
+
+            // Also hide the overlay if there's an error
+            window.addEventListener('error', function () {
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                }, 1000);
             });
         });
     </script>

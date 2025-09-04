@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.urls import path
-from . import views
+from . import views, webhooks
 from django.contrib import admin
 from django.urls import path, include
 
@@ -28,6 +28,11 @@ urlpatterns = [
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
     path('inscripcion/', views.inscripcion_view, name='inscripcion'),
     path('create-inscription/', views.create_inscription, name='create_inscription'),
+    path('create-payment-intent/', views.create_payment_intent, name='create_payment_intent'),
+    path('webhook/', webhooks.stripe_webhook, name='stripe_webhook'),
+    path('payment-success/', views.payment_success, name='payment_success'),
+    path('payment-cancel/', views.payment_cancel, name='payment_cancel'),
+
 
 
 
