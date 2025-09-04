@@ -711,3 +711,71 @@ Cuota: {data.get('registration_fee', '130')}€
     except Exception as e:
         print(f"Error sending email: {e}")
         # Don't fail the entire request if email fails
+
+
+
+# views.py
+import stripe
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+# views.py
+@csrf_exempt
+def create_payment_intent(request):
+    if request.method == 'POST':
+        try:
+            print("Solicitud recibida para PaymentIntent")
+            print("Clave API:", settings.STRIPE_SECRET_KEY[:20] + "...")  # Muestra solo parte de la clave
+            # Asegúrate de que la clave secreta esté configurada
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            
+            # Verifica que estás usando una clave de test válida
+            if not stripe.api_key.startswith('sk_test_'):
+                return JsonResponse({'error': 'Clave secreta inválida'}, status=400)
+            
+            # Crea el Payment Intent con parámetros correctos
+            intent = stripe.PaymentIntent.create(
+                amount=13000,  # 130€ en céntimos
+                currency='eur',
+                automatic_payment_methods={
+                    'enabled': True,
+                },
+                metadata={
+                    'inscription_id': 'temp_id'
+                }
+            )
+            
+            # Verifica que el client_secret se devuelve correctamente
+            return JsonResponse({
+                'clientSecret': intent.client_secret,
+                'paymentIntentId': intent.id
+            })
+            
+        except stripe.error.StripeError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'Error interno'}, status=500)
+        
+
+
+def payment_success(request):
+    """Vista para cuando el pago es exitoso"""
+    payment_intent_id = request.GET.get('payment_intent')
+    payment_status = request.GET.get('redirect_status')
+    
+    # Aquí puedes guardar en la base de datos que el pago fue exitoso
+    # y marcar la inscripción como pagada
+    
+    context = {
+        'payment_intent_id': payment_intent_id,
+        'status': payment_status
+    }
+    
+    return render(request, 'payment_success.html')
+
+def payment_cancel(request):
+    """Vista para cuando el pago es cancelado"""
+    return render(request, 'payment_cancel.html')

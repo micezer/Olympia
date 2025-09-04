@@ -662,7 +662,379 @@
             width: auto;
         }
     }
+
+    /* Sección de pago más ancha */
+.stripe-payment-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px;
+}
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+#stripe-payment-message {
+    color: rgb(105, 115, 134);
+    font-size: 16px;
+    line-height: 20px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    background-color: #f8f9fa;
+}
+
+#stripe-payment-message.error {
+    color: #fa755a;
+    background-color: #fff5f5;
+}
+
+.spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+.success-icon {
+    font-size: 40px;
+    color: #52c41a;
+    margin-bottom: 16px;
+}
+
+.modal {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background: var(--primary-blue);
+    border: 2px solid var(--primary-gold);
+    border-radius: 12px;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    background: var(--secondary-blue);
+    padding: 20px;
+    border-bottom: 2px solid var(--primary-gold);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--primary-gold);
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-gold);
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.close-modal:hover {
+    color: white;
+}
+
+.payment-summary {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0;
+}
+
+.payment-summary h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary-gold);
+    font-size: 1.2em;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+}
+
+.summary-item.total {
+    border-top: 2px solid var(--primary-gold);
+    border-bottom: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    font-size: 1.1em;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.stripe-payment-container {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-gold);
+    font-weight: 500;
+}
+
+.stripe-element-container {
+    background: white;
+    border-radius: 8px;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Elementos de Stripe mejorados */
+.StripeElement {
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #32325d !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 6px;
+    height: auto !important;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 0 0 2px var(--primary-gold) !important;
+    outline: none;
+}
+
+.StripeElement--invalid {
+    border-color: #ff3860 !important;
+}
+
+.stripe-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(184, 172, 132, 0.3);
+}
+
+.stripe-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--primary-gold);
+    color: var(--primary-blue);
+    border: none;
+}
+
+.primary-btn:hover {
+    background: #d4af37;
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background: var(--secondary-blue);
+    color: white;
+    border: 1px solid var(--primary-gold);
+}
+
+.secondary-btn:hover {
+    background: rgba(184, 172, 132, 0.1);
+}
+
+/* Scroll personalizado para el modal */
+.stripe-payment-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.stripe-payment-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.stripe-payment-container::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 3px;
+}
+
+.stripe-payment-container::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+}
+
+/* Spinner */
+.spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--primary-blue);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.StripeElement input {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    font-size: 16px !important;
+    padding: 12px 15px !important;
+}
+
+.StripeElement {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    padding: 10px !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modal {
+        padding: 10px;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+        max-height: 95vh;
+    }
+    
+    .stripe-actions {
+        flex-direction: column;
+    }
+    
+    .payment-summary,
+    .stripe-payment-container {
+        padding: 15px;
+    }
+}
+
+/* Fondo blanco forzado para TODOS los elementos de Stripe */
+.StripeElement,
+.StripeElement *,
+.StripeElement input,
+.StripeElement iframe,
+[class*="Stripe"],
+[class*="stripe"] {
+    background: white !important;
+    color: black !important;
+    font-size: 16px !important;
+
+width: 100% !important;
+    min-width: 100% !important;
+}
+
+/* Contenedor principal con fondo blanco */
+#payment-element {
+    background: white !important;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+        width: 100% !important;
+    min-width: 100% !important;
+}
+
+/* Fuerza colores visibles */
+.StripeElement--complete,
+.StripeElement--focus,
+.StripeElement--invalid {
+    background: white !important;
+    color: black !important;
+}
+
+/* Inputs específicos */
+.StripeElement input {
+    background: white !important;
+    color: #000000 !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+}
+
+/* Labels visibles */
+.StripeElement label {
+    color: #000000 !important;
+    font-weight: bold !important;
+}
 </style>
+
+<script src="https://js.stripe.com/v3/">
+
+    // Debug: verificar clave y endpoint
+        console.log('Clave Stripe:', 'pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh'); // Reemplaza con tu clave real
+        console.log('Endpoint:', '/create-payment-intent/');
+</script>
+
 
 <div class="welcome-screen" id="welcomeScreen">
     <div class="welcome-header">
@@ -1431,37 +1803,59 @@
     </div>
 </div>
 
-<!-- Paso 7: Pago -->
+<!-- Paso 7: Pago (versión simplificada) -->
 <div class="form-container" id="step7Form">
     <h2>Pago de Inscripción</h2>
 
     <div class="payment-info">
-        <h3>Instrucciones de Pago</h3>
-        <p>Para completar tu inscripción, realiza el pago de la cuota mediante transferencia bancaria:</p>
-        <p><strong>Banco:</strong> Banco Example</p>
-        <p><strong>Titular:</strong> Club Olympia</p>
-        <p><strong>IBAN:</strong> ESXX XXXX XXXX XXXX XXXX XXXX</p>
-        <p><strong>Concepto:</strong> Inscripción <span id="payment-name"></span> - <span id="payment-category"></span>
-        </p>
-        <p><strong>Importe:</strong> 150,00€</p>
-        <p>Una vez realizado el pago, haz clic en el botón "Completar Inscripción" para finalizar el proceso.</p>
-    </div>
+        <h3>Resumen de tu inscripción</h3>
+        <p><strong>Jugadora:</strong> <span id="payment-name"></span></p>
+        <p><strong>Categoría:</strong> <span id="payment-category"></span></p>
+        <p><strong>Importe:</strong> 130,00€ (pago único)</p>
 
-    <div class="form-group">
-        <label for="comprobante_pago">¿Ya has realizado el pago?*</label>
-        <select id="comprobante_pago" name="comprobante_pago" required>
-            <option value="">Selecciona una opción</option>
-            <option value="si">Sí, he realizado el pago</option>
-            <option value="no">No, lo haré más tarde</option>
-        </select>
-        <div class="error-message" id="comprobante_pago_error"></div>
+        <div class="payment-ready">
+            <p>✅ Tu información está completa y lista para el pago.</p>
+        </div>
     </div>
-
-    <div id="payment-message" class="payment-message"></div>
 
     <div class="navigation-buttons">
         <button type="button" class="secondary" onclick="navigateToStep(6)">Anterior</button>
-        <button type="button" id="step7Button" onclick="completeRegistration()">Completar Inscripción</button>
+        <button type="button" class="primary-button" onclick="openPaymentModal()">
+            Realizar Pago
+        </button>
+    </div>
+</div>
+
+<!-- Modal para el pago -->
+<div id="payment-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <div class="modal-header">
+            <h2>Pago de Inscripción</h2>
+        </div>
+        <div class="stripe-payment-container">
+            <div id="stripe-payment-message" class="stripe-hidden"></div>
+
+            <form id="payment-form">
+                <div class="form-group">
+                    <label>Datos de pago</label>
+                    <div id="payment-element" class="stripe-element-container">
+                        <!-- Stripe.js creará los elementos aquí -->
+                    </div>
+                </div>
+
+                <div class="stripe-actions">
+                    <button type="button" class="secondary-btn" onclick="closePaymentModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" id="submit-payment" class="primary-btn">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="button-text">Pagar ahora 130€</span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -1505,7 +1899,7 @@
 
     // Also fix the hideAllForms function to handle null elements
         // Y la función hideAllForms:
-            function hideAllForms() {
+           function hideAllForms() {
                 // Hide all forms
                 document.querySelectorAll('.form-container').forEach(form => {
                     if (form) {
@@ -1513,7 +1907,10 @@
                     }
                 });
 
-                // También ocultar la pantalla de confirmación si está visible
+                // Hide payment modal
+                document.getElementById('payment-modal').style.display = 'none';
+
+                // Hide confirmation screen if visible
                 const confirmationScreen = document.getElementById('confirmationScreen');
                 if (confirmationScreen) {
                     confirmationScreen.style.display = 'none';
@@ -1575,8 +1972,9 @@
            
 
             // Special handling for payment step
-            if (currentStep === 7) {
+            if (stepNumber === 7) {
                 updatePaymentInfo();
+                openPaymentModal(); // Abrir modal en lugar de inicializar directamen
             }
 
              // Show the form for the current step
@@ -2104,9 +2502,11 @@
     }
 
     function updatePaymentInfo() {
-        document.getElementById('payment-name').textContent = formData.step1.fullName || '';
-        document.getElementById('payment-category').textContent = formData.step1.category || '';
-    }
+            document.getElementById('payment-name').textContent = formData.step1.fullName || '';
+            document.getElementById('payment-category').textContent = formData.step1.category || '';
+            document.getElementById('modal-payment-name').textContent = formData.step1.fullName || '';
+            document.getElementById('modal-payment-category').textContent = formData.step1.category || '';
+        }
 
     function formatDate(dateString) {
         if (!dateString) return '';
@@ -2183,141 +2583,7 @@
         }
 
 
-        // Update the completeRegistration function to match backend field names
-        function completeRegistration() {
-            if (!validateStep(7)) return;
-
-            saveStepData(7);
-
-            const submitButton = document.getElementById('step7Button');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Procesando...';
-
-            // Prepare data for submission - MATCH BACKEND FIELD NAMES
-            const submissionData = {
-                // Player information
-                full_name: formData.step1.fullName,
-                birthdate: formData.step1.birthdate,
-                category: formData.step1.category,
-                birth_municipality: formData.step1.birthMunicipality,
-                empadronamiento: formData.step1.empadronamiento,
-                player_dni: formData.step1.playerDni,
-                email: formData.step1.email,
-                phone: formData.step1.phone,
-                landline: formData.step1.landline,
-                address: formData.step1.address,
-                city: formData.step1.city,
-                zip_code: formData.step1.zipCode,
-                played_before: formData.step1.playedBefore,
-                previous_teams: formData.step1.previousTeams,
-
-                // Mother/Tutor information
-                mother_name: formData.step1.motherName,
-                mother_dni: formData.step1.motherDni,
-                mother_email: formData.step1.motherEmail,
-                mother_phone: formData.step1.motherPhone,
-                mother_birthplace: formData.step1.motherBirthplace,
-
-                // Father information (optional)
-                father_name: formData.step1.fatherName,
-                father_dni: formData.step1.fatherDni,
-                father_email: formData.step1.fatherEmail,
-                father_phone: formData.step1.fatherPhone,
-                father_birthplace: formData.step1.fatherBirthplace,
-
-                // Consents
-                club_rules: formData.step1.clubRules,
-                privacy_policy: formData.step1.privacyPolicy,
-                health_data: formData.step1.healthData,
-                social_media_image: formData.step1.socialMediaImage,
-                internet_image: formData.step1.internetImage,
-                marketing: formData.step1.marketing,
-
-                // Bank information
-                signature_date: formData.step2.signatureDate,
-                account_holder: formData.step2.accountHolder,
-                account_holder_dni: formData.step2.accountHolderDni,
-                account_holder_address: formData.step2.accountHolderAddress,
-                account_holder_zip: formData.step2.accountHolderZip,
-                account_holder_city: formData.step2.accountHolderCity,
-                account_holder_province: formData.step2.accountHolderProvince,
-                swift_code: formData.step2.swiftCode,
-                iban: formData.step2.iban,
-                payment_type: formData.step2.paymentType,
-
-                // Authorization data
-                authorization_date: formData.step3.authorizationDate,
-                mother_signature_name: formData.step3.motherSignatureName,
-                mother_signature_dni: formData.step3.motherSignatureDni,
-                mother_signature: formData.step3.motherSignature,
-                father_signature_name: formData.step3.fatherSignatureName,
-                father_signature_dni: formData.step3.fatherSignatureDni,
-                father_signature: formData.step3.fatherSignature,
-                single_parent_reason: formData.step3.singleParentReason,
-                other_reason: formData.step3.otherReason,
-
-                // Data protection
-                data_protection_signature_name: formData.step4.dataProtectionSignatureName,
-                data_protection_signature_dni: formData.step4.dataProtectionSignatureDni,
-                data_protection_signature: formData.step4.dataProtectionSignature,
-                data_protection_consent: formData.step4.dataProtectionConsent,
-
-                // Commitment letter
-                commitment_date: formData.step5.commitmentDate,
-                commitment_behavior: formData.step5.commitmentBehavior,
-                commitment_sportsmanship: formData.step5.commitmentSportsmanship,
-                commitment_social_media: formData.step5.commitmentSocialMedia,
-                commitment_coach: formData.step5.commitmentCoach,
-                commitment_punctuality: formData.step5.commitmentPunctuality,
-                commitment_communication: formData.step5.commitmentCommunication,
-                player_signature: formData.step5.playerSignature,
-                parent_signature: formData.step5.parentSignature,
-
-                // Payment information
-                comprobante_pago: formData.step7.comprobantePago,
-
-                // Additional fields
-                season: "2023/2024",
-                registration_fee: "150"
-            };
-
-            // DEBUG: Log the data being sent
-            console.log("DEBUG: Submission data:", submissionData);
-
-            // Get CSRF token
-            const csrftoken = getCookie('csrftoken');
-            console.log("DEBUG: CSRF Token:", csrftoken ? "Found" : "Not found");
-
-            // Make the actual API call
-            fetch('/create-inscription/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken,
-                },
-                body: JSON.stringify(submissionData)
-            })
-                .then(response => {
-                    console.log("DEBUG: Response status:", response.status);
-                    console.log("DEBUG: Response headers:", Object.fromEntries(response.headers.entries()));
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("DEBUG: Response data:", data);
-                    if (data.status === 'success') {
-                        showConfirmationScreen(data.inscription_number);
-                    } else {
-                        throw new Error(data.message || 'Error al procesar la inscripción');
-                    }
-                })
-                .catch(error => {
-                    console.error("DEBUG: Error details:", error);
-                    showMessage(`Error: ${error.message}`, 'error');
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Completar Inscripción';
-                });
-        }
-
+        
     // Add this function to help debug email issues
         function debugEmailFunctionality() {
             console.group("EMAIL DEBUG INFO");
@@ -2400,6 +2666,309 @@
                 }
             }
         });
+
+
+
+        // Configuración de Stripe - Reemplaza con tus claves
+            const stripe = Stripe('pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh'); // Clave pública de test
+
+            // Configuración de elementos de pago
+            let elements;
+
+            function initializeStripe() {
+                console.log('Solicitando PaymentIntent...');
+                fetch('/create-payment-intent/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    }
+                })
+                    .then(response => {
+                        // Aquí solo tenemos response, NO data
+                        console.log('Status de respuesta:', response.status);
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Aquí SÍ tenemos data
+                        console.log('Respuesta del servidor:', data); // ← MOVIDO AQUÍ
+
+                        if (!data.clientSecret) {
+                            throw new Error('No clientSecret received from server');
+                        }
+
+                        console.log('PaymentIntent ID:', data.paymentIntentId);
+                        console.log('Client secret received');
+
+                        elements = stripe.elements({
+                            clientSecret: data.clientSecret,
+                            appearance: { theme: 'stripe' }
+                        });
+
+                        const paymentElement = elements.create('payment');
+                        paymentElement.mount('#payment-element');
+
+                    })
+                    .catch(error => {
+                        console.error('Error initializing Stripe:', error);
+                        showStripeMessage('Error al configurar el pago: ' + error.message, 'error');
+                    });
+}
+
+            // Manejar envío del formulario de pago
+            document.getElementById('payment-form').addEventListener('submit', handleSubmit);
+
+            // Función handleSubmit actualizada
+                async function handleSubmit(e) {
+                    e.preventDefault();
+
+                    setLoading(true);
+
+                    try {
+                        const { error, paymentIntent } = await stripe.confirmPayment({
+                            elements,
+                            confirmParams: {
+                                return_url: `${window.location.origin}/payment-success/`,
+                            },
+                            redirect: 'if_required'
+                        });
+
+                        if (error) {
+                            console.error('Stripe error:', error);
+                            showStripeMessage(error.message, 'error');
+                        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+                            // Pago exitoso
+                            completeRegistration();
+                        } else {
+                            showStripeMessage('Estado de pago desconocido', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Unexpected error:', error);
+                        showStripeMessage('Error inesperado: ' + error.message, 'error');
+                    }
+
+                    setLoading(false);
+                }
+
+            function showStripeMessage(message, type = '') {
+                const messageContainer = document.getElementById('stripe-payment-message');
+
+                messageContainer.textContent = message;
+                messageContainer.classList.remove('hidden', 'error');
+
+                if (type === 'error') {
+                    messageContainer.classList.add('error');
+                }
+
+                setTimeout(() => {
+                    messageContainer.classList.add('hidden');
+                }, 5000);
+            }
+
+            function setLoading(isLoading) {
+                const submitButton = document.getElementById('submit-payment');
+                const spinner = document.getElementById('spinner');
+                const buttonText = document.getElementById('button-text');
+
+                if (isLoading) {
+                    submitButton.disabled = true;
+                    spinner.classList.remove('hidden');
+                    buttonText.textContent = 'Procesando...';
+                } else {
+                    submitButton.disabled = false;
+                    spinner.classList.add('hidden');
+                    buttonText.textContent = 'Pagar ahora';
+                }
+            }
+
+            // Modificar la función completeRegistration para que solo se ejecute tras pago exitoso
+            function completeRegistration() {
+                // Preparar datos para envío (igual que antes)
+                 const submissionData = {
+                    // Player information
+                    full_name: formData.step1.fullName,
+                    birthdate: formData.step1.birthdate,
+                    category: formData.step1.category,
+                    birth_municipality: formData.step1.birthMunicipality,
+                    empadronamiento: formData.step1.empadronamiento,
+                    player_dni: formData.step1.playerDni,
+                    email: formData.step1.email,
+                    phone: formData.step1.phone,
+                    landline: formData.step1.landline,
+                    address: formData.step1.address,
+                    city: formData.step1.city,
+                    zip_code: formData.step1.zipCode,
+                    played_before: formData.step1.playedBefore,
+                    previous_teams: formData.step1.previousTeams,
+
+                    // Mother/Tutor information
+                    mother_name: formData.step1.motherName,
+                    mother_dni: formData.step1.motherDni,
+                    mother_email: formData.step1.motherEmail,
+                    mother_phone: formData.step1.motherPhone,
+                    mother_birthplace: formData.step1.motherBirthplace,
+
+                    // Father information (optional)
+                    father_name: formData.step1.fatherName,
+                    father_dni: formData.step1.fatherDni,
+                    father_email: formData.step1.fatherEmail,
+                    father_phone: formData.step1.fatherPhone,
+                    father_birthplace: formData.step1.fatherBirthplace,
+
+                    // Consents
+                    club_rules: formData.step1.clubRules,
+                    privacy_policy: formData.step1.privacyPolicy,
+                    health_data: formData.step1.healthData,
+                    social_media_image: formData.step1.socialMediaImage,
+                    internet_image: formData.step1.internetImage,
+                    marketing: formData.step1.marketing,
+
+                    // Bank information
+                    signature_date: formData.step2.signatureDate,
+                    account_holder: formData.step2.accountHolder,
+                    account_holder_dni: formData.step2.accountHolderDni,
+                    account_holder_address: formData.step2.accountHolderAddress,
+                    account_holder_zip: formData.step2.accountHolderZip,
+                    account_holder_city: formData.step2.accountHolderCity,
+                    account_holder_province: formData.step2.accountHolderProvince,
+                    swift_code: formData.step2.swiftCode,
+                    iban: formData.step2.iban,
+                    payment_type: formData.step2.paymentType,
+
+                    // Authorization data
+                    authorization_date: formData.step3.authorizationDate,
+                    mother_signature_name: formData.step3.motherSignatureName,
+                    mother_signature_dni: formData.step3.motherSignatureDni,
+                    mother_signature: formData.step3.motherSignature,
+                    father_signature_name: formData.step3.fatherSignatureName,
+                    father_signature_dni: formData.step3.fatherSignatureDni,
+                    father_signature: formData.step3.fatherSignature,
+                    single_parent_reason: formData.step3.singleParentReason,
+                    other_reason: formData.step3.otherReason,
+
+                    // Data protection
+                    data_protection_signature_name: formData.step4.dataProtectionSignatureName,
+                    data_protection_signature_dni: formData.step4.dataProtectionSignatureDni,
+                    data_protection_signature: formData.step4.dataProtectionSignature,
+                    data_protection_consent: formData.step4.dataProtectionConsent,
+
+                    // Commitment letter
+                    commitment_date: formData.step5.commitmentDate,
+                    commitment_behavior: formData.step5.commitmentBehavior,
+                    commitment_sportsmanship: formData.step5.commitmentSportsmanship,
+                    commitment_social_media: formData.step5.commitmentSocialMedia,
+                    commitment_coach: formData.step5.commitmentCoach,
+                    commitment_punctuality: formData.step5.commitmentPunctuality,
+                    commitment_communication: formData.step5.commitmentCommunication,
+                    player_signature: formData.step5.playerSignature,
+                    parent_signature: formData.step5.parentSignature,
+
+                    // Payment information
+                    comprobante_pago: formData.step7.comprobantePago,
+
+                    // Additional fields
+                    season: "2023/2024",
+                    registration_fee: "150"
+                };
+
+                   // Enviar datos al backend
+                fetch('/create-inscription/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    },
+                    body: JSON.stringify(submissionData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Cerrar modal de pago
+                            closePaymentModal();
+
+                            // Ocultar todos los formularios
+                            hideAllForms();
+
+                            // Mostrar pantalla de confirmación
+                            document.getElementById('confirmation-email').textContent = formData.step1.email || formData.step1.motherEmail;
+                            document.getElementById('reference-number').textContent = data.inscription_number;
+                            document.getElementById('confirmationScreen').style.display = 'block';
+                        } else {
+                            throw new Error(data.message || 'Error al procesar la inscripción');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showStripeMessage('Error al procesar la inscripción: ' + error.message, 'error');
+                    });
+            }
+
+            // Funciones para manejar el modal
+                function openPaymentModal() {
+                        const modal = document.getElementById('payment-modal');
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+
+                        // Inicializar Stripe después de que el modal esté visible
+                        setTimeout(() => {
+                            initializeStripe();
+                        }, 100);
+                    }
+                
+                    // Función para forzar estilos visibles
+                        function forceVisibleStripeStyles() {
+                            setTimeout(() => {
+                                // Seleccionar todos los elementos de Stripe
+                                const stripeElements = document.querySelectorAll('[class*="Stripe"], [class*="stripe"], #payment-element *');
+
+                                stripeElements.forEach(element => {
+                                    element.style.backgroundColor = '#ffffff';
+                                    element.style.color = '#000000';
+                                    element.style.fontSize = '16px';
+
+                                    // Para inputs específicos
+                                    if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+                                        element.style.padding = '12px';
+                                        element.style.border = '1px solid #cccccc';
+                                        element.style.borderRadius = '4px';
+                                    }
+                                });
+
+                                // Forzar iframes de Stripe (más complicado pero intentamos)
+                                const iframes = document.querySelectorAll('iframe');
+                                iframes.forEach(iframe => {
+                                    try {
+                                        iframe.contentDocument.body.style.backgroundColor = '#ffffff';
+                                        iframe.contentDocument.body.style.color = '#000000';
+                                    } catch (e) {
+                                        console.log('No se puede modificar iframe por políticas de seguridad');
+                                    }
+                                });
+                            }, 2000);
+                        }
+
+
+                function closePaymentModal() {
+                    document.getElementById('payment-modal').style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Permitir scroll nuevamente
+                }
+
+                // Cerrar modal al hacer clic fuera del contenido
+                document.getElementById('payment-modal').addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        closePaymentModal();
+                    }
+                });
+
+                // Cerrar con la X
+                    document.querySelector('.close-modal').addEventListener('click', closePaymentModal);
+ 
+
+
 </script>
 
 {% endblock %}

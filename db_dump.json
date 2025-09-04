@@ -4511,6 +4511,721 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 348,
+    "fields": {
+        "action_time": "2025-09-01T22:23:29.932Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "30",
+        "object_repr": "Ana BelÃ©n De La Chica Cardenas - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 349,
+    "fields": {
+        "action_time": "2025-09-01T22:25:25.525Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "70",
+        "object_repr": "Abiel Ojeda - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 350,
+    "fields": {
+        "action_time": "2025-09-01T22:27:49.716Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "70",
+        "object_repr": "Abiel Ojeda - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Role\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 351,
+    "fields": {
+        "action_time": "2025-09-01T22:28:42.541Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "71",
+        "object_repr": "Alba Mateos - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 352,
+    "fields": {
+        "action_time": "2025-09-01T22:29:36.081Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "57",
+        "object_repr": "Jose Pulido GarcÃ­a - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 353,
+    "fields": {
+        "action_time": "2025-09-01T22:29:58.697Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "71",
+        "object_repr": "Alba Mateos - Senior B",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 354,
+    "fields": {
+        "action_time": "2025-09-01T22:30:52.347Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "72",
+        "object_repr": "Arantxa De La Chica - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 355,
+    "fields": {
+        "action_time": "2025-09-01T22:31:27.016Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "73",
+        "object_repr": "Emanuel Inga - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 356,
+    "fields": {
+        "action_time": "2025-09-01T22:32:10.593Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "74",
+        "object_repr": "Lucía Sánchez - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 357,
+    "fields": {
+        "action_time": "2025-09-01T22:33:10.477Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "31",
+        "object_repr": "Carmen Sánchez - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 358,
+    "fields": {
+        "action_time": "2025-09-01T22:33:49.721Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "32",
+        "object_repr": "Lucía Mártin - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 359,
+    "fields": {
+        "action_time": "2025-09-01T22:34:44.435Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "34",
+        "object_repr": "Lucía Adán - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 360,
+    "fields": {
+        "action_time": "2025-09-01T22:35:14.882Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "34",
+        "object_repr": "Lucía Adán - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 361,
+    "fields": {
+        "action_time": "2025-09-01T22:36:08.141Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "33",
+        "object_repr": "Nuria Díaz - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Number\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 362,
+    "fields": {
+        "action_time": "2025-09-01T22:36:19.219Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "34",
+        "object_repr": "Lucía Adán - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 363,
+    "fields": {
+        "action_time": "2025-09-01T22:36:48.723Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "34",
+        "object_repr": "Lucía Adán - Senior B",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 364,
+    "fields": {
+        "action_time": "2025-09-01T22:37:03.564Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "33",
+        "object_repr": "Nuria Díaz - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 365,
+    "fields": {
+        "action_time": "2025-09-01T22:39:19.906Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "75",
+        "object_repr": "Paola González - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 366,
+    "fields": {
+        "action_time": "2025-09-01T22:39:49.089Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "39",
+        "object_repr": "Cristina Tejada - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Display position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 367,
+    "fields": {
+        "action_time": "2025-09-01T22:40:40.615Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "76",
+        "object_repr": "Sarah Yagüe - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 368,
+    "fields": {
+        "action_time": "2025-09-01T22:41:31.400Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "36",
+        "object_repr": "Andrea Ovejero - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Display position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 369,
+    "fields": {
+        "action_time": "2025-09-01T22:42:06.678Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "49",
+        "object_repr": "Lorena Fernández - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 370,
+    "fields": {
+        "action_time": "2025-09-01T22:42:16.090Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "49",
+        "object_repr": "Lorena Fernández - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 371,
+    "fields": {
+        "action_time": "2025-09-01T22:43:02.607Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "42",
+        "object_repr": "Teresa Brandau - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Number\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 372,
+    "fields": {
+        "action_time": "2025-09-01T22:45:37.817Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "46",
+        "object_repr": "Marina Valmorisco - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Position\", \"Display position\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 373,
+    "fields": {
+        "action_time": "2025-09-01T22:46:03.984Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "38",
+        "object_repr": "Mireya Nieto - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Number\", \"Display position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 374,
+    "fields": {
+        "action_time": "2025-09-01T22:47:30.704Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "43",
+        "object_repr": "Ana - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 375,
+    "fields": {
+        "action_time": "2025-09-01T22:47:30.704Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "41",
+        "object_repr": "Bea - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 376,
+    "fields": {
+        "action_time": "2025-09-01T22:47:30.704Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "40",
+        "object_repr": "Gadea - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 377,
+    "fields": {
+        "action_time": "2025-09-01T22:47:30.704Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "37",
+        "object_repr": "Paola - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 378,
+    "fields": {
+        "action_time": "2025-09-01T22:47:30.705Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "35",
+        "object_repr": "Daniela - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 379,
+    "fields": {
+        "action_time": "2025-09-02T10:53:20.994Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "44",
+        "object_repr": "Lucía Fernandez - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 380,
+    "fields": {
+        "action_time": "2025-09-02T10:53:53.182Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "48",
+        "object_repr": "Iciar Cofrades - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Number\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 381,
+    "fields": {
+        "action_time": "2025-09-02T10:54:22.104Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "45",
+        "object_repr": "Raquel Guardado - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 382,
+    "fields": {
+        "action_time": "2025-09-02T10:54:55.852Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "77",
+        "object_repr": "Bea Asenjo - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 383,
+    "fields": {
+        "action_time": "2025-09-02T10:55:31.280Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "47",
+        "object_repr": "Aroa Gonzalez - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 384,
+    "fields": {
+        "action_time": "2025-09-02T10:56:09.767Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "78",
+        "object_repr": "Vicky Pérez - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 385,
+    "fields": {
+        "action_time": "2025-09-02T10:56:29.555Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "47",
+        "object_repr": "Aroa González - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 386,
+    "fields": {
+        "action_time": "2025-09-02T10:56:52.948Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "55",
+        "object_repr": "Clara Gómez - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Number\", \"Position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 387,
+    "fields": {
+        "action_time": "2025-09-02T10:59:43.255Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "53",
+        "object_repr": "Claudia Hernando - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\", \"Display position\", \"Nationality\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 388,
+    "fields": {
+        "action_time": "2025-09-02T11:00:22.011Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "79",
+        "object_repr": "Daniela Sanchís - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 389,
+    "fields": {
+        "action_time": "2025-09-02T11:00:56.836Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "80",
+        "object_repr": "Clara Fajardo - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 390,
+    "fields": {
+        "action_time": "2025-09-02T11:01:46.907Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "81",
+        "object_repr": "Lucía Nuñez - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 391,
+    "fields": {
+        "action_time": "2025-09-02T11:02:20.558Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "82",
+        "object_repr": "Iratxe Rodríguez - Senior B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 392,
+    "fields": {
+        "action_time": "2025-09-02T11:02:53.160Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "56",
+        "object_repr": "Victoria - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 393,
+    "fields": {
+        "action_time": "2025-09-02T11:02:53.160Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "54",
+        "object_repr": "LucÃ­a - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 394,
+    "fields": {
+        "action_time": "2025-09-02T11:02:53.160Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "52",
+        "object_repr": "Alejandra - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 395,
+    "fields": {
+        "action_time": "2025-09-02T11:02:53.160Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "51",
+        "object_repr": "Mirem - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 396,
+    "fields": {
+        "action_time": "2025-09-02T11:02:53.160Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "50",
+        "object_repr": "Susana - Senior B",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 397,
+    "fields": {
+        "action_time": "2025-09-02T11:03:08.853Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "16",
+        "object_repr": "María Bravo - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Team\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 398,
+    "fields": {
+        "action_time": "2025-09-02T11:03:31.928Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "Laura González - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Team\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 399,
+    "fields": {
+        "action_time": "2025-09-02T11:37:15.079Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "32",
+        "object_repr": "Lucía Martín - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 400,
+    "fields": {
+        "action_time": "2025-09-02T11:39:42.677Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "44",
+        "object_repr": "Lucía Fernández - Senior B",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Full name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 401,
+    "fields": {
+        "action_time": "2025-09-04T13:05:05.651Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "16",
+        "object_repr": "María Bravo - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\", \"Team\", \"Role\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 402,
+    "fields": {
+        "action_time": "2025-09-04T13:05:34.462Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "Laura González - Senior A - Primer Equipo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Display position\", \"Team\", \"Role\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -6256,13 +6971,13 @@
         "full_name": "Laura González Hernandez",
         "number": 27,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Defensa - Filial",
         "team": "senior_a",
         "birth_date": "2006-02-15",
         "nationality": "Española",
-        "image": "image/upload/laura_gonzalez_pmustm",
+        "image": "image/upload/laura_gonzalez_gv0zdu",
         "is_staff": false,
-        "role": ""
+        "role": "Filial con Dinamica"
     }
 },
 {
@@ -6375,13 +7090,13 @@
         "full_name": "María Bravo Matías",
         "number": 30,
         "position": "delantero",
-        "display_position": "",
+        "display_position": "Delantera - Filial",
         "team": "senior_a",
         "birth_date": "1997-03-14",
         "nationality": "Española",
-        "image": "image/upload/maria_bravo_d97cza",
+        "image": "image/upload/maria_bravo_dzhgy9",
         "is_staff": false,
-        "role": ""
+        "role": "Filial con Dinamica"
     }
 },
 {
@@ -6505,34 +7220,17 @@
 },
 {
     "model": "base.player",
-    "pk": 30,
-    "fields": {
-        "name": "Ana BelÃ©n De La Chica Cardenas",
-        "full_name": "Ana BelÃ©n De La Chica Cardenas",
-        "number": 0,
-        "position": "tecnico",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
-        "is_staff": true,
-        "role": "Entrenador"
-    }
-},
-{
-    "model": "base.player",
     "pk": 31,
     "fields": {
-        "name": "Carmen",
-        "full_name": "Carmen",
+        "name": "Carmen Sánchez",
+        "full_name": "Carmen Sánchez",
         "number": 1,
         "position": "portero",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/carmen_porteria_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/carmen_sanchez-Photoroom_claoo4",
         "is_staff": false,
         "role": ""
     }
@@ -6541,15 +7239,15 @@
     "model": "base.player",
     "pk": 32,
     "fields": {
-        "name": "L. MartÃ­n",
-        "full_name": "L. MartÃ­n",
+        "name": "Lucía Martín",
+        "full_name": "Lucía Martín",
         "number": 25,
         "position": "portero",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
+        "nationality": "Española",
+        "image": "image/upload/lucia_martin-Photoroom_pzaip0",
         "is_staff": false,
         "role": ""
     }
@@ -6558,15 +7256,15 @@
     "model": "base.player",
     "pk": 33,
     "fields": {
-        "name": "Nuria",
-        "full_name": "Nuria",
-        "number": 28,
+        "name": "Nuria Díaz",
+        "full_name": "Nuria Díaz",
+        "number": 4,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Central",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/nuria_defensa_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/nuria_diaz-Photoroom_vn6yso",
         "is_staff": false,
         "role": ""
     }
@@ -6575,32 +7273,15 @@
     "model": "base.player",
     "pk": 34,
     "fields": {
-        "name": "LucÃ­a",
-        "full_name": "LucÃ­a",
+        "name": "Lucía Adán",
+        "full_name": "Lucía Adán",
         "number": 3,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Central",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 35,
-    "fields": {
-        "name": "Daniela",
-        "full_name": "Daniela",
-        "number": 7,
-        "position": "defensa",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/daniela_defensa_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/lucia_adan-Photoroom_vvkdhs",
         "is_staff": false,
         "role": ""
     }
@@ -6609,32 +7290,15 @@
     "model": "base.player",
     "pk": 36,
     "fields": {
-        "name": "Andrea",
-        "full_name": "Andrea",
+        "name": "Andrea Ovejero",
+        "full_name": "Andrea Ovejero",
         "number": 2,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Lateral",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/andrea_rodriguez_nucjaq",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 37,
-    "fields": {
-        "name": "Paola",
-        "full_name": "Paola",
-        "number": 22,
-        "position": "defensa",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/paola_defensa_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/andrea_ovejero-Photoroom_nbzu8x",
         "is_staff": false,
         "role": ""
     }
@@ -6643,15 +7307,15 @@
     "model": "base.player",
     "pk": 38,
     "fields": {
-        "name": "Mireya",
+        "name": "Mireya Nieto",
         "full_name": "Mireya",
-        "number": 4,
+        "number": 0,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Lateral",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/mireya_defensa_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/mireya_nieto-Photoroom_an7pkg",
         "is_staff": false,
         "role": ""
     }
@@ -6660,49 +7324,15 @@
     "model": "base.player",
     "pk": 39,
     "fields": {
-        "name": "Cristina",
-        "full_name": "Cristina",
+        "name": "Cristina Tejada",
+        "full_name": "Cristina Tejada",
         "number": 14,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Central",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/cristina_defensa_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 40,
-    "fields": {
-        "name": "Gadea",
-        "full_name": "Gadea",
-        "number": 31,
-        "position": "defensa",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/gadea_defensa_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 41,
-    "fields": {
-        "name": "Bea",
-        "full_name": "Bea",
-        "number": 33,
-        "position": "defensa",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/bea_defensa_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/cristina_tejada-Photoroom_ugefg7",
         "is_staff": false,
         "role": ""
     }
@@ -6711,11 +7341,11 @@
     "model": "base.player",
     "pk": 42,
     "fields": {
-        "name": "Teresa",
-        "full_name": "Teresa",
-        "number": 32,
+        "name": "Teresa Brandau",
+        "full_name": "Teresa Brandau",
+        "number": 16,
         "position": "defensa",
-        "display_position": "",
+        "display_position": "Lateral",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
@@ -6726,34 +7356,17 @@
 },
 {
     "model": "base.player",
-    "pk": 43,
-    "fields": {
-        "name": "Ana",
-        "full_name": "Ana",
-        "number": 51,
-        "position": "defensa",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/ana_centro_senior_a.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
     "pk": 44,
     "fields": {
-        "name": "L. FernÃ¡ndez",
-        "full_name": "L. FernÃ¡ndez",
+        "name": "Lucía Fernández",
+        "full_name": "Lucía Fernández",
         "number": 7,
         "position": "centrocampista",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
+        "nationality": "Española",
+        "image": "image/upload/lucia_fernandez-Photoroom_lhi5uc",
         "is_staff": false,
         "role": ""
     }
@@ -6762,15 +7375,15 @@
     "model": "base.player",
     "pk": 45,
     "fields": {
-        "name": "Raquel",
-        "full_name": "Raquel",
+        "name": "Raquel Guardado",
+        "full_name": "Raquel Guardado",
         "number": 10,
         "position": "centrocampista",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/raquel_centro_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/raquel_guardado-Photoroom_zfdbqb",
         "is_staff": false,
         "role": ""
     }
@@ -6779,15 +7392,15 @@
     "model": "base.player",
     "pk": 46,
     "fields": {
-        "name": "Marina",
-        "full_name": "Marina",
+        "name": "Marina Valmorisco",
+        "full_name": "Marina Valmorisco",
         "number": 23,
-        "position": "centrocampista",
-        "display_position": "",
+        "position": "defensa",
+        "display_position": "Lateral",
         "team": "senior_b",
         "birth_date": null,
         "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/marina_centro_senior_b.png",
+        "image": "image/upload/marina_valmorisco-Photoroom_wnfskv",
         "is_staff": false,
         "role": ""
     }
@@ -6796,15 +7409,15 @@
     "model": "base.player",
     "pk": 47,
     "fields": {
-        "name": "Aroa",
-        "full_name": "Aroa",
+        "name": "Aroa González",
+        "full_name": "Aroa González",
         "number": 18,
         "position": "centrocampista",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/aroa_centro_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/aroa_gonzalez-Photoroom_ydxm07",
         "is_staff": false,
         "role": ""
     }
@@ -6813,15 +7426,15 @@
     "model": "base.player",
     "pk": 48,
     "fields": {
-        "name": "Iciar",
-        "full_name": "Iciar",
-        "number": 20,
+        "name": "Iciar Cofrades",
+        "full_name": "Iciar Cofrades",
+        "number": 8,
         "position": "centrocampista",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/iciar_centro_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/iciar_cofrades-Photoroom_a2ehsx",
         "is_staff": false,
         "role": ""
     }
@@ -6830,66 +7443,15 @@
     "model": "base.player",
     "pk": 49,
     "fields": {
-        "name": "Lorena",
-        "full_name": "Lorena",
+        "name": "Lorena Fernández",
+        "full_name": "Lorena Fernández",
         "number": 6,
-        "position": "centrocampista",
-        "display_position": "",
+        "position": "defensa",
+        "display_position": "Lateral",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/lorena_centro_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 50,
-    "fields": {
-        "name": "Susana",
-        "full_name": "Susana",
-        "number": 26,
-        "position": "centrocampista",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/susana_centro_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 51,
-    "fields": {
-        "name": "Mirem",
-        "full_name": "Mirem",
-        "number": 88,
-        "position": "centrocampista",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/mirem_centro_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 52,
-    "fields": {
-        "name": "Alejandra",
-        "full_name": "Alejandra",
-        "number": 11,
-        "position": "delantero",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/alejandra_delantero_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/lorena_fernandez-Photoroom_km7nbr",
         "is_staff": false,
         "role": ""
     }
@@ -6898,32 +7460,15 @@
     "model": "base.player",
     "pk": 53,
     "fields": {
-        "name": "Claudia",
-        "full_name": "Claudia",
+        "name": "Claudia Hernando",
+        "full_name": "Claudia Hernando",
         "number": 9,
         "position": "delantero",
-        "display_position": "",
+        "display_position": "Extremo",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/claudia_delantero_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 54,
-    "fields": {
-        "name": "LucÃ­a",
-        "full_name": "LucÃ­a",
-        "number": 19,
-        "position": "delantero",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
+        "nationality": "Española",
+        "image": "image/upload/claudia_hernando-Photoroom_c01hya",
         "is_staff": false,
         "role": ""
     }
@@ -6932,51 +7477,17 @@
     "model": "base.player",
     "pk": 55,
     "fields": {
-        "name": "Clara",
+        "name": "Clara Gómez",
         "full_name": "Clara",
-        "number": 24,
-        "position": "delantero",
+        "number": 21,
+        "position": "centrocampista",
         "display_position": "",
         "team": "senior_b",
         "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/clara_delantero_senior_b.png",
+        "nationality": "Española",
+        "image": "image/upload/clara_gomez-Photoroom_xr0ass",
         "is_staff": false,
         "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 56,
-    "fields": {
-        "name": "Victoria",
-        "full_name": "Victoria",
-        "number": 29,
-        "position": "delantero",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "image/upload/https://res.cloudinary.com/do0mj4z8k/image/upload/victoria_delantero_senior_b.png",
-        "is_staff": false,
-        "role": ""
-    }
-},
-{
-    "model": "base.player",
-    "pk": 57,
-    "fields": {
-        "name": "Jose Pulido GarcÃ­a",
-        "full_name": "Jose Pulido GarcÃ­a",
-        "number": 0,
-        "position": "tecnico",
-        "display_position": "",
-        "team": "senior_b",
-        "birth_date": null,
-        "nationality": "EspaÃ±ola",
-        "image": "",
-        "is_staff": true,
-        "role": "Segundo Entrenador"
     }
 },
 {
@@ -7164,6 +7675,227 @@
         "image": "image/upload/andrea_cacho_di0jim",
         "is_staff": true,
         "role": "Delegada"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 70,
+    "fields": {
+        "name": "Abiel Ojeda",
+        "full_name": "Abiel Ojeda",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/abiel_ojeda-Photoroom_wykhl3",
+        "is_staff": true,
+        "role": "Preparador físico"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 71,
+    "fields": {
+        "name": "Alba Mateos",
+        "full_name": "Alba Mateos",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/alba_mateos-Photoroom_clcz6p",
+        "is_staff": false,
+        "role": "Fisioterapeuta"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 72,
+    "fields": {
+        "name": "Arantxa De La Chica",
+        "full_name": "Arantxa De La Chica",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/arantxa_de_la_chica-Photoroom_bwf2ru",
+        "is_staff": true,
+        "role": "Primera entrenadora"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 73,
+    "fields": {
+        "name": "Emanuel Inga",
+        "full_name": "Emanuel Inga",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/emanuel_inga_vbazk5",
+        "is_staff": true,
+        "role": "Entrenador de Porteras"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 74,
+    "fields": {
+        "name": "Lucía Sánchez",
+        "full_name": "Lucía Sánchez",
+        "number": 0,
+        "position": "tecnico",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/lucia_sanchez-Photoroom_w9e9si",
+        "is_staff": true,
+        "role": "Segunda entrenadora"
+    }
+},
+{
+    "model": "base.player",
+    "pk": 75,
+    "fields": {
+        "name": "Paola González",
+        "full_name": "Paola González",
+        "number": 5,
+        "position": "defensa",
+        "display_position": "Central",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/paola_gonzalez-Photoroom_ypisxt",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 76,
+    "fields": {
+        "name": "Sarah Yagüe",
+        "full_name": "Sarah Yagüe",
+        "number": 59,
+        "position": "defensa",
+        "display_position": "Central",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/sarahyague-Photoroom_jda5pv",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 77,
+    "fields": {
+        "name": "Bea Asenjo",
+        "full_name": "Bea Asenjo",
+        "number": 12,
+        "position": "centrocampista",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/bea_asenjo-Photoroom_fz9txe",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 78,
+    "fields": {
+        "name": "Vicky Pérez",
+        "full_name": "Vicky Pérez",
+        "number": 20,
+        "position": "centrocampista",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "",
+        "image": "image/upload/vicky_perez-Photoroom_xtnb1z",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 79,
+    "fields": {
+        "name": "Daniela Sanchís",
+        "full_name": "Daniela Sanchís",
+        "number": 11,
+        "position": "delantero",
+        "display_position": "Extremo",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/daniela__sanchis-Photoroom_sbzrvg",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 80,
+    "fields": {
+        "name": "Clara Fajardo",
+        "full_name": "Clara Fajardo",
+        "number": 24,
+        "position": "delantero",
+        "display_position": "Extremo",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/clara_fajardo-Photoroom_dqjd7e",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 81,
+    "fields": {
+        "name": "Lucía Nuñez",
+        "full_name": "Lucía Nuñez",
+        "number": 19,
+        "position": "delantero",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/lucia_nunez-Photoroom_awwnfh",
+        "is_staff": false,
+        "role": ""
+    }
+},
+{
+    "model": "base.player",
+    "pk": 82,
+    "fields": {
+        "name": "Iratxe Rodríguez",
+        "full_name": "Iratxe Rodríguez",
+        "number": 22,
+        "position": "delantero",
+        "display_position": "",
+        "team": "senior_b",
+        "birth_date": null,
+        "nationality": "Española",
+        "image": "image/upload/iratxe_rodriguez-Photoroom_vss7xx",
+        "is_staff": false,
+        "role": ""
     }
 }
 ]

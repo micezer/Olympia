@@ -9,7 +9,6 @@
       maximum-scale=1.0, minimum-scale=1.0,
       user-scalable=no, shrink-to-fit=no">
 
-
 <style>
   /* Prevent zooming on input focus */
   input,
@@ -736,6 +735,224 @@
       right: 0;
     }
   }
+
+   .tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--primary-gold);
+  }
+
+  .tab {
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-color: var(--secondary-blue);
+    color: var(--white);
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .tab.active {
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Estilos para la sección de abonos */
+  .subscriptions-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .view-subscriptions-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .view-subscriptions-btn:hover {
+    background-color: var(--secondary-gold);
+    transform: translateY(-2px);
+  }
+
+  .subscription-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: none;
+    border: 2px solid var(--primary-gold);
+  }
+
+  .subscription-image.active {
+    display: block;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .subscription-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .subscription-option {
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--primary-gold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .subscription-name {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+  }
+
+  .subscription-price {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .subscription-description {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    min-height: 80px;
+  }
+
+  .view-details-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-blue);
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+
+  .view-details-btn:hover {
+    background-color: var(--secondary-blue);
+  }
+
+  /* Modal de detalles de abono */
+  .subscription-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1003;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .subscription-modal.active {
+    display: flex;
+  }
+
+  .subscription-modal-content {
+    background-color: var(--primary-blue);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    border: 2px solid var(--primary-gold);
+    position: relative;
+  }
+
+  .subscription-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--primary-gold);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .subscription-modal-title {
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .subscription-modal-price {
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .subscription-modal-description {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .buy-subscription-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: var(--primary-gold);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+
+  .buy-subscription-btn:hover {
+    background-color: var(--secondary-gold);
+  }
+
+  /* Formulario de pago para abonos */
+  .subscription-payment-form {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--primary-gold);
+  }
+
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .tabs {
+      flex-direction: column;
+    }
+    
+    .tab {
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+    
+    .subscription-options {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <main class="shop-container">
@@ -744,9 +961,17 @@
     <p class="shop-subtitle">Productos oficiales del club</p>
   </header>
 
-  <div class="shop__marquee-track">
-    <div class="shop__marquee shop__marquee--right">⚽ ¿Tienes alguna duda? Escríbenos a tienda@olympia.com ⚽</div>
-  </div>
+    <!-- Sistema de pestañas -->
+    <div class="tabs">
+      <button class="tab active" data-tab="merchandising">Merchandising</button>
+      <button class="tab" data-tab="subscriptions">Abonos</button>
+    </div>
+
+      <!-- Contenido de la pestaña de merchandising -->
+      <div class="tab-content active" id="merchandising-tab">
+        <div class="shop__marquee-track">
+          <div class="shop__marquee shop__marquee--right">⚽ ¿Tienes alguna duda? Escríbenos a tienda@olympia.com ⚽</div>
+        </div>
 
   <section class="shop">
     <!-- Producto 1 -->
@@ -984,6 +1209,8 @@
       </div>
     </div>
   </section>
+      </div>
+
 
   <!-- Modal de selección de talla -->
   <div class="size-modal" id="size-modal">
@@ -1011,6 +1238,77 @@
       <button class="confirm-size" id="confirm-size">CONFIRMAR Y AÑADIR AL CARRITO</button>
     </div>
   </div>
+
+
+<!-- Contenido de la pestaña de abonos -->
+<div class="tab-content" id="subscriptions-tab">
+  <div class="subscriptions-container">
+    <button class="view-subscriptions-btn" id="view-subscriptions-btn">Ver abonos disponibles</button>
+
+    <img class="subscription-image" id="subscription-image" src="{% static 'images/abonos/abonos_disponibles.jpg' %}"
+      alt="Abonos disponibles">
+
+    <div class="subscription-options">
+      <!-- Abono 1 -->
+      <div class="subscription-option">
+        <h3 class="subscription-name">Abono Básico</h3>
+        <p class="subscription-price">50,00 EUR</p>
+        <p class="subscription-description">Acceso a todos los partidos de liga local durante la temporada.</p>
+        <button class="view-details-btn" data-subscription="1">Ver detalles</button>
+      </div>
+
+      <!-- Abono 2 -->
+      <div class="subscription-option">
+        <h3 class="subscription-name">Abono Premium</h3>
+        <p class="subscription-price">80,00 EUR</p>
+        <p class="subscription-description">Incluye partidos de liga y copa, además de descuento en merchandising.</p>
+        <button class="view-details-btn" data-subscription="2">Ver detalles</button>
+      </div>
+
+      <!-- Abono 3 -->
+      <div class="subscription-option">
+        <h3 class="subscription-name">Abono Familiar</h3>
+        <p class="subscription-price">120,00 EUR</p>
+        <p class="subscription-description">Para 4 personas. Acceso a todos los partidos de la temporada.</p>
+        <button class="view-details-btn" data-subscription="3">Ver detalles</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de detalles de abono -->
+<div class="subscription-modal" id="subscription-modal">
+  <div class="subscription-modal-content">
+    <button class="subscription-modal-close" id="subscription-modal-close">&times;</button>
+    <h3 class="subscription-modal-title" id="subscription-modal-title">Nombre del Abono</h3>
+    <p class="subscription-modal-price" id="subscription-modal-price">Precio</p>
+    <p class="subscription-modal-description" id="subscription-modal-description">Descripción detallada del abono.</p>
+
+    <div class="subscription-payment-form">
+      <h4 style="color: var(--primary-gold); margin-bottom: 1rem;">Completar compra</h4>
+
+      <div class="form-row">
+        <label class="form-label" for="subscription-full-name">Nombre completo</label>
+        <input class="form-input" type="text" id="subscription-full-name" required>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="subscription-email">Email</label>
+        <input class="form-input" type="email" id="subscription-email" required>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="subscription-category">Categoría (Ej: Senior Femenino)</label>
+        <input class="form-input" type="text" id="subscription-category">
+      </div>
+
+      <div id="subscription-payment-message" class="payment-message"></div>
+
+      <button class="buy-subscription-btn" id="buy-subscription-btn">Comprar abono</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal de personalización mejorado -->
 <div class="customization-modal" id="customization-modal">
@@ -1633,6 +1931,168 @@
       messageElement.className = 'payment-message';
     }, 5000);
   }
+
+  // Sistema de pestañas
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function () {
+        // Desactivar todas las pestañas
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        // Activar la pestaña clickeada
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+
+    // Mostrar imagen de abonos
+    document.getElementById('view-subscriptions-btn').addEventListener('click', function () {
+      document.getElementById('subscription-image').classList.toggle('active');
+    });
+
+    // Datos de los abonos
+    const subscriptions = {
+      1: {
+        name: 'Abono Básico',
+        price: '50,00 EUR',
+        description: 'Disfruta de todos los partidos de liga local durante la temporada completa. Acceso a la grada general. Incluye carnet de abonado con tu nombre.'
+      },
+      2: {
+        name: 'Abono Premium',
+        price: '80,00 EUR',
+        description: 'Acceso a todos los partidos de liga y copa. Asiento preferente en tribuna. Descuento del 10% en merchandising de la tienda oficial. Incluye carnet de abonado premium.'
+      },
+      3: {
+        name: 'Abono Familiar',
+        price: '120,00 EUR',
+        description: 'Para 4 personas. Acceso a todos los partidos de la temporada (liga y copa). Zona familiar con asientos reservados. Descuento del 15% en merchandising. Ideal para disfrutar en familia del fútbol.'
+      }
+    };
+
+    // Abrir modal de detalles de abono
+    document.querySelectorAll('.view-details-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        const subscriptionId = this.getAttribute('data-subscription');
+        const subscription = subscriptions[subscriptionId];
+
+        document.getElementById('subscription-modal-title').textContent = subscription.name;
+        document.getElementById('subscription-modal-price').textContent = subscription.price;
+        document.getElementById('subscription-modal-description').textContent = subscription.description;
+
+        document.getElementById('subscription-modal').classList.add('active');
+      });
+    });
+
+    // Cerrar modal de abono
+    document.getElementById('subscription-modal-close').addEventListener('click', function () {
+      document.getElementById('subscription-modal').classList.remove('active');
+    });
+
+    // Comprar abono
+    document.getElementById('buy-subscription-btn').addEventListener('click', async function () {
+      const fullName = document.getElementById('subscription-full-name').value.trim();
+      const email = document.getElementById('subscription-email').value.trim();
+      const category = document.getElementById('subscription-category').value.trim();
+      const subscriptionName = document.getElementById('subscription-modal-title').textContent;
+      const subscriptionPrice = document.getElementById('subscription-modal-price').textContent;
+
+      // Validación
+      if (!fullName || !email) {
+        showSubscriptionMessage('Por favor completa todos los campos requeridos', 'error');
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showSubscriptionMessage('Por favor ingresa un email válido', 'error');
+        return;
+      }
+
+      // Deshabilitar botón durante el procesamiento
+      const buyButton = this;
+      buyButton.disabled = true;
+      buyButton.textContent = 'Procesando...';
+
+      try {
+        // Obtener token CSRF
+        const csrftoken = getCookie('csrftoken');
+
+        // Preparar datos del abono
+        const subscriptionData = {
+          full_name: fullName,
+          email: email,
+          category: category || 'No especificada',
+          subscription_name: subscriptionName,
+          subscription_price: subscriptionPrice
+        };
+
+        // Enviar a servidor
+        const response = await fetch('/create-subscription/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(subscriptionData)
+        });
+
+        if (!response.ok) {
+          throw new Error('Error en el servidor');
+        }
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          // Enviar email de confirmación (simulado aquí)
+          await fetch('https://formsubmit.co/ajax/tienda@olympia.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: fullName,
+              email: email,
+              category: category,
+              subscription: subscriptionName,
+              price: subscriptionPrice,
+              message: 'Nueva compra de abono'
+            })
+          });
+
+          showSubscriptionMessage(`¡Abono comprado con éxito! Se ha enviado un email de confirmación a ${email}`, 'success');
+
+          // Limpiar formulario
+          document.getElementById('subscription-full-name').value = '';
+          document.getElementById('subscription-email').value = '';
+          document.getElementById('subscription-category').value = '';
+
+          // Cerrar modal después de 3 segundos
+          setTimeout(() => {
+            document.getElementById('subscription-modal').classList.remove('active');
+          }, 3000);
+        } else {
+          throw new Error(data.message || 'Error al procesar el abono');
+        }
+      } catch (error) {
+        console.error('Error en la compra del abono:', error);
+        showSubscriptionMessage(`Error al procesar el abono: ${error.message}`, 'error');
+      } finally {
+        buyButton.disabled = false;
+        buyButton.textContent = 'Comprar abono';
+      }
+    });
+
+    // Función para mostrar mensajes en el modal de abonos
+    function showSubscriptionMessage(message, type) {
+      const messageElement = document.getElementById('subscription-payment-message');
+      messageElement.textContent = message;
+      messageElement.className = `payment-message ${type}`;
+      setTimeout(() => {
+        messageElement.textContent = '';
+        messageElement.className = 'payment-message';
+      }, 5000);
+    }
 </script>
 
 <!-- Font Awesome para iconos -->

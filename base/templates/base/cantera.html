@@ -976,30 +976,36 @@
         visibility: visible;
     }
 
-    .pdf-modal-content {
-        background: var(--secondary-blue);
-        border-radius: 10px;
-        width: 95%;
-        height: 90%;
-        max-width: 1000px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transform: scale(0.9);
-        transition: transform 0.3s ease;
-    }
+    /* Update the PDF modal styles */
+.pdf-modal-content {
+    background: var(--secondary-blue);
+    border-radius: 10px;
+    width: 95%;
+    height: 85%; /* Reduced height */
+    max-width: 900px;
+    max-height: 85vh; /* Added max-height */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
 
     .pdf-modal.active .pdf-modal-content {
         transform: scale(1);
     }
 
     .pdf-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+    background: var(--secondary-blue);
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Ensure header stays on top */
+}
 
     .pdf-modal-title {
         font-size: 18px;
@@ -1027,15 +1033,18 @@
     }
 
     .pdf-controls {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
-        background: var(--secondary-blue);
-        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
-        flex-wrap: wrap;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--secondary-blue);
+    border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 61px; /* Height of header */
+    z-index: 9; /* Below header but above content */
+}
 
     .pdf-control-btn {
         background: var(--primary-gold);
@@ -1063,22 +1072,24 @@
         text-align: center;
     }
 
-/* Add this to your CSS */
 .pdf-viewer-container {
     flex: 1;
     position: relative;
     overflow: auto;
     background: #f0f0f0;
-    touch-action: manipulation; /* This allows zooming in the PDF container */
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 
-    #pdfCanvas {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-        height: auto;
-    }
+    /* Make PDF canvas responsive */
+#pdfCanvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.1s ease; /* Smooth zooming */
+}
 
     .pdf-loading {
         position: absolute;
@@ -1375,7 +1386,7 @@
             </div>
         </template>
 
-        <!-- PDF Viewer Modal -->
+        <!-- Make sure your PDF modal has this structure -->
         <div class="pdf-modal" id="pdfModal">
             <div class="pdf-modal-content">
                 <div class="pdf-modal-header">
@@ -1397,6 +1408,9 @@
                     </button>
                     <button class="pdf-control-btn" id="pdfZoomIn">
                         <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="pdf-control-btn" id="pdfResetZoom">
+                        <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
                 <div class="pdf-viewer-container">
@@ -2146,10 +2160,15 @@
 
     // Add these variables at the top with your other PDF variables
         let lastDistance = null;
+        let initialScale = 1.0;
+        let currentScale = 1.0;
+        let maxScale = 3.0;
+        let minScale = 0.5;
 
-        // Add this function to handle pinch-to-zoom
+        // Replace your existing setupTouchZoom function with this improved version
         function setupTouchZoom() {
             const viewer = document.querySelector('.pdf-viewer-container');
+            const canvas = document.getElementById('pdfCanvas');
 
             viewer.addEventListener('touchstart', function (e) {
                 if (e.touches.length === 2) {
@@ -2158,6 +2177,9 @@
                         e.touches[0].clientX - e.touches[1].clientX,
                         e.touches[0].clientY - e.touches[1].clientY
                     );
+
+                    // Store initial scale when starting pinch
+                    initialScale = currentScale;
                 }
             });
 
@@ -2171,12 +2193,16 @@
                     );
 
                     if (lastDistance && lastDistance > 0) {
-                        const zoomFactor = distance / lastDistance;
-                        const newScale = scale * zoomFactor;
+                        // Calculate scale factor based on pinch distance
+                        const scaleFactor = distance / lastDistance;
+                        currentScale = initialScale * scaleFactor;
 
                         // Limit zoom range
-                        scale = Math.max(0.5, Math.min(3, newScale));
-                        queueRenderPage(pageNum);
+                        currentScale = Math.max(minScale, Math.min(maxScale, currentScale));
+
+                        // Apply the scale transform to the canvas
+                        canvas.style.transform = `scale(${currentScale})`;
+                        canvas.style.transformOrigin = 'center center';
                     }
 
                     lastDistance = distance;
@@ -2186,38 +2212,122 @@
             viewer.addEventListener('touchend', function () {
                 lastDistance = null;
             });
-        }
 
-        // Call this function when opening the PDF modal
-        function openPdfModal(pdfUrl, title) {
-            // ... your existing code ...
-
-            // Add this line at the end of the function
-            setTimeout(setupTouchZoom, 100);
-        }
-
-        // Add this to your setupTouchZoom function
+            // Double-tap zoom
             let lastTap = 0;
             viewer.addEventListener('touchend', function (e) {
-                lastDistance = null;
-
-                // Handle double-tap zoom
                 const currentTime = new Date().getTime();
                 const tapLength = currentTime - lastTap;
 
-                if (tapLength < 300 && tapLength > 0) {
+                if (e.touches.length === 0 && tapLength < 300 && tapLength > 0) {
                     e.preventDefault();
 
-                    if (scale >= 2) {
-                        scale = 1;
+                    if (currentScale >= 1.5) {
+                        // Zoom out
+                        currentScale = 1.0;
                     } else {
-                        scale += 0.5;
+                        // Zoom in
+                        currentScale += 0.5;
                     }
 
-                    queueRenderPage(pageNum);
+                    // Apply the scale
+                    canvas.style.transform = `scale(${currentScale})`;
+                    canvas.style.transformOrigin = 'center center';
                 }
 
                 lastTap = currentTime;
+                lastDistance = null;
+            });
+        }
+
+        // Update the openPdfModal function to reset scale
+        function openPdfModal(pdfUrl, title) {
+            pdfModalTitle.textContent = title;
+            pdfLoading.style.display = 'block';
+            canvas.style.display = 'none';
+
+            // Reset scale and transform
+            currentScale = 1.0;
+            canvas.style.transform = 'scale(1)';
+
+            // Reset PDF state
+            pageNum = 1;
+            scale = 1.5;
+
+            // Load PDF using PDF.js
+            pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+                pdfDoc = pdf;
+                pdfPageInfo.textContent = `Página ${pageNum} de ${pdf.numPages}`;
+                renderPage(pageNum);
+                canvas.style.display = 'block';
+                pdfModal.classList.add('active');
+
+                // Set up touch zoom after a short delay
+                setTimeout(setupTouchZoom, 100);
+            }).catch(function (error) {
+                console.error('Error loading PDF:', error);
+                pdfLoading.textContent = 'Error al cargar el PDF';
+                // Fallback: open in new tab after 2 seconds
+                setTimeout(() => {
+                    closePdfModal();
+                    window.open(pdfUrl, '_blank');
+                }, 2000);
+            });
+        }
+
+        // Update the renderPage function to account for scaling
+        function renderPage(num) {
+            pageRendering = true;
+            pdfLoading.style.display = 'block';
+
+            pdfDoc.getPage(num).then(function (page) {
+                const viewport = page.getViewport({ scale: scale * currentScale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(function () {
+                    pageRendering = false;
+                    pdfLoading.style.display = 'none';
+
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+
+                    pdfPageInfo.textContent = `Página ${num} de ${pdfDoc.numPages}`;
+                });
+            });
+        }
+
+        // Add this to your JavaScript
+            const pdfResetZoom = document.getElementById('pdfResetZoom');
+
+            pdfResetZoom.addEventListener('click', function () {
+                currentScale = 1.0;
+                canvas.style.transform = 'scale(1)';
+                renderPage(pageNum);
+            });
+
+            // Update the existing zoom buttons to work with the new system
+            pdfZoomIn.addEventListener('click', function () {
+                if (currentScale >= maxScale) return;
+                currentScale += 0.25;
+                canvas.style.transform = `scale(${currentScale})`;
+                renderPage(pageNum);
+            });
+
+            pdfZoomOut.addEventListener('click', function () {
+                if (currentScale <= minScale) return;
+                currentScale -= 0.25;
+                canvas.style.transform = `scale(${currentScale})`;
+                renderPage(pageNum);
             });
 </script>
 {% endblock %}
