@@ -5226,6 +5226,32 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 403,
+    "fields": {
+        "action_time": "2025-09-07T16:07:43.935Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Córdoba CF vs CFF Olympia - 2025-09-07",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 404,
+    "fields": {
+        "action_time": "2025-09-07T16:16:45.291Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Date\", \"Location name\", \"Location address\", \"Google Maps URL\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -5662,7 +5688,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
-        "last_login": "2025-09-01T11:42:05.410Z",
+        "last_login": "2025-09-07T16:07:30.536Z",
         "is_superuser": true,
         "username": "mexes",
         "first_name": "",
@@ -5821,6 +5847,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "g92w1hyyo1spo0ochz4jojy9qxt4br56",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1uvHvO:C5_IwBn5RufUuUvTa7WG3xhjXTTiN3BJlgtI1L1aRPY",
+        "expire_date": "2025-09-21T16:07:30.545Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "n6c7cs2k85zru9y77jnpzj2d5homb3si",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1ut2vF:pX11PSOL5MnZV4ecZFkZBrvhFCJrGVL0NXlxf5UeI90",
@@ -5884,6 +5918,36 @@
     }
 },
 {
+    "model": "base.order",
+    "pk": 1,
+    "fields": {
+        "order_number": "QJFUWSEO",
+        "full_name": "Michael",
+        "email": "obiezeh999@gmail.com",
+        "phone": "fggh",
+        "category": "htyjt",
+        "total": "28.00",
+        "items_json": "[{\"name\": \"Sudadera Paseo\", \"price\": 28, \"size\": \"M\", \"color\": \"Azul\", \"customization\": null, \"quantity\": 1}]",
+        "created_at": "2025-09-07T14:12:05.904Z",
+        "paid": true
+    }
+},
+{
+    "model": "base.order",
+    "pk": 2,
+    "fields": {
+        "order_number": "072ZID5Y",
+        "full_name": "María García López",
+        "email": "obiezeh999@gmail.com",
+        "phone": "fggh",
+        "category": "hhhil",
+        "total": "28.00",
+        "items_json": "[{\"name\": \"Sudadera Paseo\", \"price\": 28, \"size\": \"M\", \"color\": \"Azul\", \"customization\": null, \"quantity\": 1}]",
+        "created_at": "2025-09-07T14:34:42.881Z",
+        "paid": true
+    }
+},
+{
     "model": "base.match",
     "pk": 35,
     "fields": {
@@ -5893,8 +5957,8 @@
         "away_team": "CFF Olympia",
         "home_team_logo": "image/upload/cordoba-c-f-escudo-actual-desde-marzo-seeklogo_ytjurr",
         "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 2,
+        "away_score": 2,
         "is_olympia_home": false,
         "location_name": "Ciudad deportiva Rafael Gómez",
         "location_address": "14010 Córdoba",
@@ -5909,17 +5973,17 @@
     "pk": 36,
     "fields": {
         "team_category": "senior_a",
-        "date": "2025-09-10T14:14:07Z",
+        "date": "2025-09-10T20:00:00Z",
         "home_team": "CFF Olympia",
         "away_team": "Getafe",
         "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
-        "away_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "away_team_logo": "image/upload/escudo_t7p67t",
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
-        "location_name": "",
-        "location_address": "",
-        "maps_url": "",
+        "location_name": "Polideportivo Municipal Navalcarbón",
+        "location_address": "Av. Ntra. Señora del Retamar, 16, 28232 Las Rozas de Madrid, Madrid",
+        "maps_url": "https://maps.app.goo.gl/MMre69PaKsQqeMwG6",
         "competition": "Copa de la Reina",
         "match_notes": "",
         "matchday": null
@@ -6039,7 +6103,7 @@
         "home_team": "CFF Olympia",
         "away_team": "Getafe",
         "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
-        "away_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "away_team_logo": "image/upload/escudo_t7p67t",
         "home_score": null,
         "away_score": null,
         "is_olympia_home": true,
@@ -6290,7 +6354,7 @@
         "date": "2026-02-22T00:00:00Z",
         "home_team": "Getafe",
         "away_team": "CFF Olympia",
-        "home_team_logo": "image/upload/getafe-cf-sad-seeklogo_rlois3",
+        "home_team_logo": "image/upload/escudo_t7p67t",
         "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
         "home_score": null,
         "away_score": null,
