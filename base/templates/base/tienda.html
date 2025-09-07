@@ -1,0 +1,2387 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+{% csrf_token %} <!-- This ensures the CSRF token is available -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, 
+      maximum-scale=1.0, minimum-scale=1.0,
+      user-scalable=no, shrink-to-fit=no">
+
+<style>
+    /* Prevent zooming on input focus */
+    input,
+    textarea,
+    select,
+    button {
+        font-size: 16px !important;
+    }
+
+    /* iOS specific fix */
+    @supports (-webkit-touch-callout: none) {
+
+        input,
+        textarea,
+        select,
+        button {
+            font-size: 16px !important;
+        }
+    }
+
+    :root {
+        --primary-blue: #2a374c;
+        --secondary-blue: #1f2531;
+        --primary-gold: #b8ac84;
+        --secondary-gold: #7f765a;
+        --white: #ffffff;
+        --light-gray: #f5f5f5;
+        --dark-gray: #333333;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    main {
+        margin-top: -70px;
+
+    }
+
+    /* Estilos generales */
+    body {
+        background-color: var(--primary-blue);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--white);
+    }
+
+    .shop-container {
+        max-width: 1200px;
+        padding: 20px;
+
+    }
+
+    .sticky-header {
+        position: sticky;
+        top: 70px;
+        /* Position below navbar */
+        z-index: 100;
+        background-color: var(--primary-blue);
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .shop-header {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: var(--primary-gold);
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .shop-title {
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        color: var(--primary-gold);
+    }
+
+    .shop-subtitle {
+        font-size: 1.2rem;
+        color: var(--white);
+    }
+
+    /* Marquee */
+    .shop__marquee-track {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 2rem 0;
+        background-color: var(--secondary-blue);
+        padding: 1rem 0;
+    }
+
+    .shop__marquee {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 20s linear infinite;
+        color: var(--primary-gold);
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* Product grid */
+    .shop {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+        margin-top: 70px;
+    }
+
+    .shop__product {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--primary-gold);
+    }
+
+    .shop__product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .product__inner {
+        display: block;
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .product__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+        background-color: var(--white);
+        padding: 20px;
+    }
+
+    .product__image--hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background-color: var(--white);
+        padding: 20px;
+    }
+
+    .product__inner:hover .product__image {
+        opacity: 0;
+    }
+
+    .product__inner:hover .product__image--hover {
+        opacity: 1;
+    }
+
+    .product__outer {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .product__name {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+    }
+
+    .product__price {
+        color: var(--white);
+        font-weight: 600;
+    }
+
+    /* Carrito */
+    .cart-icon {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: var(--primary-blue);
+        color: var(--primary-gold);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        transition: transform 0.3s ease;
+        border: 2px solid var(--primary-gold);
+    }
+
+    .cart-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100%;
+        background-color: var(--primary-blue);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding: 2rem;
+        overflow-y: auto;
+        color: var(--white);
+    }
+
+    .cart-sidebar.active {
+        right: 0;
+    }
+
+    .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--primary-gold);
+    }
+
+    .cart-title {
+        font-size: 1.5rem;
+        color: var(--primary-gold);
+    }
+
+    .close-cart {
+        background: none;
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--primary-gold);
+    }
+
+    .cart-items {
+        margin-bottom: 2rem;
+    }
+
+    .cart-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--primary-gold);
+    }
+
+    .cart-item-image {
+        width: 80px;
+        height: 80px;
+        background-color: var(--white);
+        border-radius: 5px;
+        margin-right: 1rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .cart-item-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .cart-item-details {
+        flex: 1;
+    }
+
+    .cart-item-name {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+    }
+
+    .cart-item-customization {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+        color: var(--white);
+    }
+
+    .cart-item-price {
+        color: var(--white);
+        font-weight: bold;
+    }
+
+    .cart-item-remove {
+        background: none;
+        border: none;
+        color: #ff6b6b;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .cart-summary {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--primary-gold);
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: var(--primary-gold);
+    }
+
+    .cart-checkout {
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .cart-checkout:hover {
+        background-color: var(--secondary-gold);
+        color: var(--white);
+    }
+
+    .btn-primary.add-to-cart {
+        background-color: var(--primary-blue);
+        color: var(--primary-gold);
+        border: 1px solid var(--primary-gold);
+        padding: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        width: fit-content;
+    }
+
+    .btn-primary.add-to-cart:hover {
+        background-color: var(--secondary-blue);
+        color: var(--secondary-gold);
+        border-color: var(--secondary-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary.add-to-cart:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    /* Modal de selección de talla */
+    .size-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1001;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .size-modal.active {
+        display: flex;
+    }
+
+    .size-modal-content {
+        background-color: var(--primary-blue);
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        border: 2px solid var(--primary-gold);
+        position: relative;
+    }
+
+    .size-modal-title {
+        color: var(--primary-gold);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .size-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--primary-gold);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .size-options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+    }
+
+    .size-option-modal {
+        padding: 10px 15px;
+        border: 1px solid var(--primary-gold);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+        min-width: 50px;
+        text-align: center;
+    }
+
+    .size-option-modal.selected {
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    /* Color options */
+    .color-options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+    }
+
+    .color-option {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .color-option.selected {
+        border-color: var(--primary-gold);
+        transform: scale(1.1);
+    }
+
+    /* Specific color styles */
+    .color-option[data-color="Azul"] {
+        background-color: #2a374c;
+        /* Primary blue from your palette */
+    }
+
+    .color-option[data-color="Mint"] {
+        background-color: #98ff98;
+        /* Mint green */
+    }
+
+    .confirm-size {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+    }
+
+    .confirm-size:hover {
+        background-color: var(--secondary-gold);
+    }
+
+    /* Modal de personalización mejorado */
+    .customization-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1002;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .customization-modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        background-color: var(--primary-blue);
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        border: 2px solid var(--primary-gold);
+        position: relative;
+    }
+
+    .modal-title {
+        color: var(--primary-gold);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--primary-gold);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .customization-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-label {
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+        font-weight: 600;
+    }
+
+    .form-input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--primary-gold);
+        background-color: var(--secondary-blue);
+        color: var(--white);
+        font-size: 1rem;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--secondary-gold);
+    }
+
+    .customization-preview {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: var(--secondary-blue);
+        border-radius: 5px;
+        border: 1px solid var(--primary-gold);
+        text-align: center;
+    }
+
+    .preview-title {
+        color: var(--primary-gold);
+        margin-bottom: 0.5rem;
+    }
+
+    .preview-text {
+        color: var(--white);
+    }
+
+    /* Estilo para el botón de confirmar personalización */
+    #confirm-customization {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+    }
+
+    #confirm-customization:hover {
+        background-color: var(--secondary-gold);
+    }
+
+    .payment-form {
+        background-color: var(--secondary-blue);
+        padding: 2rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+        border: 1px solid var(--primary-gold);
+    }
+
+    .form-row {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+        font-weight: 600;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--primary-gold);
+        background-color: var(--primary-blue);
+        color: var(--white);
+        font-size: 1rem;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--secondary-gold);
+    }
+
+    .payment-message {
+        display: none;
+        padding: 1rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .payment-message.success {
+        background-color: #2e7d32;
+        color: white;
+        display: block;
+    }
+
+    .payment-message.error {
+        background-color: #c62828;
+        color: white;
+        display: block;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+
+    .checkout-btn:hover {
+        background-color: var(--secondary-gold);
+    }
+
+    .checkout-btn:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+
+    .size-selection-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--primary-gold);
+    }
+
+    .size-selection-section .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .shop {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .cart-sidebar {
+            width: 100%;
+            right: -100%;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+    }
+
+    .tabs {
+        display: flex;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid var(--primary-gold);
+        position: sticky;
+        top: 140px;
+        /* Ajusta según la altura de tu header */
+        z-index: 99;
+        background-color: var(--primary-blue);
+    }
+
+    .tab {
+        flex: 1;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        background-color: var(--secondary-blue);
+        color: var(--white);
+        border: none;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .tab.active {
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Estilos para la sección de abonos */
+    .subscriptions-container {
+        max-width: 800px;
+        margin: 0 auto;
+        margin-top: 70px;
+        padding: 2rem;
+    }
+
+    .view-subscriptions-btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .view-subscriptions-btn:hover {
+        background-color: var(--secondary-gold);
+        transform: translateY(-2px);
+    }
+
+    .subscription-image {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        display: none;
+        border: 2px solid var(--primary-gold);
+    }
+
+    .subscription-image.active {
+        display: block;
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .subscription-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .subscription-option {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: center;
+        border: 1px solid var(--primary-gold);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .subscription-name {
+        font-size: 1.5rem;
+        color: var(--primary-gold);
+        margin-bottom: 1rem;
+    }
+
+    .subscription-price {
+        font-size: 1.2rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+
+    .subscription-description {
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        min-height: 80px;
+    }
+
+    .view-details-btn {
+        padding: 0.8rem 1.5rem;
+        background-color: var(--primary-blue);
+        color: var(--primary-gold);
+        border: 1px solid var(--primary-gold);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+    }
+
+    .view-details-btn:hover {
+        background-color: var(--secondary-blue);
+    }
+
+    /* Modal de detalles de abono */
+    .subscription-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1003;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subscription-modal.active {
+        display: flex;
+    }
+
+    .subscription-modal-content {
+        background-color: var(--primary-blue);
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        border: 2px solid var(--primary-gold);
+        position: relative;
+    }
+
+    .subscription-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--primary-gold);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .subscription-modal-title {
+        color: var(--primary-gold);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .subscription-modal-price {
+        color: var(--white);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .subscription-modal-description {
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .buy-subscription-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: var(--primary-gold);
+        color: var(--primary-blue);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+    }
+
+    .buy-subscription-btn:hover {
+        background-color: var(--secondary-gold);
+    }
+
+    /* Formulario de pago para abonos */
+    .subscription-payment-form {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--primary-gold);
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+        .tabs {
+            flex-direction: column;
+        }
+
+        .tab {
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .subscription-options {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Estilos para la sección de abonos */
+    .subscription-images-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        /* Reducir el espacio entre imágenes */
+        margin-top: 20px;
+        justify-content: center;
+        /* Centrar las tarjetas */
+    }
+
+    .subscription-image-card {
+        position: relative;
+        width: 200px;
+        /* Ancho fijo */
+        height: 280px;
+        /* Altura fija */
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .subscription-image-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .subscription-image-card img {
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        /* Altura fija más pequeña */
+        object-fit: cover;
+        display: block;
+    }
+
+    .subscription-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .subscription-overlay h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.4rem;
+        color: white;
+
+    }
+
+    .subscription-overlay p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    /* Estilos para modales */
+    .modal {
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subscription-detail-content,
+    .subscription-form-content {
+        background: var(--primary-blue);
+        border-radius: 12px;
+        padding: 0;
+        overflow: hidden;
+        border: 3px solid;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .subscription-detail-header,
+    .subscription-form-header {
+        padding: 20px;
+        text-align: center;
+        color: white;
+    }
+
+    .subscription-detail-header h2,
+    .subscription-form-header h2 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .subscription-details {
+        padding: 25px;
+    }
+
+    .subscription-info h3 {
+        margin-top: 0;
+        font-size: 1.6rem;
+
+    }
+
+    .subscription-price {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+
+    .subscription-description {
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #ddd;
+    }
+
+    .subscription-features h4 {
+        margin-bottom: 10px;
+    }
+
+    .subscription-features ul {
+        padding-left: 20px;
+        color: #ddd;
+    }
+
+    .subscription-features li {
+        margin-bottom: 8px;
+    }
+
+    .selected-subscription-info {
+        padding: 20px;
+        margin: 0 25px 20px 25px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .selected-subscription-info h3 {
+        margin-top: 0;
+    }
+
+    #subscription-purchase-form {
+        padding: 0 25px 25px 25px;
+        background-color: var(--primary-blue);
+    }
+
+    .buy-subscription-btn,
+    .checkout-btn {
+        display: block;
+        width: calc(100% - 50px);
+        margin: 0 25px 25px 25px;
+        padding: 15px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+
+    .buy-subscription-btn:hover,
+    .checkout-btn:hover {
+        opacity: 0.9;
+    }
+
+    .form-input {
+        border: 2px solid #ddd;
+        transition: border-color 0.3s;
+        background-color: var(--secondary-blue);
+        color: var(--white);
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-input:focus {
+        outline: none;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .form-row {
+        margin-bottom: 15px;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .close:hover {
+        color: #bbb;
+    }
+
+    #detail-name,
+    #features-title {
+        color: white;
+        /* Cambia este valor al color que desees */
+    }
+</style>
+
+<main class="shop-container">
+    <div class="sticky-header">
+        <div class="shop-header fade-in">
+            <h1 class="shop-title">Tienda Olympia</h1>
+            <p class="shop-subtitle">Productos oficiales del club</p>
+        </div>
+
+        <!-- Sistema de pestañas -->
+        <div class="tabs">
+            <button class="tab active" data-tab="merchandising">Merchandising</button>
+            <button class="tab" data-tab="subscriptions">Abonos Temporada 25/26</button>
+        </div>
+        <div class="shop__marquee-track">
+            <div class="shop__marquee shop__marquee--right">⚽ ¿Tienes alguna duda? Escríbenos a tienda@olympia.com ⚽
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido de la pestaña de merchandising -->
+    <div class="tab-content active" id="merchandising-tab">
+
+
+        <section class="shop">
+            <!-- Producto 1 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/sudadera_paseo_back.png' %}"
+                        alt="Sudadera Paseo">
+                    <img class="product__image--hover" src="{% static 'images/tienda/sudadera_paseo_back.png' %}"
+                        alt="Sudadera Paseo">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">(NUEVO) SUDADERA PASEO</span>
+                    <span class="product__price">28,00 EUR - Diseño delante y detrás</span>
+
+                    <button class="btn btn-primary add-to-cart" data-id="1" data-name="Sudadera Paseo"
+                        data-price="28.00" data-image="{% static 'images/tienda/sudadera_paseo_back.png' %}"
+                        data-type="clothing" data-colors="true">
+                        Seleccionar talla y color
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/sudadera_paseo_back.png' %}"
+                        alt="Sudadera Olympia 2015">
+                    <img class="product__image--hover" src="{% static 'images/tienda/sudadera_paseo_back.png' %}"
+                        alt="Sudadera Olympia 2015">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">(NUEVO) SUDADERA OLYMPIA 2015</span>
+                    <span class="product__price">15,00 EUR - Sólo diseño delante</span>
+
+                    <button class="btn btn-primary add-to-cart" data-id="2" data-name="Sudadera Olympia 2015"
+                        data-price="15.00" data-image="{% static 'images/tienda/sudadera_2015_front.png' %}"
+                        data-type="clothing" data-colors="true">
+                        Seleccionar talla y color
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/camiseta.png' %}"
+                        alt="Camiseta Olympia 2015">
+                    <img class="product__image--hover" src="{% static 'images/tienda/camiseta.png' %}"
+                        alt="Camiseta Olympia 2015">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">(NUEVO) CAMISETA OLYMPIA 2015</span>
+                    <span class="product__price">8,00 EUR - Sólo diseño delante</span>
+
+                    <button class="btn btn-primary add-to-cart" data-id="3" data-name="Camiseta Olympia 2015"
+                        data-price="8.00" data-image="{% static 'images/tienda/camiseta.png' %}" data-type="clothing"
+                        data-colors="true">
+                        Seleccionar talla y color
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Producto 14 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/hoodie_front.png' %}"
+                        alt="Sudadera Blanca Olympia">
+                    <img class="product__image--hover" src="{% static 'images/tienda/hoodie_front.png' %}"
+                        alt="Sudadera Blanca Olympia">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">SUDADERA BLANCA OLYMPIA</span>
+                    <span class="product__price">21,50 EUR</span>
+
+                    <button class="btn btn-primary add-to-cart" data-id="14" data-name="Sudadera Blanca Olympia"
+                        data-price="21.50" data-image="{% static 'images/tienda/hoodie_front.png' %}"
+                        data-type="clothing" data-colors="true">
+                        Seleccionar talla y color
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 16 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/camiseta_basica_front.png' %}"
+                        alt="Camiseta Básica Olympia">
+                    <img class="product__image--hover" src="{% static 'images/tienda/camiseta_basica_front.png' %}"
+                        alt="Camiseta Básica Olympia">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">CAMISETA BÁSICA OLYMPIA</span>
+                    <span class="product__price">12,00 EUR</span>
+
+                    <button class="btn btn-primary add-to-cart" data-id="16" data-name="Camiseta Básica Olympia"
+                        data-price="12.00" data-image="{% static 'images/tienda/camiseta_basica_front.png' %}"
+                        data-type="clothing" data-colors="true">
+                        Seleccionar talla y color
+                    </button>
+                </div>
+            </div>
+
+            <!-- Productos no de ropa (sin selector de tallas) -->
+            <!-- Producto 4 - Chanclas -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/chanclas.png' %}" alt="Chanclas Olympia">
+                    <img class="product__image--hover" src="{% static 'images/tienda/chanclas.png' %}"
+                        alt="Chanclas Olympia">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">(NUEVO) CHANCLAS OLYMPIA</span>
+                    <span class="product__price">15,00 EUR</span>
+                    <button class="btn btn-primary add-to-cart" data-id="4" data-name="Chanclas Olympia"
+                        data-price="15.00" data-image="{% static 'images/tienda/chanclas.png' %}" data-type="footwear">
+                        Seleccionar talla
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 5 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/riñonera.png' %}" alt="Riñonera Olympia">
+                    <img class="product__image--hover" src="{% static 'images/tienda/riñonera.png' %}"
+                        alt="Riñonera Olympia">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">(NUEVO) RIÑONERA OLYMPIA</span>
+                    <span class="product__price">12,00 EUR</span>
+                    <button class="btn btn-primary add-to-cart" data-id="5" data-name="Riñonera Olympia"
+                        data-price="12.00" data-image="{% static 'images/tienda/riñonera.png' %}" data-type="other">
+                        Añadir al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 17 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/llavero_back.png' %}"
+                        alt="Llavero Personalizado">
+                    <img class="product__image--hover" src="{% static 'images/tienda/llavero_back.png' %}"
+                        alt="Llavero Personalizado">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">LLAVERO PERSONALIZADO</span>
+                    <span class="product__price">5,00 EUR</span>
+                    <button class="btn btn-primary add-to-cart" data-id="17" data-name="Llavero Personalizado"
+                        data-price="5.00" data-image="{% static 'images/tienda/llavero_back.png' %}" data-type="other">
+                        Añadir al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 18 -->
+            <div class="shop__product">
+                <a class="product__inner">
+                    <img class="product__image" src="{% static 'images/tienda/cintas_front.png' %}"
+                        alt="Cintas del Pelo Olympia">
+                    <img class="product__image--hover" src="{% static 'images/tienda/cintas_front.png' %}"
+                        alt="Cintas del Pelo Olympia">
+                </a>
+                <div class="product__outer">
+                    <span class="product__name">CINTAS DEL PELO OLYMPIA</span>
+                    <span class="product__price">9,00 EUR</span>
+                    <button class="btn btn-primary add-to-cart" data-id="18" data-name="Cintas del Pelo Olympia"
+                        data-price="9.00" data-image="{% static 'images/tienda/cintas_front.png' %}" data-type="other">
+                        Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Modal de selección de talla -->
+    <div class="size-modal" id="size-modal">
+        <div class="size-modal-content">
+            <button class="size-modal-close" id="size-modal-close">&times;</button>
+            <h3 class="size-modal-title" id="size-modal-title">SELECCIONA TU TALLA</h3>
+
+            <!-- Color selection section -->
+            <div class="color-section" id="color-section" style="display: none;">
+                <h4>Color:</h4>
+                <div class="color-options">
+                    <div class="color-option selected" data-color="Azul" style="background-color:blue;"></div>
+                    <div class="color-option" data-color="Mint" style="background-color: #98ff98;"></div>
+                </div>
+            </div>
+
+            <!-- Sección de tallas -->
+            <div class="size-section">
+                <h4>Talla:</h4>
+                <div class="size-options" id="size-options">
+                    <!-- Las opciones de talla se generarán dinámicamente -->
+                </div>
+            </div>
+
+            <button class="confirm-size" id="confirm-size">CONFIRMAR Y AÑADIR AL CARRITO</button>
+        </div>
+    </div>
+
+
+    <!-- Contenido de la pestaña de abonos -->
+    <div class="tab-content" id="subscriptions-tab">
+        <div class="subscriptions-container">
+            <div class="subscription-images-container">
+                <div class="subscription-image-card" data-subscription="1" data-name="ABONO SENIOR A" data-price="50"
+                    data-color="#1f2531">
+                    <img src="{% static 'images/abono_senior_a.png' %}" alt="ABONO SENIOR A">
+                    <div class="subscription-overlay">
+                        <h3>ABONO SENIOR A</h3>
+                        <p>TEMP. 25/26 - 50€</p>
+                    </div>
+                </div>
+
+                <div class="subscription-image-card" data-subscription="2" data-name="ABONO SENIOR B" data-price="50"
+                    data-color="#b8ac84">
+                    <img src="{% static 'images/abono_senior_b.png' %}" alt="ABONO SENIOR B">
+                    <div class="subscription-overlay">
+                        <h3>ABONO SENIOR B</h3>
+                        <p>TEMP. 25/26 - 50€</p>
+                    </div>
+                </div>
+
+                <div class="subscription-image-card" data-subscription="3" data-name="ABONO COMPLETO" data-price="80"
+                    data-color="#562e39">
+                    <img src="{% static 'images/abono_completo.png' %}" alt="ABONO COMPLETO">
+                    <div class="subscription-overlay">
+                        <h3>ABONO COMPLETO</h3>
+                        <p>TEMP. 25/26 - 80€</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalles de abono (oculto inicialmente) -->
+    <div id="subscriptionDetailModal" class="modal" style="display: none;">
+        <div class="modal-content subscription-detail-content" style="max-width: 600px;">
+            <span class="close">&times;</span>
+            <div class="subscription-detail-header" id="detail-header">
+                <h2 id="detail-modal-title">Detalles del Abono</h2>
+            </div>
+
+            <div class="subscription-details" id="subscription-details">
+                <div class="subscription-info">
+                    <h3 id="detail-name"></h3>
+                    <p class="subscription-price" id="detail-price"></p>
+                    <div class="subscription-description" id="detail-description"></div>
+
+                    <div class="subscription-features">
+                        <h4 id="features-title">Incluye:</h4>
+                        <ul id="detail-features"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <button id="purchase-subscription-btn" class="buy-subscription-btn">Comprar Ahora</button>
+        </div>
+    </div>
+
+    <!-- Modal de formulario de compra (oculto inicialmente) -->
+    <div id="subscriptionFormModal" class="modal" style="display: none;">
+        <div class="modal-content subscription-form-content" style="max-width: 500px;">
+            <span class="close">&times;</span>
+            <div class="subscription-form-header" id="form-header">
+                <h2 id="form-title">Completar Compra</h2>
+            </div>
+
+            <div class="selected-subscription-info" id="form-subscription-info">
+                <h3 id="form-subscription-name"></h3>
+                <p class="subscription-price"><strong>Precio:</strong> <span id="form-subscription-price"></span> EUR
+                </p>
+            </div>
+
+            <form id="subscription-purchase-form">
+                <div class="form-row">
+                    <label class="form-label" for="customer-name">Nombre completo *</label>
+                    <input class="form-input" type="text" id="customer-name" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="customer-email">Email *</label>
+                    <input class="form-input" type="email" id="customer-email" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="customer-phone">Teléfono de contacto *</label>
+                    <input class="form-input" type="tel" id="customer-phone" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="customer-dni">DNI *</label>
+                    <input class="form-input" type="text" id="customer-dni" required>
+                </div>
+
+                <button type="submit" class="checkout-btn" id="stripe-checkout-btn">
+                    Proceder al Pago
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Modal de personalización mejorado -->
+    <div class="customization-modal" id="customization-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 class="modal-title">PERSONALIZAR SEGUNDA EQUIPACIÓN</h3>
+
+            <div class="customization-form">
+                <!-- Tallas de componentes -->
+                <div class="size-selection-section">
+                    <div class="form-group">
+                        <label class="form-label">Escoge talla camiseta (15 €)</label>
+                        <select class="form-input" id="shirt-size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Escoge talla pantalón (12 €)</label>
+                        <select class="form-input" id="pants-size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Escoge talla medias (8 €)</label>
+                        <select class="form-input" id="socks-size">
+                            <option value="36-38">36-38</option>
+                            <option value="39-41" selected>39-41</option>
+                            <option value="42-44">42-44</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Personalización de nombre y número -->
+                <div class="form-group">
+                    <label for="player-name" class="form-label">Nombre para la camiseta:</label>
+                    <input type="text" class="form-input" id="player-name" placeholder="Ej: MESSI" maxlength="15">
+                </div>
+
+                <div class="form-group">
+                    <label for="player-number" class="form-label">Número de dorsal:</label>
+                    <input type="number" class="form-input" id="player-number" placeholder="Ej: 10" min="1" max="99">
+                </div>
+
+                <div class="customization-preview">
+                    <div class="preview-title">Tu personalización:</div>
+                    <div class="preview-text" id="name-preview">Nombre: -</div>
+                    <div class="preview-text" id="number-preview">Dorsal: -</div>
+                    <div class="preview-text" id="sizes-preview">Tallas: -</div>
+                </div>
+
+                <button class="btn btn-primary" id="confirm-customization">CONFIRMAR Y AÑADIR AL CARRITO (35 €)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de compras -->
+    <div class="cart-icon" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Los productos añadidos aparecerán aquí -->
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">€0.00</span>
+            </div>
+
+            <!-- Payment form -->
+            <div class="payment-form" id="payment-form">
+                <h4 style="color: var(--primary-gold); margin-bottom: 1rem;">Información de pago</h4>
+
+                <div class="form-row">
+                    <label class="form-label" for="full-name">Nombre completo</label>
+                    <input class="form-input" type="text" id="full-name" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="phone">Teléfono</label>
+                    <input class="form-input" type="tel" id="phone" required>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="category">Categoría (Ej: Senior Femenino)</label>
+                    <input class="form-input" type="text" id="category">
+                </div>
+
+                <div id="payment-message" class="payment-message"></div>
+
+                <button class="checkout-btn" id="checkout-button" disabled>Proceder al pago</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    // Carrito de compras
+    let cart = [];
+    const cartIcon = document.getElementById('cart-icon');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCart = document.getElementById('close-cart');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Elementos del modal de selección de talla
+    const sizeModal = document.getElementById('size-modal');
+    const sizeModalClose = document.getElementById('size-modal-close');
+    const confirmSize = document.getElementById('confirm-size');
+    const sizeOptionsContainer = document.getElementById('size-options');
+    const colorSection = document.getElementById('color-section');
+    const colorOptions = document.querySelectorAll('.color-option');
+    const sizeModalTitle = document.getElementById('size-modal-title');
+
+    // Elementos del modal de personalización
+    const customizationModal = document.getElementById('customization-modal');
+    const modalClose = document.getElementById('modal-close');
+    const confirmCustomization = document.getElementById('confirm-customization');
+    const playerNameInput = document.getElementById('player-name');
+    const playerNumberInput = document.getElementById('player-number');
+
+    // Variables para el producto que se está seleccionando
+    let currentSelectingProduct = null;
+    let currentSelectedSize = 'M'; // Talla por defecto
+    let currentSelectedColor = 'Blanco'; // Color por defecto
+
+    // Abrir/cerrar carrito
+    cartIcon.addEventListener('click', () => {
+        cartSidebar.classList.add('active');
+    });
+
+    closeCart.addEventListener('click', () => {
+        cartSidebar.classList.remove('active');
+    });
+
+    // Abrir/cerrar modal de selección de talla
+    sizeModalClose.addEventListener('click', () => {
+        sizeModal.classList.remove('active');
+    });
+
+    // Abrir/cerrar modal de personalización
+    modalClose.addEventListener('click', () => {
+        customizationModal.classList.remove('active');
+    });
+
+    // Selección de colores
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            currentSelectedColor = this.getAttribute('data-color');
+        });
+    });
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+            const image = this.getAttribute('data-image');
+            const type = this.getAttribute('data-type');
+            const hasColors = this.getAttribute('data-colors') === 'true';
+
+            // Save the current product being selected
+            currentSelectingProduct = {
+                id,
+                name,
+                price,
+                image,
+                type,
+                hasColors
+            };
+
+            // Configure modal based on product type
+            if (type === 'footwear') {
+                // Flip-flops - sizes 37 to 43
+                sizeModalTitle.textContent = 'SELECT YOUR SIZE (FLIP-FLOPS)';
+                colorSection.style.display = 'none';
+
+                // Generate footwear size options
+                sizeOptionsContainer.innerHTML = '';
+                for (let i = 37; i <= 43; i++) {
+                    const sizeOption = document.createElement('div');
+                    sizeOption.className = i === 40 ? 'size-option-modal selected' : 'size-option-modal';
+                    sizeOption.setAttribute('data-size', i);
+                    sizeOption.textContent = i;
+                    sizeOption.addEventListener('click', function () {
+                        document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        currentSelectedSize = this.getAttribute('data-size');
+                    });
+                    sizeOptionsContainer.appendChild(sizeOption);
+                }
+            } else {
+                // Regular clothing
+                sizeModalTitle.textContent = hasColors ? 'SELECT SIZE AND COLOR' : 'SELECT YOUR SIZE';
+                colorSection.style.display = hasColors ? 'block' : 'none';
+
+                // Generate standard size options
+                sizeOptionsContainer.innerHTML = '';
+                const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+                sizes.forEach(size => {
+                    const sizeOption = document.createElement('div');
+                    sizeOption.className = size === 'M' ? 'size-option-modal selected' : 'size-option-modal';
+                    sizeOption.setAttribute('data-size', size);
+                    sizeOption.textContent = size;
+                    sizeOption.addEventListener('click', function () {
+                        document.querySelectorAll('.size-option-modal').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        currentSelectedSize = this.getAttribute('data-size');
+                    });
+                    sizeOptionsContainer.appendChild(sizeOption);
+                });
+            }
+
+            // Reset selections
+            currentSelectedSize = type === 'footwear' ? '40' : 'M';
+            currentSelectedColor = 'Azul'; // Changed to 'Azul'
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.color-option[data-color="Azul"]').classList.add('selected');
+
+            // Show modal
+            sizeModal.classList.add('active');
+        });
+    });
+
+    // Confirmar selección y añadir al carrito
+    confirmSize.addEventListener('click', function () {
+        if (!currentSelectingProduct) return;
+
+        // Verificar si el producto ya está en el carrito (mismo ID, talla y color)
+        const existingItemIndex = cart.findIndex(item =>
+            item.id === currentSelectingProduct.id &&
+            item.size === currentSelectedSize &&
+            (!currentSelectingProduct.hasColors || item.color === currentSelectedColor) &&
+            !item.customization
+        );
+
+        if (existingItemIndex >= 0) {
+            // Si ya existe, aumentar cantidad
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            // Crear objeto producto
+            const product = {
+                ...currentSelectingProduct,
+                size: currentSelectedSize,
+                color: currentSelectingProduct.hasColors ? currentSelectedColor : null,
+                customization: null,
+                quantity: 1
+            };
+
+            // Añadir al carrito
+            cart.push(product);
+        }
+
+        updateCart();
+        sizeModal.classList.remove('active');
+
+        // Feedback visual
+        const originalText = this.textContent;
+        this.textContent = '✓ AÑADIDO';
+        setTimeout(() => {
+            this.textContent = originalText;
+        }, 2000);
+    });
+
+    // Mostrar modal de personalización solo para Producto 7
+    document.querySelectorAll('.customize-product').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+            const image = this.getAttribute('data-image');
+
+            // Guardar el producto actual que se está personalizando
+            currentSelectingProduct = {
+                id,
+                name,
+                price,
+                image,
+                type: 'customizable'
+            };
+
+            // Resetear el formulario
+            playerNameInput.value = '';
+            playerNumberInput.value = '';
+            document.getElementById('name-preview').textContent = 'Nombre: -';
+            document.getElementById('number-preview').textContent = 'Dorsal: -';
+
+            // Mostrar modal
+            customizationModal.classList.add('active');
+        });
+    });
+
+    // Actualizar vista previa de personalización
+    playerNameInput.addEventListener('input', updatePreview);
+    playerNumberInput.addEventListener('input', updatePreview);
+
+    // Update the preview function
+    function updatePreview() {
+        const name = playerNameInput.value.trim();
+        const number = playerNumberInput.value.trim();
+        const shirtSize = document.getElementById('shirt-size').value;
+        const pantsSize = document.getElementById('pants-size').value;
+        const socksSize = document.getElementById('socks-size').value;
+
+        document.getElementById('name-preview').textContent = name ? `Nombre: ${name.toUpperCase()}` : 'Nombre: -';
+        document.getElementById('number-preview').textContent = number ? `Dorsal: ${number}` : 'Dorsal: -';
+        document.getElementById('sizes-preview').textContent = `Tallas: Camiseta (${shirtSize}), Pantalón (${pantsSize}), Medias (${socksSize})`;
+    }
+
+    // Update event listeners
+    playerNameInput.addEventListener('input', updatePreview);
+    playerNumberInput.addEventListener('input', updatePreview);
+    document.getElementById('shirt-size').addEventListener('change', updatePreview);
+    document.getElementById('pants-size').addEventListener('change', updatePreview);
+    document.getElementById('socks-size').addEventListener('change', updatePreview);
+
+    // Update the confirmation handler
+    confirmCustomization.addEventListener('click', function () {
+        if (!currentSelectingProduct) return;
+
+        const playerName = playerNameInput.value.trim();
+        const playerNumber = playerNumberInput.value.trim();
+        const shirtSize = document.getElementById('shirt-size').value;
+        const pantsSize = document.getElementById('pants-size').value;
+        const socksSize = document.getElementById('socks-size').value;
+
+        // Validation
+        if (!playerName || !playerNumber) {
+            alert('Por favor, completa ambos campos de personalización');
+            return;
+        }
+
+        if (playerNumber < 1 || playerNumber > 99) {
+            alert('El número de dorsal debe estar entre 1 y 99');
+            return;
+        }
+
+        // Create customized name for cart display
+        const customizedName = `${currentSelectingProduct.name} (${playerName.toUpperCase()} #${playerNumber})`;
+
+        // Check if product already exists in cart
+        const existingItemIndex = cart.findIndex(item =>
+            item.id === currentSelectingProduct.id &&
+            item.customization &&
+            item.customization.name === playerName &&
+            item.customization.number === playerNumber
+        );
+
+        if (existingItemIndex >= 0) {
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            cart.push({
+                ...currentSelectingProduct,
+                name: customizedName,
+                price: 35.00, // Total price for the set
+                quantity: 1,
+                customization: {
+                    name: playerName,
+                    number: playerNumber,
+                    shirtSize: shirtSize,
+                    pantsSize: pantsSize,
+                    socksSize: socksSize,
+                    originalName: currentSelectingProduct.name
+                }
+            });
+        }
+
+        updateCart();
+        customizationModal.classList.remove('active');
+
+        // Mostrar feedback
+        const originalText = this.textContent;
+        this.textContent = '✓ AÑADIDO';
+        setTimeout(() => {
+            this.textContent = originalText;
+        }, 2000);
+    });
+
+    // Actualizar el carrito
+    function updateCart() {
+        // Actualizar contador
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        cartCount.textContent = totalItems;
+
+        // Actualizar lista de productos
+        cartItemsContainer.innerHTML = '';
+        let totalPrice = 0;
+
+        if (cart.length === 0) {
+            document.getElementById('checkout-button').disabled = true;
+        } else {
+            document.getElementById('checkout-button').disabled = false;
+        }
+
+        cart.forEach((item, index) => {
+            const itemQuantity = item.quantity || 1;
+            const itemTotal = item.price * itemQuantity;
+            totalPrice += itemTotal;
+
+            const cartItemElement = document.createElement('div');
+            cartItemElement.className = 'cart-item';
+
+            // Mostrar información de personalización si existe
+            let customizationInfo = '';
+            if (item.customization) {
+                customizationInfo = `
+        <div class="cart-item-customization">Nombre: ${item.customization.name.toUpperCase()}</div>
+        <div class="cart-item-customization">Dorsal: ${item.customization.number}</div>
+        <div class="cart-item-customization">Camiseta: Talla ${item.customization.shirtSize}</div>
+        <div class="cart-item-customization">Pantalón: Talla ${item.customization.pantsSize}</div>
+        <div class="cart-item-customization">Medias: Talla ${item.customization.socksSize}</div>
+      `;
+            }
+
+            // Mostrar talla y color si existen
+            let sizeColorInfo = '';
+            if (item.size) {
+                sizeColorInfo = `<div class="cart-item-customization">Talla: ${item.size}</div>`;
+                if (item.color) {
+                    sizeColorInfo += `<div class="cart-item-customization">Color: ${item.color}</div>`;
+                }
+            }
+
+            cartItemElement.innerHTML = `
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.customization ? item.customization.originalName : item.name}</div>
+          ${customizationInfo}
+          ${sizeColorInfo}
+          <div class="cart-item-price">€${item.price.toFixed(2)} x ${itemQuantity}</div>
+          <button class="cart-item-remove" data-index="${index}">
+            Eliminar
+          </button>
+        </div>
+      `;
+
+            cartItemsContainer.appendChild(cartItemElement);
+        });
+
+        // Actualizar total
+        cartTotal.textContent = `€${totalPrice.toFixed(2)}`;
+
+        // Añadir eventos a los botones de eliminar
+        document.querySelectorAll('.cart-item-remove').forEach(button => {
+            button.addEventListener('click', function () {
+                const index = parseInt(this.getAttribute('data-index'));
+                cart.splice(index, 1);
+                updateCart();
+            });
+        });
+    }
+
+    // Payment handling - Stripe Integration
+    document.getElementById('checkout-button').addEventListener('click', async function (e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById('full-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const category = document.getElementById('category').value.trim();
+
+        // Validate required fields
+        if (!fullName || !email || !phone) {
+            showMessage('Por favor completa todos los campos requeridos', 'error');
+            return;
+        }
+
+        // Validate email format
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showMessage('Por favor ingresa un email válido', 'error');
+            return;
+        }
+
+        // Prepare items for Stripe
+        const lineItems = cart.map(item => ({
+            name: item.customization ? item.customization.originalName : item.name,
+            price: Math.round(item.price * 100), // Convert to cents
+            quantity: item.quantity || 1,
+            size: item.size || null,
+            color: item.color || null,
+            customization: item.customization ?
+                `Nombre: ${item.customization.name}, Dorsal: ${item.customization.number}` : null
+        }));
+
+        // Disable button during processing
+        const checkoutButton = this;
+        checkoutButton.disabled = true;
+        checkoutButton.textContent = 'Procesando...';
+
+        try {
+            // Get CSRF token
+            const csrftoken = getCookie('csrftoken');
+            if (!csrftoken) {
+                showMessage('Error de seguridad. Por favor recarga la página.', 'error');
+                checkoutButton.disabled = false;
+                checkoutButton.textContent = 'Proceder al pago';
+                return;
+            }
+
+            // Create Stripe checkout session
+            const response = await fetch('/create-checkout-session/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({
+                    items: lineItems,
+                    customer_name: fullName,
+                    customer_email: email,
+                    customer_phone: phone,
+                    customer_category: category,
+                    success_url: window.location.origin + '/pago-exitoso?session_id={CHECKOUT_SESSION_ID}',
+                    cancel_url: window.location.origin + '/tienda'
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `Error del servidor: ${response.status}`);
+            }
+
+            const { sessionId } = await response.json();
+
+            // Redirect to Stripe Checkout
+            //
+            const { error } = await stripe.redirectToCheckout({
+                sessionId: sessionId
+            });
+
+            if (error) {
+                throw new Error(error.message);
+            }
+
+        } catch (error) {
+            console.error('Error en el pago:', error);
+            showMessage(`Error al procesar el pago: ${error.message}`, 'error');
+            checkoutButton.disabled = false;
+            checkoutButton.textContent = 'Proceder al pago';
+        }
+    });
+
+
+
+    function getCookie(name) {
+        const cookieString = document.cookie;
+        if (!cookieString) return null;
+
+        const cookies = cookieString.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith('csrftoken=')) {  // Only look for csrftoken
+                return decodeURIComponent(cookie.substring('csrftoken='.length));
+            }
+        }
+        return null;
+    }
+
+    // Helper function to show messages
+    function showMessage(message, type) {
+        const messageElement = document.getElementById('payment-message');
+        messageElement.textContent = message;
+        messageElement.className = `payment-message ${type}`;
+        setTimeout(() => {
+            messageElement.textContent = '';
+            messageElement.className = 'payment-message';
+        }, 5000);
+    }
+
+    // Sistema de pestañas
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function () {
+            // Desactivar todas las pestañas
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            // Activar la pestaña clickeada
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Referencias a elementos
+        const detailModal = document.getElementById('subscriptionDetailModal');
+        const formModal = document.getElementById('subscriptionFormModal');
+        const closeButtons = document.querySelectorAll('.close');
+
+        // Stripe initialization (reemplaza con tu clave pública)
+        //
+
+        // Manejar clic en las imágenes de abonos
+        document.querySelectorAll('.subscription-image-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const subscriptionId = this.getAttribute('data-subscription');
+                const subscriptionName = this.getAttribute('data-name');
+                const subscriptionPrice = this.getAttribute('data-price');
+                const subscriptionColor = this.getAttribute('data-color');
+
+                // Actualizar modal de detalles con la información del abono
+                document.getElementById('detail-modal-title').textContent = subscriptionName;
+                document.getElementById('detail-name').textContent = subscriptionName;
+                document.getElementById('detail-price').textContent = subscriptionPrice + '€';
+
+                // Aplicar estilos según el color del abono
+                applySubscriptionColor(subscriptionColor, 'detail');
+
+                // Configurar detalles según el tipo de abono
+                let description = '';
+                let features = '';
+
+                if (subscriptionId === '1') {
+                    description = 'Abono Senior A para la temporada 2025/2026. Disfruta de todos los partidos como local.';
+                    features = `
+            <li>Acceso a todos los partidos de local</li>
+            <li>Asiento numerado en grada preferente</li>
+            <li>Descuento en merchandising oficial</li>
+            <li>Posibilidad de renovación preferente</li>
+          `;
+                } else if (subscriptionId === '2') {
+                    description = 'Abono Senior B para la temporada 2025/2026. No te pierdas ningún partido en casa.';
+                    features = `
+            <li>Acceso a todos los partidos de local</li>
+            <li>Asiento numerado en grada general</li>
+            <li>Descuento en merchandising oficial</li>
+            <li>Posibilidad de renovación preferente</li>
+          `;
+                } else if (subscriptionId === '3') {
+                    description = 'Abono Completo para la temporada 2025/2026. Vive la experiencia completa con todos los partidos.';
+                    features = `
+            <li>Acceso a todos los partidos (local y visitante)</li>
+            <li>Asiento numerado en grada preferente</li>
+            <li>Descuento del 15% en merchandising oficial</li>
+            <li>Acceso a eventos exclusivos para abonados</li>
+            <li>Renovación automática preferente</li>
+          `;
+                }
+
+                document.getElementById('detail-description').innerHTML = description;
+                document.getElementById('detail-features').innerHTML = features;
+
+                // Guardar datos para el formulario
+                document.getElementById('purchase-subscription-btn').setAttribute('data-subscription-id', subscriptionId);
+                document.getElementById('purchase-subscription-btn').setAttribute('data-subscription-name', subscriptionName);
+                document.getElementById('purchase-subscription-btn').setAttribute('data-subscription-price', subscriptionPrice);
+                document.getElementById('purchase-subscription-btn').setAttribute('data-subscription-color', subscriptionColor);
+
+                // Mostrar modal de detalles
+                detailModal.style.display = 'flex';
+            });
+        });
+
+        // Función para aplicar los colores del abono a los elementos
+        // Función para aplicar los colores del abono a los elementos
+        function applySubscriptionColor(color, type) {
+            if (type === 'detail') {
+                // Aplicar al modal de detalle
+                document.querySelector('.subscription-detail-content').style.borderColor = color;
+                document.getElementById('detail-header').style.backgroundColor = color;
+                document.getElementById('detail-modal-title').style.color = getContrastColor(color);
+                document.getElementById('detail-name').style.color = '#ffffff'; // Blanco fijo
+                document.getElementById('features-title').style.color = '#ffffff'; // Blanco fijo
+                document.getElementById('purchase-subscription-btn').style.backgroundColor = color;
+                document.getElementById('purchase-subscription-btn').style.color = getContrastColor(color);
+            } else if (type === 'form') {
+                // Aplicar al modal de formulario
+                document.querySelector('.subscription-form-content').style.borderColor = color;
+                document.getElementById('form-header').style.backgroundColor = color;
+                document.getElementById('form-title').style.color = '#ffffff';
+                document.getElementById('form-subscription-info').style.backgroundColor = 'transparent';
+                document.getElementById('form-subscription-name').style.color = '#ffffff';
+                document.getElementById('stripe-checkout-btn').style.backgroundColor = color;
+                document.getElementById('stripe-checkout-btn').style.color = getContrastColor(color);
+
+                // Aplicar a los inputs
+                const formInputs = document.querySelectorAll('.form-input');
+                formInputs.forEach(input => {
+                    input.style.borderColor = color;
+                });
+            }
+        }
+
+        // Función para determinar el color de contraste (blanco o negro)
+        function getContrastColor(hexColor) {
+            // Convertir hex a RGB
+            const r = parseInt(hexColor.substr(1, 2), 16);
+            const g = parseInt(hexColor.substr(3, 2), 16);
+            const b = parseInt(hexColor.substr(5, 2), 16);
+
+            // Calcular luminosidad
+            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+            // Devolver blanco para fondos oscuros, negro para claros
+            return luminance > 0.5 ? '#000000' : '#FFFFFF';
+        }
+
+        // Manejar clic en botón de comprar
+        document.getElementById('purchase-subscription-btn').addEventListener('click', function () {
+            const subscriptionId = this.getAttribute('data-subscription-id');
+            const subscriptionName = this.getAttribute('data-subscription-name');
+            const subscriptionPrice = this.getAttribute('data-subscription-price');
+            const subscriptionColor = this.getAttribute('data-subscription-color');
+
+            // Cerrar modal de detalles
+            detailModal.style.display = 'none';
+
+            // Actualizar formulario con los datos del abono
+            document.getElementById('form-subscription-name').textContent = subscriptionName;
+            document.getElementById('form-subscription-price').textContent = subscriptionPrice;
+
+            // Aplicar color de fondo al formulario
+            applySubscriptionColor(subscriptionColor, 'form');
+
+            // Guardar datos en el formulario para Stripe
+            document.getElementById('subscription-purchase-form').setAttribute('data-subscription-id', subscriptionId);
+            document.getElementById('subscription-purchase-form').setAttribute('data-subscription-price', subscriptionPrice);
+            document.getElementById('subscription-purchase-form').setAttribute('data-subscription-color', subscriptionColor);
+
+            // Mostrar modal de formulario
+            formModal.style.display = 'flex';
+        });
+
+        // Manejar envío del formulario (integración con Stripe)
+        document.getElementById('subscription-purchase-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const subscriptionId = this.getAttribute('data-subscription-id');
+            const price = this.getAttribute('data-subscription-price');
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerPhone = document.getElementById('customer-phone').value;
+            const customerDni = document.getElementById('customer-dni').value;
+
+            // En una implementación real, aquí harías una llamada a tu backend
+            // para crear una sesión de pago con Stripe
+            try {
+                // Esta es una simulación - reemplaza con tu lógica real
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        subscriptionId: subscriptionId,
+                        price: price,
+                        customerName: customerName,
+                        customerEmail: customerEmail,
+                        customerPhone: customerPhone,
+                        customerDni: customerDni
+                    }),
+                });
+
+                const session = await response.json();
+
+                // Redirigir a Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id,
+                });
+
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error en el proceso de pago. Por favor, inténtelo de nuevo.');
+            }
+        });
+
+        // Cerrar modales
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                detailModal.style.display = 'none';
+                formModal.style.display = 'none';
+            });
+        });
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function (event) {
+            if (event.target == detailModal) {
+                detailModal.style.display = 'none';
+            }
+            if (event.target == formModal) {
+                formModal.style.display = 'none';
+            }
+        });
+    });
+
+    // En tu archivo JavaScript
+    async function initializeStripeCheckout(items, customerData) {
+        try {
+            const response = await fetch('/create-checkout-session/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken(),
+                },
+                body: JSON.stringify({
+                    items: items,
+                    customer_name: customerData.name,
+                    customer_email: customerData.email,
+                    customer_phone: customerData.phone,
+                    customer_dni: customerData.dni
+                }),
+            });
+
+            const session = await response.json();
+
+            if (session.error) {
+                throw new Error(session.error);
+            }
+
+            // Redirigir a Stripe Checkout
+            //
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.sessionId,
+            });
+
+            if (result.error) {
+                alert(result.error.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al procesar el pago. Por favor, inténtelo de nuevo.');
+        }
+    }
+
+    // Función para obtener el token CSRF
+    function getCSRFToken() {
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+
+</script>
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% endblock %}
