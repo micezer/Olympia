@@ -393,83 +393,6 @@ Productos:
 
 
 
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import send_mail
-from .models import Ticket
-import json
-from datetime import datetime
-
-@csrf_exempt
-def purchase_ticket(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            
-            # Create ticket
-            ticket = Ticket.objects.create(
-                dni=data['dni'],
-                full_name=data['fullName'],
-                email=data['email'],
-                match=data['match'],
-                section=data['section'],
-                seat=data['seat'],
-                qr_code=data['qrCode'],
-                ticket_type='single' if data['ticketType'] == 'Entrada Individual' else 'season',
-                price=float(data['price'].replace('€', ''))
-            )
-            
-            # Send confirmation email
-            send_mail(
-                f"Confirmación de entrada - {ticket.match}",
-                f"""Hola {ticket.full_name},
-                
-Gracias por comprar tu entrada para {ticket.match}.
-                
-Detalles:
-- Tipo: {ticket.get_ticket_type_display()}
-- Tribuna: {ticket.section}
-- Asiento: {ticket.seat}
-- Precio: €{ticket.price}
-- Código QR: {ticket.qr_code}
-                
-Presenta este código QR en la entrada del estadio.""",
-                'no-reply@yourclub.com',
-                [ticket.email],
-                fail_silently=False,
-            )
-            
-            return JsonResponse({'status': 'success', 'ticket_id': ticket.id})
-            
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-    
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
-
-@csrf_exempt
-def get_tickets(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            dni = data.get('dni', '')
-            
-            tickets = Ticket.objects.filter(dni=dni).values(
-                'id', 'dni', 'full_name', 'match', 'section', 
-                'seat', 'purchase_date', 'is_used', 'qr_code',
-                'ticket_type', 'price'
-            )
-            
-            # Format dates
-            tickets_list = list(tickets)
-            for ticket in tickets_list:
-                ticket['purchase_date'] = ticket['purchase_date'].strftime('%Y-%m-%d %H:%M')
-                
-            return JsonResponse({'status': 'success', 'tickets': tickets_list})
-            
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-    
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 
 
@@ -774,8 +697,121 @@ def payment_success(request):
         'status': payment_status
     }
     
-    return render(request, 'payment_success.html')
 
 def payment_cancel(request):
     """Vista para cuando el pago es cancelado"""
-    return render(request, 'payment_cancel.html')
+
+
+
+
+@csrf_exempt
+@require_POST
+def create_checkout_session(request):
+    try:
+        data = json.loads(request.body)
+        
+        # Create line items for Stripe
+        line_items = []
+        for item in data.get('items', []):
+            line_items.append({
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                        'name': item['name'],
+                        'metadata': {
+                            'size': item.get('size', ''),
+                            'color': item.get('color', ''),
+                            'customization': item.get('customization', '')
+                        }
+                    },
+                    'unit_amount': item['price'],
+                },
+                'quantity': item['quantity'],
+            })
+
+        # Create checkout session
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=line_items,
+            mode='payment',
+            success_url=data.get('success_url', settings.FRONTEND_URL + '/payment-success?session_id={CHECKOUT_SESSION_ID}'),
+            cancel_url=data.get('cancel_url', settings.FRONTEND_URL + '/tienda'),
+            customer_email=data.get('customer_email'),
+            metadata={
+                'customer_name': data.get('customer_name'),
+                'customer_phone': data.get('customer_phone'),
+                'customer_category': data.get('customer_category', ''),
+                'order_type': 'merchandising'
+            }
+        )
+
+        # Here you should save the order to your database with status 'pending'
+        # order = Order.objects.create(...)
+        # order.items.set([...])
+
+        return JsonResponse({'sessionId': checkout_session.id})
+        
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+# views.py
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        return HttpResponse(status=400)
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        
+        try:
+            # Find the order in your database
+            # order = Order.objects.get(stripe_session_id=session.id)
+            
+            # Update order status to completed
+            # order.status = 'completed'
+            # order.payment_intent_id = session.payment_intent
+            # order.save()
+            
+            # Send confirmation email
+            # send_order_confirmation_email(order)
+            
+            print(f"Payment successful for session {session.id}")
+            
+        except Exception as e:
+            print(f"Error processing webhook: {str(e)}")
+
+    return HttpResponse(status=200)
+
+# views.py
+def payment_success(request):
+    session_id = request.GET.get('session_id')
+    if session_id:
+        try:
+            # Retrieve session from Stripe
+            session = stripe.checkout.Session.retrieve(session_id)
+            
+            # Get order from database
+            # order = Order.objects.get(stripe_session_id=session_id)
+            
+            context = {
+                'session': session,
+                # 'order': order
+            }
+            
+            return render(request, 'base/payment_success.html', context)
+            
+        except Exception as e:
+            # Handle error
+            pass
+    
+    return render(request, 'base/payment_success.html')

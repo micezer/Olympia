@@ -36,3 +36,6 @@ def handle_payment_succeeded(payment_intent):
 def handle_payment_failed(payment_intent):
     # Aquí manejas el pago fallido
     print(f"Pago fallido: {payment_intent['id']}")
+
+
+

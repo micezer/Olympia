@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pago Exitoso</title>
+</head>
+
+<body>
+    <h1>¡Pago Exitoso!</h1>
+    <p>Gracias por tu compra. Hemos enviado un email de confirmación a tu dirección de correo.</p>
+    <p>Número de pedido: {% if order %}{{ order.id }}{% endif %}</p>
+    <a href="/tienda">Volver a la tienda</a>
+</body>
+
+</html>

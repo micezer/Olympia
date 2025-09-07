@@ -22,16 +22,17 @@ urlpatterns = [
     path('about/', views.about_view, name='about'),
     path('create-order/', views.create_order, name='create_order'),
     path('ticket/', views.ticket_purchase, name='ticket_purchase'),
-    path('purchase/', views.purchase_ticket, name='purchase_ticket'),
-    path('tickets/', views.get_tickets, name='get_tickets'),
     path('players/', views.get_players_by_team, name='get_players_by_team'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
     path('inscripcion/', views.inscripcion_view, name='inscripcion'),
     path('create-inscription/', views.create_inscription, name='create_inscription'),
     path('create-payment-intent/', views.create_payment_intent, name='create_payment_intent'),
     path('webhook/', webhooks.stripe_webhook, name='stripe_webhook'),
-    path('payment-success/', views.payment_success, name='payment_success'),
     path('payment-cancel/', views.payment_cancel, name='payment_cancel'),
+    path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
+    path('webhook/', views.stripe_webhook, name='stripe_webhook'),
+    path('payment-success/', views.payment_success, name='payment_success'),
+
 
 
 
