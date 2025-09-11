@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<section class="contactos-container" style="background-color: #2a374c; color: #f3f3f5;">
+    <div class="contactos-hero" style="background-color: #1f2531; padding: 3rem 0;">
+        <div class="container">
+            <h1 style="color: #b8ac84; text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Contacta con el Club</h1>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                Estamos aquí para responder todas tus preguntas sobre el CFF Olympia. No dudes en ponerte en contacto con nosotros.
+            </p>
+        </div>
+    </div>
+
+    <div class="contactos-content" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="contactos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Teléfono -->
+                <div class="contacto-card" style="background-color: #1f2531; border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="contacto-icon" style="background-color: #562e39; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="fas fa-phone-alt" style="color: #b8ac84; font-size: 1.8rem;"></i>
+                    </div>
+                    <h3 style="color: #b8ac84; margin-bottom: 1rem;">TELÉFONO</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Llama al</p>
+                    <a href="tel:626487563" style="color: #f3f3f5; text-decoration: none; font-size: 1.4rem; font-weight: bold; display: block; margin-bottom: 1rem;">626 48 75 63</a>
+                    <p style="color: #b7b6bc; font-size: 0.9rem;">Disponible en horario de oficina</p>
+                </div>
+
+                <!-- Email -->
+                <div class="contacto-card" style="background-color: #1f2531; border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="contacto-icon" style="background-color: #562e39; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="fas fa-envelope" style="color: #b8ac84; font-size: 1.8rem;"></i>
+                    </div>
+                    <h3 style="color: #b8ac84; margin-bottom: 1rem;">EMAIL</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Escríbenos a</p>
+                    <a href="mailto:info@cffolympia.es" style="color: #f3f3f5; text-decoration: none; font-size: 1.1rem; font-weight: bold; display: block; word-break: break-word;">info@cffolympia.es</a>
+                </div>
+
+                <!-- Ubicación -->
+                <div class="contacto-card" style="background-color: #1f2531; border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="contacto-icon" style="background-color: #562e39; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="fas fa-map-marker-alt" style="color: #b8ac84; font-size: 1.8rem;"></i>
+                    </div>
+                    <h3 style="color: #b8ac84; margin-bottom: 1rem;">UBICACIÓN</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Recinto Ferial Las Rozas</p>
+                    <a href="#" style="color: #f3f3f5; text-decoration: none; font-size: 1rem; display: inline-block; background-color: #7f765a; padding: 0.5rem 1.5rem; border-radius: 30px; transition: background-color 0.3s;">Cómo llegar</a>
+                </div>
+            </div>
+
+            <!-- Mapa (opcional) -->
+            <div class="mapa-container" style="margin-top: 4rem; background-color: #1f2531; border-radius: 10px; overflow: hidden;">
+                <div style="padding: 2rem; text-align: center; background-color: #562e39;">
+                    <h2 style="color: #b8ac84; margin-bottom: 1rem;">Encuéntranos</h2>
+                    <p style="color: #f3f3f5;">Recinto Ferial Las Rozas</p>
+                </div>
+                <!-- Aquí iría el mapa embebido -->
+                <div style="height: 300px; background-color: #5a595d; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: #b7b6bc;">Mapa del Recinto Ferial Las Rozas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Incluir Font Awesome para los iconos -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

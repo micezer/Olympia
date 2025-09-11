@@ -704,6 +704,7 @@ def payment_cancel(request):
 
 
 
+# views.py - Cambia las URLs de éxito y cancelación
 @csrf_exempt
 @require_POST
 def create_checkout_session(request):
@@ -729,13 +730,16 @@ def create_checkout_session(request):
                 'quantity': item['quantity'],
             })
 
-        # Create checkout session
+        # Obtener la URL base
+        base_url = settings.FRONTEND_URL if hasattr(settings, 'FRONTEND_URL') else 'http://127.0.0.1:8000'
+        
+        # Create checkout session - Redirigir a la tienda con parámetros
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=line_items,
             mode='payment',
-            success_url=data.get('success_url', settings.FRONTEND_URL + '/payment-success?session_id={CHECKOUT_SESSION_ID}'),
-            cancel_url=data.get('cancel_url', settings.FRONTEND_URL + '/tienda'),
+            success_url=f"{base_url}/tienda?payment=success&session_id={{CHECKOUT_SESSION_ID}}",
+            cancel_url=f"{base_url}/tienda?payment=cancelled",
             customer_email=data.get('customer_email'),
             metadata={
                 'customer_name': data.get('customer_name'),
@@ -745,14 +749,12 @@ def create_checkout_session(request):
             }
         )
 
-        # Here you should save the order to your database with status 'pending'
-        # order = Order.objects.create(...)
-        # order.items.set([...])
-
         return JsonResponse({'sessionId': checkout_session.id})
         
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
+    
+    
 # views.py
 @csrf_exempt
 def stripe_webhook(request):
@@ -815,3 +817,11 @@ def payment_success(request):
             pass
     
     return render(request, 'base/payment_success.html')
+
+from django.shortcuts import render
+
+def contactos(request):
+    context = {
+        'title': 'Contactos - CFF Olympia',
+    }
+    return render(request, 'base/contactos.html', context)

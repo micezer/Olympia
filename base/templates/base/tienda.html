@@ -1998,95 +1998,197 @@
         });
     }
 
-    // Payment handling - Stripe Integration
-    document.getElementById('checkout-button').addEventListener('click', async function (e) {
-        e.preventDefault();
+    // En tu JavaScript - Actualiza la función de pago
+        document.getElementById('checkout-button').addEventListener('click', async function (e) {
+            e.preventDefault();
 
-        const fullName = document.getElementById('full-name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const category = document.getElementById('category').value.trim();
+            const fullName = document.getElementById('full-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const category = document.getElementById('category').value.trim();
 
-        // Validate required fields
-        if (!fullName || !email || !phone) {
-            showMessage('Por favor completa todos los campos requeridos', 'error');
-            return;
-        }
-
-        // Validate email format
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            showMessage('Por favor ingresa un email válido', 'error');
-            return;
-        }
-
-        // Prepare items for Stripe
-        const lineItems = cart.map(item => ({
-            name: item.customization ? item.customization.originalName : item.name,
-            price: Math.round(item.price * 100), // Convert to cents
-            quantity: item.quantity || 1,
-            size: item.size || null,
-            color: item.color || null,
-            customization: item.customization ?
-                `Nombre: ${item.customization.name}, Dorsal: ${item.customization.number}` : null
-        }));
-
-        // Disable button during processing
-        const checkoutButton = this;
-        checkoutButton.disabled = true;
-        checkoutButton.textContent = 'Procesando...';
-
-        try {
-            // Get CSRF token
-            const csrftoken = getCookie('csrftoken');
-            if (!csrftoken) {
-                showMessage('Error de seguridad. Por favor recarga la página.', 'error');
-                checkoutButton.disabled = false;
-                checkoutButton.textContent = 'Proceder al pago';
+            // Validaciones...
+            if (!fullName || !email || !phone) {
+                showMessage('Por favor completa todos los campos requeridos', 'error');
                 return;
             }
 
-            // Create Stripe checkout session
-            const response = await fetch('/create-checkout-session/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken,
-                },
-                body: JSON.stringify({
-                    items: lineItems,
-                    customer_name: fullName,
-                    customer_email: email,
-                    customer_phone: phone,
-                    customer_category: category,
-                    success_url: window.location.origin + '/pago-exitoso?session_id={CHECKOUT_SESSION_ID}',
-                    cancel_url: window.location.origin + '/tienda'
-                })
+            // Preparar items para Stripe
+            const lineItems = cart.map(item => ({
+                name: item.customization ? item.customization.originalName : item.name,
+                price: Math.round(item.price * 100),
+                quantity: item.quantity || 1,
+                size: item.size || null,
+                color: item.color || null,
+                customization: item.customization ?
+                    `Nombre: ${item.customization.name}, Dorsal: ${item.customization.number}` : null
+            }));
+
+            // Deshabilitar botón durante el procesamiento
+            const checkoutButton = this;
+            checkoutButton.disabled = true;
+            checkoutButton.textContent = 'Procesando...';
+
+            try {
+                const csrftoken = getCookie('csrftoken');
+                if (!csrftoken) {
+                    showMessage('Error de seguridad. Por favor recarga la página.', 'error');
+                    checkoutButton.disabled = false;
+                    checkoutButton.textContent = 'Proceder al pago';
+                    return;
+                }
+
+                // Crear sesión de checkout
+                const response = await fetch('/create-checkout-session/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({
+                        items: lineItems,
+                        customer_name: fullName,
+                        customer_email: email,
+                        customer_phone: phone,
+                        customer_category: category
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `Error del servidor: ${response.status}`);
+                }
+
+                const { sessionId } = await response.json();
+
+                // Redirigir a Stripe Checkout
+                const stripe = Stripe('pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh'); // Usa tu clave de prueba
+                const { error } = await stripe.redirectToCheckout({
+                    sessionId: sessionId
+                });
+
+                if (error) {
+                    throw new Error(error.message);
+                }
+
+            } catch (error) {
+                console.error('Error en el pago:', error);
+                showMessage(`Error al procesar el pago: ${error.message}`, 'error');
+                checkoutButton.disabled = false;
+                checkoutButton.textContent = 'Proceder al pago';
+            }
+        });
+
+        // En tu página de la tienda - Manejar parámetros URL
+            document.addEventListener('DOMContentLoaded', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const paymentStatus = urlParams.get('payment');
+                const sessionId = urlParams.get('session_id');
+
+                if (paymentStatus === 'success' && sessionId) {
+                    // Mostrar mensaje de éxito
+                    showPaymentSuccessMessage();
+
+                    // Limpiar el carrito
+                    clearCart();
+
+                    // Limpiar parámetros URL sin recargar la página
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                } else if (paymentStatus === 'cancelled') {
+                    showMessage('Pago cancelado. Puedes intentarlo de nuevo.', 'error');
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
             });
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || `Error del servidor: ${response.status}`);
+            function showPaymentSuccessMessage() {
+                // Crear o mostrar un modal de éxito
+                const successModal = document.createElement('div');
+                successModal.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        z-index: 10000;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    `;
+
+                successModal.innerHTML = `
+        <h2 style="color: #2a374c; margin-bottom: 15px;">¡Pago Exitoso! ✅</h2>
+        <p style="margin-bottom: 20px; color: #333;">
+            Gracias por tu compra. Hemos enviado un email de confirmación 
+            y estamos procesando tu pedido.
+        </p>
+        <button onclick="this.parentElement.remove()" 
+                style="background: #2a374c; color: white; border: none; 
+                       padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+            Continuar comprando
+        </button>
+    `;
+
+                document.body.appendChild(successModal);
+
+                // Añadir overlay
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+    `;
+                overlay.onclick = function () {
+                    successModal.remove();
+                    overlay.remove();
+                };
+
+                document.body.appendChild(overlay);
             }
 
-            const { sessionId } = await response.json();
+            function clearCart() {
+                // Vaciar el carrito
+                cart = [];
+                updateCart();
 
-            // Redirect to Stripe Checkout
-            //
-            const { error } = await stripe.redirectToCheckout({
-                sessionId: sessionId
-            });
-
-            if (error) {
-                throw new Error(error.message);
+                // También puedes limpiar el localStorage si lo usas
+                localStorage.removeItem('cart');
             }
 
-        } catch (error) {
-            console.error('Error en el pago:', error);
-            showMessage(`Error al procesar el pago: ${error.message}`, 'error');
-            checkoutButton.disabled = false;
-            checkoutButton.textContent = 'Proceder al pago';
+    
+    function showMessage(message, type) {
+            // Buscar o crear elemento para mensajes
+            let messageElement = document.getElementById('payment-message');
+            if (!messageElement) {
+                messageElement = document.createElement('div');
+                messageElement.id = 'payment-message';
+                messageElement.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            color: white;
+            font-weight: bold;
+        `;
+                document.body.appendChild(messageElement);
+            }
+
+            messageElement.textContent = message;
+            messageElement.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+
+            setTimeout(() => {
+                messageElement.textContent = '';
+                messageElement.style.backgroundColor = 'transparent';
+            }, 5000);
         }
-    });
 
 
 
@@ -2136,7 +2238,8 @@
         const closeButtons = document.querySelectorAll('.close');
 
         // Stripe initialization (reemplaza con tu clave pública)
-        //
+        const stripe = Stripe('pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh');
+
 
         // Manejar clic en las imágenes de abonos
         document.querySelectorAll('.subscription-image-card').forEach(card => {
@@ -2302,6 +2405,8 @@
                 const session = await response.json();
 
                 // Redirigir a Stripe Checkout
+                const stripe = Stripe('pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh');
+
                 const result = await stripe.redirectToCheckout({
                     sessionId: session.id,
                 });
@@ -2359,7 +2464,8 @@
             }
 
             // Redirigir a Stripe Checkout
-            //
+            const stripe = Stripe('pk_test_51S3aPM2W7WhI0yvpQSVeGOHZEm8NfImrt2ZVXR34EkzevVoW6DDSVL6xpcY4FhuNWqzXbDN616c1MEWrrNyiQiiC00xOrROFOh');
+
             const result = await stripe.redirectToCheckout({
                 sessionId: session.sessionId,
             });

@@ -32,6 +32,8 @@ urlpatterns = [
     path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
     path('webhook/', views.stripe_webhook, name='stripe_webhook'),
     path('payment-success/', views.payment_success, name='payment_success'),
+    path('contactos/', views.contactos, name='contactos'),
+
 
 
 

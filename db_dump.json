@@ -5252,6 +5252,19 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 405,
+    "fields": {
+        "action_time": "2025-09-11T09:40:28.739Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "CFF Olympia vs Getafe - 2025-09-10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -5978,8 +5991,8 @@
         "away_team": "Getafe",
         "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
         "away_team_logo": "image/upload/escudo_t7p67t",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 5,
+        "away_score": 3,
         "is_olympia_home": true,
         "location_name": "Polideportivo Municipal Navalcarbón",
         "location_address": "Av. Ntra. Señora del Retamar, 16, 28232 Las Rozas de Madrid, Madrid",
