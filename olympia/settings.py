@@ -48,7 +48,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['cff-olympia.onrender.com', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['cff-olympia.onrender.com']
 #ALLOWED_HOSTS = ['*']
@@ -284,3 +284,7 @@ CSRF_COOKIE_HTTPONLY = False  # Needs to be False for JavaScript access
 
 
 # settings.py
+
+
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
