@@ -7,7 +7,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/5.1/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/5.1/ref/settings/
+https://docs.djangoproject.com/en/5.1/ref/settigs/
 """
 
 from pathlib import Path
@@ -26,7 +26,6 @@ cloudinary.config(
     api_key="865887562882688", 
     api_secret="92ncQYit_lQnuEZG1AvSPcS4Arw",
     secure=True
-
 )
 
 # Then keep your existing CLOUDINARY_STORAGE settings

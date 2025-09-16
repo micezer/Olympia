@@ -160,18 +160,20 @@ def home(request):
     # Get current time in the correct time zone
     now = timezone.now()
     
-    # Get next match (first future match where scores aren't set)
+    # Get next match (first future match where scores aren't set) - SOLO SENIOR A
     next_match = Match.objects.filter(
         date__gte=now,
         home_score__isnull=True,
-        away_score__isnull=True
+        away_score__isnull=True,
+        team_category='senior_a'  # Filtra solo Senior A
     ).order_by('date').first()
     
-    # Get last three completed matches
+    # Get last three completed matches - SOLO SENIOR A
     last_matches = Match.objects.filter(
         date__lte=now,
         home_score__isnull=False,
-        away_score__isnull=False
+        away_score__isnull=False,
+        team_category='senior_a'  # Filtra solo Senior A
     ).order_by('-date')[:3]
     
     context = {

@@ -559,7 +559,7 @@ main {
   <div class="match-header">
     <div class="match-left-info">
       <div class="match-main-title">Próximo Partido</div>
-      {% if next_match and next_match.fixture %}
+      {% if next_match and next_match.team_category == 'senior_a' %}
       <div class="fixture-info">{{ next_match.fixture }}</div>
       {% endif %}
     </div>
@@ -706,6 +706,7 @@ main {
 
       <div class="matches-grid">
         {% for match in last_matches %}
+        {% if match.team_category == 'senior_a' %}
         <div class="compact-match">
           <div class="compact-logos">
             <!-- Always show Olympia on the left in the results -->
@@ -720,9 +721,10 @@ main {
           <div class="compact-result">{{ match.display_result }}</div>
           <div class="compact-date">{{ match.short_date }}</div>
         </div>
+        {% endif %}
         {% empty %}
         <div class="no-matches">
-          <p>No hay partidos recientes</p>
+          <p>No hay partidos recientes para Senior A</p>
         </div>
         {% endfor %}
       </div>

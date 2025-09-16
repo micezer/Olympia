@@ -5265,6 +5265,19 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 406,
+    "fields": {
+        "action_time": "2025-09-16T12:09:35.863Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "CFF Olympia vs Málaga - 2025-09-14",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -6012,8 +6025,8 @@
         "away_team": "Málaga",
         "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
         "away_team_logo": "image/upload/malaga-football-seeklogo_qtv7ac",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 2,
+        "away_score": 1,
         "is_olympia_home": true,
         "location_name": "Recinto Ferial",
         "location_address": "14010 Córdoba",
