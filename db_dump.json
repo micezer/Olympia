@@ -5278,6 +5278,58 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 407,
+    "fields": {
+        "action_time": "2025-09-25T16:51:43.499Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "CFF Olympia vs Unión Viera - 2025-09-21",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 408,
+    "fields": {
+        "action_time": "2025-09-25T16:55:39.631Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Location name\", \"Location address\", \"Google Maps URL\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 409,
+    "fields": {
+        "action_time": "2025-09-29T09:32:07.096Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Sporting de Huelva vs CFF Olympia - 2025-09-28",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 410,
+    "fields": {
+        "action_time": "2025-09-29T09:35:28.260Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "107",
+        "object_repr": "CFF Olympia vs Osasuna Femenino - 2025-10-01",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -5714,7 +5766,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$DvsjiRLfkqiX9cnsDKhgIO$A7TY7w7/e/wD7+bpNGCR1aB0d4tN44kkFupwJAKxzhk=",
-        "last_login": "2025-09-07T16:07:30.536Z",
+        "last_login": "2025-09-25T16:51:19.741Z",
         "is_superuser": true,
         "username": "mexes",
         "first_name": "",
@@ -5913,6 +5965,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "rnvkxcw1w953exifu02ddsngnbxngei4",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1v1pBf:rUkLelD2TFlH6KjcR1jqSHfjIW8t0uz22nO5h9tUjS8",
+        "expire_date": "2025-10-09T16:51:19.750Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "uy2jv0zbxj1qhge9a1bzjr4h3x3d89dm",
     "fields": {
         "session_data": ".eJxVjDsOwjAQBe_iGln-xR9Kes5g7Xo3OIAcKU4qxN0hUgpo38y8l8iwrTVvnZc8kTgLLU6_G0J5cNsB3aHdZlnmti4Tyl2RB-3yOhM_L4f7d1Ch128NRDYQeWRlAIPxYFVIaEMk6wwyJpuUHjXD4Ab2BQqPpkRDLpUYmMT7A_76OMA:1urzLL:MVVy1yqVKcWeNHxYCyyqK_0ZCoQrRT4xnot91kk-5dc",
@@ -6046,8 +6106,8 @@
         "away_team": "Unión Viera",
         "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
         "away_team_logo": "image/upload/CF_Unión_Viera_uhlaue",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 6,
+        "away_score": 1,
         "is_olympia_home": true,
         "location_name": "Recinto Ferial",
         "location_address": "Av. Ntra. Señora del Retamar, s/n, 28232 Las Rozas de Madrid, Madrid",
@@ -6067,12 +6127,12 @@
         "away_team": "CFF Olympia",
         "home_team_logo": "image/upload/sportingclubdehuelva-color-chico-2_a0r4co",
         "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 2,
+        "away_score": 1,
         "is_olympia_home": false,
-        "location_name": "",
-        "location_address": "",
-        "maps_url": "",
+        "location_name": "Antonio Toledo Sánchez",
+        "location_address": "21007 Huelva",
+        "maps_url": "https://maps.app.goo.gl/czxiVBEYkLESy9zW9",
         "competition": "2ª Federación GRUPO 3",
         "match_notes": "",
         "matchday": 4
@@ -7000,6 +7060,27 @@
         "competition": "Tercera Federación Fútbol Femenino - Grupo 7",
         "match_notes": "",
         "matchday": 22
+    }
+},
+{
+    "model": "base.match",
+    "pk": 107,
+    "fields": {
+        "team_category": "senior_a",
+        "date": "2025-10-01T20:00:00Z",
+        "home_team": "CFF Olympia",
+        "away_team": "Osasuna Femenino",
+        "home_team_logo": "image/upload/olympia-icon-512x512_rroiua",
+        "away_team_logo": "image/upload/osasuna_vpxdtj",
+        "home_score": null,
+        "away_score": null,
+        "is_olympia_home": true,
+        "location_name": "LAS ROZAS - RECINTO FERIAL",
+        "location_address": "Av. Ntra. Señora del Retamar, s/n, 28232 Las Rozas de Madrid, Madrid",
+        "maps_url": "https://maps.app.goo.gl/t8NLLZDH2qEjeoPE8",
+        "competition": "Copa de la Reina",
+        "match_notes": "",
+        "matchday": null
     }
 },
 {

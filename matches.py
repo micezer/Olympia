@@ -19,6 +19,7 @@ public_ids_correctos = {
     "Guiniguada": "guiniguada_glymuh",
     "Femarguín": "CD-Fermaguin-128x128_mci1f9",
     "Sport Extremadura": "escudo-12698_hkpzrc",
+    "Osasuna Femenino":"osasuna_vpxdtj"
 }
 
 # Actualizar logos de los partidos existentes
