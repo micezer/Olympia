@@ -5330,6 +5330,19 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 411,
+    "fields": {
+        "action_time": "2025-10-01T22:30:17.310Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "107",
+        "object_repr": "CFF Olympia vs Osasuna Femenino - 2025-10-01",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
