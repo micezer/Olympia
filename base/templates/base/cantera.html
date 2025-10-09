@@ -1330,7 +1330,7 @@
                         data-pdf="{% static 'pdf/calendario_senior_b.pdf' %}">
                         <i class="far fa-calendar-alt"></i>
                     </a>
-                    <a href="https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=1&competicion=24038579&grupo=24038586&jornada=1&jornada=1&jornada=1"
+                    <a href="https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=1&competicion=24038579&grupo=24038586&jornada=1&jornada=4"
                         class="team-action-btn" title="Clasificación">
                         <i class="fas fa-table"></i>
                     </a>
@@ -1346,10 +1346,11 @@
             <div class="team-header">
                 <div class="team-name-display">Senior C</div>
                 <div class="team-actions">
-                    <a href="#" class="team-action-btn" title="Calendario">
+                    <a href="#" class="team-action-btn calendar-btn" title="Calendario"
+                        data-pdf="{% static 'pdf/calendario_senior_c.pdf' %}">
                         <i class="far fa-calendar-alt"></i>
                     </a>
-                    <a href="#" class="team-action-btn" title="Clasificación">
+                    <a href="https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24038114&grupo=24038115&jornada=2&tipojuego=1" class="team-action-btn" title="Clasificación">
                         <i class="fas fa-table"></i>
                     </a>
                     <button class="team-action-btn players-btn" title="Jugadoras" id="playersButton">
@@ -1932,28 +1933,28 @@
             // Define teams for each category
             const teams = {
                 juvenil: [
-                    { name: 'Juvenil A Autonómica', calendar: "{% static 'pdf/calendario_juvenil_a.pdf' %}", table: '#' },
-                    { name: 'Juvenil B Preferente', calendar: "{% static 'pdf/calendario_juvenil_b.pdf' %}", table: '#' }
+                    { name: 'Juvenil A Autonómica', calendar: "{% static 'pdf/calendario_juvenil_a.pdf' %}", table: 'https://www.rffm.es/competicion/clasificaciones?temporada=20&tipojuego=1&competicion=21705442&grupo=21705517&jornada=1' },
+                    { name: 'Juvenil B Preferente', calendar: "{% static 'pdf/calendario_juvenil_b.pdf' %}", table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037735&grupo=24037736&jornada=2&tipojuego=1' }
                 ],
                 cadete: [
-                    { name: 'Cadete A Autonómica', calendar: "{% static 'pdf/calendario_cadete_a.pdf' %}", table: '#' },
-                    { name: 'Cadete B Preferente', calendar: "{% static 'pdf/calendario_cadete_b.pdf' %}", table: '#' },
-                    { name: 'Cadete C Preferente', calendar: "{% static 'pdf/calendario_cadete_c.pdf' %}", table: '#' }
+                    { name: 'Cadete A Autonómica', calendar: "{% static 'pdf/calendario_cadete_a.pdf' %}", table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24038118&grupo=24038119&jornada=2&tipojuego=1' },
+                    { name: 'Cadete B Preferente', calendar: "{% static 'pdf/calendario_cadete_b.pdf' %}", table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037743&grupo=24037744&jornada=2&tipojuego=1' },
+                    { name: 'Cadete C Preferente', calendar: "{% static 'pdf/calendario_cadete_c.pdf' %}", table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037743&grupo=24037745&jornada=2&tipojuego=1' }
                 ],
                 infantil: [
-                    { name: 'Infantil F11 Regional Mixto', calendar: '#', table: '#' },
-                    { name: 'Infantil A Autonómica', calendar: '#', table: '#' },
-                    { name: 'Infantil B Preferente', calendar: '#', table: '#' },
-                    { name: 'Infantil C Primera', calendar: '#', table: '#' },
+                    { name: 'Infantil F11 Regional Mixto', calendar: '#', table: '' },
+                    { name: 'Infantil A Autonómica', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=2&competicion=24038120&grupo=24038121&jornada=1' },
+                    { name: 'Infantil B Preferente', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037753&grupo=24037754&jornada=1&tipojuego=2' },
+                    { name: 'Infantil C Preferente', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037753&grupo=24311403&jornada=1&tipojuego=2' },
                     { name: 'Infantil D Primera', calendar: '#', table: '#' }
                 ],
                 alevin: [
-                    { name: 'Alevín A Autonómica', calendar: '#', table: '#' },
-                    { name: 'Alevín B Preferente', calendar: '#', table: '#' },
-                    { name: 'Alevín C Preferente', calendar: '#', table: '#' }
+                    { name: 'Alevín A Autonómica', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24038122&grupo=24038123&jornada=1&tipojuego=2' },
+                    { name: 'Alevín B Preferente', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037773&grupo=24037774&jornada=1&tipojuego=2' },
+                    { name: 'Alevín C Preferente', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037773&grupo=24312263&jornada=1&tipojuego=2' }
                 ],
                 benjamin: [
-                    { name: 'Benjamín A Preferente', calendar: '#', table: '#' },
+                    { name: 'Benjamín A Preferente', calendar: '#', table: 'https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24548155&grupo=24548810&jornada=1&tipojuego=2' },
                     { name: 'Benjamín B Primera Regional', calendar: '#', table: '#' },
                     { name: 'Benjamín C Juegos Municipales', calendar: '#', table: '#' }
                 ],
