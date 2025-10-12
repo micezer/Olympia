@@ -5785,6 +5785,19 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 446,
+    "fields": {
+        "action_time": "2025-10-12T14:43:35.117Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "41",
+        "object_repr": "Real Betis B vs CFF Olympia - 2025-10-12",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Home score\", \"Away score\"]}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -6632,8 +6645,8 @@
         "away_team": "CFF Olympia",
         "home_team_logo": "image/upload/beetiss_npkhm7",
         "away_team_logo": "image/upload/olympia-icon-512x512_rroiua",
-        "home_score": null,
-        "away_score": null,
+        "home_score": 2,
+        "away_score": 1,
         "is_olympia_home": false,
         "location_name": "Ciudad Deportiva Luis del Sol",
         "location_address": "Av. de Italia, s/n, 41012 Sevilla",
