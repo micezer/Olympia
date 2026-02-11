@@ -3,12 +3,16 @@
     {
       "src": "tuproyecto/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12",
+        "installCommand": "uv pip install -r requirements.txt",
+        "buildCommand": "python3 manage.py collectstatic --noinput && python3 manage.py makemigrations --noinput && python3 manage.py migrate --noinput"
+      }
     },
     {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "staticfiles" }
+      "src": "static/.*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
