@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settigs/
 from pathlib import Path
 import os
 
-#from dotenv import load_dotenv
-#load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 # At the VERY TOP of settings.py, add:
 import cloudinary
