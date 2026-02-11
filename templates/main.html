@@ -1,137 +1,130 @@
-<!DOCTYPE html>
-{% load static %}
-{% load pwa %}
+<!doctype html>
+{% load static %} {% load pwa %}
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Para Android/Chrome -->
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes" />
     <!-- Para iOS/Safari -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
-    <link rel="manifest" href="{% url 'manifest' %}" crossorigin="use-credentials">
+    <link
+      rel="manifest"
+      href="{% url 'manifest' %}"
+      crossorigin="use-credentials"
+    />
     {% progressive_web_app_meta %}
 
-    <link rel="shortcut icon" href="{% static 'images/olympia_logo.png' %}" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/olympia_logo.png' %}"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
 
     <title>CFF Olympia</title>
 
     <style>
-        :root {
-            --nav-h: 70px;
-        }
+      :root {
+        --nav-h: 70px;
+      }
 
-        /* altura del navbar */
+      /* altura del navbar */
 
-        body {
-            margin: 0;
-        }
+      body {
+        margin: 0;
+      }
 
-        main {
-            margin-top: var(--nav-h);
-            /* offset para que el contenido no quede tapado */
-        }
+      main {
+        margin-top: var(--nav-h);
+        /* offset para que el contenido no quede tapado */
+      }
 
-        /* PWA fix */
+      /* PWA fix */
+      .pwa-mode {
+        overflow: hidden !important;
+        height: 100vh !important;
+        position: fixed;
+        width: 100%;
+      }
+
+      @supports (-webkit-touch-callout: none) {
         .pwa-mode {
-            overflow: hidden !important;
-            height: 100vh !important;
-            position: fixed;
-            width: 100%;
+          -webkit-touch-callout: none;
+          height: -webkit-fill-available;
+          padding-top: env(safe-area-inset-top);
         }
-
-        @supports (-webkit-touch-callout: none) {
-            .pwa-mode {
-                -webkit-touch-callout: none;
-                height: -webkit-fill-available;
-                padding-top: env(safe-area-inset-top);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    {% include 'navbar.html' %} {% block content %} {% endblock %}
+  </body>
 
-    {% include 'navbar.html' %}
+  <script src="{% static 'js/script.js' %}"></script>
+  <script>
+    // Script unificado para manejo PWA
+    document.addEventListener("DOMContentLoaded", function () {
+      // Detección del modo PWA
+      const isPwaInstalled =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
 
-    {% block content %}
-    
-    
-    {% endblock %}
+      // Aplicar clase pwa-mode si está instalada
+      if (isPwaInstalled) {
+        document.documentElement.classList.add("pwa-mode");
 
+        // Forzar actualización del service worker
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            registrations.forEach((registration) => {
+              registration.update();
+            });
+          });
+        }
+      }
+      // Redirección para navegador normal
+      else if (window.location.pathname !== "/download/") {
+        setTimeout(() => {
+          window.location.href =
+            "/download/?source=" + encodeURIComponent(window.location.pathname);
+        }, 300);
+      }
 
-
-</body>
-
-    <script src="{% static 'js/script.js' %}"></script>
-    <script>
-        // Script unificado para manejo PWA
-        document.addEventListener('DOMContentLoaded', function () {
-            // Detección del modo PWA
-            const isPwaInstalled = (
-                window.matchMedia('(display-mode: standalone)').matches ||
-                window.navigator.standalone === true
+      // Registrar Service Worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register('{% static "js/sw.js" %}?v=2')
+          .then((registration) => {
+            console.log(
+              "ServiceWorker registrado con éxito:",
+              registration.scope,
             );
+          })
+          .catch((error) => {
+            console.log("Error al registrar ServiceWorker:", error);
+          });
+      }
 
-            // Aplicar clase pwa-mode si está instalada
-            if (isPwaInstalled) {
-                document.documentElement.classList.add('pwa-mode');
-
-                // Forzar actualización del service worker
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.getRegistrations().then(registrations => {
-                        registrations.forEach(registration => {
-                            registration.update();
-                        });
-                    });
-                }
-            }
-            // Redirección para navegador normal
-            else if (window.location.pathname !== '/download/') {
-                setTimeout(() => {
-                    window.location.href = "/download/?source=" + encodeURIComponent(window.location.pathname);
-                }, 300);
-            }
-
-            // Registrar Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('{% static "js/sw.js" %}?v=2')
-                    .then(registration => {
-                        console.log('ServiceWorker registrado con éxito:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('Error al registrar ServiceWorker:', error);
-                    });
-            }
-
-            // Burger menu (mantén este código)
-            const burger = document.querySelector('.header__burger');
-            const menu = document.querySelector('.header__menu');
-            if (burger && menu) {
-                burger.addEventListener('click', function () {
-                    menu.classList.toggle('header__menu--open');
-                });
-            }
+      // Burger menu (mantén este código)
+      const burger = document.querySelector(".header__burger");
+      const menu = document.querySelector(".header__menu");
+      if (burger && menu) {
+        burger.addEventListener("click", function () {
+          menu.classList.toggle("header__menu--open");
         });
-    </script>
-
+      }
+    });
+  </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,393 +1,455 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Site</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-        /* Your original CSS code remains exactly the same */
-        .navbar {
-            width: 100%;
-            box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #2a374c;
-            z-index: 1000;
-        }
+      /* Your original CSS code remains exactly the same */
+      .navbar {
+        width: 100%;
+        box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #2a374c;
+        z-index: 1000;
+      }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            position: relative;
-            padding: 0 20px;
-        }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        position: relative;
+        padding: 0 20px;
+      }
 
-        .navbar .menu-items {
-            display: flex;
-        }
+      .navbar .menu-items {
+        display: flex;
+      }
 
-        .navbar .nav-container li {
-            list-style: none;
-        }
+      .navbar .nav-container li {
+        list-style: none;
+      }
 
-        .navbar .nav-container a {
-            text-decoration: none;
-            color: #b8ac84;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 0.7rem;
-        }
+      .navbar .nav-container a {
+        text-decoration: none;
+        color: #b8ac84;
+        font-weight: 500;
+        font-size: 1.2rem;
+        padding: 0.7rem;
+      }
 
-        .navbar .nav-container a:hover {
-            font-weight: bolder;
-            color: #7f765a;
-        }
+      .navbar .nav-container a:hover {
+        font-weight: bolder;
+        color: #7f765a;
+      }
 
-        .nav-container .checkbox {
-            position: absolute;
-            display: block;
-            height: 32px;
-            width: 32px;
-            top: 20px;
-            left: 20px;
-            z-index: 5;
-            opacity: 0;
-            cursor: pointer;
-        }
+      .nav-container .checkbox {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 32px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+      }
 
-        .nav-container .hamburger-lines {
-            display: block;
-            height: 30px;
-            width: 32px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+      .nav-container .hamburger-lines {
+        display: block;
+        height: 30px;
+        width: 32px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-        .nav-container .hamburger-lines .line {
-            display: block;
-            height: 4px;
-            width: 100%;
-            border-radius: 10px;
-            background: #b8ac84;
-        }
+      .nav-container .hamburger-lines .line {
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+        background: #b8ac84;
+      }
 
-        .nav-container .hamburger-lines .line1 {
-            transform-origin: 0% 0%;
-            transition: transform 0.4s ease-in-out;
-        }
+      .nav-container .hamburger-lines .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
+      }
 
-        .nav-container .hamburger-lines .line2 {
-            transition: transform 0.2s ease-in-out;
-        }
+      .nav-container .hamburger-lines .line2 {
+        transition: transform 0.2s ease-in-out;
+      }
 
-        .nav-container .hamburger-lines .line3 {
-            transform-origin: 0% 100%;
-            transition: transform 0.4s ease-in-out;
-        }
+      .nav-container .hamburger-lines .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
+      }
 
-        .navbar .menu-items {
-            position: fixed;
-            top: 60PX;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-            background-color: #1f2531;
-            transform: translateX(-150%);
-            transition: transform 0.5s ease-in-out;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 50px;
-            text-align: center;
-        }
+      .navbar .menu-items {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: #1f2531;
+        transform: translateX(-150%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        text-align: center;
+      }
 
-        .navbar .menu-items li {
-            margin-bottom: 1.2rem;
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
+      .navbar .menu-items li {
+        margin-bottom: 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-h);
-            z-index: 999;
-            background: white;
-        }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-h);
+        z-index: 999;
+        background: white;
+      }
 
-        main {
-            padding-top: var(--nav-h);
-        }
+      main {
+        padding-top: var(--nav-h);
+      }
 
-        .header__logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 60px;
-        }
+      .header__logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 60px;
+      }
 
-        .header__logo img {
-            height: 100%;
-            max-width: 120px;
-        }
+      .header__logo img {
+        height: 100%;
+        max-width: 120px;
+      }
 
-        .nav-container input[type="checkbox"]:checked~.menu-items {
-            transform: translateX(0);
-        }
+      .nav-container input[type="checkbox"]:checked ~ .menu-items {
+        transform: translateX(0);
+      }
 
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
-            transform: rotate(45deg);
-        }
+      .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+        transform: rotate(45deg);
+      }
 
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
-            transform: scaleY(0);
-        }
+      .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+        transform: scaleY(0);
+      }
 
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
-            transform: rotate(-45deg);
-        }
+      .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+        transform: rotate(-45deg);
+      }
 
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line {
-            background: #b8ac84;
-        }
+      .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line {
+        background: #b8ac84;
+      }
 
-        .navbar .menu-items a {
-            color: #b8ac84;
-            font-size: 20px;
-        }
+      .navbar .menu-items a {
+        color: #b8ac84;
+        font-size: 20px;
+      }
 
-        .navbar .menu-items a:hover {
-            color: #7f765a;
-        }
+      .navbar .menu-items a:hover {
+        color: #7f765a;
+      }
 
-        /* Social Media Icons Styles */
+      /* Social Media Icons Styles */
+      .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+        padding: 10px 0;
+      }
+
+      .social-circle {
+        border: solid 1px #b8ac84;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: #b8ac84;
+        transition: all 0.3s ease;
+      }
+
+      .social-circle:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        color: #7f765a;
+        border-color: #7f765a;
+      }
+
+      .social-circle i {
+        font-size: 16px;
+      }
+
+      /* Adjust for mobile view */
+      @media (max-width: 768px) {
         .social-icons {
-            display: flex;
-            gap: 10px;
-            margin-left: auto;
-            padding: 10px 0;
+          margin-left: 0;
+          justify-content: center;
+          width: 100%;
+          padding: 15px 0;
         }
 
-        .social-circle {
-            border: solid 1px #b8ac84;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: #b8ac84;
-            transition: all 0.3s ease;
+        .menu-items {
+          flex-direction: column;
+        }
+      }
+
+      /* NEW: Page transition overlay */
+      .transition-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2a374c 0%, #1f2531 100%);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.5s ease,
+          visibility 0.5s;
+      }
+
+      .transition-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .transition-logo {
+        width: 120px;
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      .transition-overlay.active .transition-logo {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* NEW: Add a subtle fade-in for page content */
+      .main-content {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
 
-        .social-circle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            color: #7f765a;
-            border-color: #7f765a;
+        to {
+          opacity: 1;
         }
-
-        .social-circle i {
-            font-size: 16px;
-        }
-
-        /* Adjust for mobile view */
-        @media (max-width: 768px) {
-            .social-icons {
-                margin-left: 0;
-                justify-content: center;
-                width: 100%;
-                padding: 15px 0;
-            }
-
-            .menu-items {
-                flex-direction: column;
-            }
-        }
-
-        /* NEW: Page transition overlay */
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2a374c 0%, #1f2531 100%);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
-
-        .transition-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .transition-logo {
-            width: 120px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .transition-overlay.active .transition-logo {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* NEW: Add a subtle fade-in for page content */
-        .main-content {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- NEW: Transition overlay -->
     <div class="transition-overlay" id="transitionOverlay">
-        <img src="{% static 'images/olympia_logo.png' %}" alt="Olympia Logo" class="transition-logo">
+      <img
+        src="{% static 'images/olympia_logo.png' %}"
+        alt="Olympia Logo"
+        class="transition-logo"
+      />
     </div>
 
     <nav class="navbar">
-        <div class="nav-container">
-            <input type="checkbox" class="checkbox" id="menu-toggle">
+      <div class="nav-container">
+        <input type="checkbox" class="checkbox" id="menu-toggle" />
 
-            <div class="hamburger-lines">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </div>
-
-            <a href="{% url 'home' %}" class="header__logo">
-                <img src="{% static 'images/olympia_logo.png' %}" alt="Logo" />
-            </a>
-
-            <ul class="menu-items">
-                <li><a href="{% url 'home' %}" class="nav-link" data-transition="home"><i class="fas fa-home"></i>
-                        INICIO</a></li>
-                <li><a href="{% url 'cantera' %}" class="nav-link" data-transition="cantera"><i
-                            class="fas fa-user-plus"></i> EQUIPOS</a></li>
-                <li><a href="{% url 'inscripcion' %}" class="nav-link" data-transition="inscripcion"><i
-                            class="fas fa-user-plus"></i> INSCRÍBETE</a></li>
-                
-                <li><a href="{% url 'tienda' %}" class="nav-link" data-transition="tienda"><i class="fas fa-store"></i>
-                        TIENDA</a></li>
-                <li><a href="{% url 'contactos' %}" class="nav-link" data-transition="contacto"><i class="fas fa-envelope"></i> CONTACTO</a>
-                </li>
-
-                <!-- Social Media Icons -->
-                <li class="social-icons">
-                    <a href="https://www.instagram.com/cff_olympia/" target="_blank" class="social-circle">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.instagram.com/cff_olympia/" target="_blank" class="social-circle">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@cff_olympia" target="_blank" class="social-circle">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/cffolympialasrozas" target="_blank" class="social-circle">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </li>
-            </ul>
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
         </div>
+
+        <a href="{% url 'home' %}" class="header__logo">
+          <img src="{% static 'images/olympia_logo.png' %}" alt="Logo" />
+        </a>
+
+        <ul class="menu-items">
+          <li>
+            <a href="{% url 'home' %}" class="nav-link" data-transition="home"
+              ><i class="fas fa-home"></i> INICIO</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'cantera' %}"
+              class="nav-link"
+              data-transition="cantera"
+              ><i class="fas fa-user-plus"></i> EQUIPOS</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'inscripcion' %}"
+              class="nav-link"
+              data-transition="inscripcion"
+              ><i class="fas fa-user-plus"></i> INSCRÍBETE</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              class="nav-link"
+              data-transition="copa_reina"
+              style="color: purple"
+              ><i class="fas fa-trophy"></i> COPA DE LA REINA</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'tienda' %}"
+              class="nav-link"
+              data-transition="tienda"
+              ><i class="fas fa-store"></i> TIENDA</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'contactos' %}"
+              class="nav-link"
+              data-transition="contacto"
+              ><i class="fas fa-envelope"></i> CONTACTO</a
+            >
+          </li>
+
+          <!-- Social Media Icons -->
+          <li class="social-icons">
+            <a
+              href="https://www.instagram.com/cff_olympia/"
+              target="_blank"
+              class="social-circle"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/cff_olympia/"
+              target="_blank"
+              class="social-circle"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://www.tiktok.com/@cff_olympia"
+              target="_blank"
+              class="social-circle"
+            >
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/cffolympialasrozas"
+              target="_blank"
+              class="social-circle"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main class="container main-content">
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const overlay = document.getElementById('transitionOverlay');
-            const navLinks = document.querySelectorAll('.nav-link');
+      document.addEventListener("DOMContentLoaded", function () {
+        const overlay = document.getElementById("transitionOverlay");
+        const navLinks = document.querySelectorAll(".nav-link");
 
-            // Function to handle navigation with smooth transition
-            function navigateWithTransition(e) {
-                // Only handle left clicks (ignore right clicks etc.)
-                if (e.button !== 0 || e.metaKey || e.ctrlKey) return;
+        // Function to handle navigation with smooth transition
+        function navigateWithTransition(e) {
+          // Only handle left clicks (ignore right clicks etc.)
+          if (e.button !== 0 || e.metaKey || e.ctrlKey) return;
 
-                e.preventDefault();
+          e.preventDefault();
 
-                const targetUrl = this.href;
+          const targetUrl = this.href;
 
-                // Show the transition overlay
-                overlay.classList.add('active');
+          // Show the transition overlay
+          overlay.classList.add("active");
 
-                // Close mobile menu if open
-                document.getElementById('menu-toggle').checked = false;
+          // Close mobile menu if open
+          document.getElementById("menu-toggle").checked = false;
 
-                // Wait for the transition to show before navigating
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 800); // This matches the CSS transition time
+          // Wait for the transition to show before navigating
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 800); // This matches the CSS transition time
+        }
+
+        // Add event listeners to all navigation links
+        navLinks.forEach((link) => {
+          link.addEventListener("click", navigateWithTransition);
+
+          // Also handle middle click and right click correctly
+          link.addEventListener("auxclick", function (e) {
+            if (e.button === 1) {
+              // Middle click
+              window.open(this.href, "_blank");
             }
-
-            // Add event listeners to all navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', navigateWithTransition);
-
-                // Also handle middle click and right click correctly
-                link.addEventListener('auxclick', function (e) {
-                    if (e.button === 1) { // Middle click
-                        window.open(this.href, '_blank');
-                    }
-                });
-            });
-
-            // Hide the overlay when the page is fully loaded
-            window.addEventListener('load', function () {
-                // Small delay to ensure everything is loaded
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                }, 300);
-            });
-
-            // Also hide the overlay if there's an error
-            window.addEventListener('error', function () {
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                }, 1000);
-            });
+          });
         });
-    </script>
-</body>
 
+        // Hide the overlay when the page is fully loaded
+        window.addEventListener("load", function () {
+          // Small delay to ensure everything is loaded
+          setTimeout(() => {
+            overlay.classList.remove("active");
+          }, 300);
+        });
+
+        // Also hide the overlay if there's an error
+        window.addEventListener("error", function () {
+          setTimeout(() => {
+            overlay.classList.remove("active");
+          }, 1000);
+        });
+      });
+    </script>
+  </body>
 </html>
