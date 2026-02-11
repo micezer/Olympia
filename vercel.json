@@ -7,7 +7,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/olympia/wsgi.py"
+      "destination": "/api/wsgi.py"
     }
   ]
 }

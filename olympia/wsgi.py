@@ -7,10 +7,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
-import sys
-from pathlib import Path
+import os
 
-# Añade el directorio raíz al path
-sys.path.append(str(Path(__file__).parent.parent))
+from django.core.wsgi import get_wsgi_application
 
-from olympia.wsgi import app  # o application, pero app es lo que Vercel busca
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'olympia.settings')
+
+application = get_wsgi_application()
+app = application   # <--- LÍNEA CLAVE, Vercel busca 'app'
