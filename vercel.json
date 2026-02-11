@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "olympia/wsgi.py": {
+      "runtime": "python3.12@1.2.0"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/olympia/wsgi.py"
+    }
+  ]
+}
