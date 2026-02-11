@@ -1,19 +1,18 @@
 #!/bin/bash
 echo "🚀 BUILD START"
 
-# Deshabilitar temporalmente la protección PEP 668
-export PIP_BREAK_SYSTEM_PACKAGES=1
+# Instalar uv si no está
+curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="$HOME/.cargo/bin:$PATH"
 
-# Forzar reinstalación
-python3 -m pip install --force-reinstall -r requirements.txt
+# Crear virtualenv y sincronizar dependencias
+uv venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
 
-# Si el comando anterior falla, intentar con --break-system-packages
-if [ $? -ne 0 ]; then
-    python3 -m pip install --break-system-packages -r requirements.txt
-fi
-
-python3 manage.py collectstatic --noinput
-python3 manage.py makemigrations --noinput
-python3 manage.py migrate --noinput
+# Django commands
+python manage.py collectstatic --noinput
+python manage.py makemigrations --noinput
+python manage.py migrate --noinput
 
 echo "✅ BUILD END"
