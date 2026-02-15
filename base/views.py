@@ -104,6 +104,7 @@ def ticket_purchase(request):
 
 def download_view(request):
     return render(request, 'base/download.html')
+
 def about_view(request):
     return render(request, 'base/about.html')
 
@@ -142,27 +143,19 @@ def manifest(request):
     return HttpResponse(json.dumps(manifest_data), content_type='application/json')
 
 
-# Get an instance of a logger
-logger = logging.getLogger(__name__)
 
-# views.py
+
+
+
+from django.views.decorators.cache import never_cache
 from django.utils import timezone
 from django.shortcuts import render
-from django.views.decorators.cache import never_cache
-from .models import Match
-
-# views.py
-from django.utils import timezone
-from django.shortcuts import render
-from django.views.decorators.cache import never_cache
-from .models import Match, Sponsor  
+from .models import Match  # Solo Match, ya no Sponsor
 
 @never_cache
 def home(request):
-    # Get current time in the correct time zone
     now = timezone.now()
     
-    # Get next match (first future match where scores aren't set) - SOLO SENIOR A
     next_match = Match.objects.filter(
         date__gte=now,
         home_score__isnull=True,
@@ -170,7 +163,6 @@ def home(request):
         team_category='senior_a'
     ).order_by('date').first()
     
-    # Get last three completed matches - SOLO SENIOR A
     last_matches = Match.objects.filter(
         date__lte=now,
         home_score__isnull=False,
@@ -178,18 +170,12 @@ def home(request):
         team_category='senior_a'
     ).order_by('-date')[:3]
     
-    # Get active sponsors - NUEVO
-    sponsors = Sponsor.objects.filter(active=True).order_by('order')
-    
     context = {
         'next_match': next_match,
         'last_matches': last_matches,
-        'sponsors': sponsors,  # ← AÑADIDO
-        'current_time': now,
     }
     
-    response = render(request, 'pages/home.html', context)  # Cambia a 'pages/home.html'
-    # Add headers to prevent caching
+    response = render(request, 'pages/home.html', context)
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
@@ -211,7 +197,6 @@ from django.shortcuts import render
 def sponsors_view(request):
     return render(request, 'pages/sponsors.html')
 
-from django.shortcuts import render
 
 def copa_view(request):
     # Datos hardcodeados de los partidos
@@ -249,245 +234,17 @@ def copa_view(request):
     }
     return render(request, 'pages/copa.html', context)
 
-# views.py
-from django.http import JsonResponse
-from django.utils import timezone
-from django.views.decorators.http import require_GET
-from django.views.decorators.cache import never_cache
-from .models import Match, Product
-
-import logging
-logger = logging.getLogger(__name__)
-
-@never_cache
-@require_GET
-def get_next_match(request):
-    try:
-        team = request.GET.get('team')
-        
-        if team in ['senior_a', 'senior_b']:
-            now = timezone.now()
-            
-            # USAR EL MISMO FILTRO QUE LA VISTA HOME
-            next_match = Match.objects.filter(
-                date__gte=now,
-                home_score__isnull=True,  # ← Añadir este filtro
-                away_score__isnull=True   # ← Añadir este filtro
-            ).filter(
-                team_category=team  # Filtrar por categoría
-            ).order_by('date').first()
-            
-            if next_match:
-                # Determinar si Olympia es home o away
-                is_olympia_home = "OLYMPIA" in next_match.home_team.upper()
-                is_olympia_away = "OLYMPIA" in next_match.away_team.upper()
-                
-                if is_olympia_home:
-                    opponent_team = next_match.away_team
-                    opponent_logo = next_match.away_team_logo
-                elif is_olympia_away:
-                    opponent_team = next_match.home_team
-                    opponent_logo = next_match.home_team_logo
-                else:
-                    opponent_team = next_match.away_team
-                    opponent_logo = next_match.away_team_logo
-                
-                opponent_logo_url = ""
-                if opponent_logo:
-                    try:
-                        opponent_logo_url = opponent_logo.url
-                    except:
-                        pass
-                
-                return JsonResponse({
-                    'date': next_match.date.strftime('%a, %d %b'),
-                    'time': next_match.date.strftime('%H:%M H'),
-                    'location': next_match.location_name or 'Por determinar',
-                    'opponent': opponent_team,
-                    'opponent_logo': opponent_logo_url,
-                    'fixture': getattr(next_match, 'fixture', '') or '',
-                    'is_home': is_olympia_home
-                })
-        
-        return JsonResponse({})
-        
-    except Exception as e:
-        print(f"DEBUG: Error: {str(e)}")
-        return JsonResponse({'error': str(e)}, status=500)
-
-# views.py
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
-from .models import Order
-import json
-
-@csrf_exempt
-def create_order(request):
-    if request.method == 'POST':
-        try:
-            # Ensure we have JSON content
-            if request.content_type != 'application/json':
-                return JsonResponse({
-                    'status': 'error',
-                    'message': 'Content-Type must be application/json'
-                }, status=400)
-                
-            data = json.loads(request.body)
-            
-            # Validate required fields
-            required_fields = ['full_name', 'email', 'phone', 'total', 'items']
-            for field in required_fields:
-                if field not in data:
-                    return JsonResponse({
-                        'status': 'error',
-                        'message': f'Missing required field: {field}'
-                    }, status=400)
-            
-            # Create the order
-            order = Order(
-                full_name=data['full_name'],
-                email=data['email'],
-                phone=data['phone'],
-                category=data.get('category', ''),
-                total=float(data['total']),
-                items_json=json.dumps(data['items']),
-                paid=True
-            )
-            order.save()
-            
-            # Send emails
-            send_order_emails(order)
-            
-            return JsonResponse({
-                'status': 'success',
-                'order_number': order.order_number
-            })
-            
-        except json.JSONDecodeError:
-            return JsonResponse({
-                'status': 'error',
-                'message': 'Invalid JSON format'
-            }, status=400)
-            
-        except Exception as e:
-            return JsonResponse({
-                'status': 'error',
-                'message': str(e)
-            }, status=400)
-    
-    return JsonResponse({
-        'status': 'error',
-        'message': 'Only POST requests are allowed'
-    }, status=405)
-
-def send_order_emails(order):
-    items = order.get_items()
-    
-    # Email to customer
-    customer_subject = f'Confirmación de pedido #{order.order_number}'
-    customer_message = f'''Gracias por tu pedido en Tienda Olympia!
-
-Detalles del pedido:
-Número de pedido: {order.order_number}
-Fecha: {order.created_at.strftime("%d/%m/%Y %H:%M")}
-Total: €{order.total:.2f}
-
-Productos:
-'''
-    for item in items:
-        customer_message += f"- {item['name']} (€{item['price']} x {item['quantity']})\n"
-        if item.get('size'):
-            customer_message += f"  Talla: {item['size']}\n"
-        if item.get('color'):
-            customer_message += f"  Color: {item['color']}\n"
-        if item.get('customization'):
-            customer_message += f"  Personalización: {item['customization']}\n"
-    
-    customer_message += '\nNos pondremos en contacto contigo pronto. ¡Gracias!'
-    
-    send_mail(
-        customer_subject,
-        customer_message,
-        settings.DEFAULT_FROM_EMAIL,
-        [order.email],
-        fail_silently=False,
-    )
-    
-    # Email to owner
-    owner_subject = f'Nuevo pedido #{order.order_number}'
-    owner_message = f'''Nuevo pedido recibido!
-
-Detalles del cliente:
-Nombre: {order.full_name}
-Email: {order.email}
-Teléfono: {order.phone}
-Categoría: {order.category or 'No especificada'}
-
-Detalles del pedido:
-Número de pedido: {order.order_number}
-Fecha: {order.created_at.strftime("%d/%m/%Y %H:%M")}
-Total: €{order.total:.2f}
-
-Productos:
-'''
-    for item in items:
-        owner_message += f"- {item['name']} (€{item['price']} x {item['quantity']})\n"
-        if item.get('size'):
-            owner_message += f"  Talla: {item['size']}\n"
-        if item.get('color'):
-            owner_message += f"  Color: {item['color']}\n"
-        if item.get('customization'):
-            owner_message += f"  Personalización: {item['customization']}\n"
-    
-    send_mail(
-        owner_subject,
-        owner_message,
-        settings.DEFAULT_FROM_EMAIL,
-        [settings.OWNER_EMAIL],
-        fail_silently=False,
-    )
 
 
 
-
-
-
-
-
-# views.py
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-from django.utils import timezone
-import json
 
 def registration_form(request):
     return render(request, 'registration_form.html')
 
-# views.py
-from django.views.decorators.csrf import csrf_exempt
-import json
-from django.http import JsonResponse
-from django.middleware.csrf import get_token
-
-def get_csrf_token(request):
-    return JsonResponse({'csrfToken': get_token(request)})
 
 
 
-import json
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import send_mail
-from django.conf import settings
-from .models import Inscription
 
-def get_csrf_token(request):
-    """Helper function to get CSRF token"""
-    from django.middleware.csrf import get_token
-    return get_token(request)
 
 @csrf_exempt
 def create_inscription(request):
@@ -696,188 +453,18 @@ Cuota: {data.get('registration_fee', '130')}€
 
 
 
-# views.py
-import stripe
-from django.conf import settings
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-# views.py
-@csrf_exempt
-def create_payment_intent(request):
-    if request.method == 'POST':
-        try:
-            print("Solicitud recibida para PaymentIntent")
-            print("Clave API:", settings.STRIPE_SECRET_KEY[:20] + "...")  # Muestra solo parte de la clave
-            # Asegúrate de que la clave secreta esté configurada
-            stripe.api_key = settings.STRIPE_SECRET_KEY
-            
-            # Verifica que estás usando una clave de test válida
-            if not stripe.api_key.startswith('sk_test_'):
-                return JsonResponse({'error': 'Clave secreta inválida'}, status=400)
-            
-            # Crea el Payment Intent con parámetros correctos
-            intent = stripe.PaymentIntent.create(
-                amount=13000,  # 130€ en céntimos
-                currency='eur',
-                automatic_payment_methods={
-                    'enabled': True,
-                },
-                metadata={
-                    'inscription_id': 'temp_id'
-                }
-            )
-            
-            # Verifica que el client_secret se devuelve correctamente
-            return JsonResponse({
-                'clientSecret': intent.client_secret,
-                'paymentIntentId': intent.id
-            })
-            
-        except stripe.error.StripeError as e:
-            return JsonResponse({'error': str(e)}, status=400)
-        except Exception as e:
-            return JsonResponse({'error': 'Error interno'}, status=500)
         
 
 
-def payment_success(request):
-    """Vista para cuando el pago es exitoso"""
-    payment_intent_id = request.GET.get('payment_intent')
-    payment_status = request.GET.get('redirect_status')
-    
-    # Aquí puedes guardar en la base de datos que el pago fue exitoso
-    # y marcar la inscripción como pagada
-    
-    context = {
-        'payment_intent_id': payment_intent_id,
-        'status': payment_status
-    }
-    
-
-def payment_cancel(request):
-    """Vista para cuando el pago es cancelado"""
 
 
 
 
-# views.py - Cambia las URLs de éxito y cancelación
-@csrf_exempt
-@require_POST
-def create_checkout_session(request):
-    try:
-        data = json.loads(request.body)
-        
-        # Create line items for Stripe
-        line_items = []
-        for item in data.get('items', []):
-            line_items.append({
-                'price_data': {
-                    'currency': 'eur',
-                    'product_data': {
-                        'name': item['name'],
-                        'metadata': {
-                            'size': item.get('size', ''),
-                            'color': item.get('color', ''),
-                            'customization': item.get('customization', '')
-                        }
-                    },
-                    'unit_amount': item['price'],
-                },
-                'quantity': item['quantity'],
-            })
 
-        # Obtener la URL base
-        base_url = settings.FRONTEND_URL if hasattr(settings, 'FRONTEND_URL') else 'http://127.0.0.1:8000'
-        
-        # Create checkout session - Redirigir a la tienda con parámetros
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=line_items,
-            mode='payment',
-            success_url=f"{base_url}/tienda?payment=success&session_id={{CHECKOUT_SESSION_ID}}",
-            cancel_url=f"{base_url}/tienda?payment=cancelled",
-            customer_email=data.get('customer_email'),
-            metadata={
-                'customer_name': data.get('customer_name'),
-                'customer_phone': data.get('customer_phone'),
-                'customer_category': data.get('customer_category', ''),
-                'order_type': 'merchandising'
-            }
-        )
 
-        return JsonResponse({'sessionId': checkout_session.id})
-        
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
-    
-    
-# views.py
-@csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
 
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError as e:
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        return HttpResponse(status=400)
 
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        
-        try:
-            # Find the order in your database
-            # order = Order.objects.get(stripe_session_id=session.id)
-            
-            # Update order status to completed
-            # order.status = 'completed'
-            # order.payment_intent_id = session.payment_intent
-            # order.save()
-            
-            # Send confirmation email
-            # send_order_confirmation_email(order)
-            
-            print(f"Payment successful for session {session.id}")
-            
-        except Exception as e:
-            print(f"Error processing webhook: {str(e)}")
-
-    return HttpResponse(status=200)
-
-# views.py
-def payment_success(request):
-    session_id = request.GET.get('session_id')
-    if session_id:
-        try:
-            # Retrieve session from Stripe
-            session = stripe.checkout.Session.retrieve(session_id)
-            
-            # Get order from database
-            # order = Order.objects.get(stripe_session_id=session_id)
-            
-            context = {
-                'session': session,
-                # 'order': order
-            }
-            
-            return render(request, 'base/payment_success.html', context)
-            
-        except Exception as e:
-            # Handle error
-            pass
-    
-    return render(request, 'base/payment_success.html')
-
-from django.shortcuts import render
 
 def contactos(request):
     context = {

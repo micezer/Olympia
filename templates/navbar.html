@@ -295,118 +295,80 @@
       />
     </div>
 
-    <nav class="navbar">
-      <div class="nav-container">
+<nav class="navbar">
+    <div class="nav-container">
         <input type="checkbox" class="checkbox" id="menu-toggle" />
 
         <div class="hamburger-lines">
-          <span class="line line1"></span>
-          <span class="line line2"></span>
-          <span class="line line3"></span>
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
         </div>
 
         <a href="{% url 'home' %}" class="header__logo">
-          <img src="{% static 'images/olympia_logo.png' %}" alt="Logo" />
+            <img src="{% static 'images/olympia_logo.png' %}" alt="Logo" />
         </a>
 
         <ul class="menu-items">
-          <li>
-            <a href="{% url 'home' %}" class="nav-link" data-transition="home"
-              ><i class="fas fa-home"></i> INICIO</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'cantera' %}"
-              class="nav-link"
-              data-transition="cantera"
-              ><i class="fas fa-user-plus"></i> EQUIPOS</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'inscripcion' %}"
-              class="nav-link"
-              data-transition="inscripcion"
-              ><i class="fas fa-user-plus"></i> INSCRÍBETE</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'copa_reina' %}"
-              class="nav-link"
-              data-transition="copa_reina"
-              style="color: purple"
-              ><i class="fas fa-trophy"></i> COPA DE LA REINA</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'shop' %}"
-              class="nav-link"
-              data-transition="shop"
-              ><i class="fas fa-store"></i> TIENDA</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'news' %}"
-              class="nav-link"
-              data-transition="news"
-              ><i class="fas fa-store"></i> NOTICIAS</a
-            >
-          </li>
-           <li>
-            <a
-              href="{% url 'sponsors' %}"
-              class="nav-link"
-              data-transition="sponsors"
-              ><i class="fas fa-store"></i> PATROCINADORES</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'contactos' %}"
-              class="nav-link"
-              data-transition="contacto"
-              ><i class="fas fa-envelope"></i> CONTACTO</a
-            >
-          </li>
+            <li>
+                <a href="{% url 'home' %}" class="nav-link" data-transition="home">
+                    <i class="fas fa-home"></i> INICIO
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'cantera' %}" class="nav-link" data-transition="cantera">
+                    <i class="fas fa-users"></i> EQUIPOS
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'inscripcion' %}" class="nav-link" data-transition="inscripcion">
+                    <i class="fas fa-pen"></i> INSCRÍBETE
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'copa_reina' %}" class="nav-link" data-transition="copa_reina" style="color: purple">
+                    <i class="fas fa-crown"></i> COPA DE LA REINA
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'shop' %}" class="nav-link" data-transition="shop">
+                    <i class="fas fa-shopping-cart"></i> TIENDA
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'news' %}" class="nav-link" data-transition="news">
+                    <i class="fas fa-newspaper"></i> NOTICIAS
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'sponsors' %}" class="nav-link" data-transition="sponsors">
+                    <i class="fas fa-handshake"></i> PATROCINADORES
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'contactos' %}" class="nav-link" data-transition="contacto">
+                    <i class="fas fa-envelope"></i> CONTACTO
+                </a>
+            </li>
 
-          <!-- Social Media Icons -->
-          <li class="social-icons">
-            <a
-              href="https://www.instagram.com/cff_olympia/"
-              target="_blank"
-              class="social-circle"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/cff_olympia/"
-              target="_blank"
-              class="social-circle"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="https://www.tiktok.com/@cff_olympia"
-              target="_blank"
-              class="social-circle"
-            >
-              <i class="fab fa-tiktok"></i>
-            </a>
-            <a
-              href="https://www.facebook.com/cffolympialasrozas"
-              target="_blank"
-              class="social-circle"
-            >
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </li>
+            <!-- Social Media Icons -->
+            <li class="social-icons">
+                <a href="https://www.instagram.com/cff_olympia/" target="_blank" class="social-circle">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/cff_olympia" target="_blank" class="social-circle">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.tiktok.com/@cff_olympia" target="_blank" class="social-circle">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.facebook.com/cffolympialasrozas" target="_blank" class="social-circle">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
         </ul>
-      </div>
-    </nav>
+    </div>
+</nav>
 
     <main class="container main-content">
       {% block content %}{% endblock %}
