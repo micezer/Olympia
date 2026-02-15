@@ -1,0 +1,184 @@
+{% extends 'main.html' %} {% load static %}
+
+{% block title %}Patrocinadores - CFF Olympia{% endblock %}
+
+{% block content %}
+<div class="sponsors-page">
+    <div class="sponsors-page__header">
+        <h1 class="sponsors-page__title">Patrocinadores</h1>
+        <p class="sponsors-page__subtitle">Empresas que confían en nuestro proyecto</p>
+    </div>
+
+    {% include 'components/sponsors/sponsors_grid.html' %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .sponsors-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .sponsors-page__header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .sponsors-page__title {
+        color: var(--primary-gold);
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+
+    .sponsors-page__subtitle {
+        color: white;
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .sponsor-card {
+    background: rgba(31, 37, 49, 0.9);  /* Fondo más oscuro para logos blancos */
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--primary-gold);  /* Todos con borde dorado */
+}
+
+.sponsor-card--principal {
+    border-width: 4px;  /* Principales con borde más grueso */
+}
+
+    .sponsor-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-gold);
+    }
+
+    .sponsor-card--discount {
+        border-left: 4px solid var(--primary-gold);
+    }
+
+    .sponsor-card__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .sponsor-card__logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);  /* Para logos blancos */
+}
+
+.sponsor-card__name {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+
+    .sponsor-card__type {
+        color: var(--primary-gold);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .sponsor-card__description {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        flex: 1;
+    }
+
+    .sponsor-card__badge {
+        display: inline-block;
+        background: rgba(184, 172, 132, 0.2);
+        color: var(--primary-gold);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        width: fit-content;
+    }
+
+.sponsor-card__discount {
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background: rgba(184, 172, 132, 0.15);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sponsor-card__discount-badge {
+    display: block;
+    color: var(--primary-gold);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.sponsor-card__discount-code {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.sponsor-card__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: auto;
+    justify-content: flex-start;
+}
+
+.sponsor-card__social-link {
+    color: var(--primary-gold);
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+.sponsor-card__social-link:hover {
+    color: white;
+}
+    @media (max-width: 768px) {
+        .sponsors-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .sponsors-page__title {
+            font-size: 2rem;
+        }
+
+        .sponsor-card__header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .sponsor-card__social {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}

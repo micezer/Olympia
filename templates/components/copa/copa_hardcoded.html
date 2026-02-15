@@ -1,0 +1,59 @@
+{% load static %}
+
+<!-- LOGO COPA DE LA REINA ARRIBA -->
+<div class="copa-logo">
+    <img src="{% static 'images/copa-reina/logo-copa.png' %}" 
+         alt="Copa de la Reina" 
+         class="copa-logo__image"
+         >
+</div>
+
+
+
+<!-- TEXTO DESCRIPTIVO (personalizable) -->
+<div class="copa-text">
+    <p class="copa-text__paragraph">
+        El CFF Olympia hizo historia participando por primera vez en la Copa de la Reina. 
+        Una experiencia inolvidable para el club, las jugadoras y toda la afición que nos acompañó.
+    </p>
+</div>
+
+<!-- DOS FOTOS DESTACADAS -->
+<div class="copa-photos">
+    <div class="copa-photo">
+        <img src="{% static 'images/copa-reina/carousel1.jpg' %}" 
+             class="copa-photo__image"
+             >
+    </div>
+    
+    <div class="copa-photo">
+        <img src="{% static 'images/copa-reina/carousel9.jpg' %}" 
+             class="copa-photo__image"
+             >
+    </div>
+</div>
+
+<!-- RESULTADOS (solo los dos partidos) -->
+<div class="copa-results">
+    <h2 class="copa-results__title">RESULTADOS</h2>
+    
+    <div class="copa-result">
+        <div class="copa-result__phase">1ª Eliminatoria</div>
+        <div class="copa-result__teams">
+            <span class="copa-result__team copa-result__team--home">CFF Olympia</span>
+            <span class="copa-result__score copa-result__score--win">5-3</span>
+            <span class="copa-result__team">CD Getafe</span>
+        </div>
+        <div class="copa-result__date">10 septiembre 2025</div>
+    </div>
+    
+    <div class="copa-result">
+        <div class="copa-result__phase">2ª Eliminatoria</div>
+        <div class="copa-result__teams">
+            <span class="copa-result__team copa-result__team--home">CFF Olympia</span>
+            <span class="copa-result__score copa-result__score--loss">2-4</span>
+            <span class="copa-result__team">CA Osasuna</span>
+        </div>
+        <div class="copa-result__date">1 octubre 2025</div>
+    </div>
+</div>

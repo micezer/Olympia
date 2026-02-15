@@ -1,0 +1,11 @@
+<div class="copa-card">
+    <div class="copa-card__etapa">{{ match.etapa }}</div>
+    <div class="copa-card__fecha">{{ match.fecha }}</div>
+    <div class="copa-card__equipos">
+        <div class="copa-card__equipo">{{ match.local }}</div>
+        <div class="copa-card__resultado {% if match.es_local %}victoria{% elif match.empate %}empate{% else %}derrota{% endif %}">
+            {{ match.resultado }}
+        </div>
+        <div class="copa-card__equipo">{{ match.visitante }}</div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+
+<div class="last-matches">
+  <h3 class="section-title">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8ac84">
+      <path
+        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,10L12,15L17,10H7Z"
+      />
+    </svg>
+    Últimos Partidos
+  </h3>
+
+  <div class="matches-grid">
+{% for match in matches %}
+  <div class="compact-match">
+    <div class="compact-logos">
+      {% if match.is_olympia_home %}
+        <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}" />
+        <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}" />
+      {% else %}
+        <img src="{{ match.away_team_logo.url }}" class="compact-logo" alt="{{ match.away_team }}" />
+        <img src="{{ match.home_team_logo.url }}" class="compact-logo" alt="{{ match.home_team }}" />
+      {% endif %}
+    </div>
+    <div class="compact-result">{{ match.display_result }}</div>
+    <div class="compact-date">{{ match.short_date }}</div>
+  </div>
+{% endfor %}
+  </div>
+</div>

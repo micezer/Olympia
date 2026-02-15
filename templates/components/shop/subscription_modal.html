@@ -1,0 +1,65 @@
+<!-- Modal de detalles de abono -->
+<div id="subscriptionDetailModal" class="modal" style="display: none;">
+    <div class="modal-content subscription-detail-content" style="max-width: 600px;">
+        <span class="close">&times;</span>
+        <div class="subscription-detail-header" id="detail-header">
+            <h2 id="detail-modal-title">Detalles del Abono</h2>
+        </div>
+
+        <div class="subscription-details" id="subscription-details">
+            <div class="subscription-info">
+                <h3 id="detail-name"></h3>
+                <p class="subscription-price" id="detail-price"></p>
+                <div class="subscription-description" id="detail-description"></div>
+
+                <div class="subscription-features">
+                    <h4 id="features-title">Incluye:</h4>
+                    <ul id="detail-features"></ul>
+                </div>
+            </div>
+        </div>
+
+        <button id="purchase-subscription-btn" class="buy-subscription-btn">Comprar Ahora</button>
+    </div>
+</div>
+
+<!-- Modal de formulario de compra -->
+<div id="subscriptionFormModal" class="modal" style="display: none;">
+    <div class="modal-content subscription-form-content" style="max-width: 500px;">
+        <span class="close">&times;</span>
+        <div class="subscription-form-header" id="form-header">
+            <h2 id="form-title">Completar Compra</h2>
+        </div>
+
+        <div class="selected-subscription-info" id="form-subscription-info">
+            <h3 id="form-subscription-name"></h3>
+            <p class="subscription-price"><strong>Precio:</strong> <span id="form-subscription-price"></span> EUR</p>
+        </div>
+
+        <form id="subscription-purchase-form">
+            <div class="form-row">
+                <label class="form-label" for="customer-name">Nombre completo *</label>
+                <input class="form-input" type="text" id="customer-name" required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label" for="customer-email">Email *</label>
+                <input class="form-input" type="email" id="customer-email" required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label" for="customer-phone">Teléfono de contacto *</label>
+                <input class="form-input" type="tel" id="customer-phone" required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label" for="customer-dni">DNI *</label>
+                <input class="form-input" type="text" id="customer-dni" required>
+            </div>
+
+            <button type="submit" class="checkout-btn" id="stripe-checkout-btn">
+                Proceder al Pago
+            </button>
+        </form>
+    </div>
+</div>

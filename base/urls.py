@@ -6,6 +6,7 @@ from django.urls import path
 from . import views, webhooks
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # Redirección principal
@@ -15,7 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # ✅ This line is required
     path('home/', views.home, name="home"),
     path('offline/', views.offline, name="offline"),
-    path('tienda/', views.tienda_view, name='tienda'),
+    path('shop/', views.shop_view, name='shop'),
     path('cantera/', views.cantera_view, name='cantera'),
     path('next-match/', views.get_next_match, name='next_match_api'),
     path('download/', views.download_view, name='download'),
@@ -33,6 +34,11 @@ urlpatterns = [
     path('webhook/', views.stripe_webhook, name='stripe_webhook'),
     path('payment-success/', views.payment_success, name='payment_success'),
     path('contactos/', views.contactos, name='contactos'),
+    path('noticias/', views.news_view, name='news'),
+    path('patrocinadores/', views.sponsors_view, name='sponsors'),
+    path('copa_reina/', views.copa_view, name='copa_reina'),
+
+
 
 
 

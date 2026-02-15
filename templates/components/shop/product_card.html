@@ -1,0 +1,36 @@
+<div class="shop__product">
+    <div class="product__inner">
+        <img class="product__image" src="{{ product.image }}" alt="{{ product.name }}">
+        <img class="product__image--hover" src="{{ product.image_hover|default:product.image }}" alt="{{ product.name }}">
+    </div>
+    <div class="product__outer">
+        <span class="product__name">
+            {% if product.badge %}({{ product.badge }}) {% endif %}{{ product.name }}
+        </span>
+        <span class="product__price">
+            {{ product.price }} EUR
+            {% if product.price_variant %}- {{ product.price_variant }}{% endif %}
+        </span>
+        
+        <button class="btn-primary add-to-cart" 
+        data-id="{{ product.id }}"
+        data-name="{{ product.name }}"
+        data-price="{{ product.price }}"
+        data-image="{{ product.image.url }}"
+        data-type="{{ product.category }}"
+        {% if product.has_sizes %}data-has-sizes="true"{% endif %}
+        {% if product.has_colors %}data-has-colors="true"{% endif %}
+        data-size-list="{{ product.size_list }}"
+        data-color-list="{{ product.color_list }}">
+    {% if product.category == 'clothing' and product.has_sizes and product.has_colors %}
+        Seleccionar talla y color
+    {% elif product.category == 'footwear' and product.has_sizes %}
+        Seleccionar talla
+    {% elif product.category == 'clothing' and product.has_sizes %}
+        Seleccionar talla
+    {% else %}
+        Añadir al carrito
+    {% endif %}
+</button>
+    </div>
+</div>

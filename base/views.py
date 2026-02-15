@@ -93,8 +93,10 @@ def cantera_view(request):
     }
     return render(request, 'base/cantera.html', context)
 
-def tienda_view(request):
-    return render(request, 'base/tienda.html')
+from django.shortcuts import render
+
+
+
 
 def ticket_purchase(request):
     return render(request, 'base/ticket_purchase.html')
@@ -153,7 +155,7 @@ from .models import Match
 from django.utils import timezone
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
-from .models import Match
+from .models import Match, Sponsor  
 
 @never_cache
 def home(request):
@@ -165,7 +167,7 @@ def home(request):
         date__gte=now,
         home_score__isnull=True,
         away_score__isnull=True,
-        team_category='senior_a'  # Filtra solo Senior A
+        team_category='senior_a'
     ).order_by('date').first()
     
     # Get last three completed matches - SOLO SENIOR A
@@ -173,31 +175,86 @@ def home(request):
         date__lte=now,
         home_score__isnull=False,
         away_score__isnull=False,
-        team_category='senior_a'  # Filtra solo Senior A
+        team_category='senior_a'
     ).order_by('-date')[:3]
+    
+    # Get active sponsors - NUEVO
+    sponsors = Sponsor.objects.filter(active=True).order_by('order')
     
     context = {
         'next_match': next_match,
         'last_matches': last_matches,
+        'sponsors': sponsors,  # ← AÑADIDO
         'current_time': now,
     }
     
-    response = render(request, 'base/home.html', context)
+    response = render(request, 'pages/home.html', context)  # Cambia a 'pages/home.html'
     # Add headers to prevent caching
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
     return response
 
-from django.db import models  # Añade esta importación
 
+
+def shop_view(request):
+
+    return render(request, 'pages/shop.html')
+
+
+
+def news_view(request):
+    return render(request, 'pages/news.html')
+
+from django.shortcuts import render
+
+def sponsors_view(request):
+    return render(request, 'pages/sponsors.html')
+
+from django.shortcuts import render
+
+def copa_view(request):
+    # Datos hardcodeados de los partidos
+    matches = [
+        {
+            'etapa': '1ª ELIMINATORIA',
+            'fecha': 'Miércoles 10/09 - 20:00',
+            'local': 'CFF Olympia Las Rozas',
+            'visitante': 'CD Getafe Femenino',
+            'resultado': '5 - 3',
+            'es_local': True,
+            'empate': False
+        },
+        {
+            'etapa': '2ª ELIMINATORIA',
+            'fecha': 'Miércoles 01/10 - 20:00',
+            'local': 'CFF Olympia Las Rozas',
+            'visitante': 'CA Osasuna Fundación',
+            'resultado': '2 - 4',
+            'es_local': False,
+            'empate': False
+        }
+    ]
+    
+    stats = {
+        'partidos': 2,
+        'goles_favor': 7,
+        'goles_contra': 7,
+        'victorias': 1
+    }
+    
+    context = {
+        'matches': matches,
+        'stats': stats,
+    }
+    return render(request, 'pages/copa.html', context)
 
 # views.py
 from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.http import require_GET
 from django.views.decorators.cache import never_cache
-from .models import Match
+from .models import Match, Product
 
 import logging
 logger = logging.getLogger(__name__)

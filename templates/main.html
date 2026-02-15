@@ -18,6 +18,9 @@
       content="black-translucent"
     />
 
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
     <link
       rel="manifest"
       href="{% url 'manifest' %}"
@@ -31,6 +34,11 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
+      {% block extra_css %}  {# ← TIENE QUE EXISTIR #}
+          {% endblock %}
+
+
 
     <title>CFF Olympia</title>
 
@@ -69,7 +77,13 @@
   </head>
 
   <body>
-    {% include 'navbar.html' %} {% block content %} {% endblock %}
+    {% include 'navbar.html' %}
+    
+    
+      <div class="main-content">  <!-- ← CAMBIA <main> por <div class="main-content"> -->
+    {% block content %}
+    {% endblock %}
+  </div>
   </body>
 
   <script src="{% static 'js/script.js' %}"></script>
@@ -127,4 +141,6 @@
       }
     });
   </script>
+    {% block extra_js %}
+  {% endblock %}
 </html>

@@ -1,0 +1,46 @@
+<div class="sponsors-section">
+  <h3 class="sponsors-title">Patrocinadores</h3>
+  <div class="sponsors-container">
+    <div class="sponsors-track">
+      {% for sponsor in sponsors %}
+      <div class="sponsor-item">
+        {% if sponsor.url %}
+        <a href="{{ sponsor.url }}" target="_blank" rel="noopener noreferrer">
+          <img
+            src="{{ sponsor.logo.url }}"
+            alt="{{ sponsor.name }}"
+            class="sponsor"
+          />
+        </a>
+        {% else %}
+        <img
+          src="{{ sponsor.logo.url }}"
+          alt="{{ sponsor.name }}"
+          class="sponsor"
+        />
+        {% endif %}
+      </div>
+      {% endfor %}
+      <!-- Duplicamos para efecto infinito -->
+      {% for sponsor in sponsors %}
+      <div class="sponsor-item">
+        {% if sponsor.url %}
+        <a href="{{ sponsor.url }}" target="_blank" rel="noopener noreferrer">
+          <img
+            src="{{ sponsor.logo.url }}"
+            alt="{{ sponsor.name }}"
+            class="sponsor"
+          />
+        </a>
+        {% else %}
+        <img
+          src="{{ sponsor.logo.url }}"
+          alt="{{ sponsor.name }}"
+          class="sponsor"
+        />
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

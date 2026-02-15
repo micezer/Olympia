@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="modal customization-modal" id="customization-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="customization-close">&times;</button>
+        <h3 class="modal-title">Personaliza tu llavero</h3>
+        
+        <div class="modal-product-preview">
+            <img src="{% static 'images/tienda/llavero_front.png' %}" alt="Llavero" class="modal-product-image">
+            <div class="modal-product-info">
+                <span class="modal-product-name">LLAVERO PERSONALIZADO</span>
+                <span class="modal-product-price">5,00 €</span>
+            </div>
+        </div>
+        
+        <div class="customization-form">
+            <div class="form-group">
+                <label class="form-label">Nombre (máx. 15 caracteres)</label>
+                <input type="text" class="form-input" id="llavero-name" placeholder="Ej: MARÍA" maxlength="15">
+                <small class="form-hint">Opcional</small>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Dorsal</label>
+                <input type="number" class="form-input" id="llavero-number" placeholder="Ej: 10" min="1" max="99">
+                <small class="form-hint">Opcional</small>
+            </div>
+            
+            <div class="customization-preview-card">
+                <div class="preview-label">Vista previa:</div>
+                <div class="preview-content">
+                    <span id="llavero-preview-name">—</span>
+                    <span id="llavero-preview-number">—</span>
+                </div>
+            </div>
+            
+            <button class="confirm-btn" id="confirm-customization">AÑADIR AL CARRITO (5,00 €)</button>
+        </div>
+    </div>
+</div>

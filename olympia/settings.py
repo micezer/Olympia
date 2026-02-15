@@ -68,6 +68,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 OWNER_EMAIL = "moezehero@gmail.com"
 
 
+
 # Opcional: Configuración adicional
 # Application definition
 

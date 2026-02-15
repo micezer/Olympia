@@ -333,7 +333,7 @@
           </li>
           <li>
             <a
-              href=""
+              href="{% url 'copa_reina' %}"
               class="nav-link"
               data-transition="copa_reina"
               style="color: purple"
@@ -342,10 +342,26 @@
           </li>
           <li>
             <a
-              href="{% url 'tienda' %}"
+              href="{% url 'shop' %}"
               class="nav-link"
-              data-transition="tienda"
+              data-transition="shop"
               ><i class="fas fa-store"></i> TIENDA</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'news' %}"
+              class="nav-link"
+              data-transition="news"
+              ><i class="fas fa-store"></i> NOTICIAS</a
+            >
+          </li>
+           <li>
+            <a
+              href="{% url 'sponsors' %}"
+              class="nav-link"
+              data-transition="sponsors"
+              ><i class="fas fa-store"></i> PATROCINADORES</a
             >
           </li>
           <li>

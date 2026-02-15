@@ -15,6 +15,87 @@ import random
 import string
 import json
 
+
+class Sponsor(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='sponsors/')
+    url = models.URLField(blank=True, null=True)
+    active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return self.name
+    
+
+
+
+from django.db import models
+
+class Product(models.Model):
+    # Tipos de producto
+    CATEGORY_CHOICES = [
+        ('clothing', 'Ropa'),
+        ('footwear', 'Calzado'),
+        ('merch', 'Merchandising'),
+    ]
+    
+    # Información básica
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    
+    # Imágenes
+    image = models.ImageField(upload_to='shop/')
+    image_hover = models.ImageField(upload_to='shop/', blank=True, help_text='Aparece al hacer hover')
+    
+    # Opciones de talla y color
+    has_sizes = models.BooleanField(default=False, help_text='¿Tiene tallas?')
+    has_colors = models.BooleanField(default=False, help_text='¿Tiene colores?')
+    
+    # Arrays guardados como texto simple (fácil de editar en admin)
+    size_list = models.TextField(blank=True, help_text='Tallas separadas por comas. Ej: XS,S,M,L,XL o 36,37,38,39,40')
+    color_list = models.TextField(blank=True, help_text='Colores separados por comas. Ej: Azul,Verde,Rojo')
+    
+    # Extras
+    badge = models.CharField(max_length=50, blank=True, help_text='Ej: NUEVO, OFERTA')
+    price_variant = models.CharField(max_length=100, blank=True, help_text='Ej: Diseño delante y detrás')
+    stock = models.IntegerField(default=0)
+    active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.name} - {self.price}€"
+    
+    def get_size_list(self):
+        """Convierte el texto en lista"""
+        if self.size_list:
+            return [s.strip() for s in self.size_list.split(',')]
+        return []
+    
+    def get_color_list(self):
+        """Convierte el texto en lista"""
+        if self.color_list:
+            return [c.strip() for c in self.color_list.split(',')]
+        return []
+
+
+
+
+
+
+
+
+
+
+
+
 class Order(models.Model):
     order_number = models.CharField(max_length=12, unique=True, editable=False)
     full_name = models.CharField(max_length=100)

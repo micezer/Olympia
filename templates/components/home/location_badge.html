@@ -1,0 +1,25 @@
+{% if location_name %}
+<div style="display: flex; justify-content: center; margin-top: 1rem;">
+  {% if maps_url %}
+  <a href="{{ maps_url }}" target="_blank" class="location-container">
+    <span class="location-label">Ubicación</span>
+    <span class="location-name">
+      <svg class="location-icon" viewBox="0 0 24 24" fill="#b8ac84">
+        <path d="M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M9,7A3,3 0 0,1 12,10A3,3 0 0,1 9,13A3,3 0 0,1 6,10A3,3 0 0,1 9,7Z" />
+      </svg>
+      {{ location_name }}
+    </span>
+  </a>
+  {% else %}
+  <div class="location-container">
+    <span class="location-label">Ubicación</span>
+    <span class="location-name">
+      <svg class="location-icon" viewBox="0 0 24 24" fill="#b8ac84">
+        <path d="M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M9,7A3,3 0 0,1 12,10A3,3 0 0,1 9,13A3,3 0 0,1 6,10A3,3 0 0,1 9,7Z" />
+      </svg>
+      {{ location_name }}
+    </span>
+  </div>
+  {% endif %}
+</div>
+{% endif %}

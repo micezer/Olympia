@@ -1,0 +1,588 @@
+{% extends 'layouts/base_shop.html' %}
+{% load static %}
+
+{% block shop_tabs %}
+<div class="tabs">
+    <button class="tab active" data-tab="merchandising">Merchandising</button>
+    <button class="tab" data-tab="subscriptions">Abonos Temporada 25/26</button>
+</div>
+{% endblock %}
+
+{% block shop_content %}
+<!-- MERCHANDISING -->
+<div class="tab-content active" id="merchandising-tab">
+    {% include 'components/shop/products/merchandising_hardcoded.html' %}
+    
+    <!-- MODALES -->
+    {% include 'components/shop/size_modal.html' %}
+    {% include 'components/shop/customization_modal.html' %}
+
+</div>
+
+<!-- ABONOS -->
+<div class="tab-content" id="subscriptions-tab">
+    {% include 'components/shop/subscriptions/subscriptions_hardcoded.html' %}
+    {% include 'components/shop/subscription_modal.html' %}
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // =========================================
+    // 1. TABS - PRIORIDAD MÁXIMA
+    // =========================================
+    function initTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        console.log('Inicializando tabs:', tabs.length);
+        
+        if (tabs.length === 0) {
+            console.warn('No hay tabs');
+            return;
+        }
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Quitar active de todos
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Activar este tab
+                this.classList.add('active');
+                const tabId = this.dataset.tab + '-tab';
+                const targetTab = document.getElementById(tabId);
+                
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                    console.log('Tab activado:', tabId);
+                }
+            });
+        });
+    }
+    
+    initTabs();
+    
+    // =========================================
+    // 2. CARRITO - ESTADO GLOBAL
+    // =========================================
+    let cart = {
+        items: [],
+        total: 0
+    };
+    
+    function loadCart() {
+        try {
+            const savedCart = localStorage.getItem('olympia_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+        } catch (e) {
+            console.error('Error cargando carrito:', e);
+        }
+    }
+    
+    function saveCart() {
+        localStorage.setItem('olympia_cart', JSON.stringify(cart));
+    }
+    
+    window.addToCart = function(item) {
+        // ID único basado en producto + opciones
+        const itemId = `${item.id}_${item.size || ''}_${item.color || ''}_${item.customName || ''}_${item.customNumber || ''}`;
+        
+        const existingItem = cart.items.find(i => i.id === itemId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.items.push({
+                id: itemId,
+                productId: item.id,
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                size: item.size || null,
+                color: item.color || null,
+                customName: item.customName || null,
+                customNumber: item.customNumber || null,
+                quantity: 1
+            });
+        }
+        
+        cart.total = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        saveCart();
+        updateCartUI();
+        showNotification('✅ Producto añadido');
+    };
+    
+    window.removeFromCart = function(itemId) {
+        cart.items = cart.items.filter(item => item.id !== itemId);
+        cart.total = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        saveCart();
+        updateCartUI();
+    };
+    
+    function updateCartUI() {
+        const cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            const count = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = count;
+        }
+        
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        
+        if (cartItems) {
+            if (cart.items.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty"><p>Tu carrito está vacío</p></div>';
+            } else {
+                let html = '';
+                cart.items.forEach(item => {
+                    let customText = [];
+                    if (item.size) customText.push(`Talla: ${item.size}`);
+                    if (item.color) customText.push(`Color: ${item.color}`);
+                    if (item.customName) customText.push(`Nombre: ${item.customName}`);
+                    if (item.customNumber) customText.push(`Dorsal: ${item.customNumber}`);
+                    
+                    html += `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${item.name}</div>
+                                ${customText.length ? `<div class="cart-item-custom">${customText.join(' • ')}</div>` : ''}
+                                <div class="cart-item-price">${item.price.toFixed(2).replace('.', ',')} €</div>
+                                <div>Cant: ${item.quantity}</div>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
+                        </div>
+                    `;
+                });
+                cartItems.innerHTML = html;
+            }
+        }
+        
+        if (cartTotal) {
+            cartTotal.textContent = `${cart.total.toFixed(2).replace('.', ',')} €`;
+        }
+    }
+    
+    function showNotification(message) {
+        const notif = document.createElement('div');
+        notif.className = 'cart-notification';
+        notif.textContent = message;
+        notif.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--primary-gold);
+            color: var(--primary-blue);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 10000;
+            animation: slideIn 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        `;
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 2000);
+    }
+    
+    // =========================================
+    // 3. MODAL DE TALLAS Y COLORES
+    // =========================================
+    const sizeModal = document.getElementById('size-modal');
+    const sizeModalClose = document.getElementById('size-modal-close');
+    const confirmSize = document.getElementById('confirm-size');
+    let currentProduct = null;
+    
+    // DELEGACIÓN DE EVENTOS - TODOS LOS BOTONES
+    document.body.addEventListener('click', function(e) {
+        const btn = e.target.closest('.add-to-cart');
+        if (!btn) return;
+        
+        e.preventDefault();
+        
+        const productId = btn.dataset.id;
+        const productName = btn.dataset.name;
+        const productPrice = parseFloat(btn.dataset.price || '0');
+        const productImage = btn.dataset.image;
+        const productType = btn.dataset.type;
+        const hasSizes = btn.dataset.hasSizes === 'true';
+        const hasColors = btn.dataset.hasColors === 'true';
+        
+        console.log('Producto click:', productName);
+        
+        // =========================================
+        // CASO 1: LLAVERO PERSONALIZADO
+        // =========================================
+        if (productId === 'llavero_personalizado') {
+            const modal = document.getElementById('customization-modal');
+            if (modal) modal.classList.add('active');
+            return;
+        }
+        
+        // =========================================
+        // CASO 2: CINTAS DEL PELO
+        // =========================================
+        if (productId === 'cintas_pelo') {
+            const modal = document.getElementById('cintas-modal');
+            if (modal) modal.classList.add('active');
+            return;
+        }
+        
+        // =========================================
+        // CASO 3: PRODUCTO SIMPLE (SIN TALLAS NI COLORES)
+        // =========================================
+        if (!hasSizes && !hasColors) {
+            addToCart({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage
+            });
+            return;
+        }
+        
+        // =========================================
+        // CASO 4: PRODUCTO CON TALLAS/COLORES
+        // =========================================
+        if (sizeModal) {
+            currentProduct = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                hasSizes: hasSizes,
+                hasColors: hasColors,
+                sizeList: btn.dataset.sizeList ? btn.dataset.sizeList.split(',') : [],
+                colorList: btn.dataset.colorList ? btn.dataset.colorList.split(',') : []
+            };
+            
+            // Configurar modal
+            document.getElementById('size-modal-title').textContent = currentProduct.name;
+            document.getElementById('modal-product-image').src = currentProduct.image;
+            document.getElementById('modal-product-name').textContent = currentProduct.name;
+            document.getElementById('modal-product-price').textContent = `${currentProduct.price.toFixed(2).replace('.', ',')} €`;
+            
+            // Colores - CÍRCULOS
+            const colorSection = document.getElementById('color-section');
+            const colorOptions = document.getElementById('color-options');
+            
+            if (currentProduct.hasColors && currentProduct.colorList.length > 0) {
+                colorSection.style.display = 'block';
+                colorOptions.innerHTML = '';
+                
+                currentProduct.colorList.forEach(color => {
+                    const colorDiv = document.createElement('div');
+                    colorDiv.className = 'color-option';
+                    colorDiv.setAttribute('data-color', color.trim());
+                    
+                    // Asignar color
+                    const colorLower = color.toLowerCase();
+                    if (colorLower.includes('azul')) colorDiv.style.backgroundColor = '#2a374c';
+                    else if (colorLower.includes('mint')) colorDiv.style.backgroundColor = '#98ff98';
+                    else if (colorLower.includes('granate')) colorDiv.style.backgroundColor = '#800020';
+                    else if (colorLower.includes('negro')) colorDiv.style.backgroundColor = '#000000';
+                    else if (colorLower.includes('blanco')) colorDiv.style.backgroundColor = '#ffffff';
+                    else if (colorLower.includes('lavanda')) colorDiv.style.backgroundColor = '#E6E6FA';
+                    else if (colorLower.includes('coral')) colorDiv.style.backgroundColor = '#FF7F50';
+                    else if (colorLower.includes('beige')) colorDiv.style.backgroundColor = '#F5F5DC';
+                    else colorDiv.style.backgroundColor = '#cccccc';
+                    
+                    if (color.includes('Blanco')) {
+                        colorDiv.style.border = '2px solid #666';
+                    }
+                    
+                    colorOptions.appendChild(colorDiv);
+                });
+            } else {
+                colorSection.style.display = 'none';
+            }
+            
+            // Tallas
+            const sizeSection = document.getElementById('size-section');
+            const sizeOptions = document.getElementById('size-options');
+            
+            if (currentProduct.hasSizes && currentProduct.sizeList.length > 0) {
+                sizeSection.style.display = 'block';
+                sizeOptions.innerHTML = '';
+                
+                currentProduct.sizeList.forEach(size => {
+                    const sizeDiv = document.createElement('div');
+                    sizeDiv.className = 'size-option';
+                    sizeDiv.setAttribute('data-size', size.trim());
+                    sizeDiv.textContent = size.trim();
+                    sizeOptions.appendChild(sizeDiv);
+                });
+            } else {
+                sizeSection.style.display = 'none';
+            }
+            
+            // Reset
+            document.querySelectorAll('.color-option, .size-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            confirmSize.disabled = currentProduct.hasSizes;
+            sizeModal.classList.add('active');
+        }
+    });
+    
+    // Cerrar modal tallas
+    if (sizeModalClose) {
+        sizeModalClose.addEventListener('click', function() {
+            sizeModal.classList.remove('active');
+        });
+    }
+    
+    // Seleccionar color
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('color-option')) {
+            document.querySelectorAll('.color-option').forEach(c => c.classList.remove('selected'));
+            e.target.classList.add('selected');
+            checkSelection();
+        }
+    });
+    
+    // Seleccionar talla
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('size-option')) {
+            document.querySelectorAll('.size-option').forEach(s => s.classList.remove('selected'));
+            e.target.classList.add('selected');
+            checkSelection();
+        }
+    });
+    
+    function checkSelection() {
+        if (!currentProduct || !confirmSize) return;
+        const hasSelectedSize = !currentProduct.hasSizes || document.querySelector('.size-option.selected');
+        confirmSize.disabled = !hasSelectedSize;
+    }
+    
+    // Confirmar talla
+    if (confirmSize) {
+        confirmSize.addEventListener('click', function() {
+            const selectedSize = document.querySelector('.size-option.selected');
+            const selectedColor = document.querySelector('.color-option.selected');
+            
+            addToCart({
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
+                image: currentProduct.image,
+                size: selectedSize ? selectedSize.dataset.size : null,
+                color: selectedColor ? selectedColor.dataset.color : null
+            });
+            
+            sizeModal.classList.remove('active');
+        });
+    }
+    
+    // =========================================
+    // 4. LLAVERO PERSONALIZADO
+    // =========================================
+    const customizationModal = document.getElementById('customization-modal');
+    const customizationClose = document.getElementById('customization-close');
+    const confirmCustomization = document.getElementById('confirm-customization');
+    const llaveroName = document.getElementById('llavero-name');
+    const llaveroNumber = document.getElementById('llavero-number');
+    const previewName = document.getElementById('llavero-preview-name');
+    const previewNumber = document.getElementById('llavero-preview-number');
+    
+    if (llaveroName) {
+        llaveroName.addEventListener('input', function() {
+            if (previewName) previewName.textContent = this.value || '—';
+        });
+    }
+    
+    if (llaveroNumber) {
+        llaveroNumber.addEventListener('input', function() {
+            if (previewNumber) previewNumber.textContent = this.value || '—';
+        });
+    }
+    
+    if (customizationClose) {
+        customizationClose.addEventListener('click', function() {
+            customizationModal.classList.remove('active');
+        });
+    }
+    
+    if (confirmCustomization) {
+        confirmCustomization.addEventListener('click', function() {
+            const name = llaveroName?.value || '';
+            const number = llaveroNumber?.value || '';
+            
+            addToCart({
+                id: 'llavero_personalizado',
+                name: 'Llavero Personalizado',
+                price: 5.00,
+                image: "{% static 'images/tienda/llavero_front.png' %}",
+                customName: name || null,
+                customNumber: number || null
+            });
+            
+            customizationModal.classList.remove('active');
+            if (llaveroName) llaveroName.value = '';
+            if (llaveroNumber) llaveroNumber.value = '';
+            if (previewName) previewName.textContent = '—';
+            if (previewNumber) previewNumber.textContent = '—';
+        });
+    }
+    
+    // =========================================
+    // 5. CINTAS DEL PELO - SIMPLIFICADO
+    // =========================================
+    const cintasModal = document.getElementById('cintas-modal');
+    const cintasClose = document.getElementById('cintas-close');
+    const cintasColor = document.getElementById('cintas-color');
+    const cintasColorSelect = document.getElementById('cintas-color-select');
+    const cintasTextType = document.getElementById('cintas-text-type');
+    const cintasCustomName = document.getElementById('cintas-custom-name');
+    const cintasCustomNumber = document.getElementById('cintas-custom-number');
+    const cintasCustomNameGroup = document.getElementById('cintas-custom-name-group');
+    const cintasCustomNumberGroup = document.getElementById('cintas-custom-number-group');
+    const confirmCintas = document.getElementById('confirm-cintas');
+    const cintasPreview = document.getElementById('cintas-preview');
+    
+    function updateCintasPreview() {
+        if (!cintasColor || !cintasColorSelect || !cintasTextType || !cintasPreview) return;
+        
+        const option = cintasColor.options[cintasColor.selectedIndex];
+        const optionText = option.text;
+        const price = option.dataset.price;
+        const color = cintasColorSelect.value;
+        const textType = cintasTextType.value;
+        
+        let texto = '';
+        if (textType === 'Olympia') texto = 'Olympia';
+        else if (textType === 'personalizado') texto = cintasCustomName?.value || 'Nombre';
+        else if (textType === 'nombre+dorsal') texto = `${cintasCustomName?.value || 'Nombre'} #${cintasCustomNumber?.value || '0'}`;
+        
+        cintasPreview.innerHTML = `
+            Opción: ${optionText}<br>
+            Color: ${color}<br>
+            Texto: ${texto}
+        `;
+        
+        // Mostrar/ocultar campos
+        if (cintasCustomNameGroup) {
+            cintasCustomNameGroup.style.display = textType.includes('personalizado') || textType.includes('nombre') ? 'block' : 'none';
+        }
+        if (cintasCustomNumberGroup) {
+            cintasCustomNumberGroup.style.display = textType.includes('dorsal') ? 'block' : 'none';
+        }
+    }
+    
+    if (cintasColor) cintasColor.addEventListener('change', updateCintasPreview);
+    if (cintasColorSelect) cintasColorSelect.addEventListener('change', updateCintasPreview);
+    if (cintasTextType) cintasTextType.addEventListener('change', updateCintasPreview);
+    if (cintasCustomName) cintasCustomName.addEventListener('input', updateCintasPreview);
+    if (cintasCustomNumber) cintasCustomNumber.addEventListener('input', updateCintasPreview);
+    
+    if (cintasClose) {
+        cintasClose.addEventListener('click', function() {
+            cintasModal.classList.remove('active');
+        });
+    }
+    
+    if (confirmCintas) {
+        confirmCintas.addEventListener('click', function() {
+            const option = cintasColor.options[cintasColor.selectedIndex];
+            const price = parseFloat(option.dataset.price);
+            const optionText = option.text;
+            const color = cintasColorSelect.value;
+            const textType = cintasTextType.value;
+            
+            let texto = '';
+            if (textType === 'Olympia') texto = 'Olympia';
+            else if (textType === 'personalizado') texto = cintasCustomName?.value || 'Nombre';
+            else if (textType === 'nombre+dorsal') texto = `${cintasCustomName?.value || 'Nombre'} #${cintasCustomNumber?.value || '0'}`;
+            
+            addToCart({
+                id: 'cintas_pelo',
+                name: 'Cintas del Pelo Olympia',
+                price: price,
+                image: "{% static 'images/tienda/cintas_front.png' %}",
+                color: color,
+                customText: `${optionText} - ${color} - ${texto}`
+            });
+            
+            cintasModal.classList.remove('active');
+        });
+    }
+    
+    // =========================================
+// 6. CARRITO UI - ACTUALIZADO
+// =========================================
+const cartIcon = document.getElementById('cart-icon');
+const cartSidebar = document.getElementById('cart-sidebar');
+const closeCart = document.getElementById('close-cart');
+const cartOverlay = document.getElementById('cart-overlay');
+
+if (cartIcon && cartSidebar) {
+    cartIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        cartSidebar.classList.toggle('active');
+        if (cartOverlay) cartOverlay.classList.toggle('active');
+    });
+}
+
+if (closeCart && cartSidebar) {
+    closeCart.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        cartSidebar.classList.remove('active');
+        if (cartOverlay) cartOverlay.classList.remove('active');
+    });
+}
+
+// Cerrar con overlay
+if (cartOverlay) {
+    cartOverlay.addEventListener('click', function() {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+    });
+}
+    
+// =========================================
+// 7. CERRAR MODALES Y CARRITO
+// =========================================
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (sizeModal?.classList.contains('active')) sizeModal.classList.remove('active');
+        if (customizationModal?.classList.contains('active')) customizationModal.classList.remove('active');
+        if (cintasModal?.classList.contains('active')) cintasModal.classList.remove('active');
+        if (cartSidebar?.classList.contains('active')) {
+            cartSidebar.classList.remove('active');
+            if (cartOverlay) cartOverlay.classList.remove('active');
+        }
+    }
+});
+
+// Cerrar modales haciendo click fuera
+[sizeModal, customizationModal, cintasModal].forEach(modal => {
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    }
+});
+
+// Prevenir que clicks en el carrito lo cierren
+if (cartSidebar) {
+    cartSidebar.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+    // Iniciar carrito
+    loadCart();
+});
+</script>
+{% endblock %}

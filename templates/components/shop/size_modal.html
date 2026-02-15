@@ -1,0 +1,33 @@
+<div class="modal size-modal" id="size-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="size-modal-close">&times;</button>
+        <h3 class="modal-title" id="size-modal-title">Selecciona tus opciones</h3>
+        
+        <!-- VISTA PREVIA DEL PRODUCTO -->
+        <div class="modal-product-preview">
+            <img id="modal-product-image" src="" alt="" class="modal-product-image">
+            <div class="modal-product-info">
+                <span id="modal-product-name" class="modal-product-name"></span>
+                <span id="modal-product-price" class="modal-product-price"></span>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN COLORES - CÍRCULOS -->
+        <div class="color-section" id="color-section" style="display: none;">
+            <h4 class="section-title">Color:</h4>
+            <div class="color-options-grid" id="color-options">
+                <!-- Los círculos se generan con JS -->
+            </div>
+        </div>
+        
+        <!-- SECCIÓN TALLAS -->
+        <div class="size-section" id="size-section" style="display: none;">
+            <h4 class="section-title">Talla:</h4>
+            <div class="size-options-grid" id="size-options">
+                <!-- Las tallas se generan con JS -->
+            </div>
+        </div>
+        
+        <button class="confirm-btn" id="confirm-size" disabled>AÑADIR AL CARRITO</button>
+    </div>
+</div>

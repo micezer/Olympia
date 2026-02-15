@@ -53,3 +53,44 @@ class PlayerAdmin(admin.ModelAdmin):
     search_fields = ("name", "full_name", "role")
 
 
+
+
+
+
+
+from django.contrib import admin
+from .models import Sponsor, Product
+
+@admin.register(Sponsor)
+class SponsorAdmin(admin.ModelAdmin):
+    list_display = ['name', 'active', 'order']
+    list_editable = ['active', 'order']
+
+
+
+
+
+from django.contrib import admin
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'category', 'price', 'active', 'order']
+    list_editable = ['active', 'order']
+    list_filter = ['category', 'active', 'has_sizes', 'has_colors']
+    search_fields = ['name']
+    
+    fieldsets = (
+        ('Información Básica', {
+            'fields': ('name', 'description', 'price', 'category', 'badge', 'price_variant')
+        }),
+        ('Imágenes', {
+            'fields': ('image', 'image_hover')
+        }),
+        ('Tallas y Colores', {
+            'fields': ('has_sizes', 'size_list', 'has_colors', 'color_list'),
+            'description': 'Para tallas de ropa: XS,S,M,L,XL. Para zapatillas: 36,37,38,39,40'
+        }),
+        ('Inventario', {
+            'fields': ('stock', 'active', 'order')
+        }),
+    )

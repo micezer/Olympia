@@ -1,0 +1,193 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}Copa de la Reina - CFF Olympia{% endblock %}
+
+{% block content %}
+<div class="copa-page">
+    {% include 'components/copa/copa_hardcoded.html' %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.copa-page {
+    min-height: 100vh;
+    min-height: 100dvh; /* mejor soporte en móviles modernos */
+    width: 100%;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    position: relative; /* por si necesitas posicionar algo */
+}
+
+/* Para eliminar cualquier margen blanco del body */
+
+    /* LOGO */
+    .copa-logo {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .copa-logo__image {
+        max-width: 200px;
+        height: auto;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    /* HEADER */
+    .copa-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .copa-header__title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 0.3rem;
+        background: linear-gradient(135deg, #fff 0%, #f1c40f 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .copa-header__season {
+        display: inline-block;
+        background: #f1c40f20;
+        color: #f1c40f;
+        padding: 0.3rem 1.5rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 1px solid #f1c40f40;
+    }
+
+    /* TEXTO */
+    .copa-text {
+        background: rgba(255,255,255,0.05);
+        padding: 1.25rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+    }
+
+    .copa-text__paragraph {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #ddd;
+        margin: 0;
+    }
+
+    /* FOTOS */
+    .copa-photos {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .copa-photo {
+        background: #1a1a2e;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .copa-photo__image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .copa-photo__caption {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        color: #f1c40f;
+        background: #1a1a2e;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    /* RESULTADOS */
+    .copa-results {
+        background: #1a1a2e;
+        border-radius: 24px;
+        padding: 1.5rem;
+    }
+
+    .copa-results__title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #f1c40f;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    .copa-result {
+        padding: 1.25rem 0;
+        border-bottom: 1px solid #ffffff10;
+    }
+
+    .copa-result:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .copa-result:first-child {
+        padding-top: 0;
+    }
+
+    .copa-result__phase {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+    }
+
+    .copa-result__teams {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    .copa-result__team {
+        font-size: 0.95rem;
+        font-weight: 600;
+        flex: 1;
+    }
+
+    .copa-result__team--home {
+        text-align: left;
+    }
+
+    .copa-result__team:last-child {
+        text-align: right;
+    }
+
+    .copa-result__score {
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 0 1rem;
+        font-family: 'Anton', sans-serif;
+    }
+
+    .copa-result__score--win {
+        color: #4CAF50;
+    }
+
+    .copa-result__score--loss {
+        color: #e74c3c;
+    }
+
+    .copa-result__date {
+        font-size: 0.75rem;
+        color: #888;
+        text-align: center;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,71 @@
+
+{% load static %}
+
+<div class="modal cintas-modal" id="cintas-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="cintas-close">&times;</button>
+        <h3 class="modal-title">Cintas del pelo Olympia</h3>
+        
+        <div class="modal-product-preview">
+            <img src="{% static 'images/tienda/cintas_front.png' %}" alt="Cintas" class="modal-product-image">
+            <div class="modal-product-info">
+                <span class="modal-product-name">CINTAS DEL PELO OLYMPIA</span>
+                <span class="modal-product-price" id="cintas-price-display">9,00 €</span>
+            </div>
+        </div>
+        
+        <div class="cintas-form">
+            <!-- COLOR / PACK - ÚNICAS OPCIONES -->
+            <div class="form-group">
+                <label class="form-label">Opción:</label>
+                <select class="form-select" id="cintas-color">
+                    <option value="1 unidad" data-price="9.00">1 cinta (9,00 €)</option>
+                    <option value="2 unidades" data-price="15.00">Pack 2 cintas (15,00 €)</option>
+                </select>
+            </div>
+            
+            <!-- COLORES DISPONIBLES -->
+            <div class="form-group">
+                <label class="form-label">Color:</label>
+                <select class="form-select" id="cintas-color-select">
+                    <option value="Azul Oscuro">Azul Oscuro</option>
+                    <option value="Blanco">Blanco</option>
+                    <option value="Rosa">Rosa</option>
+                </select>
+            </div>
+            
+            <!-- TEXTO -->
+            <div class="form-group">
+                <label class="form-label">Texto:</label>
+                <select class="form-select" id="cintas-text-type">
+                    <option value="Olympia">Olympia</option>
+                    <option value="personalizado">Nombre personalizado</option>
+                    <option value="nombre+dorsal">Nombre + Dorsal</option>
+                </select>
+            </div>
+            
+            <!-- NOMBRE PERSONALIZADO -->
+            <div class="form-group" id="cintas-custom-name-group" style="display: none;">
+                <label class="form-label">Nombre:</label>
+                <input type="text" class="form-input" id="cintas-custom-name" placeholder="Ej: MARÍA" maxlength="15">
+            </div>
+            
+            <!-- DORSAL -->
+            <div class="form-group" id="cintas-custom-number-group" style="display: none;">
+                <label class="form-label">Dorsal:</label>
+                <input type="number" class="form-input" id="cintas-custom-number" placeholder="Ej: 10" min="1" max="99">
+            </div>
+            
+            <div class="customization-preview-card">
+                <div class="preview-label">Tu selección:</div>
+                <div class="preview-content" id="cintas-preview">
+                    Opción: 1 unidad (9,00 €)<br>
+                    Color: Azul Oscuro<br>
+                    Texto: Olympia
+                </div>
+            </div>
+            
+            <button class="confirm-btn" id="confirm-cintas">AÑADIR AL CARRITO</button>
+        </div>
+    </div>
+</div>

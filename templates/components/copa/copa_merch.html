@@ -1,0 +1,29 @@
+
+{% load static %}
+
+<div class="copa-merch">
+    <div class="copa-merch__image-container">
+        <img src="{% static 'images/tienda/camiseta_copadelareina_front.png' %}" 
+             alt="Camiseta Copa de la Reina" 
+             class="copa-merch__image">
+    </div>
+    <div class="copa-merch__content">
+        <h3 class="copa-merch__title">Camiseta Conmemorativa</h3>
+        <p class="copa-merch__description">
+            Edición especial limitada de nuestra participación histórica en la Copa de la Reina.
+        </p>
+        <p class="copa-merch__price">10,00 EUR</p>
+        <button class="copa-merch__button add-to-cart" 
+                data-id="camiseta_reina"
+                data-name="Camiseta Copa de la Reina"
+                data-price="10.00"
+                data-image="{% static 'images/tienda/camiseta_copadelareina_front.png' %}"
+                data-type="clothing"
+                data-has-sizes="true"
+                data-has-colors="true"
+                data-size-list="XS,S,M,L,XL"
+                data-color-list="Lavanda,Coral claro,Beige rosado">
+            Comprar ahora
+        </button>
+    </div>
+</div>

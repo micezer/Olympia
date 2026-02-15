@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>CFF Olympia - App</title>
+  </head>
+
+  
+
+<div class="bg-image"></div>
+{% include 'components/home/next_match_card.html' with next_match=next_match %}
+  <!-- Últimos Partidos -->
+{% include 'components/home/last_matches_grid.html' with matches=last_matches %}
+  <!-- Patrocinadores -->
+  {% include 'components/home/sponsors_carousel.html' with sponsors=sponsors %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const copaImageContainer =
+          document.getElementById("copaImageContainer");
+        const copaModal = document.getElementById("copaModal");
+        const copaModalImage = document.getElementById("copaModalImage");
+        const copaModalClose = document.getElementById("copaModalClose");
+
+        if (copaImageContainer) {
+          copaImageContainer.addEventListener("click", function () {
+            // Cambia esta ruta por la imagen que quieres mostrar en el modal
+            copaModalImage.src = "{% static 'images/c_d_l_r.jpg' %}";
+            copaModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+        }
+
+        if (copaModalClose) {
+          copaModalClose.addEventListener("click", function () {
+            copaModal.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+        }
+
+        if (copaModal) {
+          copaModal.addEventListener("click", function (e) {
+            if (e.target === copaModal) {
+              copaModal.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && copaModal.classList.contains("active")) {
+            copaModal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+{% endblock %}
