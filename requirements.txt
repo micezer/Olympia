@@ -12,5 +12,4 @@ sqlparse==0.5.3
 requests==2.32.5
 python-dotenv==1.1.1
 django-cors-headers==4.7.0
-reportlab==4.2.2
 stripe==11.6.0
