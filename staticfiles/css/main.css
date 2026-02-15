@@ -1,0 +1,512 @@
+/* ===== VARIABLES ===== */
+:root {
+  --primary-blue: #2a374c;
+  --secondary-blue: #1f2531;
+  --primary-gold: #b8ac84;
+  --secondary-gold: #7f765a;
+  --white: #ffffff;
+  --black: #000000;
+  --overlay: rgba(42, 55, 76, 0.85);
+  --card-bg: rgba(31, 37, 49, 0.7);
+  --gold-transparent: rgba(184, 172, 132, 0.2);
+  --gold-light: #d4c9a1;
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  position: relative;
+  min-height: 100vh;
+  touch-action: manipulation;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay);
+  z-index: -1;
+}
+
+/* ===== BACKGROUND IMAGE ===== */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/static/images/composicion_nueva.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* ===== MAIN LAYOUT ===== */
+main, .main-content {  /* ← Acepta ambos selectores */
+  max-width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  overflow-y: auto;
+  margin-top: var(--nav-h);  /* ← IMPORTANTE: el offset del navbar */
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== NEXT MATCH CARD ===== */
+.next-match-container {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.match-main-title {
+  color: var(--primary-gold);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.fixture-info {
+  background: var(--primary-gold);
+  color: var(--secondary-blue);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.competition-badge {
+  background: var(--gold-transparent);
+  color: var(--primary-gold);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.competition-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ===== TEAM VS DISPLAY ===== */
+.teams-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.team-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.team-logo:hover {
+  transform: scale(1.1);
+}
+
+.team-name {
+  color: var(--white);
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.vs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vs-circle {
+  background: var(--primary-gold);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: var(--secondary-blue);
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.match-date-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match-date {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.match-time {
+  color: var(--primary-gold);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===== LOCATION BADGE ===== */
+.location-container {
+  margin-top: 0.8rem;
+  padding: 0.6rem;
+  background: var(--gold-transparent);
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--primary-gold);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-decoration: none;
+}
+
+.location-label {
+  display: block;
+  font-size: 10px;
+  color: var(--primary-gold);
+  margin-bottom: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.location-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.location-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.location-container:hover {
+  background: rgba(184, 172, 132, 0.25);
+  border-color: var(--gold-light);
+}
+
+/* ===== LAST MATCHES ===== */
+.last-matches {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  backdrop-filter: blur(5px);
+}
+
+.section-title {
+  color: var(--primary-gold);
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.compact-match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.compact-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.compact-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.compact-result {
+  font-weight: bold;
+  color: var(--white);
+  font-size: 1rem;
+  background: var(--gold-transparent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.compact-date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ===== SPONSORS CAROUSEL ===== */
+.sponsors-section {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+.sponsors-title {
+  color: var(--primary-gold);
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.sponsors-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 15px 0;
+}
+
+.sponsors-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+  will-change: transform;
+}
+
+.sponsor-item {
+  flex: 0 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor {
+  height: 40px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor:hover {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(184, 172, 132, 0.7));
+}
+
+/* ===== COPA MODAL (si lo usas) ===== */
+.copa-image-container {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.copa-image-container:hover {
+  transform: scale(1.02);
+}
+
+.copa-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.copa-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.copa-modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.copa-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 70%;
+  max-height: 70%;
+  border-radius: 8px;
+  animation: zoom 0.3s ease;
+}
+
+.copa-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--primary-gold);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.copa-modal-close:hover {
+  color: var(--white);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes zoom {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .copa-image {
+    max-height: 150px;
+  }
+  
+  .copa-modal-content {
+    max-width: 95%;
+    max-height: 80%;
+  }
+  
+  .copa-modal-close {
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .team-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .vs-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+  }
+  
+  .compact-logo {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .sponsor {
+    height: 50px;
+  }
+}
+
+/* ===== UTILITIES ===== */
+.no-matches {
+  text-align: center;
+  padding: 1rem;
+  color: var(--primary-gold);
+}
