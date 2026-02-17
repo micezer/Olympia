@@ -4,27 +4,6 @@
 
 {% block title %}Plantilla - CFF Olympia{% endblock %}
 
-{% block content %}
-<div class="team-container">
-    <!-- Selector de equipos -->
-    {% include 'components/players/team_selector.html' %}
-
-    <!-- Contenedor dinámico para mostrar el equipo seleccionado -->
-    <div class="team-display-container" id="teamDisplay">
-        <!-- Se cargará dinámicamente vía JavaScript -->
-    </div>
-
-    <!-- TODOS LOS MODALES -->
-    {% include 'components/players/modals/positions_modal.html' %}
-    {% include 'components/players/modals/players_modal.html' %}
-    {% include 'components/players/modals/player_detail_modal.html' %}
-    {% include 'components/players/modals/category_modal.html' %}
-    {% include 'components/players/modals/team_modal.html' %}
-    {% include 'components/players/modals/pdf_modal.html' %}
-</div>
-{% endblock %}
-
-
 
 {% block extra_css %}
 <style>
@@ -1103,6 +1082,39 @@
 {% endblock %}
 
 
+
+{% block content %}
+<div class="team-container">
+    <!-- Selector de equipos -->
+    <div class="team-selector">
+        <button class="team-selector-btn">
+            <span>Selecciona un equipo</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="team-dropdown">
+            <div class="team-option" data-team="senior_a">Senior A - Primer Equipo</div>
+            <div class="team-option" data-team="senior_b">Senior B</div>
+            <div class="team-option" data-team="senior_c">Senior C</div>
+            <div class="team-option" data-team="cantera">Cantera</div>
+        </div>
+    </div>
+
+    <!-- Contenedor dinámico para mostrar el equipo seleccionado -->
+    <div class="team-display-container" id="teamDisplay">
+        <!-- Por defecto mostramos Senior A -->
+        {% include 'components/players/templates/senior_a_template.html' %}
+    </div>
+
+    <!-- TODOS LOS MODALES -->
+    {% include 'components/players/modals/positions_modal.html' %}
+    {% include 'components/players/modals/players_modal.html' %}
+    {% include 'components/players/modals/player_detail_modal.html' %}
+    {% include 'components/players/modals/category_modal.html' %}
+    {% include 'components/players/modals/team_modal.html' %}
+    {% include 'components/players/modals/pdf_modal.html' %}
+</div>
+{% endblock %}
+
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 <script>
@@ -1112,6 +1124,43 @@
         const teamDropdown = document.querySelector('.team-dropdown');
         const teamOptions = document.querySelectorAll('.team-option');
         const teamDisplayContainer = document.getElementById('teamDisplay');
+
+        // Modales
+        const positionsModal = document.getElementById('positionsModal');
+        const positionsModalTitle = document.getElementById('positionsModalTitle');
+        const positionsModalGrid = document.getElementById('positionsModalGrid');
+        const playersModal = document.getElementById('playersModal');
+        const playersModalTitle = document.getElementById('playersModalTitle');
+        const playersModalGrid = document.getElementById('playersModalGrid');
+        const playerModal = document.getElementById('playerModal');
+        const categoryModal = document.getElementById('categoryModal');
+        const teamModal = document.getElementById('teamModal');
+        const pdfModal = document.getElementById('pdfModal');
+
+        // Botones de cierre
+        const closeButtons = document.querySelectorAll('.positions-modal-close, .players-modal-close, .player-modal-close, .category-modal-close, .team-modal-close, .pdf-modal-close');
+        
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Cerrar el modal padre
+                const modal = this.closest('.positions-modal, .players-modal, .player-modal, .category-modal, .team-modal, .pdf-modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Cerrar modales al hacer clic fuera
+        const modals = [positionsModal, playersModal, playerModal, categoryModal, teamModal, pdfModal];
+        modals.forEach(modal => {
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            }
+        });
 
         // Toggle dropdown
         teamSelectorBtn.addEventListener('click', function() {
@@ -1142,9 +1191,9 @@
             });
         });
 
-        // Function to select a team - AHORA CON LAS PLANTILLAS INCLUIDAS DIRECTAMENTE
+        // Function to select a team
         function selectTeam(teamId) {
-            // Plantillas hardcodeadas (como en la tienda y noticias)
+            // Plantillas hardcodeadas
             let html = '';
             
             if (teamId === 'senior_a') {
@@ -1177,11 +1226,12 @@
             });
         }
 
-        // Function to fetch players by team (igual que antes)
+        // Function to fetch players by team
         function fetchPlayersByTeam(teamId) {
             fetch(`/api/players/?team=${teamId}`)
                 .then(response => response.json())
                 .then(players => {
+                    console.log('Players received:', players);
                     openPositionsModal(teamId, players);
                 })
                 .catch(error => {
@@ -1189,8 +1239,155 @@
                 });
         }
 
-        // Función para abrir modal de categorías
+        // Function to open positions modal
+        function openPositionsModal(teamId, players) {
+            if (!positionsModal || !positionsModalTitle || !positionsModalGrid) {
+                console.error('Positions modal elements not found');
+                return;
+            }
+
+            positionsModalTitle.textContent = `Selecciona una posición - ${getTeamDisplayName(teamId)}`;
+            positionsModalGrid.innerHTML = '';
+
+            // Get unique positions from players (excluding technical staff)
+            const positions = [...new Set(players
+                .filter(player => !player.is_staff && player.position !== 'tecnico')
+                .map(player => player.position)
+            )];
+
+            // Check if there are any technical staff members
+            const hasTechnicalStaff = players.some(player => player.is_staff || player.position === 'tecnico');
+
+            // Add technical staff option only once
+            if (hasTechnicalStaff) {
+                positions.push('tecnico');
+            }
+
+            // Create position buttons
+            positions.forEach(position => {
+                const positionItem = document.createElement('div');
+                positionItem.className = 'position-modal-item';
+                positionItem.setAttribute('data-position', position);
+                positionItem.innerHTML = `<div class="position-modal-name">${getPositionDisplayName(position)}</div>`;
+
+                positionItem.addEventListener('click', function() {
+                    let positionPlayers;
+                    if (position === 'tecnico') {
+                        positionPlayers = players.filter(player =>
+                            player.is_staff || player.position === 'tecnico'
+                        );
+                    } else {
+                        positionPlayers = players.filter(player =>
+                            player.position === position && !player.is_staff
+                        );
+                    }
+                    openPlayersModal(teamId, position, positionPlayers);
+                });
+
+                positionsModalGrid.appendChild(positionItem);
+            });
+
+            // Show modal
+            positionsModal.classList.add('active');
+        }
+
+        // Function to open players modal
+        function openPlayersModal(teamId, position, players) {
+            if (!playersModal || !playersModalTitle || !playersModalGrid) {
+                console.error('Players modal elements not found');
+                return;
+            }
+
+            playersModalTitle.textContent = `${getPositionDisplayName(position)} - ${getTeamDisplayName(teamId)}`;
+            playersModalGrid.innerHTML = '';
+
+            // Sort players
+            if (position === 'tecnico') {
+                players.sort((a, b) => {
+                    if (a.role && b.role) return a.role.localeCompare(b.role);
+                    return a.name.localeCompare(b.name);
+                });
+            } else {
+                players.sort((a, b) => a.number - b.number);
+            }
+
+            // Create player items
+            players.forEach(player => {
+                const playerItem = document.createElement('div');
+                playerItem.className = 'player-item';
+                playerItem.setAttribute('data-player-id', player.id);
+
+                if (position === 'tecnico' || player.is_staff) {
+                    playerItem.innerHTML = `
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-number">${player.role || 'Cuerpo Técnico'}</div>
+                    `;
+                } else {
+                    playerItem.innerHTML = `
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-number">#${player.number}</div>
+                    `;
+                }
+
+                playerItem.addEventListener('click', function() {
+                    openPlayerModal(player);
+                });
+
+                playersModalGrid.appendChild(playerItem);
+            });
+
+            // Hide positions modal and show players modal
+            if (positionsModal) positionsModal.classList.remove('active');
+            playersModal.classList.add('active');
+        }
+
+        // Function to open player detail modal
+        function openPlayerModal(player) {
+            if (!playerModal) return;
+
+            const modalPlayerImage = document.getElementById('modalPlayerImage');
+            const modalPlayerNumber = document.getElementById('modalPlayerNumber');
+            const modalPlayerName = document.getElementById('modalPlayerName');
+            const modalPlayerPosition = document.getElementById('modalPlayerPosition');
+            const modalPlayerInfo = document.getElementById('modalPlayerInfo');
+
+            if (player.image) {
+                modalPlayerImage.src = player.image;
+            } else {
+                modalPlayerImage.src = "{% static 'images/players/default.png' %}";
+            }
+            modalPlayerImage.alt = player.name;
+
+            if (player.is_staff || player.position === 'tecnico') {
+                modalPlayerNumber.textContent = player.role ? player.role.charAt(0) : 'T';
+                modalPlayerName.textContent = player.full_name || player.name;
+                modalPlayerPosition.textContent = player.role || 'Cuerpo Técnico';
+            } else {
+                modalPlayerNumber.textContent = player.number;
+                modalPlayerName.textContent = player.full_name || player.name;
+                modalPlayerPosition.textContent = player.display_position || getPositionDisplayName(player.position);
+            }
+
+            modalPlayerInfo.innerHTML = `
+                <p><strong>Equipo:</strong> ${getTeamDisplayName(player.team)}</p>
+                ${player.birth_date ? `<p><strong>Fecha de nacimiento:</strong> ${formatDate(player.birth_date)}</p>` : ''}
+                ${player.nationality ? `<p><strong>Nacionalidad:</strong> ${player.nationality}</p>` : ''}
+                ${player.role && (player.is_staff || player.position === 'tecnico') ?
+                    `<p><strong>Rol:</strong> ${player.role}</p>` : ''}
+            `;
+
+            // Hide players modal and show player modal
+            if (playersModal) playersModal.classList.remove('active');
+            playerModal.classList.add('active');
+        }
+
+        // Function to open category modal (para cantera)
         function openCategoryModal(category) {
+            if (!categoryModal) return;
+
+            const categoryModalTitle = document.getElementById('categoryModalTitle');
+            const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
+
             // Definir equipos por categoría
             const teams = {
                 juvenil: [
@@ -1220,32 +1417,77 @@
                 ]
             };
 
-            const categoryModal = document.getElementById('categoryModal');
-            const categoryModalTitle = document.getElementById('categoryModalTitle');
-            const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
-            
             categoryModalTitle.textContent = `Equipos ${category.charAt(0).toUpperCase() + category.slice(1)}`;
             categoryTeamsGrid.innerHTML = '';
 
-            teams[category].forEach(team => {
-                const teamItem = document.createElement('div');
-                teamItem.className = 'category-team-item';
-                teamItem.setAttribute('data-team', team.name);
-                teamItem.setAttribute('data-team-data', JSON.stringify(team));
-                teamItem.innerHTML = `<div class="category-team-name">${team.name}</div>`;
-                categoryTeamsGrid.appendChild(teamItem);
-            });
+            if (teams[category]) {
+                teams[category].forEach(team => {
+                    const teamItem = document.createElement('div');
+                    teamItem.className = 'category-team-item';
+                    teamItem.setAttribute('data-team', team.name);
+                    teamItem.setAttribute('data-team-data', JSON.stringify(team));
+                    teamItem.innerHTML = `<div class="category-team-name">${team.name}</div>`;
+                    
+                    teamItem.addEventListener('click', function() {
+                        const teamData = JSON.parse(this.getAttribute('data-team-data'));
+                        openTeamModal(team.name, teamData);
+                    });
+                    
+                    categoryTeamsGrid.appendChild(teamItem);
+                });
+            }
 
             categoryModal.classList.add('active');
         }
 
-        // Inicializar event listeners para los botones del equipo actual (Senior A por defecto)
-        const initialPlayersButton = document.querySelector('.players-btn');
-        if (initialPlayersButton) {
-            initialPlayersButton.addEventListener('click', function() {
-                fetchPlayersByTeam('senior_a');
-            });
+        // Function to open team modal
+        function openTeamModal(teamName, teamData) {
+            if (!teamModal) return;
+
+            const teamModalTitle = document.getElementById('teamModalTitle');
+            const calendarBtn = document.getElementById('calendarBtn');
+            const tableBtn = document.getElementById('tableBtn');
+
+            teamModalTitle.textContent = teamName;
+            
+            calendarBtn.href = teamData.calendar;
+            tableBtn.href = teamData.table;
+
+            // Hide category modal and show team modal
+            if (categoryModal) categoryModal.classList.remove('active');
+            teamModal.classList.add('active');
         }
+
+        // Helper functions
+        function getPositionDisplayName(positionValue) {
+            const positionMap = {
+                'portero': 'Portera',
+                'defensa': 'Defensa',
+                'centrocampista': 'Centrocampista',
+                'delantero': 'Delantera',
+                'tecnico': 'Cuerpo Técnico'
+            };
+            return positionMap[positionValue] || positionValue;
+        }
+
+        function getTeamDisplayName(teamId) {
+            const teamMap = {
+                'senior_a': 'Senior A',
+                'senior_b': 'Senior B',
+                'senior_c': 'Senior C',
+                'cantera': 'Cantera'
+            };
+            return teamMap[teamId] || teamId;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES');
+        }
+
+        // Inicializar con Senior A
+        selectTeam('senior_a');
     });
 </script>
 {% endblock %}
