@@ -1,0 +1,32 @@
+<div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <h2 class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</h2>
+            <div class="pdf-modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="pdf-controls">
+            <button class="pdf-control-btn" id="pdfPrevPage">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
+            <button class="pdf-control-btn" id="pdfNextPage">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="pdf-control-btn" id="pdfZoomOut">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button class="pdf-control-btn" id="pdfZoomIn">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <button class="pdf-control-btn" id="pdfResetZoom">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+        <div class="pdf-viewer-container">
+            <div class="pdf-loading" id="pdfLoading">Cargando PDF...</div>
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+    </div>
+</div>

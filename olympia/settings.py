@@ -50,22 +50,22 @@ SECRET_KEY = 'django-insecure-*%8q57lo19zr*wi-#jhp*nwskp2ztpr!i+ak(n!prqhvu3h4z4
 DEBUG = True
 # ALLOWED_HOSTS = ['cff-olympia.onrender.com', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['cff-olympia.onrender.com']
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 import os
 
 # Obtén la URL de Vercel de las variables de entorno
 VERCEL_URL = os.environ.get('VERCEL_URL', '')
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.vercel.app',  # Permite todos los subdominios de vercel.app
-]
+# ALLOWED_HOSTS = [
+#     'localhost',
+#    '127.0.0.1',
+#    '.vercel.app',  # Permite todos los subdominios de vercel.app
+#]
 
 # Añade la URL específica si existe
-if VERCEL_URL:
-    ALLOWED_HOSTS.append(VERCEL_URL)
+#if VERCEL_URL:
+ #   ALLOWED_HOSTS.append(VERCEL_URL)
 
 # Si tienes dominio personalizado (cuando lo tengas)
 # ALLOWED_HOSTS.append('tudominio.com')

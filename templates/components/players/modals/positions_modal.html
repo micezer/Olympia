@@ -1,0 +1,17 @@
+<div class="positions-modal" id="positionsModal">
+    <div class="positions-modal-content">
+        <div class="positions-modal-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2 class="positions-modal-title" id="positionsModalTitle">Selecciona una posición</h2>
+        <div class="positions-grid" id="positionsModalGrid">
+            {% for position_value, position_name in POSITION_CHOICES %}
+            {% if position_value != 'tecnico' %}
+            <div class="position-modal-item" data-position="{{ position_value }}">
+                <div class="position-modal-name">{{ position_name }}</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

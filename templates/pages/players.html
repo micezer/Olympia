@@ -1,0 +1,1251 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}Plantilla - CFF Olympia{% endblock %}
+
+{% block content %}
+<div class="team-container">
+    <!-- Selector de equipos -->
+    {% include 'components/players/team_selector.html' %}
+
+    <!-- Contenedor dinámico para mostrar el equipo seleccionado -->
+    <div class="team-display-container" id="teamDisplay">
+        <!-- Se cargará dinámicamente vía JavaScript -->
+    </div>
+
+    <!-- TODOS LOS MODALES -->
+    {% include 'components/players/modals/positions_modal.html' %}
+    {% include 'components/players/modals/players_modal.html' %}
+    {% include 'components/players/modals/player_detail_modal.html' %}
+    {% include 'components/players/modals/category_modal.html' %}
+    {% include 'components/players/modals/team_modal.html' %}
+    {% include 'components/players/modals/pdf_modal.html' %}
+</div>
+{% endblock %}
+
+
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-blue: #2a374c;
+        --secondary-blue: #1f2531;
+        --primary-gold: #b8ac84;
+        --secondary-gold: #7f765a;
+    }
+
+    body {
+        touch-action: pan-x pan-y;
+        background-color: var(--primary-blue);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        background-size: cover;
+        position: relative;
+        min-height: 100vh;
+        touch-action: manipulation;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(42, 55, 76, 0.85);
+        z-index: -1;
+    }
+
+    main {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        margin-top: 0;
+    }
+
+    .team-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-top: 70px;
+    }
+
+    .team-title {
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px 0;
+        text-transform: uppercase;
+        position: relative;
+        letter-spacing: 2px;
+    }
+
+    .team-title::before,
+    .team-title::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background-color: var(--primary-gold);
+    }
+
+    .team-title::before {
+        top: -10px;
+    }
+
+    .team-title::after {
+        bottom: -10px;
+    }
+
+    /* Team Selector Dropdown */
+    .team-selector {
+        max-width: 500px;
+        margin: 30px auto;
+        position: relative;
+        z-index: 10;
+    }
+
+    .team-selector-btn {
+        width: 100%;
+        padding: 15px 20px;
+        background: var(--secondary-blue);
+        border: 2px solid var(--primary-gold);
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-selector-btn:hover {
+        background: var(--primary-blue);
+    }
+
+    .team-selector-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .team-selector-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    .team-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-blue);
+        border: 2px solid var(--primary-gold);
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, opacity 0.3s ease;
+        opacity: 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-dropdown.active {
+        max-height: 300px;
+        opacity: 1;
+        overflow-y: auto;
+    }
+
+    .team-display-container {
+        margin-top: 20px;
+        animation: fadeIn 0.5s ease;
+        min-height: 80px;
+    }
+
+    .team-option {
+        padding: 12px 20px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(184, 172, 132, 0.2);
+    }
+
+    .team-option:last-child {
+        border-bottom: none;
+    }
+
+    .team-option:hover {
+        background: var(--primary-blue);
+        padding-left: 25px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .team-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--secondary-blue);
+        padding: 15px 25px;
+        border-radius: 8px;
+        border-bottom: none;
+    }
+
+    .team-name-display {
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        max-width: 500px;
+    }
+
+    .team-actions {
+        display: flex;
+        gap: 15px;
+    }
+
+    .team-action-btn {
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-action-btn:hover {
+        background: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-action-btn i {
+        font-size: 18px;
+    }
+
+    /* Positions Modal */
+    .positions-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .positions-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .positions-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .positions-modal.active .positions-modal-content {
+        transform: scale(1);
+    }
+
+    .positions-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .positions-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .positions-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: var(--primary-gold);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .positions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .position-modal-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 20px 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .position-modal-item:hover {
+        background: rgba(184, 172, 132, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .position-modal-name {
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+    }
+
+    /* Players Modal */
+    .players-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .players-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .players-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 20px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .players-modal.active .players-modal-content {
+        transform: scale(1);
+    }
+
+    .players-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .players-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .players-modal-title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--primary-gold);
+        text-align: center;
+    }
+
+    .players-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .player-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .player-item:hover {
+        background: rgba(184, 172, 132, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .player-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .player-number {
+        color: var(--primary-gold);
+        font-size: 14px;
+    }
+
+    /* Player Detail Modal */
+    .player-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1002;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .player-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .player-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 15px;
+        width: 90%;
+        max-width: 400px;
+        overflow: hidden;
+        position: relative;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 2px solid var(--primary-gold);
+    }
+
+    .player-modal.active .player-modal-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .player-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1003;
+        transition: all 0.3s ease;
+    }
+
+    .player-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .player-image-container {
+        width: 100%;
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .player-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1f2531 0%, #2a374c 100%);
+        background-image: url("{% static 'images/player_background.jpg' %}");
+        background-size: 120%;
+        background-position: center 30%;
+        background-repeat: no-repeat;
+        z-index: 1;
+        transition: transform 0.5s ease;
+    }
+
+    .player-modal-content:hover .player-background {
+        transform: scale(1.05);
+    }
+
+    .player-image {
+        position: relative;
+        width: auto;
+        height: 95%;
+        max-height: 420px;
+        object-fit: contain;
+        object-position: center bottom;
+        transition: transform 0.5s ease;
+        z-index: 2;
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+        margin-bottom: -5px;
+        align-self: flex-end;
+        transform-origin: center bottom;
+    }
+
+    .player-modal-content:hover .player-image {
+        transform: scale(1.08);
+    }
+
+    .player-details {
+        padding: 25px;
+        text-align: center;
+        background: var(--secondary-blue);
+        position: relative;
+        margin-top: -30px;
+    }
+
+    .player-details-number {
+        display: inline-block;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        line-height: 60px;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 0;
+        box-shadow: 0 5px 15px rgba(184, 172, 132, 0.3);
+        transform: translateY(-50%);
+        border: 3px solid var(--secondary-blue);
+        position: relative;
+        z-index: 3;
+    }
+
+    .player-details-name {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: white;
+        letter-spacing: 0.5px;
+    }
+
+    .player-details-position {
+        color: var(--primary-gold);
+        font-size: 18px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .player-details-info {
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    .player-details-info p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    /* Cantera grid */
+    .cantera-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .cantera-team {
+        background: var(--secondary-blue);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .cantera-team:hover {
+        background: rgba(184, 172, 132, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cantera-team-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: var(--primary-gold);
+    }
+
+    /* Category Modal */
+    .category-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .category-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .category-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 30px;
+        padding-bottom: 40px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .category-modal.active .category-modal-content {
+        transform: scale(1);
+    }
+
+    .category-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .category-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .category-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: var(--primary-gold);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .category-teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .category-team-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 20px 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(184, 172, 132, 0.3);
+    }
+
+    .category-team-item:hover {
+        background: rgba(184, 172, 132, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .category-team-name {
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+    }
+
+    /* Team Modal */
+    .team-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .team-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .team-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .team-modal.active .team-modal-content {
+        transform: scale(1);
+    }
+
+    .team-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .team-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .team-modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: var(--primary-gold);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .team-actions-modal {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .team-action-btn.modal-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        border: none;
+        border-radius: 8px;
+        padding: 20px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        min-width: 140px;
+        min-height: 100px;
+    }
+
+    .team-action-btn.modal-btn:hover {
+        background: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-action-btn.modal-btn i {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .team-action-btn.modal-btn span {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* PDF Viewer Modal */
+    .pdf-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1003;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .pdf-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .pdf-modal-content {
+        background: var(--secondary-blue);
+        border-radius: 10px;
+        width: 95%;
+        height: 85%;
+        max-width: 900px;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .pdf-modal.active .pdf-modal-content {
+        transform: scale(1);
+    }
+
+    .pdf-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+        background: var(--secondary-blue);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .pdf-modal-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--primary-gold);
+        margin: 0;
+    }
+
+    .pdf-modal-close {
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pdf-modal-close:hover {
+        background: white;
+        transform: rotate(90deg);
+    }
+
+    .pdf-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        background: var(--secondary-blue);
+        border-bottom: 1px solid rgba(184, 172, 132, 0.3);
+        flex-wrap: wrap;
+        position: sticky;
+        top: 61px;
+        z-index: 9;
+    }
+
+    .pdf-control-btn {
+        background: var(--primary-gold);
+        color: var(--secondary-blue);
+        border: none;
+        border-radius: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pdf-control-btn:hover {
+        background: white;
+        transform: translateY(-2px);
+    }
+
+    .pdf-page-info {
+        color: white;
+        font-size: 14px;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .pdf-viewer-container {
+        flex: 1;
+        position: relative;
+        overflow: auto;
+        background: #f0f0f0;
+        touch-action: manipulation;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #pdfCanvas {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+        transition: transform 0.1s ease;
+    }
+
+    .pdf-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--primary-blue);
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .cantera-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .team-title {
+            font-size: 20px;
+        }
+
+        .team-selector {
+            max-width: 100%;
+        }
+
+        .players-grid {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+
+        .player-image-container {
+            height: 300px;
+        }
+
+        .pdf-modal-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+
+        .pdf-controls {
+            padding: 8px;
+            gap: 5px;
+        }
+
+        .pdf-control-btn {
+            width: 35px;
+            height: 35px;
+        }
+
+        .pdf-page-info {
+            font-size: 12px;
+            min-width: 70px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .cantera-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .team-title {
+            font-size: 18px;
+        }
+
+        .team-selector-btn {
+            padding: 12px 15px;
+            font-size: 16px;
+        }
+
+        .players-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .player-item {
+            padding: 10px;
+        }
+
+        .player-name {
+            font-size: 14px;
+        }
+
+        .player-number {
+            font-size: 12px;
+        }
+
+        .player-image-container {
+            height: 250px;
+        }
+
+        .player-details-name {
+            font-size: 20px;
+        }
+
+        .player-details-position {
+            font-size: 14px;
+        }
+
+        .player-details-number {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const teamSelectorBtn = document.querySelector('.team-selector-btn');
+        const teamDropdown = document.querySelector('.team-dropdown');
+        const teamOptions = document.querySelectorAll('.team-option');
+        const teamDisplayContainer = document.getElementById('teamDisplay');
+
+        // Toggle dropdown
+        teamSelectorBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            teamDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!teamSelectorBtn.contains(e.target) && !teamDropdown.contains(e.target)) {
+                teamSelectorBtn.classList.remove('active');
+                teamDropdown.classList.remove('active');
+            }
+        });
+
+        // Handle team selection
+        teamOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const teamId = this.getAttribute('data-team');
+                selectTeam(teamId);
+
+                // Close dropdown
+                teamSelectorBtn.classList.remove('active');
+                teamDropdown.classList.remove('active');
+
+                // Update button text
+                teamSelectorBtn.querySelector('span').textContent = this.textContent;
+            });
+        });
+
+        // Function to select a team - AHORA CON LAS PLANTILLAS INCLUIDAS DIRECTAMENTE
+        function selectTeam(teamId) {
+            // Plantillas hardcodeadas (como en la tienda y noticias)
+            let html = '';
+            
+            if (teamId === 'senior_a') {
+                html = `{% include 'components/players/templates/senior_a_template.html' %}`;
+            } else if (teamId === 'senior_b') {
+                html = `{% include 'components/players/templates/senior_b_template.html' %}`;
+            } else if (teamId === 'senior_c') {
+                html = `{% include 'components/players/templates/senior_c_template.html' %}`;
+            } else if (teamId === 'cantera') {
+                html = `{% include 'components/players/templates/cantera_template.html' %}`;
+            }
+            
+            teamDisplayContainer.innerHTML = html;
+
+            // Add event listeners to action buttons
+            const playersButton = teamDisplayContainer.querySelector('.players-btn');
+            if (playersButton) {
+                playersButton.addEventListener('click', function() {
+                    fetchPlayersByTeam(teamId);
+                });
+            }
+
+            // Add event listeners to cantera teams
+            const canteraTeams = teamDisplayContainer.querySelectorAll('.cantera-team');
+            canteraTeams.forEach(team => {
+                team.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    openCategoryModal(category);
+                });
+            });
+        }
+
+        // Function to fetch players by team (igual que antes)
+        function fetchPlayersByTeam(teamId) {
+            fetch(`/api/players/?team=${teamId}`)
+                .then(response => response.json())
+                .then(players => {
+                    openPositionsModal(teamId, players);
+                })
+                .catch(error => {
+                    console.error('Error fetching players:', error);
+                });
+        }
+
+        // Función para abrir modal de categorías
+        function openCategoryModal(category) {
+            // Definir equipos por categoría
+            const teams = {
+                juvenil: [
+                    { name: 'Juvenil A Autonómica', calendar: "{% static 'pdf/calendario_juvenil_a.pdf' %}", table: '#' },
+                    { name: 'Juvenil B Preferente', calendar: "{% static 'pdf/calendario_juvenil_b.pdf' %}", table: '#' }
+                ],
+                cadete: [
+                    { name: 'Cadete A Autonómica', calendar: "{% static 'pdf/calendario_cadete_a.pdf' %}", table: '#' },
+                    { name: 'Cadete B Preferente', calendar: "{% static 'pdf/calendario_cadete_b.pdf' %}", table: '#' },
+                    { name: 'Cadete C Preferente', calendar: "{% static 'pdf/calendario_cadete_c.pdf' %}", table: '#' }
+                ],
+                infantil: [
+                    { name: 'Infantil F11 Regional Mixto', calendar: '#', table: '#' },
+                    { name: 'Infantil A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Infantil B Preferente', calendar: '#', table: '#' }
+                ],
+                alevin: [
+                    { name: 'Alevín A Autonómica', calendar: '#', table: '#' },
+                    { name: 'Alevín B Preferente', calendar: '#', table: '#' }
+                ],
+                benjamin: [
+                    { name: 'Benjamín A Preferente', calendar: '#', table: '#' },
+                    { name: 'Benjamín B Primera Regional', calendar: '#', table: '#' }
+                ],
+                veteranas: [
+                    { name: 'Veteranas Regional', calendar: '#', table: '#' }
+                ]
+            };
+
+            const categoryModal = document.getElementById('categoryModal');
+            const categoryModalTitle = document.getElementById('categoryModalTitle');
+            const categoryTeamsGrid = document.getElementById('categoryTeamsGrid');
+            
+            categoryModalTitle.textContent = `Equipos ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+            categoryTeamsGrid.innerHTML = '';
+
+            teams[category].forEach(team => {
+                const teamItem = document.createElement('div');
+                teamItem.className = 'category-team-item';
+                teamItem.setAttribute('data-team', team.name);
+                teamItem.setAttribute('data-team-data', JSON.stringify(team));
+                teamItem.innerHTML = `<div class="category-team-name">${team.name}</div>`;
+                categoryTeamsGrid.appendChild(teamItem);
+            });
+
+            categoryModal.classList.add('active');
+        }
+
+        // Inicializar event listeners para los botones del equipo actual (Senior A por defecto)
+        const initialPlayersButton = document.querySelector('.players-btn');
+        if (initialPlayersButton) {
+            initialPlayersButton.addEventListener('click', function() {
+                fetchPlayersByTeam('senior_a');
+            });
+        }
+    });
+</script>
+{% endblock %}

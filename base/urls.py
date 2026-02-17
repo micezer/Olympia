@@ -28,6 +28,8 @@ urlpatterns = [
     path('noticias/', views.news_view, name='news'),
     path('patrocinadores/', views.sponsors_view, name='sponsors'),
     path('copa_reina/', views.copa_view, name='copa_reina'),
+    path('plantilla/', views.players_view, name='players'),
+    path('api/players/', views.get_players_by_team, name='players_api'),
 
 
 

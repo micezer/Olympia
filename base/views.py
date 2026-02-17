@@ -237,6 +237,50 @@ def copa_view(request):
 
 
 
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Player
+
+def players_view(request):
+    return render(request, 'pages/players.html')
+
+def get_players_by_team(request):
+    team = request.GET.get('team')
+    if team:
+        players = Player.objects.filter(team=team).order_by('number')
+        players_data = []
+        for player in players:
+            players_data.append({
+                'id': player.id,
+                'name': player.name,
+                'full_name': player.full_name,
+                'number': player.number,
+                'position': player.position,
+                'display_position': player.display_position,
+                'team': player.team,
+                'birth_date': player.birth_date.strftime('%Y-%m-%d') if player.birth_date else None,
+                'nationality': player.nationality,
+                'image': player.image.url if player.image else None,
+                'is_staff': player.is_staff,
+                'role': player.role,
+            })
+        return JsonResponse(players_data, safe=False)
+    return JsonResponse([], safe=False)
+
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Player
+import json
+
+
+
+
+
 
 def registration_form(request):
     return render(request, 'registration_form.html')
